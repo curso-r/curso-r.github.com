@@ -1,5 +1,5 @@
 ---
-title: About Poirot
+title: Sobre o curso de R
 url: {lib: libraries}
 highlighter: prettify
 hitheme: twitter-bootstrap
@@ -8,40 +8,51 @@ mode: selfcontained
 --- &lead
 
 ---
+### Objetivos
 
-**Installing Poirot**
+Fornecer informações básicas do software estatístico R e expor as principais ferramentas disponíveis atualmente para realização de análises estatísticas de forma produtiva e reproduzível, baseando-se na filosofia `tidy data` e nos pacotes de Hadley Wickham. O curso é considerado de nível intermediário, pois apresenta apenas a forma de utilização de ferramentas úteis, e não abrange tópicos mais profundos como orientação à objetos, o pacote `Rcpp`, entre outros.
 
-Poirot is still under development and can be installed from github using [devtools](http:github.com/hadley/devtools). You will also need to install the development versions of [slidify](http://github.com/ramnathv/slidify) and [slidifyLibraries](http://github.com/ramnathv/slidifyLibraries).
+### Programa Resumido
+
+O curso é destinado para estudantes que já conhecem ou desejam conhecer o software estatístico R e é focado em ferramentas para aumento da produtividade em análises estatísticas, tanto em relação a tratamento de dados e análise exploratória quanto a produção de relatórios e apresentações. Por utilizar tecnologias de fronteira, o curso mostra uma parte muito importante do R que muitas vezes é desconhecida até mesmo por programadores experientes na linguagem.
+
+O curso foi estruturado em dois módulos. O primeiro módulo é de nivelamento e tem como objetivo introduzir os conceitos básicos de R, sintaxe e ferramentas principais. O segundo módulo foca nos pacotes desenvolvidos por Hadley Wickham para aumento de produtividade, bem como outras ferramentas úteis para ajuste de modelos e produção de relatórios e visualizações dinâmicas.
+
+### Programa
+
+O curso é destinado para estudantes que já conhecem ou desejam conhecer o software estatístico R e é focado em ferramentas para aumento da produtividade em análises estatísticas, tanto em relação ao tratamento de dados e análise exploratória quanto à produção de relatórios e apresentações. Por utilizar tecnologias de fronteira, o curso mostra uma parte muito importante do R que muitas vezes é desconhecida até mesmo por programadores experientes na linguagem.
+
+O curso está estruturado em dois módulos, descritos abaixo.
+
+#### Módulo Básico
+
+* Introdução à linguagem script e vetorização. Definição por gênero e diferença (comparando com C, octave, java, python, etc).
+*  Um pouco de sintaxe (principalmente operadores lógicos, `if` e `else`, laços `for` e `while`). 
+*  Estruturas de dados.
+*  Subsetting.
+*  Leitura de bancos de dados (.xls, .csv, .txt).
+-  Vocabulário focado em algumas funções essenciais (`summary`, `[`, ``\$``, `%in%`, `print`, `cat`, `str`, `table`,`plot`,  `ifelse` e as funções `*pply`)
+*  Criação de gráficos com a função `plot`
+
+#### Módulo Prático
+
+* Manipulação de dados e análise descritiva básica usando `dplyr` e `tidyr`. Conceito de `tidy data`.
+* Gramática para gráficos e visualizações com `ggplot2`.
+* Ajuste de modelos de regressão e análise multivariada com funções do `base`, `lmer`, `lme4` e `mgcv`.
+* Web apps com o `shiny`. 
+* Relatórios com RMarkdown e `knitr`.
+* Construção de pacotes no R com `devtools` e `roxygen2`.
+* Laboratório de R, com um exemplo de banco de dados real para trabalhar com todo o ferramental apresentado.
+
+### Avaliação
+
+**Método:**
+
+Aulas (14h), exercícios para casa e resultados do laboratório (10h).
+
+**Critérios:**
+
+Média ponderada de exercícios e laboratório.
 
 
-```r
-require(devtools)
-install_github('poirot', 'ramnathv')
-install_github('slidify', 'ramnathv', ref = 'dev')
-install_github('slidifyLibraries', 'ramnathv')
-```
-
-
-Poirot uses **markdown** for text content, **knitr** for code chunks and **mustache** for templating. Poirot is highly extensible using widgets. As a publishing framework for data scientists, Poirot comes pre-equipped with support for math, visualization and tables.
-
-**Reproducing this Blog**
-
-Once you have installed Poirot, you can reproduce this blog by cloning this git repository, running `blogify`, opening a web server and navigating to `http://localhost:8080/posts` on your browser.
-
-```bash
-$ git clone git@github.com:ramnathv/poirotBlog
-$ cd poirotBlog
-$ python -m SimpleHTTPServer 8080
-$ open localhost:8080/posts
-```
-
-You can generate your own posts by clearing out all files from the `posts` folder (except for `config.yml`), tweaking `site.yml` and `posts/config.yml` and running `blogify("posts")` from the root directory.
-
-**How to contribute**
-
-You can [fork the repository](https://github.com/ramnathv/blogify) on Github.
-
-**Copyright**
-
-All the content in this blog is licensed under [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/). This site is hosted on [GitHub](https://github.com) Pages and uses a modified version of [purus theme](https://github.com/mertemin/purus).
 

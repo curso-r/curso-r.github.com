@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>About Poirot</title>
+  <title>Sobre o curso de R</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
@@ -59,45 +59,61 @@
           <ol id="posts">
             <li class="post">
               <h3>
-                <a href="#">About Poirot</a>
+                <a href="#">Sobre o curso de R</a>
               </h3>
               <span></span><br/>
                <a class='label label-success' href='about.Rmd'>Source</a>
               <div class='lead'>
 
 </div>
+<h3>Objetivos</h3>
+<p>Fornecer informações básicas do software estatístico R e expor as principais ferramentas disponíveis atualmente para realização de análises estatísticas de forma produtiva e reproduzível, baseando-se na filosofia <code>tidy data</code> e nos pacotes de Hadley Wickham. O curso é considerado de nível intermediário, pois apresenta apenas a forma de utilização de ferramentas úteis, e não abrange tópicos mais profundos como orientação à objetos, o pacote <code>Rcpp</code>, entre outros.</p>
 
-<p><strong>Installing Poirot</strong></p>
+<h3>Programa Resumido</h3>
 
-<p>Poirot is still under development and can be installed from github using <a href="http:github.com/hadley/devtools">devtools</a>. You will also need to install the development versions of <a href="http://github.com/ramnathv/slidify">slidify</a> and <a href="http://github.com/ramnathv/slidifyLibraries">slidifyLibraries</a>.</p>
+<p>O curso é destinado para estudantes que já conhecem ou desejam conhecer o software estatístico R e é focado em ferramentas para aumento da produtividade em análises estatísticas, tanto em relação a tratamento de dados e análise exploratória quanto a produção de relatórios e apresentações. Por utilizar tecnologias de fronteira, o curso mostra uma parte muito importante do R que muitas vezes é desconhecida até mesmo por programadores experientes na linguagem.</p>
 
-<pre><code class="r">require(devtools)
-install_github(&#39;poirot&#39;, &#39;ramnathv&#39;)
-install_github(&#39;slidify&#39;, &#39;ramnathv&#39;, ref = &#39;dev&#39;)
-install_github(&#39;slidifyLibraries&#39;, &#39;ramnathv&#39;)
-</code></pre>
+<p>O curso foi estruturado em dois módulos. O primeiro módulo é de nivelamento e tem como objetivo introduzir os conceitos básicos de R, sintaxe e ferramentas principais. O segundo módulo foca nos pacotes desenvolvidos por Hadley Wickham para aumento de produtividade, bem como outras ferramentas úteis para ajuste de modelos e produção de relatórios e visualizações dinâmicas.</p>
 
-<p>Poirot uses <strong>markdown</strong> for text content, <strong>knitr</strong> for code chunks and <strong>mustache</strong> for templating. Poirot is highly extensible using widgets. As a publishing framework for data scientists, Poirot comes pre-equipped with support for math, visualization and tables.</p>
+<h3>Programa</h3>
 
-<p><strong>Reproducing this Blog</strong></p>
+<p>O curso é destinado para estudantes que já conhecem ou desejam conhecer o software estatístico R e é focado em ferramentas para aumento da produtividade em análises estatísticas, tanto em relação ao tratamento de dados e análise exploratória quanto à produção de relatórios e apresentações. Por utilizar tecnologias de fronteira, o curso mostra uma parte muito importante do R que muitas vezes é desconhecida até mesmo por programadores experientes na linguagem.</p>
 
-<p>Once you have installed Poirot, you can reproduce this blog by cloning this git repository, running <code>blogify</code>, opening a web server and navigating to <code>http://localhost:8080/posts</code> on your browser.</p>
+<p>O curso está estruturado em dois módulos, descritos abaixo.</p>
 
-<pre><code class="bash">$ git clone git@github.com:ramnathv/poirotBlog
-$ cd poirotBlog
-$ python -m SimpleHTTPServer 8080
-$ open localhost:8080/posts
-</code></pre>
+<h4>Módulo Básico</h4>
 
-<p>You can generate your own posts by clearing out all files from the <code>posts</code> folder (except for <code>config.yml</code>), tweaking <code>site.yml</code> and <code>posts/config.yml</code> and running <code>blogify(&quot;posts&quot;)</code> from the root directory.</p>
+<ul>
+<li>Introdução à linguagem script e vetorização. Definição por gênero e diferença (comparando com C, octave, java, python, etc).</li>
+<li> Um pouco de sintaxe (principalmente operadores lógicos, <code>if</code> e <code>else</code>, laços <code>for</code> e <code>while</code>). </li>
+<li> Estruturas de dados.</li>
+<li> Subsetting.</li>
+<li> Leitura de bancos de dados (.xls, .csv, .txt).</li>
+<li> Vocabulário focado em algumas funções essenciais (<code>summary</code>, <code>[</code>, <code>\$</code>, <code>%in%</code>, <code>print</code>, <code>cat</code>, <code>str</code>, <code>table</code>,<code>plot</code>,  <code>ifelse</code> e as funções <code>*pply</code>)</li>
+<li> Criação de gráficos com a função <code>plot</code></li>
+</ul>
 
-<p><strong>How to contribute</strong></p>
+<h4>Módulo Prático</h4>
 
-<p>You can <a href="https://github.com/ramnathv/blogify">fork the repository</a> on Github.</p>
+<ul>
+<li>Manipulação de dados e análise descritiva básica usando <code>dplyr</code> e <code>tidyr</code>. Conceito de <code>tidy data</code>.</li>
+<li>Gramática para gráficos e visualizações com <code>ggplot2</code>.</li>
+<li>Ajuste de modelos de regressão e análise multivariada com funções do <code>base</code>, <code>lmer</code>, <code>lme4</code> e <code>mgcv</code>.</li>
+<li>Web apps com o <code>shiny</code>. </li>
+<li>Relatórios com RMarkdown e <code>knitr</code>.</li>
+<li>Construção de pacotes no R com <code>devtools</code> e <code>roxygen2</code>.</li>
+<li>Laboratório de R, com um exemplo de banco de dados real para trabalhar com todo o ferramental apresentado.</li>
+</ul>
 
-<p><strong>Copyright</strong></p>
+<h3>Avaliação</h3>
 
-<p>All the content in this blog is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>. This site is hosted on <a href="https://github.com">GitHub</a> Pages and uses a modified version of <a href="https://github.com/mertemin/purus">purus theme</a>.</p>
+<p><strong>Método:</strong></p>
+
+<p>Aulas (14h), exercícios para casa e resultados do laboratório (10h).</p>
+
+<p><strong>Critérios:</strong></p>
+
+<p>Média ponderada de exercícios e laboratório.</p>
 
               <div id="disqus_thread"></div>
             </li>

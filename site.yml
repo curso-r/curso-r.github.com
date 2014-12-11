@@ -17,4 +17,4 @@ url: http://curso-r.github.io
 URL: http://github.com/ramnathv/poirot
 navigation:
   - {item: Home, href: /index.html}
-  - {item: About, href: /about.html}
+  - {item: Sobre, href: /about.html}
