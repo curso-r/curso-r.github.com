@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{MetaDescription}" />
+    
+    <meta name="color:BlogColor" content="#447294"/>
+    <meta name="text:Disqus Shortname" content="" />
+    
+    <link rel="shortcut icon" href="{Favicon}"/>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+	<link rel="apple-touch-icon" href="{PortraitURL-128}"/>
+    
+    <link href="http://static.tumblr.com/nyd4lfb/s0vmbqdj3/bootstrap.min.css" rel="stylesheet" />
+	<link href="http://static.tumblr.com/nyd4lfb/W5Bmbqd5h/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="http://static.tumblr.com/nyd4lfb/eqembubyr/main.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
+	
+	<style>
+		#sidebar .sidebar-nav .info h3 a:hover, a:hover { color: {color:BlogColor}; }
+		#sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: {color:BlogColor}; }
+		#sidebar .sidebar-nav ul#links li a:hover { background: {color:BlogColor}; }
+		{CustomCSS}
+	</style>
+	
+    <!-- IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="sidebar" class="span3">
+				<div class="sidebar-nav sidebar-nav-fixed">
+					<div class="info">
+						<p id="avatar"><a href="/"><img alt="{Title}" src="{PortraitURL-128}" /></a></p>
+						<h3><a href="/">{Title}</a></h3>
+						{block:Description}<p class="description">{Description}</p>{/block:Description}
+					</div>
+					
+					<ul id="links">
+						<li class="active"><a href="/">{lang:Home}</a></li>
+						{block:HasPages}{block:Pages}
+						<li><a href="{URL}">{Label}</a></li>
+						{/block:Pages}{/block:HasPages}
+						{block:IfTwitterUsername}<li><a href="http://twitter.com/{text:Twitter Username}">@{text:Twitter Username}</a></li>{/block:IfTwitterUsername}
+						<li><a href="{RSS}">{lang:Feed}</a></li>
+						{block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
+						{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+					</ul>
+					
+					<div class="info">
+						<form id="searchbox" form action="/search" method="get">
+							<div class="input-append">
+								<input class="span6" size="16" type="text" id="keywords" name="q" value="{SearchQuery}" />
+								<button class="btn" type="button">{lang:Search}</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div id="post-wrapper">
+					<ol id="posts">
+						{block:DayPage}
+							<li class="post">
+								<h3>{lang:Viewing everything posted on Month DayOfMonth Year}</h3>
+							</li>
+						{/block:DayPage}
+						
+						{block:TagPage}
+							<li class="post">
+								<h3>{lang:Showing posts for tag Tag 3}</h3>
+							</li>
+						{/block:TagPage}
+						
+						{block:SearchPage}
+							<li class="post">
+								<h3>
+								{block:SearchResults}{lang:Your search for SearchQuery returned SearchResultCount results}{/block:SearchResults}
+								{block:NoSearchResults}{lang:No search results for SearchQuery} {block:NoSearchResults}
+								</h3>
+							</li>
+						{/block:SearchPage}
+						
+						{block:Posts}
+							{block:Text}
+							<li class="post text">
+								{block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}
+								<p>{Body}</p>
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Text}
+							
+							{block:Photo}
+							<li class="post photo">
+								<p>{LinkOpenTag}<img class="img-polaroid" src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}</p>
+								{block:Caption}<p class="muted">{Caption}</p>{/block:Caption}
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Photo}
+							
+							{block:Photoset}
+							<li class="post photo">
+								{Photoset-500}
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Photoset}
+							
+							{block:Quote}
+							<li class="post quote">
+								<blockquote>
+									<p>{Quote}</p>
+									{block:Source}<div class="source"><small><cite title="{Source}">{Source}</cite></small></div>{/block:Source}
+								</blockquote>
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Quote}
+							
+							{block:Link}
+							<li class="post quote">
+								<h3><a href="{URL}" {Target}>{Name}</a></h3>
+								{block:Description}<p>{Description}</p>{/block:Description}
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Link}
+							
+							{block:Chat}
+							<li class="post chat">
+								{block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}
+								
+								<dl class="dl-horizontal">
+								{block:Lines}
+									<dt>{block:Label}{Label}{/block:Label}</dt>
+                                    <dd>{Line}</dd>
+                                {/block:Lines}
+                                </dl>
+                                
+                                <ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+                            </li>
+                            {/block:Chat}
+							
+							{block:Video}
+							<li class="post video">
+								{Video-500}
+								{block:Caption}<p class="muted">{Caption}</p>{/block:Caption}
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Video}
+							
+							{block:Audio}
+							<li class="post audio">
+								{AudioPlayerBlack}
+								{block:Caption}<p class="muted">{Caption}</p>{/block:Caption}
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Audio}
+							
+							{block:Answer}
+							<li class="post answer">
+								<p>{Answer}</p>
+								<blockquote>
+									<p>{Question}</p>
+									{block:Source}<div class="source"><small><cite title="{Question}">{Asker}</cite></small></div>{/block:Source}
+								</blockquote>
+								
+								<ul class="misc clearfix">
+									{block:Date}<li><a href="{Permalink}"><i class="icon-time"></i> {Month} {Year}</a></li>{/block:Date}
+									{block:NoteCount}<li><a href="{Permalink}#note-container"><i class="icon-heart"></i> {NoteCountWithLabel}</a></li>{/block:NoteCount}
+									{block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread"><i class="icon-comment"></i> {lang:comment}</a></li>{/block:IfDisqusShortname}
+									{block:HasTags}<li>{block:Tags} <i class="icon-tag"></i>  <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
+									{block:RebloggedFrom}<li><i class="icon-repeat"></i> {lang:Reblogged from ReblogParentName}</li>{/block:RebloggedFrom}
+								</ul>
+							</li>
+							{/block:Answer}
+						{/block:Posts}
+						
+						{block:IfDisqusShortname}
+							<li class="post"><div id="disqus_thread"></div>
+							<script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+							<noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript></li>
+						{/block:IfDisqusShortname}
+					</ol>
+					
+					{block:Pagination}
+					<div class="pagination">
+						<ul>
+							{block:PreviousPage}<li><a href="{PreviousPage}">&#171; {lang:Previous}</a></li>{/block:PreviousPage}
+							{block:NextPage}<li><a href="{NextPage}">{lang:Next} &#187;</a></li>{/block:NextPage}
+							<li><a href="/archive">{lang:Archive}</a></li>
+						</ul>
+					</div>
+					{/block:Pagination}
+					
+					{block:PermalinkPagination}
+					<div class="pagination">
+						<ul>
+							{block:PreviousPost}<li><a href="{PreviousPost}">&#171; {lang:Previous post}</a></li>{/block:PreviousPost}
+							{block:NextPost}<li><a href="{NextPost}">{lang:Next post} &#187;</a></li>{/block:NextPost}
+						</ul>
+					</div>
+					{/block:PermalinkPagination}
+					
+					{block:DayPagination}
+					<div class="pagination">
+						<ul>
+							{block:PreviousDayPage}<li><a href="{PreviousDayPage}">&larr; {lang:Previous day}</a></li>{/block:PreviousDayPage}
+							{block:NextDayPage}<li><a href="{NextDayPage}">{lang:Next day} &rarr;</a></li>{/block:NextDayPage}
+						</ul>
+					</div>
+					{/block:DayPagination}
+					
+					<p class="footer-link"><small>This is <a href="http://github.com/mertemin/purus" target="new">Purus</a>.</small></p>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>

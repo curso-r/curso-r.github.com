@@ -1,0 +1,19 @@
+mode     : selfcontained
+framework: purus
+github:
+  user: ramnathv
+  repo: poirot
+
+# HIGHLIGHTER SETTINGS
+highlighter: prettify
+hitheme: twitter-bootstrap
+prettify:
+  linenums: true
+
+# WIDGETS
+widgets: [disqus, mathjax]
+disqus:
+  shortname: slidify
+
+
+

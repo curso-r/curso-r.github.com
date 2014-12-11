@@ -1,0 +1,16 @@
+<div id="{{id}}" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+  {{# items }}
+    <div class="item {{active}}">
+       <iframe src="{{src}}" height = 400 width = 700></iframe>
+       <div class="carousel-caption">
+         <center><h1 style="color:white">{{{caption}}}<h1></center>
+       </div>
+    </div>
+  {{/ items }}
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#{{id}}" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#{{id}}" data-slide="next">&rsaquo;</a>
+</div>

@@ -1,0 +1,19 @@
+<nav>
+    <ul class="main-nav">
+      <li><a href="index.html">Home</a></li>
+    {{# site.social }}
+    {{# github }}
+      <li><a href="http://github.com/{{.}}" id="Github-link">Github</a></li>
+    {{/ github}}
+    {{# gplus }}
+    <li><a href="https://plus.google.com/u/0/{{.}}/about" id="Google-link">
+      Google
+    </a></li>
+    {{/ gplus }}
+    {{# twitter }}
+    <li><a href="http://twitter.com/#!/{{.}}" id="Twitter-link">Twitter</a></li>
+    {{/ twitter }}
+    {{/ site.social }}
+    </ul>
+</nav>
+<a href="http://www.slidify.org" class="fork-me">Powered by Slidify.</a>

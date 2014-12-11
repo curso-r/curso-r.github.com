@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{> head }}
+  {{{ stylesheets }}}
+</head>
+<body>
+<header class="main-header">
+  {{> github }}
+  <hgroup>
+    <div>
+      <img src="{{ site.gravatar }}" style="margin-left: 34px; margin-top: 30px;">
+    </div>
+    <h1><a href="/" id="home-link">{{site.title}}</a></h1>
+    <h2>{{site.tagline}}</h2>
+  </hgroup>
+  {{> sidebar }}
+</header>
+<section class="main-section blog-section" id="blog-posts">
+  <article>
+    {{#date}}<h3 class='date'>{{date}}</h3>{{/date}}
+    <hgroup>
+     <h2><a href="#">{{title}}</a></h2>
+     <br/>
+      {{> twitter }}
+      {{> gplus }}
+	   </hgroup>
+    {{# slides }}
+      {{{ rendered }}}
+    {{/ slides }}
+    <div id="disqus_thread"></div>
+  </article>
+</section>
+<script src='{{url.framework}}/static/js/packed.js'></script>
+<script>
+    // Function to get the Maximam value in Array
+    Array.max = function( array ) {
+        return Math.max.apply( Math, array );
+    };
+    var heights = [];
+    heights.push($('.main-header').height());
+    heights.push($('.main-section').height());
+    heights.push($(window).height());
+
+    var max_height = Array.max(heights);
+    $('.main-header').height(max_height+80);
+
+    $('#mobile-title').text(window.location.hostname);
+    var github_username = '{{ site.social.github }}';
+    var google_username = '{{ site.social.gplus }}';
+    var google_accesskey = '{{ GPLUS_API_ACCESS }}';
+    var twitter_username = '{{ site.social.twitter }}';
+</script>
+
+</body>
+
+  {{> javascripts }}
+</html>

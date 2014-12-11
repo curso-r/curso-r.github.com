@@ -1,0 +1,20 @@
+title: Poirot
+tagline: Blogging for Data Scientists
+logo: assets/img/curso_r2.jpg
+owner: Ramnath Vaidyanathan
+author:
+  email: julio.trecenti@gmail.com
+  github: curso-r
+  firstname: Curso
+  lastname: R
+
+social:
+  github: curso-r
+
+# Choose url: / for local development
+url: http://curso-r.github.io
+# url: /
+URL: http://github.com/ramnathv/poirot
+navigation:
+  - {item: Home, href: index.html}
+  - {item: About, href: about.html}

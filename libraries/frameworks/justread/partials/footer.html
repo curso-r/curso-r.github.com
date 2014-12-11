@@ -1,0 +1,21 @@
+<footer class="clearfix">
+	<div class="wrapper pages">
+		<ul class="nav">
+		{{# pages }}
+			<li><a href="{{ link }}">{{ title }}</a></li>
+		{{/ pages }}
+			<li><a href="{{ site.url }}/archives.html">Archive</a></li>
+		</ul>
+	</div>
+	
+	<div class="copy wrapper">
+		<ul class="social">
+			<!-- {% for name, link in SOCIAL %}
+			<li><a href="{{ link }}">{{ name }}</a></li>
+			{% endfor %} -->
+		</ul>
+	
+		<p role="contentinfo">© 2012 {{ AUTHOR }}<br>
+		Proudly powered by <a href="http://ramnathv.github.com/poirot/">Poirot</a>.</p>
+	</div>
+</footer>

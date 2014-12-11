@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{> head }}
+  {{{ page.stylesheets }}}
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    {{# page.biglogo }}
+    <slide class="nobackground">
+      <article class="flexbox vcenter">
+        <span>
+          <img width='400px' src="{{page.url.assets}}/img/{{page.biglogo}}">
+        </span>
+      </article>
+    </slide>
+    {{/ page.biglogo }}
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide class="title-slide segue nobackground">
+      {{# page.logo }}
+      <aside class="gdbar">
+        <img src="{{page.url.assets}}/img/{{{ page.logo }}}">
+      </aside>
+      {{/ page.logo }}
+      <hgroup class="auto-fadein">
+        <h1>{{ page.title }}</h1>
+        <h2>{{ page.subtitle }}</h2>
+        <p>{{ page.author }}<br/>{{ page.job }}</p>
+      </hgroup>
+      {{# page.github }}
+      <a href="https://github.com/{{user}}/{{repo}}/zipball/gh-pages" class="example">
+        Download
+      </a>
+      {{/ page.github }}
+      {{# page.license }}
+      <footer class = 'license'>
+        <a href='http://creativecommons.org/licenses/{{{ page.license }}}/3.0/' 
+          style='text-decoration:none;'>
+        <img width = '80px' 
+          src = 'http://mirrors.creativecommons.org/presskit/buttons/88x31/png/{{{page.license}}}.png'>
+        </a>
+      </footer>
+      {{/ page.license }}
+    </slide>
+
+    <!-- SLIDES -->
+    {{{page.content}}}
+
+    <slide class="backdrop"></slide>
+  </slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+<!-- Grab CDN jQuery, fall back to local if offline -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{page.url.lib}}/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+{{> javascripts }}
+</html>

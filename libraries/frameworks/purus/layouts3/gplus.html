@@ -1,0 +1,1 @@
+<g:plusone size="medium"></g:plusone>

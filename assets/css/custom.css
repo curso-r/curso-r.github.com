@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+strong, b {
+  font-weight: bolder;
+}
+
+body {
+  font-family: "Source Sans Pro", Helvetica;
+  font-size: 16px;
+  line-height: 24px;
+  color: #444;
+}
+
+
+/* tag box --- */
+.tag_box {
+  list-style:none;
+  margin:0;
+  padding:5px 0 ;
+  overflow:hidden;
+}
+.tag_box li {
+  line-height:28px;
+}
+.tag_box.inline li {
+  float:left;
+}
+.tag_box a {
+  padding: 3px 6px;
+  margin: 2px;
+  background: #eee;
+  color:#005F6B;
+  border-radius: 3px;
+  text-decoration:none;
+}
+.tag_box a span{
+  vertical-align:super;
+  font-size:0.8em;
+}
+.tag_box a.active {
+  background:#57A957;
+  border:1px solid #4C964D;
+  color:#FFF;
+}
+
+/*
+.posts {
+  font-size: 14px;
+}
+
+.content p code {
+  border: 0px;
+  background: cornsilk;
+  color: blue;
+  font-size: 0.9em;
+  padding: 3px 3px;
+}
+/* over ride list style in styles.css to get line numbers correct */
+ol.linenums li {
+  list-style: decimal; 
+}
+
+ol.linenums li {
+  margin-left: 0px;  
+  line-height: 18px;
+}
+.content li {
+  margin-bottom: 3px;
+}
+
+
+/* Syte */
+/* Reduce line height for code blocks */
+pre li {
+  margin-bottom: 0px;
+}
+code, pre {
+  line-height: 18px;
+}

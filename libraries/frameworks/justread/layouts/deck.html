@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">	
+<head>
+  {{> head }}
+  {{{ page.stylesheets }}}
+</head>
+<body>		
+	<header class="clearfix" role="banner">
+		<div class="wrapper">
+			<h1 class="huge"><a href="{{ site.url }}">{{ site.title }}</a></h1>
+		</div>
+	</header>
+	
+	<div role="main" class="content clearfix"> 
+    <div class="post wrapper">
+      <h1>{{ page.title }}</h1>
+      {{{ page.content }}}   
+    </div>
+  </div>
+  {{> footer }}
+</body>
+  {{> javascripts }}
+</html>

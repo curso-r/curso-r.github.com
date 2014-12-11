@@ -1,0 +1,203 @@
+/*!
+ * Purus html template
+ *
+ * The MIT License
+ *
+ * Designed by mertemin
+ * Modified by Ramnath Vaidyanathan
+ */
+ 
+ @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+ 
+ strong, b{
+   font-weight: 700;
+ }
+
+body {
+	font-size: 15px;
+	line-height: 24px;
+	color: #333333;
+	background: #fefefe;
+	padding: 0;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica,Arial, sans-serif;
+	color: #111;
+  font-weight: 700;
+}
+
+a {
+	color: darkred; /* #404040 */
+}
+
+h3 > a {
+  color: darkslategray;
+}
+
+a:hover {
+	color: #447294;
+	text-decoration: none;
+}
+
+p {
+	line-height: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.lead p{
+  line-height: 30px;
+}
+
+.container-fluid {
+	padding: 0;
+}
+
+.sidebar-nav-fixed {
+    position: fixed;
+    width: 200px; /* 275px */
+    height: 100%;
+}
+
+
+@media (max-width: 767px) {
+    .sidebar-nav-fixed {
+        position: static;
+        width: auto;
+    }
+    
+    #content #post-wrapper {
+		width: auto;
+		margin-left: 0;
+		padding: 10px;
+	}
+}
+
+@media (min-width: 767px) and (max-width: 979px) {
+    .sidebar-nav-fixed {
+    	width: 175px;
+    }
+    
+    #content #post-wrapper {
+		margin-left: 175px;
+	}
+}
+
+@media (min-width: 980px) {
+	#content #post-wrapper {
+		margin-left: 200px; /* CHANGED FROM 247px */
+	}
+}
+
+#sidebar {
+	min-height: 100%;
+}
+
+#sidebar .sidebar-nav {
+	background: #e9e9e9;
+	border-right: 1px solid #c2c2c2;
+}
+
+#sidebar .sidebar-nav .info {
+	margin-top: 20px;
+	padding: 0 20px;
+	text-shadow: 0 1px 1px #f9f9f9;
+}
+
+#sidebar .sidebar-nav .info h3 {
+	margin-bottom: 0;
+}
+
+#sidebar .sidebar-nav .info h3 a {	
+	color: #404040;
+}
+
+#sidebar .sidebar-nav .info h3 a:hover {	
+	color: #404040;
+	text-decoration: none;
+}
+
+#sidebar .sidebar-nav .info p.description {
+	color: #606060;
+	font-family: 'Amaranth', 'Helvetica Neue', Helvetica,Arial, sans-serif;
+	font-weight: 300;
+	font-size: 14px;
+	font-style: italic;
+	margin-top: 0;
+}
+
+#sidebar .sidebar-nav #avatar img {
+	width: 100px;
+	border: 5px solid #447294;
+}
+
+#sidebar .sidebar-nav ul#links {
+	margin: 30px 0 0 0;
+	list-style: none;
+	border-top: 1px solid #c2c2c2;
+	vertical-align: bottom;
+}
+
+#sidebar .sidebar-nav ul#links li {
+	border-bottom: 1px solid #c2c2c2;
+}
+
+#sidebar .sidebar-nav ul#links li.active a {
+	border-right: 6px solid #447294;
+}
+
+#sidebar .sidebar-nav ul#links li a {
+	position: relative;
+	padding: 15px 30px;
+	color: #404040;
+	display: block;
+	font-weight: 500;
+	text-shadow: 0 1px 1px #f9f9f9;
+}
+
+#sidebar .sidebar-nav ul#links li a:hover {
+	text-decoration: none;
+	color: #fff;
+	text-shadow: none;
+	background: #447294;
+}
+
+#content {
+	margin-left: 0;
+}
+
+#content ol#posts {
+	margin: 0;
+	list-style: none;
+}
+
+#content ol#posts {
+	list-style: none;
+}
+
+#content ol#posts li.post {
+	padding: 10px 35px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #DDDED7;
+}
+
+#content ol#posts li ul.misc {
+	list-style: none;
+	margin: 0;
+}
+
+#content ol#posts li ul.misc li {
+	border: none;
+	float: left;
+	padding: 0;
+	margin-right: 10px;
+}
+
+#content #post-wrapper .pagination {
+	margin-left: 20px;
+}
+
+#content #post-wrapper .footer-link {
+	padding-left: 30px;
+}

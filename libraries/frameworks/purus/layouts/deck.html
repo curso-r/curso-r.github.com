@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{> head }}
+  <style>
+	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
+	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
+	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
+    p {text-align: justify;}
+  </style>
+  {{{ page.stylesheets }}}
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			{{> sidebar }}
+			<div id="content" class='span10'>
+				<div id="post-wrapper">
+          <ol id="posts">
+            <li class="post">
+              <h3>
+                <a href="#">{{page.title}}</a>
+              </h3>
+              <span>{{ page.date }}</span><br/>
+               <a class='label label-success' href='{{site.rawurl}}{{page.file}}'>Source</a>
+              {{{page.content}}}
+              <div id="disqus_thread"></div>
+            </li>
+          </ol>
+          <div class="pagination">
+            <ul>
+              <li><a href="{{site.url}}">&#171; Back Home</a></li>
+            </ul>
+          </div> 
+        </div>
+			</div>
+		</div>
+  </div>
+</body>
+  <script src='{{page.url.framework}}/js/bootstrap.min.js'></script>
+  {{> javascripts }}
+</html>
