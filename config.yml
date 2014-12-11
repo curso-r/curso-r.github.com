@@ -13,7 +13,7 @@ prettify:
 # WIDGETS
 widgets: [disqus, mathjax]
 disqus:
-  shortname: slidify
+  shortname: curso-r
 
 
 
