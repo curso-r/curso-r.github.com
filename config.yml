@@ -11,4 +11,9 @@ prettify:
   linenums: true
 
 # WIDGETS
-widgets: [facebook, mathjax]
+widgets: [disqus, mathjax]
+disqus:
+  shortname: slidify
+
+
+
