@@ -23,7 +23,7 @@ ul.posts span {
  {{# date }}
  <li>
   <span class='pull-right'>{{date}}</span> 
-  <a href="{{site.url}}{{link}}">{{{ title }}}</a>
+  <a href="{{site.url}}/{{link}}">{{{ title }}}</a>
   <hr/>
  </li>
  {{/ date }}
