@@ -1,5 +1,5 @@
 ---
-title: Reproducible Blogging with R Markdown
+title: Material das aulas do curso de R
 ---
 
 <style>

@@ -1,5 +1,5 @@
-title: Poirot
-tagline: Blogging for Data Scientists
+title: Curso R
+tagline: Do casual ao avançado
 logo: /assets/img/curso_r2.jpg
 owner: Ramnath Vaidyanathan
 author:
@@ -16,5 +16,5 @@ url: http://curso-r.github.io
 # url: /
 URL: http://github.com/ramnathv/poirot
 navigation:
-  - {item: Home, href: index.html}
-  - {item: About, href: about.html}
+  - {item: Home, href: /index.html}
+  - {item: About, href: /about.html}
