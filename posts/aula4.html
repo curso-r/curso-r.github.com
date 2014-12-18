@@ -63,9 +63,31 @@
               </h3>
               <span>2014-12-04</span><br/>
                <a class='label label-success' href='posts/aula4.Rmd'>Source</a>
-              <div class='lead'>
+              <h2><code>dplyr</code></h2>
+<p>A manipulação de dados é uma tarefa usualmente bastante
+dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
+como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.</p>
 
-</div>
+<p>O <code>dplyr</code> é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
+simplicidade e eficiência de uma forma bastante elegante. Os scripts em <code>R</code> que fazem uso 
+inteligente dos verbos <code>dplyr</code> e as facilidades do operador <em>pipe</em> tendem a ficar mais legíveis e 
+organizados, sem perder velocidade de execução.</p>
+
+<p>Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
+e por atingir esse objetivo de forma elegante, eficaz e eficiente, o <code>dplyr</code> pode ser considerado 
+como uma revolução no <code>R</code>.</p>
+
+<h3>Características</h3>
+
+<ul>
+<li>O <em>input</em>  é sempre um <code>data.frame</code>, e o <em>output</em>  é (quase) sempre um <code>data.frame</code>.</li>
+<li>Todas as funções recebem como primeiro argumento o <code>data.frame</code> a ser manipulado, o que facilita
+a utilização do operador <code>%&gt;%</code>.</li>
+<li>Utiliza <code>C</code> e <code>C++</code> por trás da maioria das funções, o que geralmente torna o código mais eficiente.</li>
+<li>Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e <code>data.table</code>.</li>
+<li>Várias outras vantagens que não conseguiremos tratar no nosso curso.</li>
+</ul>
+
               <div id="disqus_thread"></div>
             </li>
           </ol>
