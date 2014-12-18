@@ -64,6 +64,345 @@
               <span>2014-12-02</span><br/>
                <a class='label label-success' href='posts/aula2.Rmd'>Source</a>
               <div class='lead'>
+<p>Tipos básicos de estrutura no R:</p>
+
+<ul>
+<li>Atomic vector: homogêneo e unidimensional</li>
+<li>Matrix: homogêneo e bidimensional</li>
+<li>Array: homogêneo e multidimensional</li>
+<li>List: heterogêneo e unidimensional</li>
+<li>data.frame: heterogêneo bidimensional</li>
+</ul>
+
+<p>Em sua implementação, atomic vectors e matrizes são também arrays. 
+Data.frames são listas</p>
+
+<h2>Atomic Vectors</h2>
+
+<pre><code class="r">dbl_var &lt;- c(1, 2.5, 4.5) #DOUBLE
+# Com o sufixo L temos números inteiros ao invés de double
+int_var &lt;- c(1L, 6L, 10L)
+# Use TRUE ou FALSE (T ou F) para vetores lógicos
+log_var &lt;- c(TRUE, FALSE, T, F)
+chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)
+</code></pre>
+
+<p><code>typeof</code> é a função é a função que diz qual é o tipo do objeto.</p>
+
+<pre><code class="r">typeof(dbl_var)
+</code></pre>
+
+<pre><code>## [1] &quot;double&quot;
+</code></pre>
+
+<pre><code class="r">typeof(int_var)
+</code></pre>
+
+<pre><code>## [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">typeof(log_var)
+</code></pre>
+
+<pre><code>## [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">typeof(chr_var)
+</code></pre>
+
+<pre><code>## [1] &quot;character&quot;
+</code></pre>
+
+<p>As funções <code>is.integer</code>, <code>is.double</code>, <code>is.logical</code>, <code>is.character</code> são usadas para testar se um objeto é de um determinado tipo.</p>
+
+<pre><code class="r">is.integer(dbl_var)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r">is.double(dbl_var)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">is.numeric(dbl_var)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">is.logical(log_var)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">is.character(chr_var)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>Note a função <code>is.numeric</code>, ela retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
+
+<h3>Coerção</h3>
+
+<p>Quando dois tipos de objetos são inseridos em um atomic vector o R converte o vetor para o tipo mais flexível, na ordem:</p>
+
+<ul>
+<li>logical</li>
+<li>integer</li>
+<li>double</li>
+<li>character</li>
+</ul>
+
+<pre><code class="r">c(&quot;a&quot;, 1)
+</code></pre>
+
+<pre><code>## [1] &quot;a&quot; &quot;1&quot;
+</code></pre>
+
+<pre><code class="r">c(T, 1)
+</code></pre>
+
+<pre><code>## [1] 1 1
+</code></pre>
+
+<p>Isso pode ser útil, por exemplo para contar o número de TRUES em um vetor lógico</p>
+
+<pre><code class="r">sum(c(T, F, T, F, T))
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<h3>Factors</h3>
+
+<ul>
+<li>Vetor que pode conter apenas valores pré-definidos.</li>
+<li>Utilizado para armazenar dados categóricos</li>
+<li>Implementado baseado num vetor de inteiros</li>
+</ul>
+
+<pre><code class="r">f &lt;- factor(c(&quot;oi&quot;, &quot;tudo&quot;, &quot;bem&quot;, &quot;?&quot;))
+f
+</code></pre>
+
+<pre><code>## [1] oi   tudo bem  ?   
+## Levels: ? bem oi tudo
+</code></pre>
+
+<pre><code class="r">levels(f)
+</code></pre>
+
+<pre><code>## [1] &quot;?&quot;    &quot;bem&quot;  &quot;oi&quot;   &quot;tudo&quot;
+</code></pre>
+
+<p>Sempre tome cuidado ao converter objetos factor em numericos:</p>
+
+<pre><code class="r">f &lt;- factor(c(&quot;2&quot;, &quot;3&quot;, &quot;1&quot;, &quot;10&quot;))
+as.numeric(f)
+</code></pre>
+
+<pre><code>## [1] 3 4 1 2
+</code></pre>
+
+<pre><code class="r">as.numeric(as.character(f))
+</code></pre>
+
+<pre><code>## [1]  2  3  1 10
+</code></pre>
+
+<h2>Matrizes e Arrays</h2>
+
+<p>Matrizes e arrays são definidos usando as funções <code>matrix</code> e <code>array</code>.</p>
+
+<pre><code class="r"># Dois argumentos para determinar o número de linahs e colunas
+a &lt;- matrix(1:6, ncol = 3, nrow = 2)
+# Um vetor para descrever todas as dimensões
+b &lt;- array(1:12, c(3,2,2))
+</code></pre>
+
+<h3>Dimensões</h3>
+
+<p>As funções <code>length</code>, <code>dim</code>, <code>nrow</code>, <code>ncol</code> são usadas para determinar as o número de elementos em cada dimensão de um objeto.</p>
+
+<pre><code class="r">length(c(1,2,3))
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<pre><code class="r">dim(c(1,2,3))
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">nrow(c(1,2,3))
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">length(a)
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+<pre><code class="r">nrow(a)
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">ncol(a)
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<pre><code class="r">dim(a)
+</code></pre>
+
+<pre><code>## [1] 2 3
+</code></pre>
+
+<pre><code class="r">length(b)
+</code></pre>
+
+<pre><code>## [1] 12
+</code></pre>
+
+<pre><code class="r">nrow(b)
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<pre><code class="r">ncol(b)
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">dim(b)
+</code></pre>
+
+<pre><code>## [1] 3 2 2
+</code></pre>
+
+<h2>Listas e Data.Frames</h2>
+
+<p>Listas são definidas usando a função <code>list</code></p>
+
+<pre><code class="r">list(
+  c(1:5),
+  c(&quot;oi&quot;, &quot;tchau&quot;),
+  c(T, F, T),
+  list(c(1,2,3), &quot;oi&quot;)
+  )
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] 1 2 3 4 5
+## 
+## [[2]]
+## [1] &quot;oi&quot;    &quot;tchau&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE
+## 
+## [[4]]
+## [[4]][[1]]
+## [1] 1 2 3
+## 
+## [[4]][[2]]
+## [1] &quot;oi&quot;
+</code></pre>
+
+<p>data.frames são listas em que todos os elementos são vetores do mesmo tamanho. São definidos usando a função <code>data.frame</code>.</p>
+
+<pre><code class="r">df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
+df
+</code></pre>
+
+<pre><code>##   x  y    z
+## 1 1 oi TRUE
+## 2 2 oi TRUE
+## 3 3 oi TRUE
+## 4 4 oi TRUE
+</code></pre>
+
+<pre><code class="r">str(df)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
+##  $ x: int  1 2 3 4
+##  $ y: Factor w/ 1 level &quot;oi&quot;: 1 1 1 1
+##  $ z: logi  TRUE TRUE TRUE TRUE
+</code></pre>
+
+<p>data.frame converte os vetores de caracteres em factors!! se não quiser utilizar este comportamento, use o argumento <code>stringAsFactors = F</code></p>
+
+<pre><code class="r">df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T, stringsAsFactors = F)
+str(df)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
+##  $ x: int  1 2 3 4
+##  $ y: chr  &quot;oi&quot; &quot;oi&quot; &quot;oi&quot; &quot;oi&quot;
+##  $ z: logi  TRUE TRUE TRUE TRUE
+</code></pre>
+
+<p>Se usarmos a função <code>names</code> obtemos o nome das colunas do <code>data.frame</code>. Também é possível mudar o nome das colunas dessa forma:</p>
+
+<pre><code class="r">names(df)
+</code></pre>
+
+<pre><code>## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;
+</code></pre>
+
+<pre><code class="r">names(df) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+names(df)
+</code></pre>
+
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+<h3>Combinando data.frames</h3>
+
+<p>É possível combinar data.frames usando as funções <code>cbind</code> e <code>rbind</code>:</p>
+
+<pre><code class="r">df1 &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
+df2 &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
+
+rbind(df1, df2)
+</code></pre>
+
+<pre><code>##   x  y    z
+## 1 1 oi TRUE
+## 2 2 oi TRUE
+## 3 3 oi TRUE
+## 4 4 oi TRUE
+## 5 1 oi TRUE
+## 6 2 oi TRUE
+## 7 3 oi TRUE
+## 8 4 oi TRUE
+</code></pre>
+
+<pre><code class="r">cbind(df1, df2)
+</code></pre>
+
+<pre><code>##   x  y    z x  y    z
+## 1 1 oi TRUE 1 oi TRUE
+## 2 2 oi TRUE 2 oi TRUE
+## 3 3 oi TRUE 3 oi TRUE
+## 4 4 oi TRUE 4 oi TRUE
+</code></pre>
 
 </div>
               <div id="disqus_thread"></div>
