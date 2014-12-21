@@ -3,3 +3,173 @@ title: Aula 2
 date : 2014-12-02
 --- &lead
 
+# Estruturas de dados
+
+Tipos básicos de estrutura no R:
+
+- Atomic vector: homogêneo e unidimensional
+- Matrix: homogêneo e bidimensional
+- Array: homogêneo e multidimensional
+- List: heterogêneo e unidimensional
+- data.frame: heterogêneo bidimensional
+
+Em sua implementação, atomic vectors e matrizes são também arrays. 
+
+Data.frames são listas
+
+## Atomic Vectors
+
+```{r definicao}
+dbl_var <- c(1, 2.5, 4.5) #DOUBLE
+# Com o sufixo L temos números inteiros ao invés de double
+int_var <- c(1L, 6L, 10L)
+# Use TRUE ou FALSE (T ou F) para vetores lógicos
+log_var <- c(TRUE, FALSE, T, F)
+chr_var <- c("essas são", "algumas strings")
+```
+
+`typeof` é a função é a função que diz qual é o tipo do objeto.
+
+```{r tipos}
+typeof(dbl_var)
+typeof(int_var)
+typeof(log_var)
+typeof(chr_var)
+```
+
+As funções `is.integer`, `is.double`, `is.logical`, `is.character` são usadas para testar se um objeto é de um determinado tipo.
+
+```{r}
+is.integer(dbl_var)
+is.double(dbl_var)
+is.numeric(dbl_var)
+is.logical(log_var)
+is.character(chr_var)
+```
+
+Note a função `is.numeric`, ela retorna `TRUE` tanto para objetos double quanto para integer.
+
+### Coerção
+
+Quando dois tipos de objetos são inseridos em um atomic vector o R converte o vetor para o tipo mais flexível, na ordem:
+
+- logical
+- integer
+- double
+- character
+
+```{r}
+c("a", 1)
+c(T, 1)
+```
+
+Isso pode ser útil, por exemplo para contar o número de TRUES em um vetor lógico
+
+```{r}
+sum(c(T, F, T, F, T))
+```
+
+### Factors
+
+- Vetor que pode conter apenas valores pré-definidos.
+- Utilizado para armazenar dados categóricos
+- Implementado baseado num vetor de inteiros
+
+
+```{r}
+f <- factor(c("oi", "tudo", "bem", "?"))
+f
+levels(f)
+```
+
+Sempre tome cuidado ao converter objetos factor em numericos:
+
+```{r}
+f <- factor(c("2", "3", "1", "10"))
+as.numeric(f)
+as.numeric(as.character(f))
+```
+
+
+## Matrizes e Arrays
+
+Matrizes e arrays são definidos usando as funções `matrix` e `array`.
+
+```{r}
+# Dois argumentos para determinar o número de linahs e colunas
+a <- matrix(1:6, ncol = 3, nrow = 2)
+# Um vetor para descrever todas as dimensões
+b <- array(1:12, c(3,2,2))
+```
+
+### Dimensões
+
+As funções `length`, `dim`, `nrow`, `ncol` são usadas para determinar as o número de elementos em cada dimensão de um objeto.
+
+```{r}
+length(c(1,2,3))
+dim(c(1,2,3))
+nrow(c(1,2,3))
+
+length(a)
+nrow(a)
+ncol(a)
+dim(a)
+
+
+length(b)
+nrow(b)
+ncol(b)
+dim(b)
+```
+
+## Listas e Data.Frames
+
+Listas são definidas usando a função `list`
+
+```{r}
+list(
+  c(1:5),
+  c("oi", "tchau"),
+  c(T, F, T),
+  list(c(1,2,3), "oi")
+  )
+```
+
+data.frames são listas em que todos os elementos são vetores do mesmo tamanho. São definidos usando a função `data.frame`.
+
+```{r}
+df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+df
+str(df)
+```
+
+data.frame converte os vetores de caracteres em factors!! se não quiser utilizar este comportamento, use o argumento `stringAsFactors = F`
+
+```{r}
+df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T, stringsAsFactors = F)
+str(df)
+```
+
+Se usarmos a função `names` obtemos o nome das colunas do `data.frame`. Também é possível mudar o nome das colunas dessa forma:
+
+```{r}
+names(df)
+names(df) <- c("a", "b", "c")
+names(df)
+```
+
+### Combinando data.frames
+
+É possível combinar data.frames usando as funções `cbind` e `rbind`:
+
+```{r}
+df1 <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+df2 <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+
+rbind(df1, df2)
+cbind(df1, df2)
+```
+
+
+
