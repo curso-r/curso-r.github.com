@@ -14,6 +14,7 @@ Tipos básicos de estrutura no R:
 - data.frame: heterogêneo bidimensional
 
 Em sua implementação, atomic vectors e matrizes são também arrays. 
+
 Data.frames são listas
 
 ## Atomic Vectors
