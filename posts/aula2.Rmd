@@ -17,7 +17,7 @@ Tipos básicos de estrutura no R:
 - **Data frame**: heterogêneo bidimensional
 
 
-**Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas. :wink:
+**Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.
 
 
 ## Atomic Vectors
@@ -64,23 +64,25 @@ is.logical(log_var)
 is.character(chr_var)
 ```
 
-Note a função `is.numeric`, ela retorna `TRUE` tanto para objetos double quanto para integer.
+Note que a função `is.numeric` retorna `TRUE` tanto para objetos double quanto para integer.
 
 ### Coerção
 
-Quando dois tipos de objetos são inseridos em um atomic vector o R converte o vetor para o tipo mais flexível, na ordem:
+Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:
 
 - logical
 - integer
 - double
 - character
 
+Na lista acima, character é o tipo mais flexível.
+
 ```{r}
 c("a", 1)
 c(T, 1)
 ```
 
-Isso pode ser útil, por exemplo para contar o número de TRUES em um vetor lógico
+Isso pode ser útil, por exemplo, para contar o número de TRUEs em um vetor lógico:
 
 ```{r}
 sum(c(T, F, T, F, T))
@@ -88,23 +90,26 @@ sum(c(T, F, T, F, T))
 
 ### Factors
 
-- Vetor que pode conter apenas valores pré-definidos.
-- Utilizado para armazenar dados categóricos
-- Implementado baseado num vetor de inteiros
+Factors são utilizados para armazernar dados categorizados e são caracterizados por:
+
+- conterem apenas valores pré-definidos, chamados *levels*; e
+- se basearem num vetor de inteiros.
 
 
 ```{r}
-f <- factor(c("oi", "tudo", "bem", "?"))
+f <- factor(c("aventura", "terror", "comédia", "drama"))
 f
 levels(f)
 ```
 
-Sempre tome cuidado ao converter objetos factor em numericos:
+Observe que, dentro do objeto, os levels são organizados em ordem alfabética.
+
+Sempre tome cuidado ao converter factors em objetos numéricos:
 
 ```{r}
 f <- factor(c("2", "3", "1", "10"))
-as.numeric(f)
-as.numeric(as.character(f))
+as.numeric(f) # não funciona
+as.numeric(as.character(f)) # funciona
 ```
 
 

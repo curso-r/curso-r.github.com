@@ -64,7 +64,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><strong>Lista</strong>: heterogêneo e unidimensional</li>
 <li><strong>Data frame</strong>: heterogêneo bidimensional</li>
 </ul>
-<p><strong>Nota</strong>: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas. :wink:</p>
+<p><strong>Nota</strong>: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.</p>
 <div id="atomic-vectors" class="section level2">
 <h2>Atomic Vectors</h2>
 <p>Atomic vectors são a estrutura de objetos mais simples do R, caracterizados por “não terem dimensão”.</p>
@@ -104,37 +104,38 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</code></pre
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>is.character(chr_var)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p>Note a função <code>is.numeric</code>, ela retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
+<p>Note que a função <code>is.numeric</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
 <div id="coercao" class="section level3">
 <h3>Coerção</h3>
-<p>Quando dois tipos de objetos são inseridos em um atomic vector o R converte o vetor para o tipo mais flexível, na ordem:</p>
+<p>Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:</p>
 <ul>
 <li>logical</li>
 <li>integer</li>
 <li>double</li>
 <li>character</li>
 </ul>
+<p>Na lista acima, character é o tipo mais flexível.</p>
 <pre class="r"><code>c(&quot;a&quot;, 1)</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;1&quot;</code></pre>
 <pre class="r"><code>c(T, 1)</code></pre>
 <pre><code>## [1] 1 1</code></pre>
-<p>Isso pode ser útil, por exemplo para contar o número de TRUES em um vetor lógico</p>
+<p>Isso pode ser útil, por exemplo, para contar o número de TRUEs em um vetor lógico:</p>
 <pre class="r"><code>sum(c(T, F, T, F, T))</code></pre>
 <pre><code>## [1] 3</code></pre>
 </div>
 <div id="factors" class="section level3">
 <h3>Factors</h3>
+<p>Factors são utilizados para armazernar dados categorizados e são caracterizados por:</p>
 <ul>
-<li>Vetor que pode conter apenas valores pré-definidos.</li>
-<li>Utilizado para armazenar dados categóricos</li>
-<li>Implementado baseado num vetor de inteiros</li>
+<li>conterem apenas valores pré-definidos; e</li>
+<li>se basearem num vetor de inteiros.</li>
 </ul>
-<pre class="r"><code>f &lt;- factor(c(&quot;oi&quot;, &quot;tudo&quot;, &quot;bem&quot;, &quot;?&quot;))
+<pre class="r"><code>f &lt;- factor(c(&quot;aventura&quot;, &quot;terror&quot;, &quot;comédia&quot;, &quot;drama&quot;))
 f</code></pre>
-<pre><code>## [1] oi   tudo bem  ?   
-## Levels: ? bem oi tudo</code></pre>
+<pre><code>## [1] aventura terror   comédia  drama   
+## Levels: aventura comédia drama terror</code></pre>
 <pre class="r"><code>levels(f)</code></pre>
-<pre><code>## [1] &quot;?&quot;    &quot;bem&quot;  &quot;oi&quot;   &quot;tudo&quot;</code></pre>
+<pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;</code></pre>
 <p>Sempre tome cuidado ao converter objetos factor em numericos:</p>
 <pre class="r"><code>f &lt;- factor(c(&quot;2&quot;, &quot;3&quot;, &quot;1&quot;, &quot;10&quot;))
 as.numeric(f)</code></pre>
