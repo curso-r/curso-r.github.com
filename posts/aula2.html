@@ -125,9 +125,9 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</code></pre
 </div>
 <div id="factors" class="section level3">
 <h3>Factors</h3>
-<p>Factors são utilizados para armazernar dados categorizados e são caracterizados por:</p>
+<p><em>Factors</em> são utilizados para armazernar dados categorizados e são caracterizados por:</p>
 <ul>
-<li>conterem apenas valores pré-definidos; e</li>
+<li>conterem apenas valores pré-definidos, chamados <em>levels</em>; e</li>
 <li>se basearem num vetor de inteiros.</li>
 </ul>
 <pre class="r"><code>f &lt;- factor(c(&quot;aventura&quot;, &quot;terror&quot;, &quot;comédia&quot;, &quot;drama&quot;))
@@ -136,62 +136,65 @@ f</code></pre>
 ## Levels: aventura comédia drama terror</code></pre>
 <pre class="r"><code>levels(f)</code></pre>
 <pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;</code></pre>
-<p>Sempre tome cuidado ao converter objetos factor em numericos:</p>
+<p>Observe que, dentro do objeto, os <em>levels</em> são organizados em ordem alfabética.</p>
+<p>Sempre tome cuidado ao converter factors em objetos numéricos:</p>
 <pre class="r"><code>f &lt;- factor(c(&quot;2&quot;, &quot;3&quot;, &quot;1&quot;, &quot;10&quot;))
-as.numeric(f)</code></pre>
+as.numeric(f) # não funciona</code></pre>
 <pre><code>## [1] 3 4 1 2</code></pre>
-<pre class="r"><code>as.numeric(as.character(f))</code></pre>
+<pre class="r"><code>as.numeric(as.character(f)) # funciona</code></pre>
 <pre><code>## [1]  2  3  1 10</code></pre>
 </div>
 </div>
 <div id="matrizes-e-arrays" class="section level2">
 <h2>Matrizes e Arrays</h2>
-<p>Matrizes e arrays são definidos usando as funções <code>matrix</code> e <code>array</code>.</p>
-<pre class="r"><code># Dois argumentos para determinar o número de linahs e colunas
-a &lt;- matrix(1:6, ncol = 3, nrow = 2)
-# Um vetor para descrever todas as dimensões
-b &lt;- array(1:12, c(3,2,2))</code></pre>
-<div id="dimensoes" class="section level3">
-<h3>Dimensões</h3>
-<p>As funções <code>length</code>, <code>dim</code>, <code>nrow</code>, <code>ncol</code> são usadas para determinar as o número de elementos em cada dimensão de um objeto.</p>
-<pre class="r"><code>length(c(1,2,3))</code></pre>
-<pre><code>## [1] 3</code></pre>
+<p>Matrizes e arrays são definidos usando as funções <code>matrix()</code> e <code>array()</code>.</p>
+<pre class="r"><code># Um vetor para descrever todas as dimensões
+arr &lt;- array(1:12, c(3,2,2))
+
+# Dois argumentos para determinar o número de linahs e colunas
+mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</code></pre>
+<p>Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito <em>dimensão</em>.</p>
+<p><strong>Nota</strong>: observe que uma matriz é um array com duas dimensões.</p>
+<p>As funções <code>length()</code>, <code>dim()</code>, <code>nrow()</code>, <code>ncol()</code> são usadas para determinar o comprimento de cada dimensão de um objeto.</p>
 <pre class="r"><code>dim(c(1,2,3))</code></pre>
 <pre><code>## NULL</code></pre>
 <pre class="r"><code>nrow(c(1,2,3))</code></pre>
 <pre><code>## NULL</code></pre>
-<pre class="r"><code>length(a)</code></pre>
-<pre><code>## [1] 6</code></pre>
-<pre class="r"><code>nrow(a)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>ncol(a)</code></pre>
+<pre class="r"><code>ncol(c(1,2,3))</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>length(c(1,2,3))</code></pre>
 <pre><code>## [1] 3</code></pre>
-<pre class="r"><code>dim(a)</code></pre>
-<pre><code>## [1] 2 3</code></pre>
-<pre class="r"><code>length(b)</code></pre>
-<pre><code>## [1] 12</code></pre>
-<pre class="r"><code>nrow(b)</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>ncol(b)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>dim(b)</code></pre>
+<pre class="r"><code>dim(arr)</code></pre>
 <pre><code>## [1] 3 2 2</code></pre>
+<pre class="r"><code>length(arr)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>nrow(arr)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>ncol(arr)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>dim(mat)</code></pre>
+<pre><code>## [1] 2 3</code></pre>
+<pre class="r"><code>length(mat)</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="r"><code>nrow(mat)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>ncol(mat)</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
-</div>
-<div id="listas-e-data.frames" class="section level2">
-<h2>Listas e Data.Frames</h2>
-<p>Listas são definidas usando a função <code>list</code></p>
+<div id="listas-e-data-frames" class="section level2">
+<h2>Listas e Data frames</h2>
+<p>Listas são definidas usando a função <code>list()</code>.</p>
 <pre class="r"><code>list(
   c(1:5),
-  c(&quot;oi&quot;, &quot;tchau&quot;),
+  c(&quot;homem&quot;, &quot;mulher&quot;),
   c(T, F, T),
-  list(c(1,2,3), &quot;oi&quot;)
+  list(c(1,2,3), c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
   )</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3 4 5
 ## 
 ## [[2]]
-## [1] &quot;oi&quot;    &quot;tchau&quot;
+## [1] &quot;homem&quot;  &quot;mulher&quot;
 ## 
 ## [[3]]
 ## [1]  TRUE FALSE  TRUE
@@ -201,8 +204,8 @@ b &lt;- array(1:12, c(3,2,2))</code></pre>
 ## [1] 1 2 3
 ## 
 ## [[4]][[2]]
-## [1] &quot;oi&quot;</code></pre>
-<p>data.frames são listas em que todos os elementos são vetores do mesmo tamanho. São definidos usando a função <code>data.frame</code>.</p>
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<p>Data frames são listas em que todos os elementos têm o mesmo comprimento. São definidos usando a função <code>data.frame()</code>.</p>
 <pre class="r"><code>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
 df</code></pre>
 <pre><code>##   x  y    z
@@ -215,41 +218,39 @@ df</code></pre>
 ##  $ x: int  1 2 3 4
 ##  $ y: Factor w/ 1 level &quot;oi&quot;: 1 1 1 1
 ##  $ z: logi  TRUE TRUE TRUE TRUE</code></pre>
-<p>data.frame converte os vetores de caracteres em factors!! se não quiser utilizar este comportamento, use o argumento <code>stringAsFactors = F</code></p>
+<p>Em um data frame converte, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento <code>stringAsFactors = F</code></p>
 <pre class="r"><code>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T, stringsAsFactors = F)
 str(df)</code></pre>
 <pre><code>## 'data.frame':    4 obs. of  3 variables:
 ##  $ x: int  1 2 3 4
 ##  $ y: chr  &quot;oi&quot; &quot;oi&quot; &quot;oi&quot; &quot;oi&quot;
 ##  $ z: logi  TRUE TRUE TRUE TRUE</code></pre>
-<p>Se usarmos a função <code>names</code> obtemos o nome das colunas do <code>data.frame</code>. Também é possível mudar o nome das colunas dessa forma:</p>
+<p>Se usarmos a função <code>names()</code> obtemos o nome das colunas do data frame. Também é possível mudar o nome das colunas:</p>
 <pre class="r"><code>names(df)</code></pre>
 <pre><code>## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <pre class="r"><code>names(df) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
 names(df)</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
-<div id="combinando-data.frames" class="section level3">
-<h3>Combinando data.frames</h3>
-<p>É possível combinar data.frames usando as funções <code>cbind</code> e <code>rbind</code>:</p>
-<pre class="r"><code>df1 &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
-df2 &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
+<div id="combinando-data-frames" class="section level3">
+<h3>Combinando data frames</h3>
+<p>É possível combinar data frames usando as funções <code>cbind()</code> e <code>rbind()</code>:</p>
+<pre class="r"><code>df1 &lt;- data.frame(x = 1:4, y = c(&quot;s&quot;, &quot;s&quot;, &quot;s&quot;, &quot;s&quot;), z = T)
+df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)
 
 rbind(df1, df2)</code></pre>
-<pre><code>##   x  y    z
-## 1 1 oi TRUE
-## 2 2 oi TRUE
-## 3 3 oi TRUE
-## 4 4 oi TRUE
-## 5 1 oi TRUE
-## 6 2 oi TRUE
-## 7 3 oi TRUE
-## 8 4 oi TRUE</code></pre>
+<pre><code>##   x y     z
+## 1 1 s  TRUE
+## 2 2 s  TRUE
+## 3 3 s  TRUE
+## 4 4 s  TRUE
+## 5 1 n FALSE
+## 6 2 n FALSE</code></pre>
 <pre class="r"><code>cbind(df1, df2)</code></pre>
-<pre><code>##   x  y    z x  y    z
-## 1 1 oi TRUE 1 oi TRUE
-## 2 2 oi TRUE 2 oi TRUE
-## 3 3 oi TRUE 3 oi TRUE
-## 4 4 oi TRUE 4 oi TRUE</code></pre>
+<pre><code>##   x y    z x y     z
+## 1 1 s TRUE 1 n FALSE
+## 2 2 s TRUE 2 n FALSE
+## 3 3 s TRUE 1 n FALSE
+## 4 4 s TRUE 2 n FALSE</code></pre>
 </div>
 </div>
 </div>

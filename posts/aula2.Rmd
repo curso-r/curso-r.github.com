@@ -90,7 +90,7 @@ sum(c(T, F, T, F, T))
 
 ### Factors
 
-Factors são utilizados para armazernar dados categorizados e são caracterizados por:
+*Factors* são utilizados para armazernar dados categorizados e são caracterizados por:
 
 - conterem apenas valores pré-definidos, chamados *levels*; e
 - se basearem num vetor de inteiros.
@@ -102,7 +102,7 @@ f
 levels(f)
 ```
 
-Observe que, dentro do objeto, os levels são organizados em ordem alfabética.
+Observe que, dentro do objeto, os *levels* são organizados em ordem alfabética.
 
 Sempre tome cuidado ao converter factors em objetos numéricos:
 
@@ -115,50 +115,53 @@ as.numeric(as.character(f)) # funciona
 
 ## Matrizes e Arrays
 
-Matrizes e arrays são definidos usando as funções `matrix` e `array`.
+Matrizes e arrays são definidos usando as funções `matrix()` e `array()`.
 
 ```{r}
-# Dois argumentos para determinar o número de linahs e colunas
-a <- matrix(1:6, ncol = 3, nrow = 2)
 # Um vetor para descrever todas as dimensões
-b <- array(1:12, c(3,2,2))
+arr <- array(1:12, c(3,2,2))
+
+# Dois argumentos para determinar o número de linahs e colunas
+mat <- matrix(1:6, ncol = 3, nrow = 2)
 ```
 
-### Dimensões
+Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito *dimensão*. 
 
-As funções `length`, `dim`, `nrow`, `ncol` são usadas para determinar as o número de elementos em cada dimensão de um objeto.
+**Nota**: observe que uma matriz é um array com duas dimensões.
+
+As funções `length()`, `dim()`, `nrow()`, `ncol()` são usadas para determinar o comprimento de cada dimensão de um objeto.
 
 ```{r}
-length(c(1,2,3))
 dim(c(1,2,3))
 nrow(c(1,2,3))
+ncol(c(1,2,3))
+length(c(1,2,3))
 
-length(a)
-nrow(a)
-ncol(a)
-dim(a)
+dim(arr)
+length(arr)
+nrow(arr)
+ncol(arr)
 
-
-length(b)
-nrow(b)
-ncol(b)
-dim(b)
+dim(mat)
+length(mat)
+nrow(mat)
+ncol(mat)
 ```
 
-## Listas e Data.Frames
+## Listas e Data frames
 
-Listas são definidas usando a função `list`
+Listas são definidas usando a função `list()`.
 
 ```{r}
 list(
   c(1:5),
-  c("oi", "tchau"),
+  c("homem", "mulher"),
   c(T, F, T),
-  list(c(1,2,3), "oi")
+  list(c(1,2,3), c("a", "b", "c"))
   )
 ```
 
-data.frames são listas em que todos os elementos são vetores do mesmo tamanho. São definidos usando a função `data.frame`.
+Data frames são listas em que todos os elementos têm o mesmo comprimento. São definidos usando a função `data.frame()`.
 
 ```{r}
 df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
@@ -166,14 +169,14 @@ df
 str(df)
 ```
 
-data.frame converte os vetores de caracteres em factors!! se não quiser utilizar este comportamento, use o argumento `stringAsFactors = F`
+Em um data frame converte, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento `stringAsFactors = F`
 
 ```{r}
 df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T, stringsAsFactors = F)
 str(df)
 ```
 
-Se usarmos a função `names` obtemos o nome das colunas do `data.frame`. Também é possível mudar o nome das colunas dessa forma:
+Se usarmos a função `names()` obtemos o nome das colunas do data frame. Também é possível mudar o nome das colunas:
 
 ```{r}
 names(df)
@@ -181,17 +184,14 @@ names(df) <- c("a", "b", "c")
 names(df)
 ```
 
-### Combinando data.frames
+### Combinando data frames
 
-É possível combinar data.frames usando as funções `cbind` e `rbind`:
+É possível combinar data frames usando as funções `rbind()` e `cbind()`:
 
 ```{r}
-df1 <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
-df2 <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+df1 <- data.frame(x = 1:4, y = c("s", "s", "s", "s"), z = T)
+df2 <- data.frame(x = 1:2, y = c("n", "n"), z = F)
 
 rbind(df1, df2)
 cbind(df1, df2)
 ```
-
-
-
