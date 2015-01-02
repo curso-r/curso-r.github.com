@@ -1,12 +1,9 @@
 ---
-output: html_document
----
----
-title: Aula 2
+title: Aula 2 - Estruturas de Dados e Vocabulário
 date : 2014-12-02
 --- &lead
 
-# Estruturas de dados
+# Estruturas de dados no R
 
 Tipos básicos de estrutura no R:
 
@@ -444,6 +441,56 @@ cbind(df1, df2)
 ## 3 3 oi TRUE 3 oi TRUE
 ## 4 4 oi TRUE 4 oi TRUE
 ```
+
+--------
+
+# Subsetting no R
+
+Em um vetor no R, existem cinco tipos de operação de subsetting:
+
+a) Números inteiros positivos:
+
+Retorna os elementos do vetor pelos índices especificados.
+
+```r
+x <- c(1:20) 
+x[c(1,2,3)] # seleciona os três primeiros elementos do vetor
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+order(-x) # devolve a ordem dos elementos do vetor
+```
+
+```
+##  [1] 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1
+```
+
+```r
+x[order(x)] # seleciona os elementos do vetor na ordem
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+```
+
+b) Números inteiros negativos
+
+Exclui o elemento do vetor pelo índice.
+
+```r
+x[-c(2, 5,6)]
+```
+
+```
+##  [1]  1  3  4  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+```
+
+
+
 
 
 
