@@ -453,7 +453,7 @@ a) Números inteiros positivos:
 Retorna os elementos do vetor pelos índices especificados.
 
 ```r
-x <- c(1:20) 
+x <- c(1:10) 
 x[c(1,2,3)] # seleciona os três primeiros elementos do vetor
 ```
 
@@ -466,7 +466,7 @@ order(-x) # devolve a ordem dos elementos do vetor
 ```
 
 ```
-##  [1] 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1
+##  [1] 10  9  8  7  6  5  4  3  2  1
 ```
 
 ```r
@@ -474,10 +474,10 @@ x[order(x)] # seleciona os elementos do vetor na ordem
 ```
 
 ```
-##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-b) Números inteiros negativos
+b) Números inteiros negativos.
 
 Exclui o elemento do vetor pelo índice.
 
@@ -486,9 +486,47 @@ x[-c(2, 5,6)]
 ```
 
 ```
-##  [1]  1  3  4  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+## [1]  1  3  4  7  8  9 10
 ```
 
+c) Vetores lógicos.
+TRUE seleciona, FALSE não seleciona.
+
+
+```r
+x > 5
+```
+
+```
+##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+```
+
+```r
+x[x>5]
+```
+
+```
+## [1]  6  7  8  9 10
+```
+
+Os outros dois tipos não são usados, que são:
+
+
+```r
+x[] # retorna o próprio vetor
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+x[0] # retorna um vetor de tamanho 0
+```
+
+```
+## integer(0)
+```
 
 
 
