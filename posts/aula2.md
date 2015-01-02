@@ -1,4 +1,7 @@
 ---
+output: html_document
+---
+---
 title: Aula 2
 date : 2014-12-02
 --- &lead
@@ -7,29 +10,43 @@ date : 2014-12-02
 
 Tipos básicos de estrutura no R:
 
-- Atomic vector: homogêneo e unidimensional
-- Matrix: homogêneo e bidimensional
-- Array: homogêneo e multidimensional
-- List: heterogêneo e unidimensional
-- data.frame: heterogêneo bidimensional
+- **Atomic vector**: homogêneo e unidimensional
+- **Matriz**: homogêneo e bidimensional
+- **Array**: homogêneo e multidimensional
+- **Lista**: heterogêneo e unidimensional
+- **Data frame**: heterogêneo bidimensional
 
-Em sua implementação, atomic vectors e matrizes são também arrays. 
 
-Data.frames são listas
+**Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas. :wink:
+
 
 ## Atomic Vectors
+
+Atomic vectors são a estrutura de objetos mais simples do R, caracterizados por "não terem dimensão".
+
+Tipos de atomic vectos:
+
+- lógico
+- integer
+- double
+- complexo
+- character
+
+Exemplos:
 
 
 ```r
 dbl_var <- c(1, 2.5, 4.5) #DOUBLE
-# Com o sufixo L temos números inteiros ao invés de double
+# Com o sufixo L temos números inteiros em vez de double
 int_var <- c(1L, 6L, 10L)
 # Use TRUE ou FALSE (T ou F) para vetores lógicos
 log_var <- c(TRUE, FALSE, T, F)
 chr_var <- c("essas são", "algumas strings")
 ```
 
-`typeof` é a função é a função que diz qual é o tipo do objeto.
+**Curiosidade**: na função `c()`, o *c* é de *concatenate*.
+
+Para saber qual é o tipo de um objeto, utilizamos a função `typeof`.
 
 
 ```r
