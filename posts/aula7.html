@@ -114,6 +114,9 @@ processe dados, utilizando apenas o R.</li>
 CSS no arquivo <code>ui.R</code>, e a parte relacionada com processamento de dados e geração de gráficos e 
 análises no arquivo <code>server.R</code>. </li>
 <li>Os arquivos <code>ui.R</code> e <code>server.R</code> ficam no servidor!</li>
+<li>Atualmente é possível construir 
+<a href="http://shiny.rstudio.com/articles/single-file.html">aplicativos em um arquivo só</a>, mas vamos manter 
+a estrutura de <code>ui.R</code> e <code>server.R</code>.</li>
 </ul>
 
 <h4>E pra que serve o shiny server?</h4>
@@ -138,16 +141,94 @@ aplicações simultaneamente.</li>
 
 <h3>Construindo uma interface no user side</h3>
 
+<ul>
+<li>Shiny utiliza como padrão o <a href="">bootstrap css</a> do <a href="">Twitter</a>, que é bonito e responsivo.</li>
+<li>Criar páginas básicas com <code>pageWithSidebar</code>.</li>
+<li>Páginas mais trabalhadas com <code>fluidPage</code>, <code>fluidRow</code>, <code>column</code>.</li>
+<li>Pesquisar outros tipos de layouts no shiny.</li>
+<li>Criar páginas web customizadas direto no HTML.</li>
+</ul>
+
 <h3>Adicionando widgets!</h3>
+
+<h4>Exercício</h4>
 
 <p>Acesse <a href="http://shiny.rstudio.com/gallery/widget-gallery.html" title="widgets">neste link</a> ou rode</p>
 
-<pre><code class="r">shiny::runGitHub(&#39;garrettgman/shinyWidgets&#39;)
+<pre><code class="r">shiny::runGitHub(&#39;garrettgman/shinyWidgets&#39;)b
 </code></pre>
 
-<h2>Outras informações</h2>
+<h3>Criando outputs</h3>
+
+<ul>
+<li>Imagine que para cada função <code>xxOutput(&#39;foo&#39;, ...)</code> do <code>ui.R</code> você pode colocar um código do tipo 
+<code>output$foo &lt;- renderXX(...)</code> no <code>server.R</code>.</li>
+<li>A função no arquivo <code>ui.R</code> determina a localização e identificação do elemento</li>
+<li>Criando gráficos com <code>plotOutput</code> e <code>renderPlot</code>.</li>
+<li>Exibindo dados com <code>dataTableOutput</code> e <code>renderDataTable</code>.</li>
+</ul>
+
+<h4>Exercício</h4>
+
+<h3>Escopo</h3>
+
+<ul>
+<li>server.R, dentro e fora</li>
+<li>global.R</li>
+<li>Sessões</li>
+</ul>
+
+<h3>Modelo de Reatividade</h3>
+
+<ul>
+<li>Determina o quê vai rodar e em que ordem no arquivo <code>server.R</code>, dependendo das ações do usuário.</li>
+<li>É uma tentativa de resolver a falta de tratamento de eventos no R.</li>
+<li>É importante pois impede que cálculos desnecessários sejam repetidos.</li>
+<li>Só funciona se for programado adequadamente.</li>
+</ul>
+
+<h3>Objetos reativos</h3>
+
+<ul>
+<li>Fonte (source): geralmente acessível no objeto <code>input</code>.</li>
+<li>Ponto final (endpoint): geralmente acessível no objeto <code>output</code>. Implementado através de 
+<code>observers</code>.</li>
+<li>Condutores: geralmente implementado através da função <code>reactive</code>.</li>
+</ul>
+
+<h3>Construindo grafo de invalidação</h3>
+
+<ul>
+<li>TODO</li>
+</ul>
+
+<h5>Exercício</h5>
+
+<h4>Mais informações</h4>
+
+<ul>
+<li><code>reactive</code>: Utilizar para computações pesadas ou que tem muitas dependências.</li>
+<li><code>observe</code>: Utilizar para guardar dados internamente, arquivos de log, etc. Também pode ser útil
+para trabalhar com widgets personalizados.</li>
+<li><code>isolate</code>: Utilizar para cancelar a dependência de um valor reativo em um condutor ou ponto 
+final, para poupar computações ou executar lógicas mais complexas.</li>
+</ul>
+
+<pre><code class="r">shiny::runGitHub(&#39;rstudio/shiny-examples&#39;, subdir=&#39;055-observer-demo&#39;)
+</code></pre>
+
+<h2>Fazendo mais com o shiny</h2>
 
 <h3>Construindo inputs e outputs personalizados</h3>
+
+<ul>
+<li>Geralmente necessita de implementações de <em>bindings</em> em R, HTML e JavaScript.</li>
+<li>Dependendo do caso, a criação de bindings pode ser &quot;pulada&quot; utilizando funções que injetam
+JavaScript na página e a função <code>renderUI</code> (geralmente menos eficiente).</li>
+<li>Não dá tempo de abordar no curso. Ler 
+<a href="http://shiny.rstudio.com/articles/building-inputs.html">aqui</a> e 
+<a href="http://shiny.rstudio.com/articles/building-outputs.html">aqui</a>.</li>
+</ul>
 
 <h3>Shiny Server Pro</h3>
 
@@ -165,6 +246,14 @@ utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server 
 <li>O shinyapps.io é um sistema (que envolve tanto pacote do R como uma página web) que permite que o 
 usuário coloque sua aplicação shiny na web sem muito esforço.</li>
 <li>O serviço está sendo desenvolvido pela RStudio Inc. e terá contas grátis e pagas.</li>
+</ul>
+
+<h3>Ainda mais!</h3>
+
+<ul>
+<li>Ferramenta em amplo desenvolvimento.</li>
+<li>Grande oportunidade na área acadêmica e profissional.</li>
+<li>Potencial de revolucionar as formas atuais de comunicação.</li>
 </ul>
 
               <div id="disqus_thread"></div>
