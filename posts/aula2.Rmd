@@ -1,12 +1,9 @@
 ---
-output: html_document
----
----
-title: Aula 2
+title: Aula 2 - Estruturas de Dados e Vocabulário
 date : 2014-12-02
 --- &lead
 
-# Estruturas de dados
+# Estruturas de dados no R
 
 Tipos básicos de estrutura no R:
 
@@ -34,7 +31,7 @@ Tipos de atomic vectos:
 
 Exemplos:
 
-```{r definicao}
+```{r}
 dbl_var <- c(1, 2.5, 4.5) #DOUBLE
 # Com o sufixo L temos números inteiros em vez de double
 int_var <- c(1L, 6L, 10L)
@@ -45,7 +42,7 @@ chr_var <- c("essas são", "algumas strings")
 
 **Curiosidade**: na função `c()`, o *c* é de *concatenate*.
 
-Para saber qual é o tipo de um objeto, utilizamos a função `typeof`.
+Para saber qual é o tipo de um objeto, utilizamos a função `typeof()`.
 
 ```{r tipos}
 typeof(dbl_var)
@@ -54,7 +51,7 @@ typeof(log_var)
 typeof(chr_var)
 ```
 
-As funções `is.integer`, `is.double`, `is.logical`, `is.character` são usadas para testar se um objeto é de um determinado tipo.
+As funções `is.integer()`, `is.double()`, `is.logical()`, `is.character()` são usadas para testar se um objeto é de um determinado tipo.
 
 ```{r}
 is.integer(dbl_var)
@@ -64,7 +61,7 @@ is.logical(log_var)
 is.character(chr_var)
 ```
 
-Note que a função `is.numeric` retorna `TRUE` tanto para objetos double quanto para integer.
+Note que a função `is.numeric()` retorna `TRUE` tanto para objetos double quanto para integer.
 
 ### Coerção
 
