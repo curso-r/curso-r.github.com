@@ -53,9 +53,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 <hr />
-<p>title: Aula 2 date : 2014-12-02 — &amp;lead</p>
-<div id="estruturas-de-dados" class="section level1">
-<h1>Estruturas de dados</h1>
+<p>title: Aula 2 - Estruturas de Dados e Vocabulário date : 2014-12-02 — &amp;lead</p>
+<div id="estruturas-de-dados-no-r" class="section level1">
+<h1>Estruturas de dados no R</h1>
 <p>Tipos básicos de estrutura no R:</p>
 <ul>
 <li><strong>Atomic vector</strong>: homogêneo e unidimensional</li>
@@ -84,7 +84,7 @@ int_var &lt;- c(1L, 6L, 10L)
 log_var &lt;- c(TRUE, FALSE, T, F)
 chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</code></pre>
 <p><strong>Curiosidade</strong>: na função <code>c()</code>, o <em>c</em> é de <em>concatenate</em>.</p>
-<p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof</code>.</p>
+<p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof()</code>.</p>
 <pre class="r"><code>typeof(dbl_var)</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <pre class="r"><code>typeof(int_var)</code></pre>
@@ -93,7 +93,7 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</code></pre
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <pre class="r"><code>typeof(chr_var)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p>As funções <code>is.integer</code>, <code>is.double</code>, <code>is.logical</code>, <code>is.character</code> são usadas para testar se um objeto é de um determinado tipo.</p>
+<p>As funções <code>is.integer()</code>, <code>is.double()</code>, <code>is.logical()</code>, <code>is.character()</code> são usadas para testar se um objeto é de um determinado tipo.</p>
 <pre class="r"><code>is.integer(dbl_var)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>is.double(dbl_var)</code></pre>
@@ -104,7 +104,7 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</code></pre
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>is.character(chr_var)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p>Note que a função <code>is.numeric</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
+<p>Note que a função <code>is.numeric()</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
 <div id="coercao" class="section level3">
 <h3>Coerção</h3>
 <p>Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:</p>
@@ -233,7 +233,7 @@ names(df)</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <div id="combinando-data-frames" class="section level3">
 <h3>Combinando data frames</h3>
-<p>É possível combinar data frames usando as funções <code>cbind()</code> e <code>rbind()</code>:</p>
+<p>É possível combinar data frames usando as funções <code>rbind()</code> e <code>cbind()</code>:</p>
 <pre class="r"><code>df1 &lt;- data.frame(x = 1:4, y = c(&quot;s&quot;, &quot;s&quot;, &quot;s&quot;, &quot;s&quot;), z = T)
 df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)
 
@@ -253,6 +253,39 @@ rbind(df1, df2)</code></pre>
 ## 4 4 s TRUE 2 n FALSE</code></pre>
 </div>
 </div>
+</div>
+<div id="subsetting-no-r" class="section level1">
+<h1>Subsetting no R</h1>
+<p>Em um vetor no R, existem cinco tipos de operação de subsetting:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Números inteiros positivos:</li>
+</ol>
+<p>Retorna os elementos do vetor pelos índices especificados.</p>
+<pre class="r"><code>x &lt;- c(1:10) 
+x[c(1,2,3)] # seleciona os três primeiros elementos do vetor</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>order(-x) # devolve a ordem dos elementos do vetor</code></pre>
+<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<pre class="r"><code>x[order(x)] # seleciona os elementos do vetor na ordem</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Números inteiros negativos.</li>
+</ol>
+<p>Exclui o elemento do vetor pelo índice.</p>
+<pre class="r"><code>x[-c(2, 5,6)]</code></pre>
+<pre><code>## [1]  1  3  4  7  8  9 10</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Vetores lógicos. TRUE seleciona, FALSE não seleciona.</li>
+</ol>
+<pre class="r"><code>x &gt; 5</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>x[x&gt;5]</code></pre>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<p>Os outros dois tipos não são usados, que são:</p>
+<pre class="r"><code>x[] # retorna o próprio vetor</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>x[0] # retorna um vetor de tamanho 0</code></pre>
+<pre><code>## integer(0)</code></pre>
 </div>
 
 
