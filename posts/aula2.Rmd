@@ -195,3 +195,39 @@ df2 <- data.frame(x = 1:2, y = c("n", "n"), z = F)
 rbind(df1, df2)
 cbind(df1, df2)
 ```
+
+# Subsetting no R
+
+Em um vetor no R, existem cinco tipos de operação de subsetting:
+
+a) Números inteiros positivos:
+
+Retorna os elementos do vetor pelos índices especificados.
+```{r}
+x <- c(1:10) 
+x[c(1,2,3)] # seleciona os três primeiros elementos do vetor
+order(-x) # devolve a ordem dos elementos do vetor
+x[order(x)] # seleciona os elementos do vetor na ordem
+```
+
+b) Números inteiros negativos.
+
+Exclui o elemento do vetor pelo índice.
+```{r}
+x[-c(2, 5,6)]
+```
+
+c) Vetores lógicos.
+TRUE seleciona, FALSE não seleciona.
+
+```{r}
+x > 5
+x[x>5]
+```
+
+Os outros dois tipos não são usados, que são:
+
+```{r}
+x[] # retorna o próprio vetor
+x[0] # retorna um vetor de tamanho 0
+```
