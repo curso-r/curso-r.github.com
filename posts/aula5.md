@@ -1,4 +1,12 @@
 ---
-title: Aula 5
+title: Aula 5 - Gráficos com estilo - ggplot2
 date : 2014-12-05
---- &lead
+---
+
+# O pacote ggplot2
+
+# Aesthetics
+
+# Tipos de gráficos
+
+# Personalizando o seu gráfico: 'theme()' 
