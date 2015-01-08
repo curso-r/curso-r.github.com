@@ -577,7 +577,7 @@ m
 ```
 
 ```r
-m[5,2] # Retorna o objeto especificado pelos índices.
+m[5,2] # Retorna o elemento especificado pelos índices.
 ```
 
 ```
@@ -585,7 +585,7 @@ m[5,2] # Retorna o objeto especificado pelos índices.
 ```
 
 ```r
-m[,1] # Retorna todos os objetos da coluna 1.
+m[,1] # Retorna todos os elementos da coluna 1.
 ```
 
 ```
@@ -593,7 +593,7 @@ m[,1] # Retorna todos os objetos da coluna 1.
 ```
 
 ```r
-m[3,] # Retorna todos os objetos da linha 3.
+m[3,] # Retorna todos os elementos da linha 3.
 ```
 
 ```
@@ -607,4 +607,182 @@ m[m%%2 == 0] # Retorna os elementos pares.
 ```
 ## [1]  2  4 12 14
 ```
+
+# O operador *pipe* - %>%
+
+O operador *pipe* foi uma das grandes revoluções do R que aconteceram recentemente. 
+Ele torna a leitura de códigos R muito mais fácil e compreensível.
+
+## O que é?
+
+
+```r
+library(magrittr)
+x <- c(1,2,3,4)
+x %>% sum 
+```
+
+```
+## [1] 10
+```
+
+```r
+sum(x)
+```
+
+```
+## [1] 10
+```
+
+O operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. Simplesmente.
+
+
+## Por que isso é útil?
+
+Imagine que você precisa escrever a receita de um bolo usando o R, e cada passo da receita é uma função
+
+
+```r
+esfrie(asse(coloque(bata(acrescente(bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+```
+
+Tente entender o que é preciso fazer... Não é muito fácil né? E escrevendo usando o operador `%>%`?
+
+
+```r
+bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinho", até = "macio") %>%
+  bata(duração = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = T) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+```
+
+```
+## Error: could not find function "bowl"
+```
+
+A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
+
+
+## Outros exemplos
+
+Se você não quiser substituir o primeiro argumento, mas algum outro:
+
+```r
+T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
+```
+
+```
+## [1] 0.05623
+```
+
+```r
+F %>% mean(c(NA, rnorm(100)), na.rm = .)
+```
+
+```
+## [1] NA
+```
+
+Este operador foi introduzido pelo pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` do qual se trata a próxima aula.
+
+# Gráficos com a função plot()
+
+ESCREVER INTRO
+
+
+```r
+x <- seq(1, 10, 0.1)
+y <- exp(-x)
+
+plot(x, y)
+```
+
+![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23.png) 
+
+Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
+
+- "p" para pontos (default)
+- "l" para retas
+- "b" para ambos (pontos e retas)
+- "h" para retas verticais
+- "s" para escadas
+- "n" para não plotar
+
+
+```r
+plot(x, y, type = "l")
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-241.png) 
+
+```r
+plot(x, y, type = "b")
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-242.png) 
+
+```r
+plot(x, y, type = "h")
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-243.png) 
+
+```r
+plot(x, y, type = "s")
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-244.png) 
+
+```r
+plot(x, y, type = "n")
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-245.png) 
+
+Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
+
+
+```r
+plot(x, y, type = "p", lwd = 2)
+```
+
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
+
+```r
+plot(x, y, type = "h", lwd = 3)
+```
+
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
+
+Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
+
+
+```r
+plot(x, y, type = "p", lwd = 2, cex = 2)
+```
+
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26.png) 
+
+Para alterar a cor do gráfico, utilizamos o argumento `col=`:
+
+
+```r
+plot(x, y, type = "h", lwd = 3, col = "red")
+```
+
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-271.png) 
+
+```r
+plot(x, y, type = "h", lwd = 3, col = "#9ff115")
+```
+
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-272.png) 
+
+O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
+
+- `hist()` - para histogramas
+- `pie()` - para gráficos de pizza
+- `boxplot()` - para boxplots
 

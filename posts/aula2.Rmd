@@ -248,6 +248,53 @@ m[m%%2 == 0] # Retorna os elementos pares.
 
 # O operador *pipe* - %>%
 
+O operador *pipe* foi uma das grandes revoluções do R que aconteceram recentemente. 
+Ele torna a leitura de códigos R muito mais fácil e compreensível.
+
+## O que é?
+
+```{r}
+library(magrittr)
+x <- c(1,2,3,4)
+x %>% sum 
+sum(x)
+```
+
+O operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. Simplesmente.
+
+
+## Por que isso é útil?
+
+Imagine que você precisa escrever a receita de um bolo usando o R, e cada passo da receita é uma função
+
+```{r, eval=FALSE}
+esfrie(asse(coloque(bata(acrescente(bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+```
+
+Tente entender o que é preciso fazer... Não é muito fácil né? E escrevendo usando o operador `%>%`?
+
+```{r}
+bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinho", até = "macio") %>%
+  bata(duração = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = T) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+```
+
+A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
+
+
+## Outros exemplos
+
+Se você não quiser substituir o primeiro argumento, mas algum outro:
+```{r}
+T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
+F %>% mean(c(NA, rnorm(100)), na.rm = .)
+```
+
+Este operador foi introduzido pelo pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` do qual se trata a próxima aula.
+
 # Gráficos com a função plot()
 
 ESCREVER INTRO
