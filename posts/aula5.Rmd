@@ -20,10 +20,20 @@ install.packages("ggplot2")
 ```
 Não se esqueça de carregar o pacote antes de utilizá-lo:
 
-```{}
+```{r}
 library(ggplot2)
 ```
 
+## Como fazer um gráfico no `ggplot`
+
+```{r}
+head(mtcars) # banco de dados
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
+```
+
+* O primeiro argumento da função é um `data.frame` com todas as variáveis do gráfico.
+* A função `aes` mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um `x`e um `y`.
+* `+ geom_point` indica que você quer fazer um gráfico de pontos (cada combinação de `x` e `y`é um ponto)
 
 # Aesthetics
 
