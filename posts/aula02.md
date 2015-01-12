@@ -608,6 +608,130 @@ m[m%%2 == 0] # Retorna os elementos pares.
 ## [1]  2  4 12 14
 ```
 
+# Leitura de dados
+
+Para ler os dados no R usamos a função `read.table`. A seguir estão os principais argumentos dessa função e sua descrição:
+
+- `file` é uma string contendo o caminho do arquivo (ex: "C://users/daniel/Desktop/text.txt")
+- `header` pode ser `TRUE` ou `FALSE`, indica para o programa se o seu arquivo inclui o nome das variáveeis no topo.
+- `sep` é uma string com o separdor do seu arquivo (quando o arquivo é csv é "," ou ";"), mas muitos arquivos são separados por espaços (" ") ou por "|", ou por tabs "\t".
+- `quote` indica qual o caractere que identifica as strings no seu arquivo. Na maioria  das vezes não é necessário alterar, pois é padrão utilizar aspas '""'.
+- `dec` uma string indicando qual é o separador de decimais no seu arquivo. IMPORTANTE: quando o arquivo estiver aberto, o troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
+- `stringsAsFactors` quando o R lê um arquivo de texto, ele transforma as colunas de strings em fatores, que como vimos anteriormente não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+
+Dito tudo isso, vamos ler um arquivo:
+
+
+```r
+dados <- read.table(file = "posts/assets/dados/arq.txt") # li errado
+```
+
+```
+## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
+## directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
+dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";") 
+```
+
+```
+## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
+## directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
+str(dados) # li errado de novo? pq os números vieram como fatores?
+```
+
+```
+## 'data.frame':	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+```
+
+```r
+dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",") 
+```
+
+```
+## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
+## directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
+str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da coluna esta errado?
+```
+
+```
+## 'data.frame':	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+```
+
+```r
+dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T)
+```
+
+```
+## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
+## directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
+str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+```
+
+```
+## 'data.frame':	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+```
+
+```r
+dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
+```
+
+```
+## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
+## directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
+str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+```
+
+```
+## 'data.frame':	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+```
+
+
 # O operador *pipe* - %>%
 
 O operador *pipe* foi uma das grandes revoluções do R que aconteceram recentemente. 
@@ -618,18 +742,6 @@ Ele torna a leitura de códigos R muito mais fácil e compreensível.
 
 ```r
 library(magrittr)
-```
-
-```
-## 
-## Attaching package: 'magrittr'
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-```
-
-```r
 x <- c(1,2,3,4)
 x %>% sum 
 ```
@@ -671,7 +783,7 @@ bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "bowl"
+## Error: could not find function "bowl"
 ```
 
 A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
@@ -686,7 +798,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.1577354
+## [1] 0.05623
 ```
 
 ```r
@@ -711,7 +823,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -727,31 +839,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-2.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-3.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-253.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-4.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-254.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-5.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-255.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -760,13 +872,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-261.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-262.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -775,7 +887,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -784,13 +896,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-281.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-2.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-282.png) 
 
 O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
 

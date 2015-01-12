@@ -559,6 +559,107 @@ m
 <pre><code>## [1]  2  4 12 14
 </code></pre>
 
+<h1>Leitura de dados</h1>
+
+<p>Para ler os dados no R usamos a função <code>read.table</code>. A seguir estão os principais argumentos dessa função e sua descrição:</p>
+
+<ul>
+<li><code>file</code> é uma string contendo o caminho do arquivo (ex: &quot;C://users/daniel/Desktop/text.txt&quot;)</li>
+<li><code>header</code> pode ser <code>TRUE</code> ou <code>FALSE</code>, indica para o programa se o seu arquivo inclui o nome das variáveeis no topo.</li>
+<li><code>sep</code> é uma string com o separdor do seu arquivo (quando o arquivo é csv é &quot;,&quot; ou &quot;;&quot;), mas muitos arquivos são separados por espaços (&quot; &quot;) ou por &quot;|&quot;, ou por tabs &quot;\t&quot;.</li>
+<li><code>quote</code> indica qual o caractere que identifica as strings no seu arquivo. Na maioria  das vezes não é necessário alterar, pois é padrão utilizar aspas &#39;&quot;&quot;&#39;.</li>
+<li><code>dec</code> uma string indicando qual é o separador de decimais no seu arquivo. IMPORTANTE: quando o arquivo estiver aberto, o troca o separador de decimais para &quot;.&quot; mesmo que você tenha indicado &quot;,&quot;. A melhor maneira de verificar se o arquivo foi lido corretamente é fazer <code>str(dados)</code> e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.</li>
+<li><code>stringsAsFactors</code> quando o R lê um arquivo de texto, ele transforma as colunas de strings em fatores, que como vimos anteriormente não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como <code>FALSE</code>.</li>
+</ul>
+
+<p>Dito tudo isso, vamos ler um arquivo:</p>
+
+<pre><code class="r">dados &lt;- read.table(file = &quot;posts/assets/dados/arq.txt&quot;) # li errado
+</code></pre>
+
+<pre><code>## Warning: cannot open file &#39;posts/assets/dados/arq.txt&#39;: No such file or
+## directory
+</code></pre>
+
+<pre><code>## Error: cannot open the connection
+</code></pre>
+
+<pre><code class="r">dados &lt;- read.table(file = &quot;posts/assets/dados/arq.txt&quot;, sep = &quot;;&quot;) 
+</code></pre>
+
+<pre><code>## Warning: cannot open file &#39;posts/assets/dados/arq.txt&#39;: No such file or
+## directory
+</code></pre>
+
+<pre><code>## Error: cannot open the connection
+</code></pre>
+
+<pre><code class="r">str(dados) # li errado de novo? pq os números vieram como fatores?
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...
+</code></pre>
+
+<pre><code class="r">dados &lt;- read.table(file = &quot;posts/assets/dados/arq.txt&quot;, sep = &quot;;&quot;, dec = &quot;,&quot;) 
+</code></pre>
+
+<pre><code>## Warning: cannot open file &#39;posts/assets/dados/arq.txt&#39;: No such file or
+## directory
+</code></pre>
+
+<pre><code>## Error: cannot open the connection
+</code></pre>
+
+<pre><code class="r">str(dados) # eu coloquei dec = &quot;,&quot; e ainda não ta dando certo. pq o nome da coluna esta errado?
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...
+</code></pre>
+
+<pre><code class="r">dados &lt;- read.table(file = &quot;posts/assets/dados/arq.txt&quot;, sep = &quot;;&quot;, dec = &quot;,&quot;, header = T)
+</code></pre>
+
+<pre><code>## Warning: cannot open file &#39;posts/assets/dados/arq.txt&#39;: No such file or
+## directory
+</code></pre>
+
+<pre><code>## Error: cannot open the connection
+</code></pre>
+
+<pre><code class="r">str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...
+</code></pre>
+
+<pre><code class="r">dados &lt;- read.table(file = &quot;posts/assets/dados/arq.txt&quot;, sep = &quot;;&quot;, dec = &quot;,&quot;, header = T, stringsAsFactors = F)
+</code></pre>
+
+<pre><code>## Warning: cannot open file &#39;posts/assets/dados/arq.txt&#39;: No such file or
+## directory
+</code></pre>
+
+<pre><code>## Error: cannot open the connection
+</code></pre>
+
+<pre><code class="r">str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...
+</code></pre>
+
 <h1>O operador <em>pipe</em> - %&gt;%</h1>
 
 <p>O operador <em>pipe</em> foi uma das grandes revoluções do R que aconteceram recentemente. 
@@ -567,17 +668,7 @@ Ele torna a leitura de códigos R muito mais fácil e compreensível.</p>
 <h2>O que é?</h2>
 
 <pre><code class="r">library(magrittr)
-</code></pre>
-
-<pre><code>## 
-## Attaching package: &#39;magrittr&#39;
-## 
-## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     extract
-</code></pre>
-
-<pre><code class="r">x &lt;- c(1,2,3,4)
+x &lt;- c(1,2,3,4)
 x %&gt;% sum 
 </code></pre>
 
@@ -609,7 +700,7 @@ x %&gt;% sum
   esfrie(&quot;geladeira&quot;, &quot;20min&quot;)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;bowl&quot;
+<pre><code>## Error: could not find function &quot;bowl&quot;
 </code></pre>
 
 <p>A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.</p>
@@ -621,7 +712,7 @@ x %&gt;% sum
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] -0.1577354
+<pre><code>## [1] 0.05623
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)
@@ -642,7 +733,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+<p><img src="assets/fig/unnamed-chunk-24.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -658,58 +749,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-251.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-2.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-252.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-3.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-253.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-4.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-254.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-5.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-255.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-261.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-2.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-262.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/unnamed-chunk-27.png" alt="plot of chunk unnamed-chunk-27"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/unnamed-chunk-281.png" alt="plot of chunk unnamed-chunk-28"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-27-2.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/unnamed-chunk-282.png" alt="plot of chunk unnamed-chunk-28"> </p>
 
 <p>O pacote <code>graphics</code> também traz funções para outros tipos de gráficos mais específicos:</p>
 
