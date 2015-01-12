@@ -1,7 +1,7 @@
 ---
 title: "Aula 08 - Shiny, knitr e markdown"
 date : 2015-02-04
-output: ioslides_presentation
+# output: ioslides_presentation
 ---
 
 ## Informações gerais
