@@ -1,5 +1,5 @@
 ---
-title: Aula 5 - Gráficos com estilo - ggplot2
+title: Aula 05 - Gráficos com estilo - ggplot2
 date : 2015-01-28
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Aula 7 - Shiny, knitr e markdown
+title: Aula 07 - Shiny, knitr e markdown
 date : 2015-02-02
 # output: ioslides_presentation
 ---

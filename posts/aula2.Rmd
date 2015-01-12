@@ -1,5 +1,5 @@
 ---
-title: Aula 2 - Estruturas de Dados e Vocabulário
+title: Aula 02 - Estruturas de Dados e Vocabulário
 date : 2015-01-21
 --- 
 
