@@ -72,6 +72,37 @@ ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + geom_point()
 
 ![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4.png) 
 
+Agora, gostariamos que o tamanho dos pontos fosse proporcional ao peso do carro. Para isso temos que adicionar mais um aspecto ao gráfico.
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point()
+```
+
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5.png) 
+
+Exercício: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
+
+Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima não é? Se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Mas também podemos usar o facet:
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
+```
+
+![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6.png) 
+
+Podemos empilhar os dois gráficos também:
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
+```
+
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7.png) 
+
+
+
 # Aesthetics
 
 # Tipos de gráficos
