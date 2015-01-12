@@ -35,6 +35,20 @@ ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
 * A função `aes` mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um `x`e um `y`.
 * `+ geom_point` indica que você quer fazer um gráfico de pontos (cada combinação de `x` e `y`é um ponto)
 
+## O que mais dá pra fazer?
+
+Fizemos um gráfico de dispersão da variável mpg ( Milhas por galão) pela variável Disp (distância percorrida) pelos carros em 1972. Agora, gostariamos que a cor dos pontos variasse de acordo com  variável cyl (número de cilindros).
+
+```{r}
+ggplot(mtcars, aes(x = mpg, y = disp, colour = cyl)) + geom_point()
+```
+
+Adicionamos mais um aspecto ao gráfico: a cor. Neste caso estamos considerando o número de cilindros como uma variável contínnua, mas eventualmente gostariamos de considerá-la como uma variável categórica.
+
+```{r}
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + geom_point()
+```
+
 # Aesthetics
 
 # Tipos de gráficos

@@ -110,13 +110,29 @@
 <pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<p><img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
 
 <ul>
 <li>O primeiro argumento da função é um <code>data.frame</code> com todas as variáveis do gráfico.</li>
 <li>A função <code>aes</code> mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um <code>x</code>e um <code>y</code>.</li>
 <li><code>+ geom_point</code> indica que você quer fazer um gráfico de pontos (cada combinação de <code>x</code> e <code>y</code>é um ponto)</li>
 </ul>
+
+<h2>O que mais dá pra fazer?</h2>
+
+<p>Fizemos um gráfico de dispersão da variável mpg ( Milhas por galão) pela variável Disp (distância percorrida) pelos carros em 1972. Agora, gostariamos que a cor dos pontos variasse de acordo com  variável cyl (número de cilindros).</p>
+
+<pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp, colour = cyl)) + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<p>Adicionamos mais um aspecto ao gráfico: a cor. Neste caso estamos considerando o número de cilindros como uma variável contínnua, mas eventualmente gostariamos de considerá-la como uma variável categórica.</p>
+
+<pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4.png" alt="plot of chunk unnamed-chunk-4"> </p>
 
 <h1>Aesthetics</h1>
 
