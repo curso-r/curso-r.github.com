@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aula 08 - Pacotes</title>
+  <title>Aula 08 - Shiny, knitr e markdown</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
@@ -70,11 +70,228 @@
           <ol id="posts">
             <li class="post">
               <h3>
-                <a href="#">Aula 08 - Pacotes</a>
+                <a href="#">Aula 08 - Shiny, knitr e markdown</a>
               </h3>
               <span>2015-02-04</span><br/>
                <a class='label label-success' href='posts/aula08.Rmd'>Source</a>
-              
+              <h2>Informações gerais</h2>
+<h3>O que é?</h3>
+
+<ul>
+<li>Sistema para desenvolvimento de aplicações web usando o R</li>
+<li>Um pacote do R (<code>shiny</code>)</li>
+<li>Um servidor web (<code>shiny server</code>)</li>
+</ul>
+
+<h3>O que não é</h3>
+
+<ul>
+<li>Uma página web</li>
+<li>Um substituto para sistemas mais gerais, como Ruby on Rails e Django</li>
+<li>Uma ferramenta gerencial, como o Tableau</li>
+</ul>
+
+<h2>Desenvolvimento web</h2>
+
+<ul>
+<li><a href="http://programmers.stackexchange.com/a/171210" title="diferencas">Server side <em>versus</em> user side</a>.</li>
+<li>Quando surfamos na web, nos <em>comunicamos</em> com servidores do mundo inteiro, geralmente através
+do protocolo HTTP.</li>
+</ul>
+
+<h3>Server side</h3>
+
+<ul>
+<li>Processa requisições e dados do cliente, estrutura e envia páginas web, interage com banco de 
+dados, etc.</li>
+<li>Linguagens: PHP, C#, Java, R, etc (virtualmente qualquer linguagem de programação).</li>
+</ul>
+
+<h3>User side</h3>
+
+<ul>
+<li>Cria interfaces gráfica a partir dos códigos recebidos pelo servidor, envia e recebe
+informações do servidor, etc.</li>
+<li>&quot;Linguagens&quot; mais usuais: HTML, CSS e JavaScript.</li>
+</ul>
+
+<h3>Onde está o Shiny nisso tudo?</h3>
+<ul>
+<li>O código de uma aplicação shiny fica no <em>server side</em>.</li>
+<li>O shiny permite que um computador (servidor) envie páginas web, receba informações do usuário e 
+processe dados, utilizando apenas o R.</li>
+<li>Para rodar aplicativos shiny, geralmente estruturamos a parte relacionada ao HTML, JavaScript e 
+CSS no arquivo <code>ui.R</code>, e a parte relacionada com processamento de dados e geração de gráficos e 
+análises no arquivo <code>server.R</code>. </li>
+<li>Os arquivos <code>ui.R</code> e <code>server.R</code> ficam no servidor!</li>
+<li>Atualmente é possível construir 
+<a href="http://shiny.rstudio.com/articles/single-file.html">aplicativos em um arquivo só</a>, mas vamos manter 
+a estrutura de <code>ui.R</code> e <code>server.R</code>.</li>
+</ul>
+
+<h4>E pra que serve o shiny server?</h4>
+<ul>
+<li>O pacote <code>shiny</code> do R possui internamente um servidor web básico, geralmente utilizado para
+aplicações locais, permitindo somente uma aplicação por vez. </li>
+<li>O <code>shiny server</code> é um programa que roda somente em Linux que permite o acesso a múltiplas
+aplicações simultaneamente.</li>
+</ul>
+
+<h2>Como funciona</h2>
+
+<ul>
+<li>Baseado no <a href="http://shiny.rstudio.com/tutorial" title="tutorial">tutorial do Shiny pelo RStudio</a></li>
+</ul>
+
+<h3>Começando com um exemplo</h3>
+
+<pre><code class="r">shiny::runGitHub(&#39;abjur/vistemplate&#39;, subdir=&#39;exemplo_01_helloworld&#39;)
+</code></pre>
+
+<h3>Construindo uma interface no user side</h3>
+
+<ul>
+<li>Shiny utiliza como padrão o <a href="">bootstrap css</a> do <a href="">Twitter</a>, que é bonito e responsivo.</li>
+<li>Criar páginas básicas com <code>pageWithSidebar</code>.</li>
+<li>Páginas mais trabalhadas com <code>fluidPage</code>, <code>fluidRow</code>, <code>column</code>.</li>
+<li>Pesquisar outros tipos de layouts no shiny.</li>
+<li>Criar páginas web customizadas direto no HTML.</li>
+</ul>
+
+<h3>Adicionando widgets!</h3>
+<p>TODO</p>
+
+<p>Acesse <a href="http://shiny.rstudio.com/gallery/widget-gallery.html" title="widgets">neste link</a> ou rode</p>
+
+<pre><code class="r">shiny::runGitHub(&#39;garrettgman/shinyWidgets&#39;)
+</code></pre>
+
+<h4>Exercício</h4>
+
+<h3>Criando outputs</h3>
+<ul>
+<li>Imagine que para cada função <code>xxOutput(&#39;foo&#39;, ...)</code> do <code>ui.R</code> você pode colocar um código do tipo 
+<code>output$foo &lt;- renderXX(...)</code> no <code>server.R</code>.</li>
+<li>A função no arquivo <code>ui.R</code> determina a localização e identificação do elemento</li>
+<li>Criando gráficos com <code>plotOutput</code> e <code>renderPlot</code>.</li>
+<li>Exibindo dados com <code>dataTableOutput</code> e <code>renderDataTable</code>.</li>
+</ul>
+
+<h4>Exercício</h4>
+
+<h3>Escopo</h3>
+<ul>
+<li>server.R, dentro e fora</li>
+<li>global.R</li>
+<li>Sessões</li>
+</ul>
+
+<h3>Modelo de Reatividade</h3>
+
+<ul>
+<li>Determina o quê vai rodar e em que ordem no arquivo <code>server.R</code>, dependendo das ações do usuário.</li>
+<li>É uma tentativa de resolver a falta de tratamento de eventos no R.</li>
+<li>É importante pois impede que cálculos desnecessários sejam repetidos.</li>
+<li>Só funciona se for programado adequadamente.</li>
+</ul>
+
+<h3>Objetos reativos</h3>
+<ul>
+<li>Fonte (source): geralmente acessível no objeto <code>input</code>.</li>
+<li>Ponto final (endpoint): geralmente acessível no objeto <code>output</code>. Implementado através de 
+<code>observers</code>.</li>
+<li>Condutores: geralmente implementado através da função <code>reactive</code>.</li>
+</ul>
+
+<h3>Construindo grafo de invalidação</h3>
+
+<ul>
+<li>TODO</li>
+</ul>
+
+<h4>Exercício</h4>
+
+<h4>Mais informações</h4>
+<ul>
+<li><code>reactive</code>: Utilizar para realizar computações pesadas ou cálculos utilizados em várias partes da
+aplicação.</li>
+<li><code>observe</code>: Utilizar para guardar dados internamente, arquivos de log, etc. Também pode ser útil
+para trabalhar com widgets personalizados.</li>
+<li><code>isolate</code>: Utilizar para cancelar a dependência de um valor reativo em um condutor ou ponto 
+final, para poupar computações ou executar lógicas mais complexas.</li>
+</ul>
+
+<pre><code class="r">shiny::runGitHub(&#39;rstudio/shiny-examples&#39;, subdir=&#39;055-observer-demo&#39;)
+</code></pre>
+
+<h2>Fazendo mais com o shiny</h2>
+
+<h3>Construindo inputs e outputs personalizados</h3>
+
+<ul>
+<li>Geralmente necessita de implementações de <em>bindings</em> em R, HTML e JavaScript.</li>
+<li>Dependendo do caso, a criação de bindings pode ser &quot;pulada&quot; utilizando funções que injetam
+JavaScript na página e a função <code>renderUI</code> (geralmente menos eficiente).</li>
+<li>Não dá tempo de abordar no curso. Ler 
+<a href="http://shiny.rstudio.com/articles/building-inputs.html">aqui</a> e 
+<a href="http://shiny.rstudio.com/articles/building-outputs.html">aqui</a>.</li>
+</ul>
+
+<h3>Shiny Server Pro</h3>
+<ul>
+<li>Licensa comercial do Shiny-server</li>
+<li>Possui algumas características a mais, como autenticação e suporte.</li>
+</ul>
+
+<h3>shinyapps.io</h3>
+
+<ul>
+<li>Para compartilhar um aplicativo shiny, geralmente precisamos ter um servidor Linux (geralmente
+utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server instalado.</li>
+<li>Isso pode ser doloroso.</li>
+<li>O shinyapps.io é um sistema (que envolve tanto pacote do R como uma página web) que permite que o 
+usuário coloque sua aplicação shiny na web sem muito esforço.</li>
+<li>O serviço está sendo desenvolvido pela RStudio Inc. e terá contas grátis e pagas.</li>
+</ul>
+
+<h3>Ainda mais!</h3>
+<ul>
+<li>Ferramenta em amplo desenvolvimento.</li>
+<li>Grande oportunidade na área acadêmica e profissional.</li>
+<li>Potencial de revolucionar as formas atuais de comunicação.</li>
+</ul>
+
+<h2>Relatórios dinâmicos com RMarkdown</h2>
+
+<ul>
+<li>Utilização da linguagem de marcação <em>markdown</em>.</li>
+<li>Possibilidade de incluir código R nos arquivos.</li>
+<li>Roda com o pacote <code>knitr</code> e o programa <code>pandoc</code>.</li>
+<li>Possibilidade de criar relatórios em html, docx, pdf, latex, entre outros.</li>
+<li>Possibilidade de criar apresentações e relatórios com gráficos dinãmicos.</li>
+<li>Possibilidade de inserir sintaxe matemática, como \(e^{i\pi}=-1\), nos documentos.</li>
+<li>Documentos interativos com o <code>shiny</code>.</li>
+</ul>
+
+<h3>Como utilizar</h3>
+<ul>
+<li>Mais fácil com RStudio</li>
+<li>Conceitos básicos de Markdown <a href="http://daringfireball.net/projects/markdown/">nesse link</a>.</li>
+<li>RMarkdown com exemplos <a href="http://rmarkdown.rstudio.com/">nesse link</a>.</li>
+<li>Sobre YAML.</li>
+</ul>
+
+<h4>Exemplo: código que gerou estas aulas.</h4>
+
+<h3>Gráficos dinâmicos</h3>
+<ul>
+<li>Somente para output em HTML.</li>
+<li>É possível criar gráficos baseados em javascript e gerar documentos que funcionam &quot;sozinhos&quot;.</li>
+<li>Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.</li>
+<li>É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.</li>
+</ul>
+
+<h4>Exemplo: Apresentação no ioslides</h4>
 
               <div id="disqus_thread"></div>
             </li>
