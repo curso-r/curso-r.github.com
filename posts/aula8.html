@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aula 5 - Gráficos com estilo - ggplot2</title>
+  <title>Aula 8 - Pacotes</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
@@ -70,59 +70,11 @@
           <ol id="posts">
             <li class="post">
               <h3>
-                <a href="#">Aula 5 - Gráficos com estilo - ggplot2</a>
+                <a href="#">Aula 8 - Pacotes</a>
               </h3>
-              <span>2014-12-05</span><br/>
-               <a class='label label-success' href='posts/aula5.Rmd'>Source</a>
-              <h1>O pacote ggplot2</h1>
-<p>O <code>ggplot2</code> é um pacote do R voltado para a criação de gráficos estatísticos. Ele é baseado na Gramática dos Gráficos (<em>grammar of graphics</em>, em inglês), criado por Leland Wilkinson, que é uma resposta para a pergunta: o que é um gráfico estatístico? Resumidamente, a gramática diz que um gráfico estatístico é um mapeamento dos dados a partir de atributos estéticos (cores, formas, tamanho) de formas geométricas (pontos, linhas, barras).</p>
-
-<p>Para mais informações sobre a Gramática dos Gráficos, você pode consultar o livro <a href="http://www.springer.com/statistics/computational+statistics/book/978-0-387-24544-7"><em>The Grammar of graphics</em></a>, escrito pelo Leland Wilkinson, ou o livro <a href="http://ggplot2.org/book/">ggplot2: elegant graphics for data analysis</a>, do Hadley Wickham.</p>
-
-<h2>Instalação</h2>
-
-<p>O <code>ggplot2</code> não faz parte dos pacotes básico do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o <code>ggplot2</code> não é compatível com versões anteriores.</p>
-
-<p>Para baixar e instalar o pacote, utilize a seguitne linha de código:</p>
-
-<pre><code>install.packages(&quot;ggplot2&quot;)
-</code></pre>
-
-<p>Não se esqueça de carregar o pacote antes de utilizá-lo:</p>
-
-<pre><code class="r">library(ggplot2)
-</code></pre>
-
-<h2>Como fazer um gráfico no <code>ggplot</code></h2>
-
-<pre><code class="r">head(mtcars) # banco de dados
-</code></pre>
-
-<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
-</code></pre>
-
-<pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
-
-<ul>
-<li>O primeiro argumento da função é um <code>data.frame</code> com todas as variáveis do gráfico.</li>
-<li>A função <code>aes</code> mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um <code>x</code>e um <code>y</code>.</li>
-<li><code>+ geom_point</code> indica que você quer fazer um gráfico de pontos (cada combinação de <code>x</code> e <code>y</code>é um ponto)</li>
-</ul>
-
-<h1>Aesthetics</h1>
-
-<h1>Tipos de gráficos</h1>
-
-<h1>Personalizando o seu gráfico: &#39;theme()&#39;</h1>
+              <span>2014-12-04</span><br/>
+               <a class='label label-success' href='posts/aula8.Rmd'>Source</a>
+              
 
               <div id="disqus_thread"></div>
             </li>

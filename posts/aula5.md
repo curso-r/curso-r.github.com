@@ -46,7 +46,7 @@ head(mtcars) # banco de dados
 ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2.png) 
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
 
 * O primeiro argumento da função é um `data.frame` com todas as variáveis do gráfico.
 * A função `aes` mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um `x`e um `y`.

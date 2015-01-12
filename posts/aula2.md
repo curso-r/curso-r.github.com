@@ -618,6 +618,18 @@ Ele torna a leitura de códigos R muito mais fácil e compreensível.
 
 ```r
 library(magrittr)
+```
+
+```
+## 
+## Attaching package: 'magrittr'
+## 
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+```
+
+```r
 x <- c(1,2,3,4)
 x %>% sum 
 ```
@@ -659,7 +671,7 @@ bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
 ```
 
 ```
-## Error: could not find function "bowl"
+## Error in eval(expr, envir, enclos): could not find function "bowl"
 ```
 
 A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
@@ -674,7 +686,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] 0.05623
+## [1] -0.1577354
 ```
 
 ```r
@@ -699,7 +711,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23.png) 
+![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -715,31 +727,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-241.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-242.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-2.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-243.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-3.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-244.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-4.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-245.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-5.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -748,13 +760,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -763,7 +775,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -772,13 +784,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-271.png) 
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-272.png) 
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-2.png) 
 
 O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
 

@@ -567,7 +567,17 @@ Ele torna a leitura de códigos R muito mais fácil e compreensível.</p>
 <h2>O que é?</h2>
 
 <pre><code class="r">library(magrittr)
-x &lt;- c(1,2,3,4)
+</code></pre>
+
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;
+## 
+## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract
+</code></pre>
+
+<pre><code class="r">x &lt;- c(1,2,3,4)
 x %&gt;% sum 
 </code></pre>
 
@@ -599,7 +609,7 @@ x %&gt;% sum
   esfrie(&quot;geladeira&quot;, &quot;20min&quot;)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;bowl&quot;
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;bowl&quot;
 </code></pre>
 
 <p>A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.</p>
@@ -611,7 +621,7 @@ x %&gt;% sum
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] 0.05623
+<pre><code>## [1] -0.1577354
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)
@@ -632,7 +642,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-23.png" alt="plot of chunk unnamed-chunk-23"> </p>
+<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -648,58 +658,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-241.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-242.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-2.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-243.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-3.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-244.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-4.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-245.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-5.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-251.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-252.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-2.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-26.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-271.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-272.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/unnamed-chunk-27-2.png" alt="plot of chunk unnamed-chunk-27"> </p>
 
 <p>O pacote <code>graphics</code> também traz funções para outros tipos de gráficos mais específicos:</p>
 

@@ -1,5 +1,5 @@
 ---
-title: Aula 7 - Shiny
+title: Aula 7 - Shiny, knitr e markdown
 date : 2014-12-04
 ---
 
@@ -159,3 +159,32 @@ usuário coloque sua aplicação shiny na web sem muito esforço.
 - Ferramenta em amplo desenvolvimento.
 - Grande oportunidade na área acadêmica e profissional.
 - Potencial de revolucionar as formas atuais de comunicação.
+
+## Relatórios dinâmicos com RMarkdown
+
+- Utilização da linguagem de marcação _markdown_.
+- Possibilidade de incluir código R nos arquivos.
+- Roda com o pacote `knitr` e o programa `pandoc`.
+- Possibilidade de criar relatórios em html, docx, pdf, latex, entre outros.
+- Possibilidade de criar apresentações e relatórios com gráficos dinãmicos.
+- Possibilidade de inserir sintaxe matemática, como $e^{i\pi}=-1$, nos documentos.
+- Documentos interativos com o `shiny`.
+
+### Como utilizar
+
+- Mais fácil com RStudio
+- Conceitos básicos de Markdown [nesse link](http://daringfireball.net/projects/markdown/).
+- RMarkdown com exemplos [nesse link](http://rmarkdown.rstudio.com/).
+- Sobre YAML.
+
+#### Exemplo: código que gerou estas aulas.
+
+### Gráficos dinâmicos
+
+- Somente para output em HTML.
+- É possível criar gráficos baseados em javascript e gerar documentos que funcionam "sozinhos".
+- Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.
+- É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.
+
+
+
