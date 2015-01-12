@@ -44,6 +44,8 @@ pnud
 
 <img src="assets/fig/hadley_view.png" style="width: 800px;"/>
 
+---
+
 ### As cinco funções principais do dplyr
 
 - `filter`
@@ -65,12 +67,12 @@ pnud
 - Utiliza `C` e `C++` por trás da maioria das funções, o que geralmente torna o código mais eficiente.
 - Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e `data.table`.
 
---- 
-
-### select
+## select
 
 - Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
 - Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+
+---
 
 ```{r}
 # por indice (nao recomendavel!)
@@ -78,11 +80,15 @@ pnud %>%
   select(1:10)
 ```
 
+---
+
 ```{r}
 # especificando nomes (maneira mais usual)
 pnud %>%
   select(ANO, UF, Município, IDHM)
 ```
+
+---
 
 ```{r}
 # intervalos e funcoes auxiliares (para economizar trabalho)
@@ -92,10 +98,14 @@ pnud %>%
 
 ---
 
-### filter
+### Exercício
+
+## filter
 
 - Parecido com `subset`.
 - Condições separadas por vírgulas é o mesmo que separar por `&`.
+
+---
 
 ```{r}
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
@@ -104,6 +114,8 @@ pnud %>%
   filter(UF==35, IDHM > .8, ANO==2010)
 ```
 
+---
+
 ```{r}
 # mesma coisa que o anterior
 pnud %>%
@@ -111,12 +123,16 @@ pnud %>%
   filter(UF==35 & IDHM > .8 & ANO==2010)
 ```
 
+---
+
 ```{r}
 # !is.na(x)
 pnud %>%
   select(ANO, UF, Município, IDHM, PEA) %>%
   filter(!is.na(PEA))
 ```
+
+---
 
 ```{r}
 # %in%
@@ -127,10 +143,14 @@ pnud %>%
 
 ---
 
-### mutate
+### Exercício
+
+## mutate
 
 - Parecido com `transform`, mas aceita várias novas colunas iterativamente.
 - Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
+
+---
 
 ```{r}
 pnud %>%
@@ -140,13 +160,19 @@ pnud %>%
          idhm_porc_txt = paste(idhm_porc, '%'))
 ```
 
+---
+
 ```{r}
 # media de idhm_l e idhm_e
 pnud %>%
   select(ANO, UF, Município, starts_with('IDHM')) %>%
   filter(ANO==2010) %>%
   mutate(idhm2 = (IDHM_E + IDHM_L)/2)
+```
 
+---
+
+```{r}
 ## errado
 # pnud %>%
 #   select(ANO, UF, Município, starts_with('IDHM')) %>%
@@ -163,10 +189,14 @@ pnud %>%
 
 ---
 
-### arrange
+### Exercício
+
+## arrange
 
 - Simplesmente ordena de acordo com as opções.
 - Utilizar `desc` para ordem decrescente.
+
+---
 
 ```{r}
 pnud %>%
@@ -176,6 +206,8 @@ pnud %>%
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
   arrange(IDHM)
 ```
+
+---
 
 ```{r}
 pnud %>%
@@ -188,11 +220,15 @@ pnud %>%
 
 ---
 
-### summarise
+### Exercício
+
+## summarise
 
 - Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
 - Geralmente é utilizado em conjunto com `group_by`.
 - Algumas funções importantes: `n()`, `n_distinct()`.
+
+---
 
 ```{r}
 pnud %>%
@@ -204,6 +240,7 @@ pnud %>%
   arrange(desc(idhm_medio))
 ```
 
+---
 
 ```{r}
 pnud %>%
@@ -211,12 +248,18 @@ pnud %>%
   count(UF)
 ```
 
+----
+
 ```{r}
 pnud %>%
   group_by(ANO, UF) %>%
   tally() %>%
   head # nao precisa de parenteses!
 ```
+
+---
+
+### Exercício
 
 ## Data Tidying com tidyr
 
