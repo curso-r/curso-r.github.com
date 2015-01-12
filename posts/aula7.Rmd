@@ -1,6 +1,7 @@
 ---
 title: Aula 7 - Shiny, knitr e markdown
-date : 2014-12-04
+date : 2015-02-02
+# output: ioslides_presentation
 ---
 
 ## Informações gerais
@@ -20,7 +21,7 @@ date : 2014-12-04
 ## Desenvolvimento web
 
 - [Server side _versus_ user side](http://programmers.stackexchange.com/a/171210 "diferencas").
-- Quando surfamos na web, nos comunicamos com servidores do mundo inteiro, geralmente através
+- Quando surfamos na web, nos _comunicamos_ com servidores do mundo inteiro, geralmente através
 do protocolo HTTP.
 
 ### Server side
@@ -29,9 +30,11 @@ dados, etc.
 - Linguagens: PHP, C#, Java, R, etc (virtualmente qualquer linguagem de programação).
 
 ### User side
-- Cria interfaces bonitas e dinâmicas a partir dos códigos recebidos pelo servidor, envia e recebe
+- Cria interfaces gráfica a partir dos códigos recebidos pelo servidor, envia e recebe
 informações do servidor, etc.
 - "Linguagens" mais usuais: HTML, CSS e JavaScript.
+
+---
 
 ### Onde está o Shiny nisso tudo?
 
@@ -45,6 +48,8 @@ análises no arquivo `server.R`.
 - Atualmente é possível construir 
 [aplicativos em um arquivo só](http://shiny.rstudio.com/articles/single-file.html), mas vamos manter 
 a estrutura de `ui.R` e `server.R`.
+
+---
 
 #### E pra que serve o shiny server?
 
@@ -71,15 +76,23 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 - Pesquisar outros tipos de layouts no shiny.
 - Criar páginas web customizadas direto no HTML.
 
+--- 
+
 ### Adicionando widgets!
 
-#### Exercício
+TODO
 
 Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
 
 ```{r eval=FALSE}
-shiny::runGitHub('garrettgman/shinyWidgets')b
+shiny::runGitHub('garrettgman/shinyWidgets')
 ```
+
+---
+
+#### Exercício
+
+---
 
 ### Criando outputs
 
@@ -89,7 +102,11 @@ shiny::runGitHub('garrettgman/shinyWidgets')b
 - Criando gráficos com `plotOutput` e `renderPlot`.
 - Exibindo dados com `dataTableOutput` e `renderDataTable`.
 
+---
+
 #### Exercício
+
+---
 
 ### Escopo
 - server.R, dentro e fora
@@ -103,6 +120,8 @@ shiny::runGitHub('garrettgman/shinyWidgets')b
 - É importante pois impede que cálculos desnecessários sejam repetidos.
 - Só funciona se for programado adequadamente.
 
+---
+
 ### Objetos reativos
 
 - Fonte (source): geralmente acessível no objeto `input`.
@@ -114,11 +133,16 @@ shiny::runGitHub('garrettgman/shinyWidgets')b
 
 - TODO
 
-##### Exercício
+---
+
+#### Exercício
+
+---
 
 #### Mais informações
 
-- `reactive`: Utilizar para computações pesadas ou que tem muitas dependências.
+- `reactive`: Utilizar para realizar computações pesadas ou cálculos utilizados em várias partes da
+aplicação.
 - `observe`: Utilizar para guardar dados internamente, arquivos de log, etc. Também pode ser útil
 para trabalhar com widgets personalizados.
 - `isolate`: Utilizar para cancelar a dependência de um valor reativo em um condutor ou ponto 
@@ -139,6 +163,7 @@ JavaScript na página e a função `renderUI` (geralmente menos eficiente).
 [aqui](http://shiny.rstudio.com/articles/building-inputs.html) e 
 [aqui](http://shiny.rstudio.com/articles/building-outputs.html).
 
+---
 
 ### Shiny Server Pro
 
@@ -153,6 +178,8 @@ utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server 
 - O shinyapps.io é um sistema (que envolve tanto pacote do R como uma página web) que permite que o 
 usuário coloque sua aplicação shiny na web sem muito esforço.
 - O serviço está sendo desenvolvido pela RStudio Inc. e terá contas grátis e pagas.
+
+---
 
 ### Ainda mais!
 
@@ -170,6 +197,8 @@ usuário coloque sua aplicação shiny na web sem muito esforço.
 - Possibilidade de inserir sintaxe matemática, como $e^{i\pi}=-1$, nos documentos.
 - Documentos interativos com o `shiny`.
 
+---
+
 ### Como utilizar
 
 - Mais fácil com RStudio
@@ -179,6 +208,8 @@ usuário coloque sua aplicação shiny na web sem muito esforço.
 
 #### Exemplo: código que gerou estas aulas.
 
+---
+
 ### Gráficos dinâmicos
 
 - Somente para output em HTML.
@@ -186,5 +217,5 @@ usuário coloque sua aplicação shiny na web sem muito esforço.
 - Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.
 - É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.
 
-
+#### Exemplo: Apresentação no ioslides
 

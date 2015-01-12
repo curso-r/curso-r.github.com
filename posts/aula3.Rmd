@@ -1,4 +1,4 @@
 ---
-title: Aula 3
-date : 2014-12-03
---- &lead
+title: Aula 3 - Laboratório I
+date : 2015-01-23
+--- 

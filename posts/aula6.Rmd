@@ -1,5 +1,5 @@
 ---
-title: Aula 6
-date : 2014-12-06
+title: Aula 6 - Laboratório II
+date : 2015-01-30
 --- 
 

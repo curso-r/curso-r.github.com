@@ -1,6 +1,6 @@
 ---
 title: Aula 5 - Gráficos com estilo - ggplot2
-date : 2014-12-05
+date : 2015-01-28
 ---
 
 # O pacote ggplot2

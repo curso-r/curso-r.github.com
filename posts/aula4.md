@@ -1,6 +1,6 @@
 ---
 title: Aula 4 - Manipulação de dados
-date : 2014-12-04
+date : 2015-01-26
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 title: Aula 2 - Estruturas de Dados e Vocabulário
-date : 2014-12-02
---- &lead
+date : 2015-01-21
+--- 
 
 # Estruturas de dados no R
 
