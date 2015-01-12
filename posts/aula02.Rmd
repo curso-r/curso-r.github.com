@@ -260,14 +260,14 @@ Para ler os dados no R usamos a função `read.table`. A seguir estão os princi
 Dito tudo isso, vamos ler um arquivo:
 
 ```{r}
-dados <- read.table(file = "posts/assets/dados/arq.txt") # li errado
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";") 
+dados <- read.table(file = "assets/dados/arq.txt") # li errado
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
 str(dados) # li errado de novo? pq os números vieram como fatores?
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",") 
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
 str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da coluna esta errado?
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T)
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
 str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
 str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 ```
 

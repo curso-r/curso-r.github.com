@@ -623,80 +623,39 @@ Dito tudo isso, vamos ler um arquivo:
 
 
 ```r
-dados <- read.table(file = "posts/assets/dados/arq.txt") # li errado
+dados <- read.table(file = "assets/dados/arq.txt") # li errado
 ```
 
 ```
-## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
-## directory
-```
-
-```
-## Error: cannot open the connection
+## Error: line 2 did not have 2 elements
 ```
 
 ```r
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";") 
-```
-
-```
-## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
-## directory
-```
-
-```
-## Error: cannot open the connection
-```
-
-```r
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
 str(dados) # li errado de novo? pq os números vieram como fatores?
 ```
 
 ```
-## 'data.frame':	100 obs. of  3 variables:
-##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
-##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
-##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+## 'data.frame':	101 obs. of  3 variables:
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
+##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
 
 ```r
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",") 
-```
-
-```
-## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
-## directory
-```
-
-```
-## Error: cannot open the connection
-```
-
-```r
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
 str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da coluna esta errado?
 ```
 
 ```
-## 'data.frame':	100 obs. of  3 variables:
-##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
-##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
-##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+## 'data.frame':	101 obs. of  3 variables:
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
+##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
 
 ```r
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T)
-```
-
-```
-## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
-## directory
-```
-
-```
-## Error: cannot open the connection
-```
-
-```r
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
 str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 ```
 
@@ -704,23 +663,11 @@ str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 ## 'data.frame':	100 obs. of  3 variables:
 ##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
 ##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
-##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
+##  $ cor       : Factor w/ 3 levels "amarelo","azul",..: 2 3 1 2 1 1 1 1 1 3 ...
 ```
 
 ```r
-dados <- read.table(file = "posts/assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
-```
-
-```
-## Warning: cannot open file 'posts/assets/dados/arq.txt': No such file or
-## directory
-```
-
-```
-## Error: cannot open the connection
-```
-
-```r
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
 str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 ```
 
