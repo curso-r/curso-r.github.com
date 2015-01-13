@@ -248,78 +248,118 @@ m[m%%2 == 0] # Retorna os elementos pares.
 
 # Leitura de dados
 
-Para ler os dados no R usamos a função `read.table`. A seguir estão os principais argumentos dessa função e sua descrição:
+Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
 
-- `file` é uma string contendo o caminho do arquivo (ex: "C://users/daniel/Desktop/text.txt")
-- `header` pode ser `TRUE` ou `FALSE`, indica para o programa se o seu arquivo inclui o nome das variáveeis no topo.
-- `sep` é uma string com o separdor do seu arquivo (quando o arquivo é csv é "," ou ";"), mas muitos arquivos são separados por espaços (" ") ou por "|", ou por tabs "\t".
-- `quote` indica qual o caractere que identifica as strings no seu arquivo. Na maioria  das vezes não é necessário alterar, pois é padrão utilizar aspas '""'.
-- `dec` uma string indicando qual é o separador de decimais no seu arquivo. IMPORTANTE: quando o arquivo estiver aberto, o troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
-- `stringsAsFactors` quando o R lê um arquivo de texto, ele transforma as colunas de strings em fatores, que como vimos anteriormente não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+- `file =` é uma string contendo o caminho do arquivo quem contem os dados, por exemplo: *"C://users/daniel/Desktop/text.txt"*.
 
-Dito tudo isso, vamos ler um arquivo:
+- `header =` recebe um valor lógico (`TRUE` ou `FALSE`) e indica para o programa se o seu arquivo inclui o nome das variáveis no topo.
+
+- `sep =` é a *string* utilizada para separar o valor de cada coluna dentro do arquivo de entrada. Se o arquivo tiver extensão .csv, o argumento `sep=` assume "," ou ";". Outros separadores geralmente utilizados são os espaços (" "), o caracter "|" e a tabulação "\t".
+
+- `quote =` indica qual o caractere que identifica strings no seu arquivo. Na maioria  das vezes, não é necessário alterar, pois é padrão utilizar aspas '""'.
+
+- `dec =` é uma string indicando qual o separador de casa decimais no seu arquivo. IMPORTANTE: quando o arquivo é lido, o R troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE 2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
+
+- `stringsAsFactors =` recebe um valor lógico e indica ao R se as colunas com *strings* devem ser transformadas em fatores, que, como vimos anteriormente, não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+
+
+Dito tudo isso, vamos ler o arquivo *arq.txt* que se encontra na pasta *assets/dados/*.
 
 ```{r}
-dados <- read.table(file = "assets/dados/arq.txt") # li errado
+#dados <- read.table(file = "assets/dados/arq.txt") # li errado
+```
+
+Observe que a função retornou um erro e não leu o arquivo. Isso aconteceu porque o arquivo *arq.txt* tem os seus valores separados por ";" e o *default* do argumento `sep =` é o espaço.
+
+```{r}
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
-str(dados) # li errado de novo? pq os números vieram como fatores?
+str(dados)
+```
+
+Dessa vez o arquivo foi lido e os dados foram salvos no objeto `dados`. No entanto, com o auxílio da função `str()` verificamos que as duas primeiras colunas, que deveriam ser numéricas, foram lidas como fatores. Isso aconteceu porque o separador de casa decimais no arquivo é a "," e, por *default* o R utiliza o ".". Dessa forma, ao encontrar uma vírgula entre os números, o R entende essa sequência de caracteres como uma *string*.
+
+
+```{r}
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
-str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da coluna esta errado?
+str(dados) 
+```
+
+Mesmo especificando o argumento `dec =` como ",", os dados não estão sendo lidos da maneira correta. Observe que o nome das colunas estão sendo lidos como se fossem um valor de cada variável. Para corrigir isso, devemos utilizar `header = T`.
+
+
+```{r}
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
-str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+str(dados)
+```
+
+Agora os dados foram lidos corretamente. No entanto, se você não deseja que a variável *cor* seja um fator, utilize `stringsAsFactors = F`.
+
+```{r}
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
-str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+str(dados)
 ```
 
 
 # O operador *pipe* - %>%
 
-O operador *pipe* foi uma das grandes revoluções do R que aconteceram recentemente. 
-Ele torna a leitura de códigos R muito mais fácil e compreensível.
+O operador *pipe* foi uma das grandes revoluções recentes do R, tornando a leitura de códigos muito mais lógica, fácil e compreensível. Este operador foi introduzido por Stefan Milton Bache no pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` (assunto da próxima aula).
 
-## O que é?
+Basicamente, o operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. "Só" isso!
+
+Para usar o operador `%>%`, primeiramente devemos instalar o pacote `magrittr` com a função `install.packages()`
+
+```{r, , eval=FALSE}
+install.packages("magrittr")
+```
+e carregá-lo com a função `library()`
 
 ```{r}
 library(magrittr)
+```
+
+Feito isso, vamos testar o operador calculando a raiz quadrada da soma de alguns números.
+
+```{r}
 x <- c(1,2,3,4)
-x %>% sum 
-sum(x)
+x %>% sum %>% sqrt
 ```
 
-O operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. Simplesmente.
 
+O caminho que o código acima seguiu foi enviar o objeto `x` como argumento da função `sum()` e, em seguida, enviar a saida da expressão `sum(x)` como argumento da função `sqrt()`. Observe que não é necessario colocar os parênteses após o nome das funções.
 
-## Por que isso é útil?
+Se escrevermos esse cálculo na forma usual, temos o seguinte código:
 
-Imagine que você precisa escrever a receita de um bolo usando o R, e cada passo da receita é uma função
-
-```{r, eval=FALSE}
-esfrie(asse(coloque(bata(acrescente(bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+```{r}
+sqrt(sum(x))
 ```
 
-Tente entender o que é preciso fazer... Não é muito fácil né? E escrevendo usando o operador `%>%`?
+A princípio, a utilização do `%>%` não parece trazer grandes vantagens, pois a expressão `sqrt(sum(x))` facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do `pipe` transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:
 
 ```{r, eval=FALSE}
-bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
-  acrescente("farinho", até = "macio") %>%
+esfrie(asse(coloque(bata(acrescente(recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+```
+
+Tente entender o que é preciso fazer... Não é muito fácil, né? E escrevendo usando o operador `%>%`?
+
+```{r, eval=FALSE}
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
   bata(duração = "3min") %>%
   coloque(lugar = "forma", tipo = "grande", untada = T) %>%
   asse(duração = "50min") %>%
   esfrie("geladeira", "20min")
 ```
 
-A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
+A compreensão é muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
 
+O operador `%>%` envia o valor à esquerda apenas para o primerio argumento da função à direita. Se você não quiser substituir o primeiro argumento, mas algum outro, utilize o ".":
 
-## Outros exemplos
-
-Se você não quiser substituir o primeiro argumento, mas algum outro:
 ```{r}
 T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 F %>% mean(c(NA, rnorm(100)), na.rm = .)
 ```
 
-Este operador foi introduzido pelo pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` do qual se trata a próxima aula.
+Para mais informações sobre o `pipe` e exemplos da sua utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
 # Gráficos com a função plot()
 
