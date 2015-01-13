@@ -15,7 +15,7 @@ url:
   assets: ../assets
 
 # WIDGETS
-widgets: [disqus, mathjax]
+widgets: [facebook, mathjax]
 disqus:
   shortname: curso-r
 

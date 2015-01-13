@@ -8,6 +8,7 @@ date : 2015-01-26
 require(dplyr)
 require(tidyr)
 data(pnud, package = 'abjutils')
+names(pnud)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "Municipio"
 ```
 
 ## Manipulação de dados com dplyr
@@ -85,7 +86,7 @@ pnud %>%
 ```{r}
 # especificando nomes (maneira mais usual)
 pnud %>%
-  select(ANO, UF, Município, IDHM)
+  select(ANO, UF, Municipio, IDHM)
 ```
 
 ---
@@ -93,7 +94,7 @@ pnud %>%
 ```{r}
 # intervalos e funcoes auxiliares (para economizar trabalho)
 pnud %>%
-  select(ANO:Município, starts_with('IDHM'))
+  select(ANO:Municipio, starts_with('IDHM'))
 ```
 
 ---
@@ -110,7 +111,7 @@ pnud %>%
 ```{r}
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35, IDHM > .8, ANO==2010)
 ```
 
@@ -119,7 +120,7 @@ pnud %>%
 ```{r}
 # mesma coisa que o anterior
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35 & IDHM > .8 & ANO==2010)
 ```
 
@@ -128,7 +129,7 @@ pnud %>%
 ```{r}
 # !is.na(x)
 pnud %>%
-  select(ANO, UF, Município, IDHM, PEA) %>%
+  select(ANO, UF, Municipio, IDHM, PEA) %>%
   filter(!is.na(PEA))
 ```
 
@@ -137,8 +138,8 @@ pnud %>%
 ```{r}
 # %in%
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
-  filter(Município %in% c('CAMPINAS', 'SÃO PAULO'))
+  select(ANO, UF, Municipio, IDHM) %>%
+  filter(Municipio %in% c('CAMPINAS', 'SÃO PAULO'))
 ```
 
 ---
@@ -154,7 +155,7 @@ pnud %>%
 
 ```{r}
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%'))
@@ -165,7 +166,7 @@ pnud %>%
 ```{r}
 # media de idhm_l e idhm_e
 pnud %>%
-  select(ANO, UF, Município, starts_with('IDHM')) %>%
+  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
   filter(ANO==2010) %>%
   mutate(idhm2 = (IDHM_E + IDHM_L)/2)
 ```
@@ -175,13 +176,13 @@ pnud %>%
 ```{r}
 ## errado
 # pnud %>%
-#   select(ANO, UF, Município, starts_with('IDHM')) %>%
+#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
 #   filter(ANO==2010) %>%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
 
 ## uma alternativa (+ demorada)
 # pnud %>%
-#   select(ANO, UF, Município, starts_with('IDHM')) %>%
+#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
 #   filter(ANO==2010) %>%
 #   rowwise() %>%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
@@ -200,7 +201,7 @@ pnud %>%
 
 ```{r}
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
@@ -211,7 +212,7 @@ pnud %>%
 
 ```{r}
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
@@ -292,7 +293,7 @@ pnud %>%
 ```{r}
 pnud %>%
   filter(ANO==2010) %>%
-  select(UF, Município, starts_with('IDHM_')) %>%
+  select(UF, Municipio, starts_with('IDHM_')) %>%
   gather(tipo_idh, idh, starts_with('IDHM_'))
 ```
 

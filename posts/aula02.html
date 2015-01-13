@@ -219,14 +219,14 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)
 f
 </code></pre>
 
-<pre><code>## [1] aventura terror   comédia  drama   
+<pre><code>## [1] aventura terror   comédia drama   
 ## Levels: aventura comédia drama terror
 </code></pre>
 
 <pre><code class="r">levels(f)
 </code></pre>
 
-<pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;
+<pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot; &quot;drama&quot;    &quot;terror&quot;
 </code></pre>
 
 <p>Observe que, dentro do objeto, os <em>levels</em> são organizados em ordem alfabética.</p>
@@ -577,7 +577,7 @@ m
 <pre><code class="r">dados &lt;- read.table(file = &quot;assets/dados/arq.txt&quot;) # li errado
 </code></pre>
 
-<pre><code>## Error: line 2 did not have 2 elements
+<pre><code>## Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : line 2 did not have 2 elements
 </code></pre>
 
 <pre><code class="r">dados &lt;- read.table(file = &quot;assets/dados/arq.txt&quot;, sep = &quot;;&quot;) 
@@ -660,9 +660,6 @@ x %&gt;% sum
   esfrie(&quot;geladeira&quot;, &quot;20min&quot;)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;bowl&quot;
-</code></pre>
-
 <p>A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.</p>
 
 <h2>Outros exemplos</h2>
@@ -672,7 +669,7 @@ x %&gt;% sum
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] 0.05623
+<pre><code>## [1] -0.04217991
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)
@@ -693,7 +690,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24.png" alt="plot of chunk unnamed-chunk-24"> </p>
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -709,58 +706,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-251.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-252.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-2.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-253.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-3.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-254.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-4.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-255.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-5.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-261.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-262.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/unnamed-chunk-26-2.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-27.png" alt="plot of chunk unnamed-chunk-27"> </p>
+<p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-281.png" alt="plot of chunk unnamed-chunk-28"> </p>
+<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-282.png" alt="plot of chunk unnamed-chunk-28"> </p>
+<p><img src="assets/fig/unnamed-chunk-28-2.png" alt="plot of chunk unnamed-chunk-28"> </p>
 
 <p>O pacote <code>graphics</code> também traz funções para outros tipos de gráficos mais específicos:</p>
 
@@ -784,20 +781,7 @@ plot(x, y)
   </div>
 </body>
   <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
-      var disqus_developer = 1;
-      var disqus_shortname = 'curso-r'; 
-      // required: replace example with your forum shortname
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); 
-          dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || 
-           document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
   <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

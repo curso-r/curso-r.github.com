@@ -24,6 +24,10 @@ O curso é destinado para estudantes que já conhecem ou desejam conhecer o soft
 
 O curso está estruturado em dois módulos, descritos abaixo.
 
+### Pré-requisitos
+
+O curso não exige nenhum pré-requisito, porém, conhecimento básico de estatística e um contato com alguma linguagem de programação auxiliarão em alguns tópicos.
+
 #### Módulo Básico
 
 * Introdução à linguagem script e vetorização. Definição por gênero e diferença (comparando com C, octave, java, python, etc).

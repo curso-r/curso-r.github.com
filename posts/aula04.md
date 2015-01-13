@@ -1,7 +1,7 @@
 ---
 title: Aula 04 - Manipulação de dados
 date : 2015-01-26
-output: ioslides_presentation
+# output: ioslides_presentation
 ---
 
 
@@ -38,7 +38,7 @@ pnud
 ```
 ## Source: local data frame [16,695 x 237]
 ## 
-##     ANO UF Codmun6 Codmun7             Município ESPVIDA FECTOT MORT1
+##     ANO UF Codmun6 Codmun7             Municipio ESPVIDA FECTOT MORT1
 ## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
 ## 2  1991 11  110002 1100023             ARIQUEMES   66.02   3.72 32.39
 ## 3  1991 11  110003 1100031                CABIXI   63.16   3.89 41.52
@@ -47,8 +47,8 @@ pnud
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
 ## 7  1991 11  110007 1100072            CORUMBIARA   59.32   3.95 56.02
 ## 8  1991 11  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
-## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
+## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE   64.18   3.84 38.09
+## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM   64.71   4.19 36.41
 ## ..  ... ..     ...     ...                   ...     ...    ...   ...
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl), SOBRE40 (dbl), SOBRE60
 ##   (dbl), T_ENV (dbl), E_ANOSESTUDO (dbl), T_ANALF11A14 (dbl), T_ANALF15A17
@@ -113,6 +113,8 @@ pnud
 
 <img src="assets/fig/hadley_view.png" style="width: 800px;"/>
 
+---
+
 ### As cinco funções principais do dplyr
 
 - `filter`
@@ -134,12 +136,12 @@ pnud
 - Utiliza `C` e `C++` por trás da maioria das funções, o que geralmente torna o código mais eficiente.
 - Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e `data.table`.
 
---- 
-
-### select
+## select
 
 - Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
 - Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+
+---
 
 
 ```r
@@ -151,7 +153,7 @@ pnud %>%
 ```
 ## Source: local data frame [16,695 x 10]
 ## 
-##     ANO UF Codmun6 Codmun7             Município ESPVIDA FECTOT MORT1
+##     ANO UF Codmun6 Codmun7             Municipio ESPVIDA FECTOT MORT1
 ## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
 ## 2  1991 11  110002 1100023             ARIQUEMES   66.02   3.72 32.39
 ## 3  1991 11  110003 1100031                CABIXI   63.16   3.89 41.52
@@ -160,23 +162,25 @@ pnud %>%
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
 ## 7  1991 11  110007 1100072            CORUMBIARA   59.32   3.95 56.02
 ## 8  1991 11  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
-## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
+## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE   64.18   3.84 38.09
+## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM   64.71   4.19 36.41
 ## ..  ... ..     ...     ...                   ...     ...    ...   ...
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl)
 ```
+
+---
 
 
 ```r
 # especificando nomes (maneira mais usual)
 pnud %>%
-  select(ANO, UF, Município, IDHM)
+  select(ANO, UF, Municipio, IDHM)
 ```
 
 ```
 ## Source: local data frame [16,695 x 4]
 ## 
-##     ANO UF             Município  IDHM
+##     ANO UF             Municipio  IDHM
 ## 1  1991 11 ALTA FLORESTA D'OESTE 0.329
 ## 2  1991 11             ARIQUEMES 0.432
 ## 3  1991 11                CABIXI 0.309
@@ -185,22 +189,24 @@ pnud %>%
 ## 6  1991 11     COLORADO DO OESTE 0.376
 ## 7  1991 11            CORUMBIARA 0.203
 ## 8  1991 11         COSTA MARQUES 0.425
-## 9  1991 11       ESPIGÃO D'OESTE 0.388
-## 10 1991 11         GUAJARÁ-MIRIM 0.468
+## 9  1991 11      ESPIGÃO D'OESTE 0.388
+## 10 1991 11        GUAJARÁ-MIRIM 0.468
 ## ..  ... ..                   ...   ...
 ```
+
+---
 
 
 ```r
 # intervalos e funcoes auxiliares (para economizar trabalho)
 pnud %>%
-  select(ANO:Município, starts_with('IDHM'))
+  select(ANO:Municipio, starts_with('IDHM'))
 ```
 
 ```
 ## Source: local data frame [16,695 x 9]
 ## 
-##     ANO UF Codmun6 Codmun7             Município  IDHM IDHM_E IDHM_L
+##     ANO UF Codmun6 Codmun7             Municipio  IDHM IDHM_E IDHM_L
 ## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE 0.329  0.112  0.617
 ## 2  1991 11  110002 1100023             ARIQUEMES 0.432  0.199  0.684
 ## 3  1991 11  110003 1100031                CABIXI 0.309  0.108  0.636
@@ -209,101 +215,109 @@ pnud %>%
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE 0.376  0.151  0.658
 ## 7  1991 11  110007 1100072            CORUMBIARA 0.203  0.039  0.572
 ## 8  1991 11  110008 1100080         COSTA MARQUES 0.425  0.220  0.629
-## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE 0.388  0.159  0.653
-## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM 0.468  0.247  0.662
+## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE 0.388  0.159  0.653
+## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM 0.468  0.247  0.662
 ## ..  ... ..     ...     ...                   ...   ...    ...    ...
 ## Variables not shown: IDHM_R (dbl)
 ```
 
 ---
 
-### filter
+### Exercício
+
+## filter
 
 - Parecido com `subset`.
 - Condições separadas por vírgulas é o mesmo que separar por `&`.
+
+---
 
 
 ```r
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35, IDHM > .8, ANO==2010)
 ```
 
 ```
 ## Source: local data frame [21 x 4]
 ## 
-##     ANO UF             Município  IDHM
-## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 35             AMERICANA 0.811
-## 3  2010 35            ARARAQUARA 0.815
-## 4  2010 35                 ASSIS 0.805
-## 5  2010 35                 BAURU 0.801
-## 6  2010 35              CAMPINAS 0.805
-## 7  2010 35         ILHA SOLTEIRA 0.812
+##     ANO UF              Municipio  IDHM
+## 1  2010 35   ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35              AMERICANA 0.811
+## 3  2010 35             ARARAQUARA 0.815
+## 4  2010 35                  ASSIS 0.805
+## 5  2010 35                  BAURU 0.801
+## 6  2010 35               CAMPINAS 0.805
+## 7  2010 35          ILHA SOLTEIRA 0.812
 ## 8  2010 35               JUNDIAÍ 0.822
-## 9  2010 35          PIRASSUNUNGA 0.801
-## 10 2010 35   PRESIDENTE PRUDENTE 0.806
-## 11 2010 35             RIO CLARO 0.803
+## 9  2010 35           PIRASSUNUNGA 0.801
+## 10 2010 35    PRESIDENTE PRUDENTE 0.806
+## 11 2010 35              RIO CLARO 0.803
 ## 12 2010 35   SANTANA DE PARNAÍBA 0.814
 ## 13 2010 35           SANTO ANDRÉ 0.815
-## 14 2010 35                SANTOS 0.840
+## 14 2010 35                 SANTOS 0.840
 ## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
 ## 16 2010 35    SÃO CAETANO DO SUL 0.862
 ## 17 2010 35            SÃO CARLOS 0.805
-## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
+## 18 2010 35  SÃO JOSÉ DOS CAMPOS 0.807
 ## 19 2010 35             SÃO PAULO 0.805
-## 20 2010 35              VALINHOS 0.819
-## 21 2010 35               VINHEDO 0.817
+## 20 2010 35               VALINHOS 0.819
+## 21 2010 35                VINHEDO 0.817
 ```
+
+---
 
 
 ```r
 # mesma coisa que o anterior
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35 & IDHM > .8 & ANO==2010)
 ```
 
 ```
 ## Source: local data frame [21 x 4]
 ## 
-##     ANO UF             Município  IDHM
-## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 35             AMERICANA 0.811
-## 3  2010 35            ARARAQUARA 0.815
-## 4  2010 35                 ASSIS 0.805
-## 5  2010 35                 BAURU 0.801
-## 6  2010 35              CAMPINAS 0.805
-## 7  2010 35         ILHA SOLTEIRA 0.812
+##     ANO UF              Municipio  IDHM
+## 1  2010 35   ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35              AMERICANA 0.811
+## 3  2010 35             ARARAQUARA 0.815
+## 4  2010 35                  ASSIS 0.805
+## 5  2010 35                  BAURU 0.801
+## 6  2010 35               CAMPINAS 0.805
+## 7  2010 35          ILHA SOLTEIRA 0.812
 ## 8  2010 35               JUNDIAÍ 0.822
-## 9  2010 35          PIRASSUNUNGA 0.801
-## 10 2010 35   PRESIDENTE PRUDENTE 0.806
-## 11 2010 35             RIO CLARO 0.803
+## 9  2010 35           PIRASSUNUNGA 0.801
+## 10 2010 35    PRESIDENTE PRUDENTE 0.806
+## 11 2010 35              RIO CLARO 0.803
 ## 12 2010 35   SANTANA DE PARNAÍBA 0.814
 ## 13 2010 35           SANTO ANDRÉ 0.815
-## 14 2010 35                SANTOS 0.840
+## 14 2010 35                 SANTOS 0.840
 ## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
 ## 16 2010 35    SÃO CAETANO DO SUL 0.862
 ## 17 2010 35            SÃO CARLOS 0.805
-## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
+## 18 2010 35  SÃO JOSÉ DOS CAMPOS 0.807
 ## 19 2010 35             SÃO PAULO 0.805
-## 20 2010 35              VALINHOS 0.819
-## 21 2010 35               VINHEDO 0.817
+## 20 2010 35               VALINHOS 0.819
+## 21 2010 35                VINHEDO 0.817
 ```
+
+---
 
 
 ```r
 # !is.na(x)
 pnud %>%
-  select(ANO, UF, Município, IDHM, PEA) %>%
+  select(ANO, UF, Municipio, IDHM, PEA) %>%
   filter(!is.na(PEA))
 ```
 
 ```
 ## Source: local data frame [11,130 x 5]
 ## 
-##     ANO UF             Município  IDHM   PEA
+##     ANO UF             Municipio  IDHM   PEA
 ## 1  2000 11 ALTA FLORESTA D'OESTE 0.483 12670
 ## 2  2000 11             ARIQUEMES 0.556 33705
 ## 3  2000 11                CABIXI 0.488  3227
@@ -312,42 +326,45 @@ pnud %>%
 ## 6  2000 11     COLORADO DO OESTE 0.545  9576
 ## 7  2000 11            CORUMBIARA 0.401  3729
 ## 8  2000 11         COSTA MARQUES 0.486  3686
-## 9  2000 11       ESPIGÃO D'OESTE 0.501 10428
-## 10 2000 11         GUAJARÁ-MIRIM 0.573 15802
+## 9  2000 11      ESPIGÃO D'OESTE 0.501 10428
+## 10 2000 11        GUAJARÁ-MIRIM 0.573 15802
 ## ..  ... ..                   ...   ...   ...
 ```
+
+---
 
 
 ```r
 # %in%
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
-  filter(Município %in% c('CAMPINAS', 'SÃO PAULO'))
+  select(ANO, UF, Municipio, IDHM) %>%
+  filter(Municipio %in% c('CAMPINAS', 'SÃO PAULO'))
 ```
 
 ```
-## Source: local data frame [6 x 4]
+## Source: local data frame [3 x 4]
 ## 
-##    ANO UF Município  IDHM
+##    ANO UF Municipio  IDHM
 ## 1 1991 35  CAMPINAS 0.618
-## 2 1991 35 SÃO PAULO 0.626
-## 3 2000 35  CAMPINAS 0.735
-## 4 2000 35 SÃO PAULO 0.733
-## 5 2010 35  CAMPINAS 0.805
-## 6 2010 35 SÃO PAULO 0.805
+## 2 2000 35  CAMPINAS 0.735
+## 3 2010 35  CAMPINAS 0.805
 ```
 
 ---
 
-### mutate
+### Exercício
+
+## mutate
 
 - Parecido com `transform`, mas aceita várias novas colunas iterativamente.
 - Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
 
+---
+
 
 ```r
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%'))
@@ -356,7 +373,7 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 6]
 ## 
-##     ANO UF             Município  IDHM idhm_porc idhm_porc_txt
+##     ANO UF             Municipio  IDHM idhm_porc idhm_porc_txt
 ## 1  2010 11 ALTA FLORESTA D'OESTE 0.641      64.1        64.1 %
 ## 2  2010 11             ARIQUEMES 0.702      70.2        70.2 %
 ## 3  2010 11                CABIXI 0.650      65.0          65 %
@@ -365,16 +382,18 @@ pnud %>%
 ## 6  2010 11     COLORADO DO OESTE 0.685      68.5        68.5 %
 ## 7  2010 11            CORUMBIARA 0.613      61.3        61.3 %
 ## 8  2010 11         COSTA MARQUES 0.611      61.1        61.1 %
-## 9  2010 11       ESPIGÃO D'OESTE 0.672      67.2        67.2 %
-## 10 2010 11         GUAJARÁ-MIRIM 0.657      65.7        65.7 %
+## 9  2010 11      ESPIGÃO D'OESTE 0.672      67.2        67.2 %
+## 10 2010 11        GUAJARÁ-MIRIM 0.657      65.7        65.7 %
 ## ..  ... ..                   ...   ...       ...           ...
 ```
+
+---
 
 
 ```r
 # media de idhm_l e idhm_e
 pnud %>%
-  select(ANO, UF, Município, starts_with('IDHM')) %>%
+  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
   filter(ANO==2010) %>%
   mutate(idhm2 = (IDHM_E + IDHM_L)/2)
 ```
@@ -382,7 +401,7 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 8]
 ## 
-##     ANO UF             Município  IDHM IDHM_E IDHM_L IDHM_R  idhm2
+##     ANO UF             Municipio  IDHM IDHM_E IDHM_L IDHM_R  idhm2
 ## 1  2010 11 ALTA FLORESTA D'OESTE 0.641  0.526  0.763  0.657 0.6445
 ## 2  2010 11             ARIQUEMES 0.702  0.600  0.806  0.716 0.7030
 ## 3  2010 11                CABIXI 0.650  0.559  0.757  0.650 0.6580
@@ -391,21 +410,24 @@ pnud %>%
 ## 6  2010 11     COLORADO DO OESTE 0.685  0.584  0.814  0.676 0.6990
 ## 7  2010 11            CORUMBIARA 0.613  0.473  0.774  0.630 0.6235
 ## 8  2010 11         COSTA MARQUES 0.611  0.493  0.751  0.616 0.6220
-## 9  2010 11       ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
-## 10 2010 11         GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
+## 9  2010 11      ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
+## 10 2010 11        GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
 ## ..  ... ..                   ...   ...    ...    ...    ...    ...
 ```
+
+---
+
 
 ```r
 ## errado
 # pnud %>%
-#   select(ANO, UF, Município, starts_with('IDHM')) %>%
+#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
 #   filter(ANO==2010) %>%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
 
 ## uma alternativa (+ demorada)
 # pnud %>%
-#   select(ANO, UF, Município, starts_with('IDHM')) %>%
+#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
 #   filter(ANO==2010) %>%
 #   rowwise() %>%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
@@ -413,15 +435,19 @@ pnud %>%
 
 ---
 
-### arrange
+### Exercício
+
+## arrange
 
 - Simplesmente ordena de acordo com as opções.
 - Utilizar `desc` para ordem decrescente.
 
+---
+
 
 ```r
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
@@ -431,24 +457,26 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 6]
 ## 
-##     ANO UF          Município  IDHM idhm_porc idhm_porc_txt
+##     ANO UF           Municipio  IDHM idhm_porc idhm_porc_txt
 ## 1  2010 15            MELGAÇO 0.418      41.8        41.8 %
 ## 2  2010 21    FERNANDO FALCÃO 0.443      44.3        44.3 %
-## 3  2010 13   ATALAIA DO NORTE 0.450      45.0          45 %
+## 3  2010 13    ATALAIA DO NORTE 0.450      45.0          45 %
 ## 4  2010 21     MARAJÁ DO SENA 0.452      45.2        45.2 %
 ## 5  2010 14           UIRAMUTÃ 0.453      45.3        45.3 %
-## 6  2010 15             CHAVES 0.453      45.3        45.3 %
+## 6  2010 15              CHAVES 0.453      45.3        45.3 %
 ## 7  2010 12             JORDÃO 0.469      46.9        46.9 %
-## 8  2010 15              BAGRE 0.471      47.1        47.1 %
+## 8  2010 15               BAGRE 0.471      47.1        47.1 %
 ## 9  2010 15 CACHOEIRA DO PIRIÁ 0.473      47.3        47.3 %
-## 10 2010 13          ITAMARATI 0.477      47.7        47.7 %
-## ..  ... ..                ...   ...       ...           ...
+## 10 2010 13           ITAMARATI 0.477      47.7        47.7 %
+## ..  ... ..                 ...   ...       ...           ...
 ```
+
+---
 
 
 ```r
 pnud %>%
-  select(ANO, UF, Município, IDHM) %>%
+  select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
   mutate(idhm_porc = IDHM * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
@@ -458,27 +486,31 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 6]
 ## 
-##     ANO UF          Município  IDHM idhm_porc idhm_porc_txt
-## 1  2010 35 SÃO CAETANO DO SUL 0.862      86.2        86.2 %
+##     ANO UF            Municipio  IDHM idhm_porc idhm_porc_txt
+## 1  2010 35  SÃO CAETANO DO SUL 0.862      86.2        86.2 %
 ## 2  2010 35 ÁGUAS DE SÃO PEDRO 0.854      85.4        85.4 %
-## 3  2010 42      FLORIANÓPOLIS 0.847      84.7        84.7 %
-## 4  2010 32            VITÓRIA 0.845      84.5        84.5 %
+## 3  2010 42       FLORIANÓPOLIS 0.847      84.7        84.7 %
+## 4  2010 32             VITÓRIA 0.845      84.5        84.5 %
 ## 5  2010 42 BALNEÁRIO CAMBORIÚ 0.845      84.5        84.5 %
-## 6  2010 35             SANTOS 0.840      84.0          84 %
-## 7  2010 33            NITERÓI 0.837      83.7        83.7 %
-## 8  2010 42            JOAÇABA 0.827      82.7        82.7 %
-## 9  2010 53           BRASÍLIA 0.824      82.4        82.4 %
-## 10 2010 41           CURITIBA 0.823      82.3        82.3 %
-## ..  ... ..                ...   ...       ...           ...
+## 6  2010 35               SANTOS 0.840      84.0          84 %
+## 7  2010 33             NITERÓI 0.837      83.7        83.7 %
+## 8  2010 42             JOAÇABA 0.827      82.7        82.7 %
+## 9  2010 53            BRASÍLIA 0.824      82.4        82.4 %
+## 10 2010 41             CURITIBA 0.823      82.3        82.3 %
+## ..  ... ..                  ...   ...       ...           ...
 ```
 
 ---
 
-### summarise
+### Exercício
+
+## summarise
 
 - Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
 - Geralmente é utilizado em conjunto com `group_by`.
 - Algumas funções importantes: `n()`, `n_distinct()`.
+
+---
 
 
 ```r
@@ -524,6 +556,7 @@ pnud %>%
 ## 27 27 102  0.5635000         3045853
 ```
 
+---
 
 
 ```r
@@ -565,6 +598,8 @@ pnud %>%
 ## 27 53   1
 ```
 
+----
+
 
 ```r
 pnud %>%
@@ -585,6 +620,10 @@ pnud %>%
 ## 5 1991 15 143
 ## 6 1991 16  16
 ```
+
+---
+
+### Exercício
 
 ## Data Tidying com tidyr
 
@@ -652,14 +691,14 @@ pnud %>%
 ```r
 pnud %>%
   filter(ANO==2010) %>%
-  select(UF, Município, starts_with('IDHM_')) %>%
+  select(UF, Municipio, starts_with('IDHM_')) %>%
   gather(tipo_idh, idh, starts_with('IDHM_'))
 ```
 
 ```
 ## Source: local data frame [16,695 x 4]
 ## 
-##    UF             Município tipo_idh   idh
+##    UF             Municipio tipo_idh   idh
 ## 1  11 ALTA FLORESTA D'OESTE   IDHM_E 0.526
 ## 2  11             ARIQUEMES   IDHM_E 0.600
 ## 3  11                CABIXI   IDHM_E 0.559
@@ -668,8 +707,8 @@ pnud %>%
 ## 6  11     COLORADO DO OESTE   IDHM_E 0.584
 ## 7  11            CORUMBIARA   IDHM_E 0.473
 ## 8  11         COSTA MARQUES   IDHM_E 0.493
-## 9  11       ESPIGÃO D'OESTE   IDHM_E 0.536
-## 10 11         GUAJARÁ-MIRIM   IDHM_E 0.519
+## 9  11      ESPIGÃO D'OESTE   IDHM_E 0.536
+## 10 11        GUAJARÁ-MIRIM   IDHM_E 0.519
 ## .. ..                   ...      ...   ...
 ```
 
