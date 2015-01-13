@@ -219,14 +219,14 @@ chr_var &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)
 f
 </code></pre>
 
-<pre><code>## [1] aventura terror   comédia drama   
+<pre><code>## [1] aventura terror   comédia  drama   
 ## Levels: aventura comédia drama terror
 </code></pre>
 
 <pre><code class="r">levels(f)
 </code></pre>
 
-<pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot; &quot;drama&quot;    &quot;terror&quot;
+<pre><code>## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;
 </code></pre>
 
 <p>Observe que, dentro do objeto, os <em>levels</em> são organizados em ordem alfabética.</p>
@@ -585,7 +585,7 @@ str(dados) # li errado de novo? pq os números vieram como fatores?
 </code></pre>
 
 <pre><code>## &#39;data.frame&#39;:    101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...
 </code></pre>
@@ -595,7 +595,7 @@ str(dados) # eu coloquei dec = &quot;,&quot; e ainda não ta dando certo. pq o n
 </code></pre>
 
 <pre><code>## &#39;data.frame&#39;:    101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...
 </code></pre>
@@ -669,7 +669,7 @@ x %&gt;% sum
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] -0.04217991
+<pre><code>## [1] -0.1577354
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)

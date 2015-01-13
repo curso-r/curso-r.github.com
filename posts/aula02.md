@@ -177,7 +177,7 @@ f
 ```
 
 ```
-## [1] aventura terror   comédia drama   
+## [1] aventura terror   comédia  drama   
 ## Levels: aventura comédia drama terror
 ```
 
@@ -186,7 +186,7 @@ levels(f)
 ```
 
 ```
-## [1] "aventura" "comédia" "drama"    "terror"
+## [1] "aventura" "comédia"  "drama"    "terror"
 ```
 
 Observe que, dentro do objeto, os *levels* são organizados em ordem alfabética.
@@ -637,7 +637,7 @@ str(dados) # li errado de novo? pq os números vieram como fatores?
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -649,7 +649,7 @@ str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da col
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -741,7 +741,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.04217991
+## [1] -0.1577354
 ```
 
 ```r

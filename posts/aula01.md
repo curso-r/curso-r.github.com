@@ -9,6 +9,9 @@ date: "Monday, December 22, 2014"
 ---
 
 
+```
+## Error in library(pander): there is no package called 'pander'
+```
 
 # R como calculadora
 
@@ -58,25 +61,9 @@ Certas opera√ß√µes matem√°ticas podem suscitar em valores n√£o num√©ricos. Exemp
 Os bons e conhecidos operadores aritm√©ticos. Com n√∫meros reais eles funcionam como na matem√°tica, mas ao sa√≠rmos da reta, eles podem fazer muito mais!
 
 
-------------------------------------------
- operador             descricao           
------------ ------------------------------
-   x + y         Adi√ß√£o de x com y      
-
-   x - y        Subtra√ß√£o de y em x     
-
-   x * y       Multiplica√ß√£o de x e y   
-
-   x / y         Divis√£o de x por y      
-
-x^y ou x**y x elevado a y-√©sima pot√™ncia
-
-   x%%y      Resto da divis√£o de x por y 
-                      (m√≥dulo)           
-
-   x%/%y    Parte inteira da divis√£o de x
-                        por y             
-------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 
 
@@ -140,30 +127,9 @@ x^y ou x**y x elevado a y-√©sima pot√™ncia
 Operadores l√≥gicos retornar√£o sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
 
 
------------------------------------
- operador         descricao        
----------- ------------------------
-  x < y         x menor que y?     
-
-  x <= y    x menor ou igual a y?  
-
-  x > y         x maior que y?     
-
-  x >= y    x maior ou igual a y?  
-
-  x == y         x igual a y?      
-
-  x != y      x diferente de y?    
-
-    !x          Negativa de x      
-
-  x | y    x ou y s√£o verdadeiros?
-
-  x & y    x e y s√£o verdadeiros? 
-
-xor(x, y)  x ou y s√£o verdadeiros 
-              (apenas um deles)?   
------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 Exemplos:
 
@@ -314,19 +280,9 @@ is.complex(x)
 A tabela abaixo resume algumas fun√ß√µes interessantes para n√∫meros complexos.
 
 
-----------------------------------
- Fun√.√.o        Descri√.√.o      
----------- -----------------------
-  Re(z)        Parte real de x    
-
-  Im(z)    Parte imagin√°ria de x 
-
-  Mod(z)        M√≥dulo de x      
-
-  Arg(z)       Argumento de x     
-
- Conj(z)   Complexo conjugado de x
-----------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 Demais fun√ß√µes matem√°ticas, como logaritmo, fun√ß√µes trigonom√©tricas, exponencial e radicia√ß√£o tamb√©m est√£o implementadas para n√∫meros complexos.
 
@@ -582,7 +538,7 @@ lances
 ```
 
 ```
-## [1] 4
+## [1] 3
 ```
 
 A fun√ß√£o `runif(1)` gera um n√∫mero aleat√≥rio no intervalo unit√°rio toda vez que a condi√ß√£o √© avaliada. Se este n√∫mero for maior que `p`, ent√£o a moeda e lan√ßada novamente e o contador de lan√ßamentos √© incrementado em uma unidade e esse ciclo se repete at√© que, por acaso, o n√∫mero sorteado seja menor que `p`. No fim, teremos nossa desejada vari√°vel aleat√≥ria simulada de lances at√© "cara".
@@ -627,7 +583,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##    2.60    0.00    2.67
+##   1.521   0.000   1.491
 ```
 
 ```r
@@ -636,7 +592,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##    0.01    0.00    0.02
+##    0.00    0.00    0.01
 ```
 
 ```r
@@ -828,70 +784,30 @@ O resultado √© id√™ntico como deveria ser, mas agora a fun√ß√£o tem nome e pode 
 ## Trigonometria
 
 
----------------------------------------------------------
-          FunÁ„o                      DescriÁ„o          
---------------------------- -----------------------------
- cos(x) / sin(x) / tan(x)    seno/cosseno/tangente de x  
-
-acos(x) / asin(x) / atan(x) arco-seno/cosseno/tangente de
-                                          x              
----------------------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Matem√°tica
 
 
-------------------------------------
-   FunÁ„o           DescriÁ„o       
------------- -----------------------
-   log(x)    Logaritmo natural de x 
-
-   exp(x)         e elevado a x     
-
-   abs(x)      valor absoluto de x  
-
-  sign(x)     sinal de x (1 ou -1)  
-
-  sqrt(x)      raiz quadrada de x   
-
-choose(n, k) combinaÁıes de n, k a k
-
-factorial(x)      fatorial de x     
-------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Estat√≠stica
 
 
------------------------------------------------
-       FunÁ„o                 DescriÁ„o        
---------------------- -------------------------
-       mean(x)               MÈdia de x        
-
-   var(x) / sd(x)     Vari‚ncia / Desvio Padr„o
-                            amostral de x      
-
-     quantile(x)            Quantis de x       
-
-cov(x, y) / cor(x, y) Covari‚ncia / CorrelaÁ„o 
-                         linear entre x e y    
------------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Diversos
 
 
-------------------------------------
- FunÁ„o           DescriÁ„o         
--------- ---------------------------
-  x:y       Sequencia de x atÈ y    
-
-  x=y      x recebe y (atribuiÁ„o)  
-
-   ?x         documentaÁ„o de x     
-
-  x$y     extraÁ„o de y do objeto x 
-
- x%*%y   MultiplicaÁ„o matricial das
-               matrizes x e y       
-------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 # Refer√™ncias
 

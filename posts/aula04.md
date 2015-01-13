@@ -47,8 +47,8 @@ pnud
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
 ## 7  1991 11  110007 1100072            CORUMBIARA   59.32   3.95 56.02
 ## 8  1991 11  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE   64.18   3.84 38.09
-## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM   64.71   4.19 36.41
+## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
+## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
 ## ..  ... ..     ...     ...                   ...     ...    ...   ...
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl), SOBRE40 (dbl), SOBRE60
 ##   (dbl), T_ENV (dbl), E_ANOSESTUDO (dbl), T_ANALF11A14 (dbl), T_ANALF15A17
@@ -162,8 +162,8 @@ pnud %>%
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
 ## 7  1991 11  110007 1100072            CORUMBIARA   59.32   3.95 56.02
 ## 8  1991 11  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE   64.18   3.84 38.09
-## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM   64.71   4.19 36.41
+## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
+## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
 ## ..  ... ..     ...     ...                   ...     ...    ...   ...
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl)
 ```
@@ -189,8 +189,8 @@ pnud %>%
 ## 6  1991 11     COLORADO DO OESTE 0.376
 ## 7  1991 11            CORUMBIARA 0.203
 ## 8  1991 11         COSTA MARQUES 0.425
-## 9  1991 11      ESPIGÃO D'OESTE 0.388
-## 10 1991 11        GUAJARÁ-MIRIM 0.468
+## 9  1991 11       ESPIGÃO D'OESTE 0.388
+## 10 1991 11         GUAJARÁ-MIRIM 0.468
 ## ..  ... ..                   ...   ...
 ```
 
@@ -215,8 +215,8 @@ pnud %>%
 ## 6  1991 11  110006 1100064     COLORADO DO OESTE 0.376  0.151  0.658
 ## 7  1991 11  110007 1100072            CORUMBIARA 0.203  0.039  0.572
 ## 8  1991 11  110008 1100080         COSTA MARQUES 0.425  0.220  0.629
-## 9  1991 11  110009 1100098      ESPIGÃO D'OESTE 0.388  0.159  0.653
-## 10 1991 11  110010 1100106        GUAJARÁ-MIRIM 0.468  0.247  0.662
+## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE 0.388  0.159  0.653
+## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM 0.468  0.247  0.662
 ## ..  ... ..     ...     ...                   ...   ...    ...    ...
 ## Variables not shown: IDHM_R (dbl)
 ```
@@ -243,28 +243,28 @@ pnud %>%
 ```
 ## Source: local data frame [21 x 4]
 ## 
-##     ANO UF              Municipio  IDHM
-## 1  2010 35   ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 35              AMERICANA 0.811
-## 3  2010 35             ARARAQUARA 0.815
-## 4  2010 35                  ASSIS 0.805
-## 5  2010 35                  BAURU 0.801
-## 6  2010 35               CAMPINAS 0.805
-## 7  2010 35          ILHA SOLTEIRA 0.812
+##     ANO UF             Municipio  IDHM
+## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35             AMERICANA 0.811
+## 3  2010 35            ARARAQUARA 0.815
+## 4  2010 35                 ASSIS 0.805
+## 5  2010 35                 BAURU 0.801
+## 6  2010 35              CAMPINAS 0.805
+## 7  2010 35         ILHA SOLTEIRA 0.812
 ## 8  2010 35               JUNDIAÍ 0.822
-## 9  2010 35           PIRASSUNUNGA 0.801
-## 10 2010 35    PRESIDENTE PRUDENTE 0.806
-## 11 2010 35              RIO CLARO 0.803
+## 9  2010 35          PIRASSUNUNGA 0.801
+## 10 2010 35   PRESIDENTE PRUDENTE 0.806
+## 11 2010 35             RIO CLARO 0.803
 ## 12 2010 35   SANTANA DE PARNAÍBA 0.814
 ## 13 2010 35           SANTO ANDRÉ 0.815
-## 14 2010 35                 SANTOS 0.840
+## 14 2010 35                SANTOS 0.840
 ## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
 ## 16 2010 35    SÃO CAETANO DO SUL 0.862
 ## 17 2010 35            SÃO CARLOS 0.805
-## 18 2010 35  SÃO JOSÉ DOS CAMPOS 0.807
+## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
 ## 19 2010 35             SÃO PAULO 0.805
-## 20 2010 35               VALINHOS 0.819
-## 21 2010 35                VINHEDO 0.817
+## 20 2010 35              VALINHOS 0.819
+## 21 2010 35               VINHEDO 0.817
 ```
 
 ---
@@ -280,28 +280,28 @@ pnud %>%
 ```
 ## Source: local data frame [21 x 4]
 ## 
-##     ANO UF              Municipio  IDHM
-## 1  2010 35   ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 35              AMERICANA 0.811
-## 3  2010 35             ARARAQUARA 0.815
-## 4  2010 35                  ASSIS 0.805
-## 5  2010 35                  BAURU 0.801
-## 6  2010 35               CAMPINAS 0.805
-## 7  2010 35          ILHA SOLTEIRA 0.812
+##     ANO UF             Municipio  IDHM
+## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35             AMERICANA 0.811
+## 3  2010 35            ARARAQUARA 0.815
+## 4  2010 35                 ASSIS 0.805
+## 5  2010 35                 BAURU 0.801
+## 6  2010 35              CAMPINAS 0.805
+## 7  2010 35         ILHA SOLTEIRA 0.812
 ## 8  2010 35               JUNDIAÍ 0.822
-## 9  2010 35           PIRASSUNUNGA 0.801
-## 10 2010 35    PRESIDENTE PRUDENTE 0.806
-## 11 2010 35              RIO CLARO 0.803
+## 9  2010 35          PIRASSUNUNGA 0.801
+## 10 2010 35   PRESIDENTE PRUDENTE 0.806
+## 11 2010 35             RIO CLARO 0.803
 ## 12 2010 35   SANTANA DE PARNAÍBA 0.814
 ## 13 2010 35           SANTO ANDRÉ 0.815
-## 14 2010 35                 SANTOS 0.840
+## 14 2010 35                SANTOS 0.840
 ## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
 ## 16 2010 35    SÃO CAETANO DO SUL 0.862
 ## 17 2010 35            SÃO CARLOS 0.805
-## 18 2010 35  SÃO JOSÉ DOS CAMPOS 0.807
+## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
 ## 19 2010 35             SÃO PAULO 0.805
-## 20 2010 35               VALINHOS 0.819
-## 21 2010 35                VINHEDO 0.817
+## 20 2010 35              VALINHOS 0.819
+## 21 2010 35               VINHEDO 0.817
 ```
 
 ---
@@ -326,8 +326,8 @@ pnud %>%
 ## 6  2000 11     COLORADO DO OESTE 0.545  9576
 ## 7  2000 11            CORUMBIARA 0.401  3729
 ## 8  2000 11         COSTA MARQUES 0.486  3686
-## 9  2000 11      ESPIGÃO D'OESTE 0.501 10428
-## 10 2000 11        GUAJARÁ-MIRIM 0.573 15802
+## 9  2000 11       ESPIGÃO D'OESTE 0.501 10428
+## 10 2000 11         GUAJARÁ-MIRIM 0.573 15802
 ## ..  ... ..                   ...   ...   ...
 ```
 
@@ -342,12 +342,15 @@ pnud %>%
 ```
 
 ```
-## Source: local data frame [3 x 4]
+## Source: local data frame [6 x 4]
 ## 
 ##    ANO UF Municipio  IDHM
 ## 1 1991 35  CAMPINAS 0.618
-## 2 2000 35  CAMPINAS 0.735
-## 3 2010 35  CAMPINAS 0.805
+## 2 1991 35 SÃO PAULO 0.626
+## 3 2000 35  CAMPINAS 0.735
+## 4 2000 35 SÃO PAULO 0.733
+## 5 2010 35  CAMPINAS 0.805
+## 6 2010 35 SÃO PAULO 0.805
 ```
 
 ---
@@ -382,8 +385,8 @@ pnud %>%
 ## 6  2010 11     COLORADO DO OESTE 0.685      68.5        68.5 %
 ## 7  2010 11            CORUMBIARA 0.613      61.3        61.3 %
 ## 8  2010 11         COSTA MARQUES 0.611      61.1        61.1 %
-## 9  2010 11      ESPIGÃO D'OESTE 0.672      67.2        67.2 %
-## 10 2010 11        GUAJARÁ-MIRIM 0.657      65.7        65.7 %
+## 9  2010 11       ESPIGÃO D'OESTE 0.672      67.2        67.2 %
+## 10 2010 11         GUAJARÁ-MIRIM 0.657      65.7        65.7 %
 ## ..  ... ..                   ...   ...       ...           ...
 ```
 
@@ -410,8 +413,8 @@ pnud %>%
 ## 6  2010 11     COLORADO DO OESTE 0.685  0.584  0.814  0.676 0.6990
 ## 7  2010 11            CORUMBIARA 0.613  0.473  0.774  0.630 0.6235
 ## 8  2010 11         COSTA MARQUES 0.611  0.493  0.751  0.616 0.6220
-## 9  2010 11      ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
-## 10 2010 11        GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
+## 9  2010 11       ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
+## 10 2010 11         GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
 ## ..  ... ..                   ...   ...    ...    ...    ...    ...
 ```
 
@@ -457,18 +460,18 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 6]
 ## 
-##     ANO UF           Municipio  IDHM idhm_porc idhm_porc_txt
+##     ANO UF          Municipio  IDHM idhm_porc idhm_porc_txt
 ## 1  2010 15            MELGAÇO 0.418      41.8        41.8 %
 ## 2  2010 21    FERNANDO FALCÃO 0.443      44.3        44.3 %
-## 3  2010 13    ATALAIA DO NORTE 0.450      45.0          45 %
+## 3  2010 13   ATALAIA DO NORTE 0.450      45.0          45 %
 ## 4  2010 21     MARAJÁ DO SENA 0.452      45.2        45.2 %
 ## 5  2010 14           UIRAMUTÃ 0.453      45.3        45.3 %
-## 6  2010 15              CHAVES 0.453      45.3        45.3 %
+## 6  2010 15             CHAVES 0.453      45.3        45.3 %
 ## 7  2010 12             JORDÃO 0.469      46.9        46.9 %
-## 8  2010 15               BAGRE 0.471      47.1        47.1 %
+## 8  2010 15              BAGRE 0.471      47.1        47.1 %
 ## 9  2010 15 CACHOEIRA DO PIRIÁ 0.473      47.3        47.3 %
-## 10 2010 13           ITAMARATI 0.477      47.7        47.7 %
-## ..  ... ..                 ...   ...       ...           ...
+## 10 2010 13          ITAMARATI 0.477      47.7        47.7 %
+## ..  ... ..                ...   ...       ...           ...
 ```
 
 ---
@@ -486,18 +489,18 @@ pnud %>%
 ```
 ## Source: local data frame [5,565 x 6]
 ## 
-##     ANO UF            Municipio  IDHM idhm_porc idhm_porc_txt
-## 1  2010 35  SÃO CAETANO DO SUL 0.862      86.2        86.2 %
+##     ANO UF          Municipio  IDHM idhm_porc idhm_porc_txt
+## 1  2010 35 SÃO CAETANO DO SUL 0.862      86.2        86.2 %
 ## 2  2010 35 ÁGUAS DE SÃO PEDRO 0.854      85.4        85.4 %
-## 3  2010 42       FLORIANÓPOLIS 0.847      84.7        84.7 %
-## 4  2010 32             VITÓRIA 0.845      84.5        84.5 %
+## 3  2010 42      FLORIANÓPOLIS 0.847      84.7        84.7 %
+## 4  2010 32            VITÓRIA 0.845      84.5        84.5 %
 ## 5  2010 42 BALNEÁRIO CAMBORIÚ 0.845      84.5        84.5 %
-## 6  2010 35               SANTOS 0.840      84.0          84 %
-## 7  2010 33             NITERÓI 0.837      83.7        83.7 %
-## 8  2010 42             JOAÇABA 0.827      82.7        82.7 %
-## 9  2010 53            BRASÍLIA 0.824      82.4        82.4 %
-## 10 2010 41             CURITIBA 0.823      82.3        82.3 %
-## ..  ... ..                  ...   ...       ...           ...
+## 6  2010 35             SANTOS 0.840      84.0          84 %
+## 7  2010 33            NITERÓI 0.837      83.7        83.7 %
+## 8  2010 42            JOAÇABA 0.827      82.7        82.7 %
+## 9  2010 53           BRASÍLIA 0.824      82.4        82.4 %
+## 10 2010 41           CURITIBA 0.823      82.3        82.3 %
+## ..  ... ..                ...   ...       ...           ...
 ```
 
 ---
@@ -707,8 +710,8 @@ pnud %>%
 ## 6  11     COLORADO DO OESTE   IDHM_E 0.584
 ## 7  11            CORUMBIARA   IDHM_E 0.473
 ## 8  11         COSTA MARQUES   IDHM_E 0.493
-## 9  11      ESPIGÃO D'OESTE   IDHM_E 0.536
-## 10 11        GUAJARÁ-MIRIM   IDHM_E 0.519
+## 9  11       ESPIGÃO D'OESTE   IDHM_E 0.536
+## 10 11         GUAJARÁ-MIRIM   IDHM_E 0.519
 ## .. ..                   ...      ...   ...
 ```
 

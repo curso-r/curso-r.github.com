@@ -74,7 +74,12 @@
               </h3>
               <span>NA</span><br/>
                <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
-              <h1>R como calculadora</h1>
+              
+<pre><code>## Error in library(pander): there is no package called &#39;pander&#39;
+</code></pre>
+
+<h1>R como calculadora</h1>
+
 <p>A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console <code>2*2 - (4 + 4)/2</code>. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!</p>
 
 <p>Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!</p>
@@ -111,27 +116,8 @@
 
 <p>Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!</p>
 
-
-<p>operador             descricao           </p>
-
-<hr>
-
-<p>x + y         Adição de x com y      </p>
-
-<p>x - y        Subtração de y em x     </p>
-
-<p>x * y       Multiplicação de x e y   </p>
-
-<p>x / y         Divisão de x por y      </p>
-
-<p>x<sup>y</sup> ou x**y x elevado a y-ésima potência</p>
-
-<p>x%%y      Resto da divisão de x por y 
-                      (módulo)           </p>
-
-<p>x%/%y    Parte inteira da divisão de x</p>
-
-<h2>                        por y             </h2>
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+</code></pre>
 
 <pre><code class="r">1 + 1
 </code></pre>
@@ -179,33 +165,8 @@
 
 <p>Operadores lógicos retornarão sempre ou <code>TRUE</code> ou <code>FALSE</code>. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.</p>
 
-
-<p>operador         descricao        </p>
-
-<hr>
-
-<p>x &lt; y         x menor que y?     </p>
-
-<p>x &lt;= y    x menor ou igual a y?  </p>
-
-<p>x &gt; y         x maior que y?     </p>
-
-<p>x &gt;= y    x maior ou igual a y?  </p>
-
-<p>x == y         x igual a y?      </p>
-
-<p>x != y      x diferente de y?    </p>
-
-<pre><code>!x          Negativa de x      
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
 </code></pre>
-
-<p>x | y    x ou y são verdadeiros?</p>
-
-<p>x &amp; y    x e y são verdadeiros? </p>
-
-<p>xor(x, y)  x ou y são verdadeiros </p>
-
-<h2>              (apenas um deles)?   </h2>
 
 <p>Exemplos:</p>
 
@@ -320,20 +281,8 @@ class(x)
 
 <p>A tabela abaixo resume algumas funções interessantes para números complexos.</p>
 
-
-<p>Fun�.�.o        Descri�.�.o      </p>
-
-<hr>
-
-<p>Re(z)        Parte real de x    </p>
-
-<p>Im(z)    Parte imaginária de x </p>
-
-<p>Mod(z)        Módulo de x      </p>
-
-<p>Arg(z)       Argumento de x     </p>
-
-<h2> Conj(z)   Complexo conjugado de x</h2>
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+</code></pre>
 
 <p>Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.</p>
 
@@ -567,7 +516,7 @@ while(runif(1) &gt; p) {
 lances
 </code></pre>
 
-<pre><code>## [1] 4
+<pre><code>## [1] 3
 </code></pre>
 
 <p>A função <code>runif(1)</code> gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que <code>p</code>, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que <code>p</code>. No fim, teremos nossa desejada variável aleatória simulada de lances até &quot;cara&quot;.</p>
@@ -611,14 +560,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    2.60    0.00    2.67
+##   1.521   0.000   1.491
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.01    0.00    0.02
+##    0.00    0.00    0.01
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -789,78 +738,23 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
 
 <h2>Trigonometria</h2>
 
-
-<pre><code>      Fun��o                      Descri��o          
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
 </code></pre>
-
-<hr>
-
-<p>cos(x) / sin(x) / tan(x)    seno/cosseno/tangente de x  </p>
-
-<p>acos(x) / asin(x) / atan(x) arco-seno/cosseno/tangente de</p>
-
-<h2>                                          x              </h2>
 
 <h2>Matemática</h2>
 
-
-<p>Fun��o           Descri��o       </p>
-
-<hr>
-
-<p>log(x)    Logaritmo natural de x </p>
-
-<p>exp(x)         e elevado a x     </p>
-
-<p>abs(x)      valor absoluto de x  </p>
-
-<p>sign(x)     sinal de x (1 ou -1)  </p>
-
-<p>sqrt(x)      raiz quadrada de x   </p>
-
-<p>choose(n, k) combina��es de n, k a k</p>
-
-<h2>factorial(x)      fatorial de x     </h2>
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+</code></pre>
 
 <h2>Estatística</h2>
 
-
-<pre><code>   Fun��o                 Descri��o        
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
 </code></pre>
-
-<hr>
-
-<pre><code>   mean(x)               M�dia de x        
-</code></pre>
-
-<p>var(x) / sd(x)     Vari�ncia / Desvio Padr�o
-                            amostral de x      </p>
-
-<pre><code> quantile(x)            Quantis de x       
-</code></pre>
-
-<p>cov(x, y) / cor(x, y) Covari�ncia / Correla��o </p>
-
-<h2>                         linear entre x e y    </h2>
 
 <h2>Diversos</h2>
 
-
-<p>Fun��o           Descri��o         </p>
-
-<hr>
-
-<p>x:y       Sequencia de x at� y    </p>
-
-<p>x=y      x recebe y (atribui��o)  </p>
-
-<p>?x         documenta��o de x     </p>
-
-<p>x$y     extra��o de y do objeto x </p>
-
-<p>x%*%y   Multiplica��o matricial das</p>
-
-<h2>               matrizes x e y       </h2>
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+</code></pre>
 
 <h1>Referências</h1>
 
