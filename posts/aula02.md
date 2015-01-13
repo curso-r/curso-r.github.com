@@ -177,7 +177,7 @@ f
 ```
 
 ```
-## [1] aventura terror   comédia  drama   
+## [1] aventura terror   comédia drama   
 ## Levels: aventura comédia drama terror
 ```
 
@@ -186,7 +186,7 @@ levels(f)
 ```
 
 ```
-## [1] "aventura" "comédia"  "drama"    "terror"
+## [1] "aventura" "comédia" "drama"    "terror"
 ```
 
 Observe que, dentro do objeto, os *levels* são organizados em ordem alfabética.
@@ -627,7 +627,7 @@ dados <- read.table(file = "assets/dados/arq.txt") # li errado
 ```
 
 ```
-## Error: line 2 did not have 2 elements
+## Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : line 2 did not have 2 elements
 ```
 
 ```r
@@ -729,10 +729,6 @@ bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
   esfrie("geladeira", "20min")
 ```
 
-```
-## Error: could not find function "bowl"
-```
-
 A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
 
 
@@ -745,7 +741,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] 0.05623
+## [1] -0.04217991
 ```
 
 ```r
@@ -770,7 +766,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -786,31 +782,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-253.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-3.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-254.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-4.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-255.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-5.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -819,13 +815,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-261.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-262.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-2.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -834,7 +830,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27.png) 
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -843,13 +839,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-281.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-282.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-2.png) 
 
 O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
 

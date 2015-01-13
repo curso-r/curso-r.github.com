@@ -1,5 +1,5 @@
 ---
-title: "Aula 1 - Noções básicas"
+title: "Aula 1 - NoÃ§Ãµes bÃ¡sicas"
 output:
   html_document:
     number_sections: yes
@@ -14,11 +14,11 @@ library(pander)
 
 # R como calculadora
 
-A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console `2*2 - (4 + 4)/2`. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!
+A linguagem do R Ã© um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, Ã© interessante comeÃ§ar fazendo do R uma grande calculadora. Tente jogar no console `2*2 - (4 + 4)/2`. Pronto. Com essa simples expressÃ£o vocÃª jÃ¡ Ã© capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operaÃ§Ã£o aritmÃ©tica. LiÃ§Ã£o aprendida!
 
-Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!
+AlÃ©m do mais, as operaÃ§Ãµes e suas precedÃªncias sÃ£o mantidas como na matemÃ¡tica, ou seja, divisÃ£o e multiplicaÃ§Ã£o sÃ£o calculadas antes da adiÃ§Ã£o e subtraÃ§Ã£o. E os parÃªnteses nunca sÃ£o demais!
 
-Falando em matemática, o $\pi$ já vem definido!
+Falando em matemÃ¡tica, o $\pi$ jÃ¡ vem definido!
 
 ```{r}
 pi
@@ -27,13 +27,13 @@ sin(pi/2) + 2*3
 (sin(pi/2) + 2)*3
 ```
 
-Veja que apareceu a função `sin()`, o famoso seno. Tente outras funções trigonométricas para ver se acerta de prima!
+Veja que apareceu a funÃ§Ã£o `sin()`, o famoso seno. Tente outras funÃ§Ãµes trigonomÃ©tricas para ver se acerta de prima!
 
-Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar! No R, um erro não é nenhuma dor de cabeça, é rápido consertar e testar (**debugar**, para os mais íntimos).
+Mas a ideia Ã© essa. Ser intuitivo. A dica aqui Ã© tentar! No R, um erro nÃ£o Ã© nenhuma dor de cabeÃ§a, Ã© rÃ¡pido consertar e testar (**debugar**, para os mais Ã­ntimos).
 
 ## Valores especiais
 
-Certas operações matemáticas podem suscitar em valores não numéricos. Exemplo disso são log de números negativos e divisões por zero. Para tais operações, o R reservou valores especiais para serem retornadas quando operações não resultarem em um número propriamente dito. A tabela abaixo lista esses objetos:
+Certas operaÃ§Ãµes matemÃ¡ticas podem suscitar em valores nÃ£o numÃ©ricos. Exemplo disso sÃ£o log de nÃºmeros negativos e divisÃµes por zero. Para tais operaÃ§Ãµes, o R reservou valores especiais para serem retornadas quando operaÃ§Ãµes nÃ£o resultarem em um nÃºmero propriamente dito. A tabela abaixo lista esses objetos:
 
 ```{r,  echo=FALSE, results='asis'}
 tab_valores_especiais <- data.frame("Valor" = c(),
@@ -41,13 +41,13 @@ tab_valores_especiais <- data.frame("Valor" = c(),
 
 ```
 
-## Operadores aritméticos
+## Operadores aritmÃ©ticos
 
-Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!
+Os bons e conhecidos operadores aritmÃ©ticos. Com nÃºmeros reais eles funcionam como na matemÃ¡tica, mas ao saÃ­rmos da reta, eles podem fazer muito mais!
 
 ```{r,  echo=FALSE, results='asis'}
 op_aritmetico <- data.frame(operador = c("x + y", "x - y", "x * y", "x / y", "x^y ou x**y", "x%%y", "x%/%y"),
-                            descricao = c("Adição de x com y", "Subtração de y em x", "Multiplicação de x e y", "Divisão de x por y", "x elevado a y-ésima potência", "Resto da divisão de x por y (módulo)", "Parte inteira da divisão de x por y")) 
+                            descricao = c("AdiÃ§Ã£o de x com y", "SubtraÃ§Ã£o de y em x", "MultiplicaÃ§Ã£o de x e y", "DivisÃ£o de x por y", "x elevado a y-Ã©sima potÃªncia", "Resto da divisÃ£o de x por y (mÃ³dulo)", "Parte inteira da divisÃ£o de x por y")) 
 
 pander(op_aritmetico)
 ```
@@ -62,13 +62,13 @@ pander(op_aritmetico)
 9%%2
 9%/%2
 ```
-## Operadores lógicos
+## Operadores lÃ³gicos
 
-Operadores lógicos retornarão sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
+Operadores lÃ³gicos retornarÃ£o sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
 
 ```{r, echo=FALSE, results='asis'}
 op_logico <- data.frame(operador = c("x < y", "x <= y", "x > y", "x >= y", "x == y", "x != y", "!x", "x | y ", "x & y", "xor(x, y)"),
-                        descricao = c("x menor que y?", "x menor ou igual a y?", "x maior que y?", "x maior ou igual a y?", "x igual a y?", "x diferente de y?", "Negativa de x", "x ou y são verdadeiros?", "x e y são verdadeiros?", "x ou y são verdadeiros (apenas um deles)?"))
+                        descricao = c("x menor que y?", "x menor ou igual a y?", "x maior que y?", "x maior ou igual a y?", "x igual a y?", "x diferente de y?", "Negativa de x", "x ou y sÃ£o verdadeiros?", "x e y sÃ£o verdadeiros?", "x ou y sÃ£o verdadeiros (apenas um deles)?"))
 pander(op_logico)
 ```
 
@@ -91,128 +91,128 @@ TRUE == 2
 FALSE == 0
 ```
 
-## Números complexos
+## NÃºmeros complexos
 
-O R manipula números complexo de maneira fácil e intuitiva do mesmo jeito que trata os números reais. Além disso, disponibiliza funções úteis para eles, como módulo, conjugado e argumento.
+O R manipula nÃºmeros complexo de maneira fÃ¡cil e intuitiva do mesmo jeito que trata os nÃºmeros reais. AlÃ©m disso, disponibiliza funÃ§Ãµes Ãºteis para eles, como mÃ³dulo, conjugado e argumento.
 
 ```{r}
 x <- -8 + 0i
 
-# verifica se x é um número commplexo
+# verifica se x Ã© um nÃºmero commplexo
 class(x)
 is.complex(x)
 ```
 
-A tabela abaixo resume algumas funções interessantes para números complexos.
+A tabela abaixo resume algumas funÃ§Ãµes interessantes para nÃºmeros complexos.
 
 ```{r, echo=FALSE, results='asis'}
-complexo <- data.frame("Função" = c("Re(z)",
+complexo <- data.frame("FunÃ§Ã£o" = c("Re(z)",
                                     "Im(z)",
                                     "Mod(z)",
                                     "Arg(z)",
                                     "Conj(z)"),
-                       "Descrição" = c("Parte real de x", 
-                                       "Parte imaginária de x", 
-                                       "Módulo de x", 
+                       "DescriÃ§Ã£o" = c("Parte real de x", 
+                                       "Parte imaginÃ¡ria de x", 
+                                       "MÃ³dulo de x", 
                                        "Argumento de x", 
                                        "Complexo conjugado de x"))
 
 pander(complexo)
 ```
 
-Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.
+Demais funÃ§Ãµes matemÃ¡ticas, como logaritmo, funÃ§Ãµes trigonomÃ©tricas, exponencial e radiciaÃ§Ã£o tambÃ©m estÃ£o implementadas para nÃºmeros complexos.
 
 # Controle de fluxo (*flow controls*)
 
-## Sumário
+## SumÃ¡rio
 
-- if, else, else if: testa uma condição
-- for, while: "laços" ou iterações
-- break, next: ações dentro de laços
+- if, else, else if: testa uma condiÃ§Ã£o
+- for, while: "laÃ§os" ou iteraÃ§Ãµes
+- break, next: aÃ§Ãµes dentro de laÃ§os
 
 ## if, else e else if
 
 ### Estrutura:
 
 ```{r, echo = TRUE, eval=FALSE}
-if(<condição1>) {
-  # se a condição1 for verdadeira...
+if(<condiÃ§Ã£o1>) {
+  # se a condiÃ§Ã£o1 for verdadeira...
   # faz coisas interessantes.
-} else if (<condição2>) {
-  # caso a condição1 seja falsa e a condição2 seja verdadeira...
+} else if (<condiÃ§Ã£o2>) {
+  # caso a condiÃ§Ã£o1 seja falsa e a condiÃ§Ã£o2 seja verdadeira...
   # faz coisas legais para este caso.
 } else {
-  # faz coisas necessárias caso todas as condições anteriores falharem
+  # faz coisas necessÃ¡rias caso todas as condiÃ§Ãµes anteriores falharem
 }
 ```
 
-As condições devem ser expressões lógicas, ou seja, testes que retornem `TRUE` ou `FALSE`. Assim, o código entre `{}` será executado se a condição for `TRUE` ou será ignorada se a condição retornar `FALSE`.
+As condiÃ§Ãµes devem ser expressÃµes lÃ³gicas, ou seja, testes que retornem `TRUE` ou `FALSE`. Assim, o cÃ³digo entre `{}` serÃ¡ executado se a condiÃ§Ã£o for `TRUE` ou serÃ¡ ignorada se a condiÃ§Ã£o retornar `FALSE`.
 
 ### Exemplo:
 
 ```{r}
 x <- 4
 
-# teste: x NÃO é um número?
+# teste: x NÃƒO Ã© um nÃºmero?
 !is.numeric(x)
-# teste: x é menor que zero?
+# teste: x Ã© menor que zero?
 x < 0
-# teste: x é maior que zero?
+# teste: x Ã© maior que zero?
 x > 0
 
 if(!is.numeric(x)) {
-  "x não é um número"
+  "x nÃ£o Ã© um nÃºmero"
 } else if(x > 0) {
-  "x é positivo"
+  "x Ã© positivo"
 } else if(x < 0) {
-  "x é negativo"
+  "x Ã© negativo"
 } else {
-  "x é nulo"
+  "x Ã© nulo"
 }
 ```
 
 O que acontece no exemplo acima, passo a passo:
 
-1. A expressão `!is.numeric(x)` testa se `x` NÃO é um número. Como `x` vale 4, ele retorna `FALSE`. Assim, a expressão `{"x não é um número"}` não é executada e a próxima condição é testada;
+1. A expressÃ£o `!is.numeric(x)` testa se `x` NÃƒO Ã© um nÃºmero. Como `x` vale 4, ele retorna `FALSE`. Assim, a expressÃ£o `{"x nÃ£o Ã© um nÃºmero"}` nÃ£o Ã© executada e a prÃ³xima condiÃ§Ã£o Ã© testada;
 
-2. No primeiro `else if`, o teste lógico `x > 0` retorna `TRUE`, fazendo com que a expressão `{"x é positivo"}` seja executada e todo o restante dos testes, ignorado.
+2. No primeiro `else if`, o teste lÃ³gico `x > 0` retorna `TRUE`, fazendo com que a expressÃ£o `{"x Ã© positivo"}` seja executada e todo o restante dos testes, ignorado.
 
-**OBS:** a condições `x < 0` nunca chegou a ser testada. Uma vez encontrada uma condição verdadeira, o programa executa o respectivo bloco de códigos entre `{}` e descarta as demais instruções.
+**OBS:** a condiÃ§Ãµes `x < 0` nunca chegou a ser testada. Uma vez encontrada uma condiÃ§Ã£o verdadeira, o programa executa o respectivo bloco de cÃ³digos entre `{}` e descarta as demais instruÃ§Ãµes.
 
-### Considerações:
+### ConsideraÃ§Ãµes:
 
-- O `else` e o `else if` têm que estar na mesma linha do `}` da expressão anterior, senão não rodará!
+- O `else` e o `else if` tÃªm que estar na mesma linha do `}` da expressÃ£o anterior, senÃ£o nÃ£o rodarÃ¡!
 
 ```{r, eval=FALSE}
 #Certo
 if(1 == 2) {
   "Um resultado muito interessante!"
 } else { # <----- Mesma linha que o "}"
-  "1 é diferente de 2"
+  "1 Ã© diferente de 2"
 }
 
-# ERRADO!!! Não rodará
+# ERRADO!!! NÃ£o rodarÃ¡
 if(1 == 2) {
   "Um resultado muito interessante!"
 }
 else { # <----- Na linha abaixo do "}"
-  "1 é diferente de 2"
+  "1 Ã© diferente de 2"
 }
 ```
 
-- Além de `TRUE` e `FALSE`, o R aceita `1` e `0`, respectivamente. Na verdade, não precisa ser `1` exatamente, a regra é: 
-    - número diferente de zero é `TRUE`; e 
-    - número igual a zero é `FALSE`.
+- AlÃ©m de `TRUE` e `FALSE`, o R aceita `1` e `0`, respectivamente. Na verdade, nÃ£o precisa ser `1` exatamente, a regra Ã©: 
+    - nÃºmero diferente de zero Ã© `TRUE`; e 
+    - nÃºmero igual a zero Ã© `FALSE`.
     
-- Objetos `character`, `NA`, `NaN` e `list` não são interpretáveis como lógicos. Será retornado um erro caso tente passá-los como condições.
+- Objetos `character`, `NA`, `NaN` e `list` nÃ£o sÃ£o interpretÃ¡veis como lÃ³gicos. SerÃ¡ retornado um erro caso tente passÃ¡-los como condiÃ§Ãµes.
 
-- Caso seja passado um `array`, `vector` ou `matrix`, será utilizado apenas o primeiro elemento (é melhor evitar usar arrays como condições!). Será enviado um aviso de que isso ocorreu.
+- Caso seja passado um `array`, `vector` ou `matrix`, serÃ¡ utilizado apenas o primeiro elemento (Ã© melhor evitar usar arrays como condiÃ§Ãµes!). SerÃ¡ enviado um aviso de que isso ocorreu.
 
-- `else` e `else if` são opcionais.
+- `else` e `else if` sÃ£o opcionais.
 
 ## for
 
-O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de 
+O `for` Ã© um tipo "laÃ§o" (*loop*, em inglÃªs) que aplica um bloco de 
 
 ### Estrutura:
 
@@ -225,7 +225,7 @@ for(iterador in <sequencia>) {
 
 ### Exemplo:
 
-O uso mais simples é quando iteramos em um vetor de inteiros, como se fossem contadores.
+O uso mais simples Ã© quando iteramos em um vetor de inteiros, como se fossem contadores.
 ```{r}
 for(i in 1:5) {
   print(i)
@@ -243,7 +243,7 @@ for(fruta in frutas) {
 }
 ```
 
-Para cada item do vetor `frutas`, o `for` atribuiu ao objeto `fruta` o valor do respectivo item e aplicou a função `print(paste(fruta, "guei", sep = ""))`.
+Para cada item do vetor `frutas`, o `for` atribuiu ao objeto `fruta` o valor do respectivo item e aplicou a funÃ§Ã£o `print(paste(fruta, "guei", sep = ""))`.
 
 Formas alternativas com o mesmo comportamento que o acima:
 ```{r, eval=FALSE}
@@ -252,16 +252,16 @@ for(i in 1:length(frutas)) {
   print(paste(frutas[i], "guei", sep = ""))
 }
 
-# seq_along() é uma função especialmente útil para for's
+# seq_along() Ã© uma funÃ§Ã£o especialmente Ãºtil para for's
 for(i in seq_along(frutas)) {
   print(paste(frutas[i], "guei", sep = ""))
 }
 ```
 
-**OBS** Apesar de parecer mais 'elegante' atribuir diretamente os valores ao iterador (como no caso do `fruta in frutas`), muitas vezes você se pegará na necessidade de usar os índices dos valores. Casos típicos é quando se tem um outro vetor que faz relação com outro. O exemplo abaixo não seria possível caso utilizássemos `fruta in frutas` no lugar de `i in seq_along(frutas)`.
+**OBS** Apesar de parecer mais 'elegante' atribuir diretamente os valores ao iterador (como no caso do `fruta in frutas`), muitas vezes vocÃª se pegarÃ¡ na necessidade de usar os Ã­ndices dos valores. Casos tÃ­picos Ã© quando se tem um outro vetor que faz relaÃ§Ã£o com outro. O exemplo abaixo nÃ£o seria possÃ­vel caso utilizÃ¡ssemos `fruta in frutas` no lugar de `i in seq_along(frutas)`.
 
 ```{r}
-# Exemplo simples de quando é util utilizar índice em vez de valor.
+# Exemplo simples de quando Ã© util utilizar Ã­ndice em vez de valor.
 frutas1 <- c("banana", "uva", "abacaxi")
 frutas2 <- c("kiwi", "uva", "laranja")
 pessoas <- c("Amanda", "Bruno", "Caio")
@@ -276,7 +276,7 @@ for(i in seq_along(frutas1)) {
 
 ### *ifelse()*: *for* com *if else*
 
-Como veremos mais para frente, vetores são quase sempre bem-vindos no R. Muitas funções trabalham com vetores de maneira muito conveniente e a função `ifelse()` é um exemplo disso. Ela é a abordagem mais simples quando queremos que cada elemento de um vetor passe por algum teste lógico (como no exemplo acima) para retornar um valor dependendo se a condiçao for `TRUE` ou `FALSE` (como nunca é demais, dê um `?ifelse` para ver a documentação se for preciso). Abaixo está a replicação do exemplo acima, mas sem a mensagem de aviso.
+Como veremos mais para frente, vetores sÃ£o quase sempre bem-vindos no R. Muitas funÃ§Ãµes trabalham com vetores de maneira muito conveniente e a funÃ§Ã£o `ifelse()` Ã© um exemplo disso. Ela Ã© a abordagem mais simples quando queremos que cada elemento de um vetor passe por algum teste lÃ³gico (como no exemplo acima) para retornar um valor dependendo se a condiÃ§ao for `TRUE` ou `FALSE` (como nunca Ã© demais, dÃª um `?ifelse` para ver a documentaÃ§Ã£o se for preciso). Abaixo estÃ¡ a replicaÃ§Ã£o do exemplo acima, mas sem a mensagem de aviso.
 
 ```{r}
 frutas1 <- c("banana", "uva", "abacaxi")
@@ -286,33 +286,33 @@ pessoas <- c("Amanda", "Bruno", "Caio")
 frutas1 <- ifelse(frutas1 == frutas2, "manga", frutas1)
 ```
 
-O código acima está dizendo que se os respectivos elementos de frutas1 e frutas2 calharem de serem iguais, então substitua por "manga". Se forem diferentes, então mantenha a fruta 1 original. Finalmente, atualize o vetor `frutas1`.
+O cÃ³digo acima estÃ¡ dizendo que se os respectivos elementos de frutas1 e frutas2 calharem de serem iguais, entÃ£o substitua por "manga". Se forem diferentes, entÃ£o mantenha a fruta 1 original. Finalmente, atualize o vetor `frutas1`.
 
-Na parte de vetorização será descrita com mais detalhe o que está acontecendo por trás dos panos.
+Na parte de vetorizaÃ§Ã£o serÃ¡ descrita com mais detalhe o que estÃ¡ acontecendo por trÃ¡s dos panos.
 
-### Considerações:
+### ConsideraÃ§Ãµes:
 
-O uso do *for*, ao contrário das outras linguagens de programação, se tornará cada vez menos frequente conforme você for se aprimorando no R. Ele é especialmente ineficiente no R e, além disso, existem outras funções que o substituem e ainda facilitam muito mais a vida.
+O uso do *for*, ao contrÃ¡rio das outras linguagens de programaÃ§Ã£o, se tornarÃ¡ cada vez menos frequente conforme vocÃª for se aprimorando no R. Ele Ã© especialmente ineficiente no R e, alÃ©m disso, existem outras funÃ§Ãµes que o substituem e ainda facilitam muito mais a vida.
 
 ## while
 
-O laço `while` é especialmente útil quando não sabemos quando iremos parar (a condição para o laço deixar de rodar pode envolver o acaso ou convergência, por exemplo). Cuidado com os *loops* infinitos! =)
+O laÃ§o `while` Ã© especialmente Ãºtil quando nÃ£o sabemos quando iremos parar (a condiÃ§Ã£o para o laÃ§o deixar de rodar pode envolver o acaso ou convergÃªncia, por exemplo). Cuidado com os *loops* infinitos! =)
 
 ### Estrutura:
 
-A estrutura é muito similar ao `if`. Tem a condição (ou teste lógico) e a expressão a ser executada enquanto a condição for verdadeira.
+A estrutura Ã© muito similar ao `if`. Tem a condiÃ§Ã£o (ou teste lÃ³gico) e a expressÃ£o a ser executada enquanto a condiÃ§Ã£o for verdadeira.
 
 ```{r, eval=FALSE}
-while(<condições>) {
-  # coisas para fazzer enquanto as <condições> forem TRUE
+while(<condiÃ§Ãµes>) {
+  # coisas para fazzer enquanto as <condiÃ§Ãµes> forem TRUE
 }
 ```
 
 ### Exemplo:
-Abaixo está uma simulação de lançamento de moedas do qual se tem interesse em saber quantos lançamentos foram necessários até o aparecimento de uma "cara".
+Abaixo estÃ¡ uma simulaÃ§Ã£o de lanÃ§amento de moedas do qual se tem interesse em saber quantos lanÃ§amentos foram necessÃ¡rios atÃ© o aparecimento de uma "cara".
 ```{r}
 p <- 0.2 # probabilidade de cair "cara"
-lances <- 0 # contador de lançamentos
+lances <- 0 # contador de lanÃ§amentos
 while(runif(1) > p) {
   lances <- lances + 1
 }
@@ -320,33 +320,33 @@ while(runif(1) > p) {
 lances
 ```
 
-A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
+A funÃ§Ã£o `runif(1)` gera um nÃºmero aleatÃ³rio no intervalo unitÃ¡rio toda vez que a condiÃ§Ã£o Ã© avaliada. Se este nÃºmero for maior que `p`, entÃ£o a moeda e lanÃ§ada novamente e o contador de lanÃ§amentos Ã© incrementado em uma unidade e esse ciclo se repete atÃ© que, por acaso, o nÃºmero sorteado seja menor que `p`. No fim, teremos nossa desejada variÃ¡vel aleatÃ³ria simulada de lances atÃ© "cara".
 
-Repare que enquanto a condição retornava `TRUE`, a expressão sera reexecutada. O laço só parou quando a condição retornou `FALSE`. Essa é a regra do `while`.
+Repare que enquanto a condiÃ§Ã£o retornava `TRUE`, a expressÃ£o sera reexecutada. O laÃ§o sÃ³ parou quando a condiÃ§Ã£o retornou `FALSE`. Essa Ã© a regra do `while`.
 
-# Vetorização
+# VetorizaÃ§Ã£o
 
-Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um "vetor" (entre aspas por que "vetor" aqui pode ser vetor, matriz, tabela, lista e afins, tipos de objetos que serão explicados em detalhes na próxima aula).
+Vetores no R sÃ£o cadeias ordenadas de elementos (geralmente nÃºmeros ou palavras) e sÃ£o os objetos de maior interesse porque sÃ£o eles que guardam os dados a serem analisados. Por essa razÃ£o que quase tudo feito no R aceita de braÃ§os abertos um "vetor" (entre aspas por que "vetor" aqui pode ser vetor, matriz, tabela, lista e afins, tipos de objetos que serÃ£o explicados em detalhes na prÃ³xima aula).
 
-Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação se verão tentados a usar *loops* para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, *loops* no R são sofrivelmente ineficientes.
+Se vocÃª Ã© novo no mundo da programaÃ§Ã£o, nÃ£o vai sentir muito a vantagem desse conceito. Aos que jÃ¡ estÃ£o acostumados a programar em outras lingaguens de programaÃ§Ã£o se verÃ£o tentados a usar *loops* para tudo. Isso terÃ¡ de mudar (e irÃ¡, naturalmente). Como frisado anteriormente, *loops* no R sÃ£o sofrivelmente ineficientes.
 
 ## Tecnicalidades
 
-Tecnicamente, vetorização nada mais é do que a cultura de se criar e usar funções vetorizadas. Essas funções recebem vetor(es) [x1, ..., xn] e devolvem vetor(es) [f(x1), ..., f(xn)]. Mas por quê é importante, afinal?
+Tecnicamente, vetorizaÃ§Ã£o nada mais Ã© do que a cultura de se criar e usar funÃ§Ãµes vetorizadas. Essas funÃ§Ãµes recebem vetor(es) [x1, ..., xn] e devolvem vetor(es) [f(x1), ..., f(xn)]. Mas por quÃª Ã© importante, afinal?
 
-Implementar funções vetorizadas seria uma tarefa simples, não fosse a lentidão dos *loops*. No R, funções vetorizadas realmente úteis são implementadas nas linguagens de baixo nível, que são muito mais rápidas. Por isso, a não ser que domine C, FORTRAN ou C++, você ficará dependente das funções vetorizadas disponíveis pelo R ou por terceiros.
+Implementar funÃ§Ãµes vetorizadas seria uma tarefa simples, nÃ£o fosse a lentidÃ£o dos *loops*. No R, funÃ§Ãµes vetorizadas realmente Ãºteis sÃ£o implementadas nas linguagens de baixo nÃ­vel, que sÃ£o muito mais rÃ¡pidas. Por isso, a nÃ£o ser que domine C, FORTRAN ou C++, vocÃª ficarÃ¡ dependente das funÃ§Ãµes vetorizadas disponÃ­veis pelo R ou por terceiros.
 
-## Eficiência
+## EficiÃªncia
 
-Abaixo está um exemplo que mostra a diferença de tempo que leva para calcular a raiz quadrada de cada elemento de um vetor de números. 
+Abaixo estÃ¡ um exemplo que mostra a diferenÃ§a de tempo que leva para calcular a raiz quadrada de cada elemento de um vetor de nÃºmeros. 
 
-- Uma das funções está implementada inteiramente em R utilizando um *for* para calcular a raiz quadrada em cada elemento do vetor por meio da função `sqrt()`;
-- Uma segunda maneira de efetuar a mesma operação tira proveito da implementação vetorizada em C da função `sqrt()`.
+- Uma das funÃ§Ãµes estÃ¡ implementada inteiramente em R utilizando um *for* para calcular a raiz quadrada em cada elemento do vetor por meio da funÃ§Ã£o `sqrt()`;
+- Uma segunda maneira de efetuar a mesma operaÃ§Ã£o tira proveito da implementaÃ§Ã£o vetorizada em C da funÃ§Ã£o `sqrt()`.
 
 ```{r}
-x <- 1:1000000 # sequência de inteiros de 1 a 1000000
+x <- 1:1000000 # sequÃªncia de inteiros de 1 a 1000000
 
-# função que calcula a raiz quadrada de cada elemento de um vetor de números
+# funÃ§Ã£o que calcula a raiz quadrada de cada elemento de um vetor de nÃºmeros
 meu_sqrt <- function(numeros) {
   resp <- numeric(length(numeros))
   for(i in seq_along(numeros)) {
@@ -355,22 +355,22 @@ meu_sqrt <- function(numeros) {
   return(resp)
 }
 
-# Comparação de eficiência entre função vetorizada e função "vetorizada no R"
+# ComparaÃ§Ã£o de eficiÃªncia entre funÃ§Ã£o vetorizada e funÃ§Ã£o "vetorizada no R"
 system.time(x2a <- meu_sqrt(x))
 system.time(x2b <- sqrt(x))
 
-# Verifica que os dois vetores são iguais
+# Verifica que os dois vetores sÃ£o iguais
 identical(x2a, x2b)
 ```
 
-Um ganho de 200 vezes na eficiência! E as vantagens não param por aí:
+Um ganho de 200 vezes na eficiÃªncia! E as vantagens nÃ£o param por aÃ­:
 
-1. Essas funções foram construídas e testadas por pessoas que ganham a vida fazendo isso;
-2. No R, uma função é "esperta" e funciona para diferentes tipos de objetos que passamos a ela, muitas vezes da forma que esperamos.
+1. Essas funÃ§Ãµes foram construÃ­das e testadas por pessoas que ganham a vida fazendo isso;
+2. No R, uma funÃ§Ã£o Ã© "esperta" e funciona para diferentes tipos de objetos que passamos a ela, muitas vezes da forma que esperamos.
 
 ## Reciclagem
 
-Um conceito que caminha junto com a vetorização é a chamada Reciclagem. Um exemplo ajuda a esclarecer o que isso significa.
+Um conceito que caminha junto com a vetorizaÃ§Ã£o Ã© a chamada Reciclagem. Um exemplo ajuda a esclarecer o que isso significa.
 
 ```{r}
 x <- c(1,5)
@@ -378,75 +378,75 @@ y <- c(1,10,100,1000)
 x + y
 ```
 
-Neste exemplo estamos somando dois vetores de tamanhos diferentes. Na matemática isso não faz sentido, mas no R faz! E qual convenção se usa para que essa operação seja bem definida? A resposta é Reciclagem. O operador `+` é uma função vetorizada e que está programado para lidar com quase qualquer tipo de soma que o usuário queira desafiá-lo a fazer. Ao ser incumbido da árdua missão de somar dois vetores de tamanhos diferentes, o `+` "recicla" os valores do menor vetor, no caso o vetor `x`, reutilizando seus valores até preencher o vetor maior. 
+Neste exemplo estamos somando dois vetores de tamanhos diferentes. Na matemÃ¡tica isso nÃ£o faz sentido, mas no R faz! E qual convenÃ§Ã£o se usa para que essa operaÃ§Ã£o seja bem definida? A resposta Ã© Reciclagem. O operador `+` Ã© uma funÃ§Ã£o vetorizada e que estÃ¡ programado para lidar com quase qualquer tipo de soma que o usuÃ¡rio queira desafiÃ¡-lo a fazer. Ao ser incumbido da Ã¡rdua missÃ£o de somar dois vetores de tamanhos diferentes, o `+` "recicla" os valores do menor vetor, no caso o vetor `x`, reutilizando seus valores atÃ© preencher o vetor maior. 
 
-Esta convenção aparece sempre que possível no R e vale tomar cuidado: há vezes em que o R não avisa que reciclou valores.
+Esta convenÃ§Ã£o aparece sempre que possÃ­vel no R e vale tomar cuidado: hÃ¡ vezes em que o R nÃ£o avisa que reciclou valores.
 
-# Funções
+# FunÃ§Ãµes
 
-Funções são grandes trunfos das linguagens de programação. Função no R tem a mesma finalidade das funções das demais linguagens: evitar repetir códigos e construir abstrações. Funções deixam o código mais legível, elegante e menos repetitivo. Além disso, funções abstraem uma rotina para casos mais gerais por meio de parâmetros, fazendo-a útil para casos além daquela configuração específica que motivou sua implementação.
+FunÃ§Ãµes sÃ£o grandes trunfos das linguagens de programaÃ§Ã£o. FunÃ§Ã£o no R tem a mesma finalidade das funÃ§Ãµes das demais linguagens: evitar repetir cÃ³digos e construir abstraÃ§Ãµes. FunÃ§Ãµes deixam o cÃ³digo mais legÃ­vel, elegante e menos repetitivo. AlÃ©m disso, funÃ§Ãµes abstraem uma rotina para casos mais gerais por meio de parÃ¢metros, fazendo-a Ãºtil para casos alÃ©m daquela configuraÃ§Ã£o especÃ­fica que motivou sua implementaÃ§Ã£o.
 
 ## Estrutura
 
 ```{r, eval=FALSE}
-nome_da_funcao <- function(<parâmetros>) {
-  # faz coisas com os parâmetros
+nome_da_funcao <- function(<parÃ¢metros>) {
+  # faz coisas com os parÃ¢metros
   resultado
 }
 
-# uso da função
+# uso da funÃ§Ã£o
 nome_da_funcao(param1, param2, ...)
 ```
 
 Pontos relevantes:
 
-- Funções também são objetos! Aliás, tudo que você atribui com `<-` vira um objeto no R. Assim, é natural pensar que funções podem receber outras funções como argumento e isso é bem comum.
+- FunÃ§Ãµes tambÃ©m sÃ£o objetos! AliÃ¡s, tudo que vocÃª atribui com `<-` vira um objeto no R. Assim, Ã© natural pensar que funÃ§Ãµes podem receber outras funÃ§Ãµes como argumento e isso Ã© bem comum.
 
-- Assim que uma função for atribuída a um objeto, use esta função como se ela tivesse vinda com o R: `nome_da_funcao(...)`.
+- Assim que uma funÃ§Ã£o for atribuÃ­da a um objeto, use esta funÃ§Ã£o como se ela tivesse vinda com o R: `nome_da_funcao(...)`.
 
-## Parâmetros
+## ParÃ¢metros
 
-Funções aceitam quaisquer e quantos parâmetros precisar e retorna um objeto, de qualquer tipo, inclusive nada (`NULL`). No lugar do `<parâmetros>` você pode colocar nomes que servirão de objetos (número, texto, vetor, lista, etc.) dentro da sua função.
+FunÃ§Ãµes aceitam quaisquer e quantos parÃ¢metros precisar e retorna um objeto, de qualquer tipo, inclusive nada (`NULL`). No lugar do `<parÃ¢metros>` vocÃª pode colocar nomes que servirÃ£o de objetos (nÃºmero, texto, vetor, lista, etc.) dentro da sua funÃ§Ã£o.
 
-### Parâmetros opcionais
-Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário. Porém, existem parâmetros opcionais, que assumem um dado valor padrão caso o usuário opte por não especificar explicitamente.
+### ParÃ¢metros opcionais
+ParÃ¢metros sÃ£o objetos cujos valores devem ser atribuÃ­dos pelo usuÃ¡rio. PorÃ©m, existem parÃ¢metros opcionais, que assumem um dado valor padrÃ£o caso o usuÃ¡rio opte por nÃ£o especificar explicitamente.
 
 ```{r}
-# função que ecoa uma palavra
+# funÃ§Ã£o que ecoa uma palavra
 ecoar <- function(palavra, n_ecos = 3) {
     paste(c(rep(palavra, n_ecos), "!"), collapse = " ")
 }
 ```
 
-### Parâmetros relativos
-Além de parâmetros opcionais, podem existir parâmetros cujo valor padrão usa o valor de outro parâmetro. Exemplo:
+### ParÃ¢metros relativos
+AlÃ©m de parÃ¢metros opcionais, podem existir parÃ¢metros cujo valor padrÃ£o usa o valor de outro parÃ¢metro. Exemplo:
 
 ```{r, fig.width=6, fig.height=3}
-# Função que desenha um histograma
+# FunÃ§Ã£o que desenha um histograma
 histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab)) {
   hist(numeros, xlab = xlab, main = titulo)
 }
 
-# Simula 1000 medidas de altura de pessoas de uma Normal com média 1,80 e desvio padrão de 0,1.
+# Simula 1000 medidas de altura de pessoas de uma Normal com mÃ©dia 1,80 e desvio padrÃ£o de 0,1.
 altura <- rnorm(n = 1000, mean = 1.80, sd = 0.1)
 histograma(altura, "altura")
-histograma(altura, "altura", "Eu escolho o título que eu quiser")
+histograma(altura, "altura", "Eu escolho o tÃ­tulo que eu quiser")
 ```
 
-O parâmetro `xlab` define o título do eixo x enquanto `titulo` escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.
+O parÃ¢metro `xlab` define o tÃ­tulo do eixo x enquanto `titulo` escreve o tÃ­tulo principal do grÃ¡fico. Este Ãºltimo irÃ¡ utilizar o nome passado para o eixo x para criar o seu valor padrÃ£o.
 
 ### Ordem ou nome
-Podemos passar valores aos parâmetros explicitamente ou implicitamente. Passar valor explicitamente significa associar o valor desejado ao nome do parâmetro. Por exemplo, no código `rnorm(n = 1000, mean = 1.80, sd = 0.1)` está claro qual valor será passado para cada parâmetro. Se quisermos omitir os nomes dos parâmetros, as funções terão a boa vontade de deduzir a qual parâmetro você deseja atribuir certo valor e isso é feito utilizando a ORDEM dos parâmetros definidos na criação da função. No comando `histograma(altura, "altura")` nenhum parâmetro foi diretamente definido, mas pela ordem, o vetor `altura` foi atribuído ao parâmetro `numeros` e a *string* `"altura"` foi atribuída ao parâmetro `xlab` da função `histograma()`. A versão "explícita" desse comando seria `histograma(numeros = altura, xlab = "altura")`.
+Podemos passar valores aos parÃ¢metros explicitamente ou implicitamente. Passar valor explicitamente significa associar o valor desejado ao nome do parÃ¢metro. Por exemplo, no cÃ³digo `rnorm(n = 1000, mean = 1.80, sd = 0.1)` estÃ¡ claro qual valor serÃ¡ passado para cada parÃ¢metro. Se quisermos omitir os nomes dos parÃ¢metros, as funÃ§Ãµes terÃ£o a boa vontade de deduzir a qual parÃ¢metro vocÃª deseja atribuir certo valor e isso Ã© feito utilizando a ORDEM dos parÃ¢metros definidos na criaÃ§Ã£o da funÃ§Ã£o. No comando `histograma(altura, "altura")` nenhum parÃ¢metro foi diretamente definido, mas pela ordem, o vetor `altura` foi atribuÃ­do ao parÃ¢metro `numeros` e a *string* `"altura"` foi atribuÃ­da ao parÃ¢metro `xlab` da funÃ§Ã£o `histograma()`. A versÃ£o "explÃ­cita" desse comando seria `histograma(numeros = altura, xlab = "altura")`.
 
-**OBS:** Misturar as formas, explícitas e implícitas, também funciona e versões explícitas aceitam que os parâmetros sejam passados fora de ordem. A expressão `histograma(xlab = "altura", altura)` daria certo também!
+**OBS:** Misturar as formas, explÃ­citas e implÃ­citas, tambÃ©m funciona e versÃµes explÃ­citas aceitam que os parÃ¢metros sejam passados fora de ordem. A expressÃ£o `histograma(xlab = "altura", altura)` daria certo tambÃ©m!
 
-**OBS 2:** Se não for ambíguo, o R aceita que apenas parte do nome do parâmetro seja passado. No nosso exemplo, `histograma(altura, t = "Eu escolho o título que eu quiser", x = "altura")` levaria ao mesmo resultado que todos os citados até aqui.
+**OBS 2:** Se nÃ£o for ambÃ­guo, o R aceita que apenas parte do nome do parÃ¢metro seja passado. No nosso exemplo, `histograma(altura, t = "Eu escolho o tÃ­tulo que eu quiser", x = "altura")` levaria ao mesmo resultado que todos os citados atÃ© aqui.
 
-### Parâmetro "..."
+### ParÃ¢metro "..."
 
-Existe um parâmetro especial e frequentemente disponível em funções que é simbolizado por três pontinhos "...". Esse argumento indica que pode ser passado um número variável de parâmetros e que, geralmente, estes serão repassados para outras funções. 
+Existe um parÃ¢metro especial e frequentemente disponÃ­vel em funÃ§Ãµes que Ã© simbolizado por trÃªs pontinhos "...". Esse argumento indica que pode ser passado um nÃºmero variÃ¡vel de parÃ¢metros e que, geralmente, estes serÃ£o repassados para outras funÃ§Ãµes. 
 
-Uma utilidade é quando você deseja fazer possível mexer nos parâmetros de uma função, mas não quer copiar todos os seus parâmetros novamente. Retomemos o exemplo da função `histograma()`:
+Uma utilidade Ã© quando vocÃª deseja fazer possÃ­vel mexer nos parÃ¢metros de uma funÃ§Ã£o, mas nÃ£o quer copiar todos os seus parÃ¢metros novamente. Retomemos o exemplo da funÃ§Ã£o `histograma()`:
 
 ```{r}
 histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab), ...) {
@@ -456,19 +456,19 @@ histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab
 histograma(altura, breaks = 100, col = 2)
 ```
 
-Repare que nunca precisamos definir os parâmetros `breaks` e `col` na função `histograma()`. O ... fez o trabalho de enviar essas informações à função `hist()`.
+Repare que nunca precisamos definir os parÃ¢metros `breaks` e `col` na funÃ§Ã£o `histograma()`. O ... fez o trabalho de enviar essas informaÃ§Ãµes Ã  funÃ§Ã£o `hist()`.
 
-Um segundo cenário que ... se faz útil é quando uma função aceita um número indefinido de argumentos. Um exemplo disso é a função `paste()`, que concatena palavras. A ela, podemos passar quantas palavras quisermos. Não fosse o ..., teríamos que ter os parâmetros `(palavra1, palavra2, palavra3, ...)`. Sem chances.
+Um segundo cenÃ¡rio que ... se faz Ãºtil Ã© quando uma funÃ§Ã£o aceita um nÃºmero indefinido de argumentos. Um exemplo disso Ã© a funÃ§Ã£o `paste()`, que concatena palavras. A ela, podemos passar quantas palavras quisermos. NÃ£o fosse o ..., terÃ­amos que ter os parÃ¢metros `(palavra1, palavra2, palavra3, ...)`. Sem chances.
 
 ```{r}
 args(paste)
 
-paste("Eu", "sou", "o", "capitão", "planeta")
+paste("Eu", "sou", "o", "capitÃ£o", "planeta")
 ```
 
-## Funções anônimas
+## FunÃ§Ãµes anÃ´nimas
 
-As funções anônimas são frequentemente utilizadas e têm essa denominação pois não nos damos o trabalho de defini-las como um objeto permanente no nosso ambiente de trabalho. Veja o exemplo abaixo:
+As funÃ§Ãµes anÃ´nimas sÃ£o frequentemente utilizadas e tÃªm essa denominaÃ§Ã£o pois nÃ£o nos damos o trabalho de defini-las como um objeto permanente no nosso ambiente de trabalho. Veja o exemplo abaixo:
 
 ```{r}
 nums <- 1:10
@@ -478,7 +478,7 @@ eh_par <- sapply(nums, function(numero) {numero %% 2 == 0})
 cbind(nums, eh_par) 
 ```
 
-Não se preocupe em entender tudo o que o código acima está fazendo, você aprenderá adiante tudo sobre a função `sapply()` e `cbind()`. O ponto deste exemplo está na parte `function(numero) {numero %% 2 == 0}`. Este pedaço de código define uma função, mas essa função não tem nome! Apesar disso, ela continua sendo um objeto e pode ser passada como parâmetro de função, assim como faríamos com números, textos e vetores. Caso a função fosse útil em outros contextos ou tivesse que ser repetida em outra parte do código, poderíamos guardá-la no ambiente de trabalho, como mostra o exemplo que segue:
+NÃ£o se preocupe em entender tudo o que o cÃ³digo acima estÃ¡ fazendo, vocÃª aprenderÃ¡ adiante tudo sobre a funÃ§Ã£o `sapply()` e `cbind()`. O ponto deste exemplo estÃ¡ na parte `function(numero) {numero %% 2 == 0}`. Este pedaÃ§o de cÃ³digo define uma funÃ§Ã£o, mas essa funÃ§Ã£o nÃ£o tem nome! Apesar disso, ela continua sendo um objeto e pode ser passada como parÃ¢metro de funÃ§Ã£o, assim como farÃ­amos com nÃºmeros, textos e vetores. Caso a funÃ§Ã£o fosse Ãºtil em outros contextos ou tivesse que ser repetida em outra parte do cÃ³digo, poderÃ­amos guardÃ¡-la no ambiente de trabalho, como mostra o exemplo que segue:
 
 ```{r}
 testa_se_eh_par <- function(numero) {
@@ -488,32 +488,32 @@ testa_se_eh_par <- function(numero) {
 eh_par <- sapply(nums, testa_se_eh_par)
 ```
 
-O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
+O resultado Ã© idÃªntico como deveria ser, mas agora a funÃ§Ã£o tem nome e pode ser utilizada conforme a conveniÃªncia.
 
-# Vocabulário
+# VocabulÃ¡rio
 
 ```{r, echo=FALSE}
-diversos <- data.frame("Função" = c("x:y", 
+diversos <- data.frame("FunÃ§Ã£o" = c("x:y", 
                                     "x=y", 
                                     "?x", 
                                     "x$y", 
                                     "x%*%y"),
-                       "Descrição" = c("Sequencia de x até y", 
-                                       "x recebe y (atribuição)", 
-                                       "documentação de x", 
-                                       "extração de y do objeto x", 
-                                       "Multiplicação matricial das matrizes x e y"))
+                       "DescriÃ§Ã£o" = c("Sequencia de x atÃ© y", 
+                                       "x recebe y (atribuiÃ§Ã£o)", 
+                                       "documentaÃ§Ã£o de x", 
+                                       "extraÃ§Ã£o de y do objeto x", 
+                                       "MultiplicaÃ§Ã£o matricial das matrizes x e y"))
 
-estatistica <- data.frame("Função" = c("mean(x)",
+estatistica <- data.frame("FunÃ§Ã£o" = c("mean(x)",
                                        "var(x) / sd(x)",
                                        "quantile(x)",
                                        "cov(x, y) / cor(x, y)"),
-                          "Descrição" = c("Média de x",
-                                          "Variância / Desvio Padrão amostral de x",
+                          "DescriÃ§Ã£o" = c("MÃ©dia de x",
+                                          "VariÃ¢ncia / Desvio PadrÃ£o amostral de x",
                                           "Quantis de x",
-                                          "Covariância / Correlação linear entre x e y"))
+                                          "CovariÃ¢ncia / CorrelaÃ§Ã£o linear entre x e y"))
 
-matematica <- data.frame("Função" = c("log(x)",
+matematica <- data.frame("FunÃ§Ã£o" = c("log(x)",
                                       "exp(x)",
                                       "abs(x)",
                                       "sign(x)",
@@ -521,17 +521,17 @@ matematica <- data.frame("Função" = c("log(x)",
                                       "choose(n, k)",
                                       "factorial(x)"
                                       ),
-                         "Descrição" = c("Logaritmo natural de x",
+                         "DescriÃ§Ã£o" = c("Logaritmo natural de x",
                                          "e elevado a x",
                                          "valor absoluto de x",
                                          "sinal de x (1 ou -1)",
                                          "raiz quadrada de x",
-                                         "combinações de n, k a k",
+                                         "combinaÃ§Ãµes de n, k a k",
                                          "fatorial de x"))
 
-trigonometria <- data.frame("Função" = c("cos(x) / sin(x) / tan(x)",
+trigonometria <- data.frame("FunÃ§Ã£o" = c("cos(x) / sin(x) / tan(x)",
                                            "acos(x) / asin(x) / atan(x)"),
-                            "Descrição" = c("seno/cosseno/tangente de x",
+                            "DescriÃ§Ã£o" = c("seno/cosseno/tangente de x",
                                               "arco-seno/cosseno/tangente de x"))
 ```
 
@@ -541,13 +541,13 @@ trigonometria <- data.frame("Função" = c("cos(x) / sin(x) / tan(x)",
 pander(trigonometria)
 ```
 
-## Matemática
+## MatemÃ¡tica
 
 ```{r, echo=FALSE, results='asis'}
 pander(matematica)
 ```
 
-## Estatística
+## EstatÃ­stica
 
 ```{r, echo=FALSE, results='asis'}
 pander(estatistica)
@@ -559,10 +559,10 @@ pander(estatistica)
 pander(diversos)
 ```
 
-# Referências
+# ReferÃªncias
 
 http://adv-r.had.co.nz/Functions.html
 
 http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
 
-# Próxima aula
+# PrÃ³xima aula

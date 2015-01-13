@@ -299,7 +299,7 @@ esfrie(asse(coloque(bata(acrescente(bowl(rep("farinha", 2), "água", "fermento",
 
 Tente entender o que é preciso fazer... Não é muito fácil né? E escrevendo usando o operador `%>%`?
 
-```{r}
+```{r, eval=FALSE}
 bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
   acrescente("farinho", até = "macio") %>%
   bata(duração = "3min") %>%
