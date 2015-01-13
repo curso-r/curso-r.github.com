@@ -1,4 +1,10 @@
 ---
+output:
+  html_document:
+    number_sections: no
+    toc: yes
+---
+---
 title: Aula 02 - Estruturas de Dados e Vocabulário
 date : 2015-01-21
 --- 
@@ -361,9 +367,11 @@ F %>% mean(c(NA, rnorm(100)), na.rm = .)
 
 Para mais informações sobre o `pipe` e exemplos da sua utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
-# Gráficos com a função plot()
+# Gráficos com o pacote *graphics*
 
-ESCREVER INTRO
+Dentre os pacotes base do R, o pacote `graphics` fornece algumas opções para a construção de gráficos simples, como gráficos de dispersão, histogras e boxplots.
+
+Vamos começar com a construção de gráficos x-y: a função `plot`.
 
 ```{r}
 x <- seq(1, 10, 0.1)
@@ -409,9 +417,28 @@ plot(x, y, type = "h", lwd = 3, col = "red")
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
+Segue abaixo outras funções comumente utilizadas do pacote `graphics`:
 
-- `hist()` - para histogramas
-- `pie()` - para gráficos de pizza
 - `boxplot()` - para boxplots
+- `pie()` - para gráficos de pizza
+- `hist()` - para histogramas
+
+Seguem alguns exemplos:
+
+```{r}
+boxplot(rnorm(10000))
+
+c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
+  sample(1000, replace=T, prob = c(0.4, 0.2, 0.1, 0.3)) %>%
+  table %>%
+  pie
+
+rnorm(10000) %>%
+  abs %>%
+  log %>%
+  hist
+```
+
+
+
 
