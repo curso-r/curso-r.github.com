@@ -1,11 +1,11 @@
 ---
-title: "Aula 1 - Noções básicas"
+title: "Aula 01 - Noções básicas"
 output:
   html_document:
     number_sections: yes
     toc_depth: 2
     toc: yes
-date: "Monday, December 22, 2014"
+date: "2015-01-12"
 ---
 
 ```{r, echo=FALSE}

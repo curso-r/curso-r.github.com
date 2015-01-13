@@ -1,11 +1,11 @@
 ---
-title: "Aula 1 - Noções básicas"
+title: "Aula 01 - Noções básicas"
 output:
   html_document:
     number_sections: yes
     toc_depth: 2
     toc: yes
-date: "Monday, December 22, 2014"
+date: "2015-01-12"
 ---
 
 
@@ -627,7 +627,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   2.328   0.000   2.336
+##   2.496   0.004   2.514
 ```
 
 ```r
@@ -636,7 +636,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.008   0.004   0.013
+##   0.008   0.012   0.019
 ```
 
 ```r
