@@ -74,12 +74,7 @@
               </h3>
               <span>NA</span><br/>
                <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
-              
-<pre><code>## Error in library(pander): there is no package called &#39;pander&#39;
-</code></pre>
-
-<h1>R como calculadora</h1>
-
+              <h1>R como calculadora</h1>
 <p>A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console <code>2*2 - (4 + 4)/2</code>. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!</p>
 
 <p>Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!</p>
@@ -89,7 +84,7 @@
 <pre><code class="r">pi
 </code></pre>
 
-<pre><code>## [1] 3.141593
+<pre><code>## [1] 3.142
 </code></pre>
 
 <pre><code class="r">sin(pi/2) + 2*3
@@ -116,8 +111,27 @@
 
 <p>Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+
+<p>operador             descricao          </p>
+
+<hr>
+
+<p>x + y          Adição de x com y      </p>
+
+<p>x - y         Subtração de y em x     </p>
+
+<p>x * y       Multiplicação de x e y    </p>
+
+<p>x / y         Divisão de x por y      </p>
+
+<p>x<sup>y</sup> ou x**y x elevado a y-ésima potência </p>
+
+<p>x%%y      Resto da divisão de x por y 
+                      (módulo)           </p>
+
+<p>x%/%y    Parte inteira da divisão de x</p>
+
+<h2>                        por y            </h2>
 
 <pre><code class="r">1 + 1
 </code></pre>
@@ -165,8 +179,33 @@
 
 <p>Operadores lógicos retornarão sempre ou <code>TRUE</code> ou <code>FALSE</code>. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+
+<p>operador            descricao           </p>
+
+<hr>
+
+<p>x &lt; y            x menor que y?        </p>
+
+<p>x &lt;= y       x menor ou igual a y?     </p>
+
+<p>x &gt; y            x maior que y?        </p>
+
+<p>x &gt;= y       x maior ou igual a y?     </p>
+
+<p>x == y            x igual a y?         </p>
+
+<p>x != y         x diferente de y?       </p>
+
+<pre><code>!x             Negativa de x         
 </code></pre>
+
+<p>x | y       x ou y são verdadeiros?    </p>
+
+<p>x &amp; y        x e y são verdadeiros?    </p>
+
+<p>xor(x, y)  x ou y são verdadeiros (apenas</p>
+
+<h2>                     um deles)?          </h2>
 
 <p>Exemplos:</p>
 
@@ -281,8 +320,20 @@ class(x)
 
 <p>A tabela abaixo resume algumas funções interessantes para números complexos.</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+
+<p>Função         Descrição       </p>
+
+<hr>
+
+<p>Re(z)       Parte real de x    </p>
+
+<p>Im(z)    Parte imaginária de x </p>
+
+<p>Mod(z)        Módulo de x      </p>
+
+<p>Arg(z)      Argumento de x     </p>
+
+<h2>Conj(z)  Complexo conjugado de x</h2>
 
 <p>Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.</p>
 
@@ -560,14 +611,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.521   0.000   1.491
+##   2.328   0.000   2.336
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.00    0.00    0.01
+##   0.008   0.004   0.013
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -650,12 +701,12 @@ altura &lt;- rnorm(n = 1000, mean = 1.80, sd = 0.1)
 histograma(altura, &quot;altura&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-251.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <pre><code class="r">histograma(altura, &quot;altura&quot;, &quot;Eu escolho o título que eu quiser&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-2.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-252.png" alt="plot of chunk unnamed-chunk-25"> </p>
 
 <p>O parâmetro <code>xlab</code> define o título do eixo x enquanto <code>titulo</code> escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.</p>
 
@@ -680,7 +731,7 @@ histograma(altura, &quot;altura&quot;)
 histograma(altura, breaks = 100, col = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/unnamed-chunk-26.png" alt="plot of chunk unnamed-chunk-26"> </p>
 
 <p>Repare que nunca precisamos definir os parâmetros <code>breaks</code> e <code>col</code> na função <code>histograma()</code>. O ... fez o trabalho de enviar essas informações à função <code>hist()</code>.</p>
 
@@ -738,23 +789,78 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
 
 <h2>Trigonometria</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+
+<pre><code>      Função                      Descrição          
 </code></pre>
+
+<hr>
+
+<p>cos(x) / sin(x) / tan(x)    seno/cosseno/tangente de x  </p>
+
+<p>acos(x) / asin(x) / atan(x) arco-seno/cosseno/tangente de</p>
+
+<h2>                                          x              </h2>
 
 <h2>Matemática</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+
+<p>Função           Descrição       </p>
+
+<hr>
+
+<p>log(x)    Logaritmo natural de x </p>
+
+<p>exp(x)         e elevado a x     </p>
+
+<p>abs(x)      valor absoluto de x  </p>
+
+<p>sign(x)     sinal de x (1 ou -1)  </p>
+
+<p>sqrt(x)      raiz quadrada de x   </p>
+
+<p>choose(n, k) combinações de n, k a k</p>
+
+<h2>factorial(x)      fatorial de x     </h2>
 
 <h2>Estatística</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
+
+<pre><code>   Função                 Descrição        
 </code></pre>
+
+<hr>
+
+<pre><code>   mean(x)               Média de x        
+</code></pre>
+
+<p>var(x) / sd(x)     Variância / Desvio Padrão
+                            amostral de x      </p>
+
+<pre><code> quantile(x)            Quantis de x       
+</code></pre>
+
+<p>cov(x, y) / cor(x, y) Covariância / Correlação </p>
+
+<h2>                         linear entre x e y    </h2>
 
 <h2>Diversos</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+
+<p>Função           Descrição         </p>
+
+<hr>
+
+<p>x:y       Sequencia de x até y    </p>
+
+<p>x=y      x recebe y (atribuição)  </p>
+
+<p>?x         documentação de x     </p>
+
+<p>x$y     extração de y do objeto x </p>
+
+<p>x%*%y   Multiplicação matricial das</p>
+
+<h2>               matrizes x e y       </h2>
 
 <h1>Referências</h1>
 
@@ -778,7 +884,20 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
   </div>
 </body>
   <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+  <script>
+      var disqus_developer = 1;
+      var disqus_shortname = 'curso-r'; 
+      // required: replace example with your forum shortname
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); 
+          dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || 
+           document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

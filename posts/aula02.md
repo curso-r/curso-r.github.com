@@ -627,7 +627,7 @@ dados <- read.table(file = "assets/dados/arq.txt") # li errado
 ```
 
 ```
-## Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : line 2 did not have 2 elements
+## Error: line 2 did not have 2 elements
 ```
 
 ```r
@@ -637,7 +637,7 @@ str(dados) # li errado de novo? pq os números vieram como fatores?
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -649,7 +649,7 @@ str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da col
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -741,7 +741,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.1577354
+## [1] 0.2301
 ```
 
 ```r
@@ -766,7 +766,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -782,31 +782,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-3.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-253.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-4.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-254.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-5.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-255.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -815,13 +815,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-261.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-2.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-262.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -830,7 +830,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -839,13 +839,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-281.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-2.png) 
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-282.png) 
 
 O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
 
