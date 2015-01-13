@@ -57,7 +57,7 @@ ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geo
 
 Exercício: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
 
-Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima não é? Se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Mas também podemos usar o facet:
+Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima, mas se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Também podemos usar o facet:
 
 ```{r}
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
@@ -69,9 +69,39 @@ Podemos empilhar os dois gráficos também:
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
 ```
 
+## Outros tipos de gráficos
 
+Além do gráfico de dispersão, podemos fazer outrs tipos de gráfico usando o ggplot2. Usando o mesmo banco de dados, vamos fazer um boxplot do número de cilindros pelo consumo do carro em milhas por galão.
 
-# Aesthetics
+```{r}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + geom_boxplot()
+```
+
+Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
+
+Da mesma forma podemos deixar o boxplot colorido usando:
+
+```{r}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
+```
+
+Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento `colour` pelo argumento `fill`.
+
+```{r}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
+```
+
+Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando `+ scale_fill_discrete(guide = F)`.
+
+O nome da função é composto de três partes: 
+* scale: queremos fazer alguma personalização na escala
+* fill: a alteração será na escala de preenchimento
+* discrete: a escala de cores é discreta
+
+```{r}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
+```
+
 
 # Tipos de gráficos
 
