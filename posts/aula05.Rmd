@@ -1,4 +1,11 @@
 ---
+output:
+  html_document:
+    number_sections: no
+    toc: yes
+---
+
+---
 title: Aula 05 - Gráficos com estilo - ggplot2
 date : 2015-01-28
 ---
@@ -11,11 +18,11 @@ Para mais informações sobre a Gramática dos Gráficos, você pode consultar o
 
 ## Instalação
 
-O `ggplot2` não faz parte dos pacotes básico do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o `ggplot2` não é compatível com versões anteriores.
+O `ggplot2` não faz parte dos pacotes base do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o `ggplot2` não é compatível com versões anteriores.
 
 Para baixar e instalar o pacote, utilize a seguitne linha de código:
 
-```{}
+```{r, eval=FALSE}
 install.packages("ggplot2")
 ```
 Não se esqueça de carregar o pacote antes de utilizá-lo:
@@ -24,16 +31,36 @@ Não se esqueça de carregar o pacote antes de utilizá-lo:
 library(ggplot2)
 ```
 
-## Como fazer um gráfico no `ggplot`
+# Construindo gráficos
+
+A seguir, vamos discutir os aspcetos básicos para a construção de gráficos com o pacote `gglplot2`. Para isso, utilizaremos o banco de dados contido no objeto `mtcars`. Para visualizar as primeiras linhas deste banco, utilize o comando:
 
 ```{r}
-head(mtcars) # banco de dados
-ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
+head(mtcars)
 ```
 
-* O primeiro argumento da função é um `data.frame` com todas as variáveis do gráfico.
-* A função `aes` mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um `x`e um `y`.
-* `+ geom_point` indica que você quer fazer um gráfico de pontos (cada combinação de `x` e `y`é um ponto)
+## As camadas de um gráfico
+
+No `ggplot2`, os gráficos são construídos camada por camada (ou, *layers*, em inglês), sendo que a primeira delas é dada pela função `ggplot` (não tem o "2"). Cada camada representa um tipo de mapeamento ou personalização do gráfico. O código abaixo é um exemplo de um gráfico bem simples, construído a partir das duas principais camadas. 
+
+
+```{r}
+ggplot(data = mtcars, aes(x = disp, y = mpg)) + 
+  geom_point()
+```
+
+Observe que o primeiro argumento da função `ggplot` é um data frame. A função `aes()` descreve como as variáveis são mapeadas em aspectos visuais das formas geométricas definidas pelos *geoms*. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.
+
+### Aesthetics
+
+A primeira camada de um gráfico deve indicar a relação entre os dados e cada aspecto visual do gráfico, como qual variável será representada no eixo x, qual será representada no eixo y, a cor e o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você deseja fazer.
+
+No exemplo acima, atribuímos aspectos de posição: ao eixo y mapeamos a variável `mpg` (milhas por galão) e ao eixo x a variável `disp` (cilindradas). Como cada par será representado por um ponto, devido a utilização da função  `geom_point`, nós construímos um gráfico de dispersão. Se nesse gráfico quisermos visualisar também como essa relação se comporta em cada tipo de transmissão (variável `am`), podemos acrescentar outro aspecto visual: a cor.
+
+```{r}
+ggplot(data = mtcars, aes(x = disp, y = mpg, color = as.factor(am))) + 
+  geom_point()
+```
 
 ## O que mais dá pra fazer?
 
