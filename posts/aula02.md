@@ -1,4 +1,10 @@
 ---
+output:
+  html_document:
+    number_sections: no
+    toc: yes
+---
+---
 title: Aula 02 - Estruturas de Dados e Vocabulário
 date : 2015-01-21
 --- 
@@ -610,29 +616,34 @@ m[m%%2 == 0] # Retorna os elementos pares.
 
 # Leitura de dados
 
-Para ler os dados no R usamos a função `read.table`. A seguir estão os principais argumentos dessa função e sua descrição:
+Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
 
-- `file` é uma string contendo o caminho do arquivo (ex: "C://users/daniel/Desktop/text.txt")
-- `header` pode ser `TRUE` ou `FALSE`, indica para o programa se o seu arquivo inclui o nome das variáveeis no topo.
-- `sep` é uma string com o separdor do seu arquivo (quando o arquivo é csv é "," ou ";"), mas muitos arquivos são separados por espaços (" ") ou por "|", ou por tabs "\t".
-- `quote` indica qual o caractere que identifica as strings no seu arquivo. Na maioria  das vezes não é necessário alterar, pois é padrão utilizar aspas '""'.
-- `dec` uma string indicando qual é o separador de decimais no seu arquivo. IMPORTANTE: quando o arquivo estiver aberto, o troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
-- `stringsAsFactors` quando o R lê um arquivo de texto, ele transforma as colunas de strings em fatores, que como vimos anteriormente não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+- `file =` é uma string contendo o caminho do arquivo quem contem os dados, por exemplo: *"C://users/daniel/Desktop/text.txt"*.
 
-Dito tudo isso, vamos ler um arquivo:
+- `header =` recebe um valor lógico (`TRUE` ou `FALSE`) e indica para o programa se o seu arquivo inclui o nome das variáveis no topo.
+
+- `sep =` é a *string* utilizada para separar o valor de cada coluna dentro do arquivo de entrada. Se o arquivo tiver extensão .csv, o argumento `sep=` assume "," ou ";". Outros separadores geralmente utilizados são os espaços (" "), o caracter "|" e a tabulação "\t".
+
+- `quote =` indica qual o caractere que identifica strings no seu arquivo. Na maioria  das vezes, não é necessário alterar, pois é padrão utilizar aspas '""'.
+
+- `dec =` é uma string indicando qual o separador de casa decimais no seu arquivo. IMPORTANTE: quando o arquivo é lido, o R troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE 2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
+
+- `stringsAsFactors =` recebe um valor lógico e indica ao R se as colunas com *strings* devem ser transformadas em fatores, que, como vimos anteriormente, não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+
+
+Dito tudo isso, vamos ler o arquivo *arq.txt* que se encontra na pasta *assets/dados/*.
 
 
 ```r
-dados <- read.table(file = "assets/dados/arq.txt") # li errado
+#dados <- read.table(file = "assets/dados/arq.txt") # li errado
 ```
 
-```
-## Error: line 2 did not have 2 elements
-```
+Observe que a função retornou um erro e não leu o arquivo. Isso aconteceu porque o arquivo *arq.txt* tem os seus valores separados por ";" e o *default* do argumento `sep =` é o espaço.
+
 
 ```r
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
-str(dados) # li errado de novo? pq os números vieram como fatores?
+str(dados)
 ```
 
 ```
@@ -641,10 +652,14 @@ str(dados) # li errado de novo? pq os números vieram como fatores?
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
+
+Dessa vez o arquivo foi lido e os dados foram salvos no objeto `dados`. No entanto, com o auxílio da função `str()` verificamos que as duas primeiras colunas, que deveriam ser numéricas, foram lidas como fatores. Isso aconteceu porque o separador de casa decimais no arquivo é a "," e, por *default* o R utiliza o ".". Dessa forma, ao encontrar uma vírgula entre os números, o R entende essa sequência de caracteres como uma *string*.
+
+
 
 ```r
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
-str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da coluna esta errado?
+str(dados) 
 ```
 
 ```
@@ -654,9 +669,13 @@ str(dados) # eu coloquei dec = "," e ainda não ta dando certo. pq o nome da col
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
 
+Mesmo especificando o argumento `dec =` como ",", os dados não estão sendo lidos da maneira correta. Observe que o nome das colunas estão sendo lidos como se fossem um valor de cada variável. Para corrigir isso, devemos utilizar `header = T`.
+
+
+
 ```r
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
-str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+str(dados)
 ```
 
 ```
@@ -666,9 +685,12 @@ str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 ##  $ cor       : Factor w/ 3 levels "amarelo","azul",..: 2 3 1 2 1 1 1 1 1 3 ...
 ```
 
+Agora os dados foram lidos corretamente. No entanto, se você não deseja que a variável *cor* seja um fator, utilize `stringsAsFactors = F`.
+
+
 ```r
 dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
-str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
+str(dados)
 ```
 
 ```
@@ -681,60 +703,72 @@ str(dados) # agora sim! mas eu não queria que a cor fosse um fator!
 
 # O operador *pipe* - %>%
 
-O operador *pipe* foi uma das grandes revoluções do R que aconteceram recentemente. 
-Ele torna a leitura de códigos R muito mais fácil e compreensível.
+O operador *pipe* foi uma das grandes revoluções recentes do R, tornando a leitura de códigos muito mais lógica, fácil e compreensível. Este operador foi introduzido por Stefan Milton Bache no pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` (assunto da próxima aula).
 
-## O que é?
+Basicamente, o operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. "Só" isso!
+
+Para usar o operador `%>%`, primeiramente devemos instalar o pacote `magrittr` com a função `install.packages()`
+
+
+```r
+install.packages("magrittr")
+```
+e carregá-lo com a função `library()`
 
 
 ```r
 library(magrittr)
+```
+
+Feito isso, vamos testar o operador calculando a raiz quadrada da soma de alguns números.
+
+
+```r
 x <- c(1,2,3,4)
-x %>% sum 
+x %>% sum %>% sqrt
 ```
 
 ```
-## [1] 10
+## [1] 3.162
 ```
 
-```r
-sum(x)
-```
 
-```
-## [1] 10
-```
+O caminho que o código acima seguiu foi enviar o objeto `x` como argumento da função `sum()` e, em seguida, enviar a saida da expressão `sum(x)` como argumento da função `sqrt()`. Observe que não é necessario colocar os parênteses após o nome das funções.
 
-O operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. Simplesmente.
-
-
-## Por que isso é útil?
-
-Imagine que você precisa escrever a receita de um bolo usando o R, e cada passo da receita é uma função
+Se escrevermos esse cálculo na forma usual, temos o seguinte código:
 
 
 ```r
-esfrie(asse(coloque(bata(acrescente(bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+sqrt(sum(x))
 ```
 
-Tente entender o que é preciso fazer... Não é muito fácil né? E escrevendo usando o operador `%>%`?
+```
+## [1] 3.162
+```
+
+A princípio, a utilização do `%>%` não parece trazer grandes vantagens, pois a expressão `sqrt(sum(x))` facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do `pipe` transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:
 
 
 ```r
-bowl(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
-  acrescente("farinho", até = "macio") %>%
+esfrie(asse(coloque(bata(acrescente(recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = T), duração = "50min"), "geladeira", "20min")
+```
+
+Tente entender o que é preciso fazer... Não é muito fácil, né? E escrevendo usando o operador `%>%`?
+
+
+```r
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
   bata(duração = "3min") %>%
   coloque(lugar = "forma", tipo = "grande", untada = T) %>%
   asse(duração = "50min") %>%
   esfrie("geladeira", "20min")
 ```
 
-A compreensão é imediatamente muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
+A compreensão é muito mais fácil. Agora o código realmente se parece com uma receita de bolo.
 
+O operador `%>%` envia o valor à esquerda apenas para o primerio argumento da função à direita. Se você não quiser substituir o primeiro argumento, mas algum outro, utilize o ".":
 
-## Outros exemplos
-
-Se você não quiser substituir o primeiro argumento, mas algum outro:
 
 ```r
 T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
@@ -752,11 +786,13 @@ F %>% mean(c(NA, rnorm(100)), na.rm = .)
 ## [1] NA
 ```
 
-Este operador foi introduzido pelo pacote `magrittr` e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o `dplyr` do qual se trata a próxima aula.
+Para mais informações sobre o `pipe` e exemplos da sua utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
 
-# Gráficos com a função plot()
+# Gráficos com o pacote *graphics*
 
-ESCREVER INTRO
+Dentre os pacotes base do R, o pacote `graphics` fornece algumas opções para a construção de gráficos simples, como gráficos de dispersão, histogras e boxplots.
+
+Vamos começar com a construção de gráficos x-y: a função `plot`.
 
 
 ```r
@@ -766,7 +802,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24.png) 
+![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -782,31 +818,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-321.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-322.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-253.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-323.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-254.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-324.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-255.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-325.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -815,13 +851,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-261.png) 
+![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-331.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-262.png) 
+![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-332.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -830,7 +866,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27.png) 
+![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -839,17 +875,47 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-281.png) 
+![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-351.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-282.png) 
+![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-352.png) 
 
-O pacote `graphics` também traz funções para outros tipos de gráficos mais específicos:
+Segue abaixo outras funções comumente utilizadas do pacote `graphics`:
 
-- `hist()` - para histogramas
-- `pie()` - para gráficos de pizza
 - `boxplot()` - para boxplots
+- `pie()` - para gráficos de pizza
+- `hist()` - para histogramas
+
+Seguem alguns exemplos:
+
+
+```r
+boxplot(rnorm(10000))
+```
+
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-361.png) 
+
+```r
+c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
+  sample(1000, replace=T, prob = c(0.4, 0.2, 0.1, 0.3)) %>%
+  table %>%
+  pie
+```
+
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-362.png) 
+
+```r
+rnorm(10000) %>%
+  abs %>%
+  log %>%
+  hist
+```
+
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-363.png) 
+
+
+
 
