@@ -1,5 +1,5 @@
 ---
-title: "Aula 1 - Noções básicas"
+title: "Aula 01 - Noções básicas"
 output:
   html_document:
     number_sections: yes
@@ -190,19 +190,13 @@ is.complex(x)
 A tabela abaixo resume algumas funções interessantes para números complexos.
 
 
---------------------------------
- Função         Descrição       
--------- -----------------------
- Re(z)       Parte real de x    
-
- Im(z)    Parte imaginária de x 
-
- Mod(z)        Módulo de x      
-
- Arg(z)      Argumento de x     
-
-Conj(z)  Complexo conjugado de x
---------------------------------
+|  Função  |        Descrição        |
+|:--------:|:-----------------------:|
+|  Re(z)   |     Parte real de x     |
+|  Im(z)   |  Parte imaginária de x  |
+|  Mod(z)  |       Módulo de x       |
+|  Arg(z)  |     Argumento de x      |
+| Conj(z)  | Complexo conjugado de x |
 
 Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.
 
@@ -503,7 +497,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.602   0.000   1.593
+##   1.491   0.000   1.485
 ```
 
 ```r
@@ -512,7 +506,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##    0.01    0.00    0.01
+##   0.010   0.000   0.009
 ```
 
 ```r

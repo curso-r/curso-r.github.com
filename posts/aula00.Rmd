@@ -1,5 +1,5 @@
 ---
-title: "Aula 0 - Sobre o curso e porque usar R"
+title: "Aula 00 - Sobre o curso e porque usar R"
 output:
   html_document:
     number_sections: yes

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aula 1 - Noções básicas</title>
+  <title>Aula 01 - Noções básicas</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
@@ -72,7 +72,7 @@
           <ol id="posts">
             <li class="post">
               <h3>
-                <a href="#">Aula 1 - Noções básicas</a>
+                <a href="#">Aula 01 - Noções básicas</a>
               </h3>
               <span>2015-01-19</span><br/>
                <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
@@ -336,20 +336,33 @@ class(x)
 
 <p>A tabela abaixo resume algumas funções interessantes para números complexos.</p>
 
-
-<p>Função         Descrição       </p>
-
-<hr>
-
-<p>Re(z)       Parte real de x    </p>
-
-<p>Im(z)    Parte imaginária de x </p>
-
-<p>Mod(z)        Módulo de x      </p>
-
-<p>Arg(z)      Argumento de x     </p>
-
-<h2>Conj(z)  Complexo conjugado de x</h2>
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Re(z)</td>
+<td align="center">Parte real de x</td>
+</tr>
+<tr>
+<td align="center">Im(z)</td>
+<td align="center">Parte imaginária de x</td>
+</tr>
+<tr>
+<td align="center">Mod(z)</td>
+<td align="center">Módulo de x</td>
+</tr>
+<tr>
+<td align="center">Arg(z)</td>
+<td align="center">Argumento de x</td>
+</tr>
+<tr>
+<td align="center">Conj(z)</td>
+<td align="center">Complexo conjugado de x</td>
+</tr>
+</tbody></table>
 
 <p>Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.</p>
 
@@ -627,14 +640,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.602   0.000   1.593
+##   1.491   0.000   1.485
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.01    0.00    0.01
+##   0.010   0.000   0.009
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
