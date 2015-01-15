@@ -35,6 +35,7 @@ date : 2015-01-23
 
 #### Exemplo: Apresentação no ioslides
 
+## Exercício
 
 O arquivo pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
 Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH.
@@ -54,4 +55,3 @@ Você acha que o Brasil está melhorando? Justifique utlizando dados de pelo men
 No nordeste o aummento de distribuição de renda foi maior do que no sudeste?
 
 Insira mais pelo menos 3 estudos que você ache interessante.
->>>>>>> 3ca58910a2d3ac30fdd11f85c08de783722cde61
