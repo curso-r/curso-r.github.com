@@ -1,4 +1,11 @@
 ---
+output:
+  html_document:
+    number_sections: no
+    toc: yes
+---
+
+---
 title: Aula 05 - Gráficos com estilo - ggplot2
 date : 2015-01-28
 ---
@@ -11,11 +18,12 @@ Para mais informações sobre a Gramática dos Gráficos, você pode consultar o
 
 ## Instalação
 
-O `ggplot2` não faz parte dos pacotes básico do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o `ggplot2` não é compatível com versões anteriores.
+O `ggplot2` não faz parte dos pacotes base do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o `ggplot2` não é compatível com versões anteriores.
 
 Para baixar e instalar o pacote, utilize a seguitne linha de código:
 
-```{}
+
+```r
 install.packages("ggplot2")
 ```
 Não se esqueça de carregar o pacote antes de utilizá-lo:
@@ -25,11 +33,13 @@ Não se esqueça de carregar o pacote antes de utilizá-lo:
 library(ggplot2)
 ```
 
-## Como fazer um gráfico no `ggplot`
+# Construindo gráficos
+
+A seguir, vamos discutir os aspcetos básicos para a construção de gráficos com o pacote `gglplot2`. Para isso, utilizaremos o banco de dados contido no objeto `mtcars`. Para visualizar as primeiras linhas deste banco, utilize o comando:
 
 
 ```r
-head(mtcars) # banco de dados
+head(mtcars)
 ```
 
 ```
@@ -42,75 +52,95 @@ head(mtcars) # banco de dados
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
 
-```r
-ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point()
-```
+## As camadas de um gráfico
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2.png) 
+No `ggplot2`, os gráficos são construídos camada por camada (ou, *layers*, em inglês), sendo que a primeira delas é dada pela função `ggplot` (não tem o "2"). Cada camada representa um tipo de mapeamento ou personalização do gráfico. O código abaixo é um exemplo de um gráfico bem simples, construído a partir das duas principais camadas. 
 
-* O primeiro argumento da função é um `data.frame` com todas as variáveis do gráfico.
-* A função `aes` mapeia as variáveis para cada aspecto do gráfico. Dependendo do tipo de gráfico que você deseja fazer os aspectos são diferentes, mas na maior parte das vezes, é obrigatório ter um `x`e um `y`.
-* `+ geom_point` indica que você quer fazer um gráfico de pontos (cada combinação de `x` e `y`é um ponto)
-
-## O que mais dá pra fazer?
-
-Fizemos um gráfico de dispersão da variável mpg ( Milhas por galão) pela variável Disp (distância percorrida) pelos carros em 1972. Agora, gostariamos que a cor dos pontos variasse de acordo com  variável cyl (número de cilindros).
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = cyl)) + geom_point()
-```
-
-![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3.png) 
-
-Adicionamos mais um aspecto ao gráfico: a cor. Neste caso estamos considerando o número de cilindros como uma variável contínnua, mas eventualmente gostariamos de considerá-la como uma variável categórica.
-
-
-```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + geom_point()
+ggplot(data = mtcars, aes(x = disp, y = mpg)) + 
+  geom_point()
 ```
 
 ![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4.png) 
 
-Agora, gostariamos que o tamanho dos pontos fosse proporcional ao peso do carro. Para isso temos que adicionar mais um aspecto ao gráfico.
+Observe que o primeiro argumento da função `ggplot` é um data frame. A função `aes()` descreve como as variáveis são mapeadas em aspectos visuais de formas geométricas definidas pelos *geoms*. Aqui, essas formas geométricas são pontos, selecionados pela função `geom_point()`, gerando, assim, um gráfico de dispersão. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.
+
+### Aesthetics
+
+A primeira camada de um gráfico deve indicar a relação entre os dados e cada aspecto visual do gráfico, como qual variável será representada no eixo x, qual será representada no eixo y, a cor e o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você deseja fazer.
+
+No exemplo acima, atribuímos aspectos de posição: ao eixo y mapeamos a variável `mpg` (milhas por galão) e ao eixo x a variável `disp` (cilindradas). Outro aspecto que pode ser mapeado nesse gráfico é a cor dos pontos
+
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point()
+ggplot(data = mtcars, aes(x = disp, y = mpg, colour = as.factor(am))) + 
+  geom_point()
 ```
 
 ![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5.png) 
 
-Exercício: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
-
-Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima, mas se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Também podemos usar o facet:
+Agora, a variável `am` (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável `am` como um fator, pois temos interesse apenas nos valores "0" e "1". No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
+ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl)) + 
+  geom_point()
 ```
 
 ![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6.png) 
 
-Podemos empilhar os dois gráficos também:
+Aqui, o número de cilindros, `cyl`, é representado pela tonalidade da cor azul.
+
+**Nota**: por *default*, a legenda é insirida no gráfico automaticamente.
+
+Também podemos mapear o tamanho dos pontos à uma variável de interesse:
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
+ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
+  geom_point()
 ```
 
 ![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7.png) 
 
-## Outros tipos de gráficos
+**Exercício**: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
 
-Além do gráfico de dispersão, podemos fazer outrs tipos de gráfico usando o ggplot2. Usando o mesmo banco de dados, vamos fazer um boxplot do número de cilindros pelo consumo do carro em milhas por galão.
+### Geoms
+
+Os *geoms* definem qual forma geométrica será utilizada para a visualização dos dados no gráfico. Como já vimos, a função `geom_point()` gera gráficos de dispersão transformando pares (x,y) em pontos. Veja a seguir outros *geoms* bastante utilizados:
+
+- geom_line: para retas por pares (x,y)
+- geom_abline: para retas definidas por um intercepto e uma inclinação
+- geom_hline: para retas horizontais
+- geom_boxplot: para boxplots
+- geom_histogram: para histogramas
+- geom_density: para densidades
+- geom_area: para áreas
+
+Veja a seguir como é fácil gerar diversos gráficos diferentes utilizando a mesma estrutura do gráfico de dispersão acima:
 
 
 ```r
-ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + geom_boxplot()
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
+  geom_boxplot()
 ```
 
 ![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8.png) 
+
+
+```r
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram()
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
 
 Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
 
@@ -121,7 +151,7 @@ Da mesma forma podemos deixar o boxplot colorido usando:
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10.png) 
 
 Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento `colour` pelo argumento `fill`.
 
@@ -130,7 +160,7 @@ Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11.png) 
 
 Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando `+ scale_fill_discrete(guide = F)`.
 
@@ -144,7 +174,27 @@ O nome da função é composto de três partes:
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12.png) 
+
+### Facets
+
+Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima, mas se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Também podemos usar o facet:
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
+```
+
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13.png) 
+
+Podemos empilhar os dois gráficos também:
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
+```
+
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14.png) 
 
 
 # Tipos de gráficos

@@ -18,3 +18,5 @@ URL: http://github.com/ramnathv/poirot
 navigation:
   - {item: Home, href: /index.html}
   - {item: Sobre, href: /about.html}
+  - {item: Links Úteis, href: /links.html}
+  - {item: Exercícios, href: /exercicios.html}
