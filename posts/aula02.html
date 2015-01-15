@@ -586,7 +586,7 @@ str(dados)
 </code></pre>
 
 <pre><code>## &#39;data.frame&#39;:    101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...
 </code></pre>
@@ -598,7 +598,7 @@ str(dados)
 </code></pre>
 
 <pre><code>## &#39;data.frame&#39;:    101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...
 </code></pre>
@@ -649,7 +649,7 @@ str(dados)
 x %&gt;% sum %&gt;% sqrt
 </code></pre>
 
-<pre><code>## [1] 3.162
+<pre><code>## [1] 3.162278
 </code></pre>
 
 <p>O caminho que o código acima seguiu foi enviar o objeto <code>x</code> como argumento da função <code>sum()</code> e, em seguida, enviar a saida da expressão <code>sum(x)</code> como argumento da função <code>sqrt()</code>. Observe que não é necessario colocar os parênteses após o nome das funções.</p>
@@ -659,7 +659,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">sqrt(sum(x))
 </code></pre>
 
-<pre><code>## [1] 3.162
+<pre><code>## [1] 3.162278
 </code></pre>
 
 <p>A princípio, a utilização do <code>%&gt;%</code> não parece trazer grandes vantagens, pois a expressão <code>sqrt(sum(x))</code> facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do <code>pipe</code> transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:</p>
@@ -684,7 +684,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] 0.2301
+<pre><code>## [1] -0.1577354
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)
@@ -707,7 +707,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-31.png" alt="plot of chunk unnamed-chunk-31"> </p>
+<p><img src="assets/fig/unnamed-chunk-31-1.png" alt="plot of chunk unnamed-chunk-31"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -723,58 +723,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-321.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-32-1.png" alt="plot of chunk unnamed-chunk-32"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-322.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-32-2.png" alt="plot of chunk unnamed-chunk-32"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-323.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-32-3.png" alt="plot of chunk unnamed-chunk-32"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-324.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-32-4.png" alt="plot of chunk unnamed-chunk-32"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-325.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-32-5.png" alt="plot of chunk unnamed-chunk-32"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-331.png" alt="plot of chunk unnamed-chunk-33"> </p>
+<p><img src="assets/fig/unnamed-chunk-33-1.png" alt="plot of chunk unnamed-chunk-33"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-332.png" alt="plot of chunk unnamed-chunk-33"> </p>
+<p><img src="assets/fig/unnamed-chunk-33-2.png" alt="plot of chunk unnamed-chunk-33"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-34.png" alt="plot of chunk unnamed-chunk-34"> </p>
+<p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-351.png" alt="plot of chunk unnamed-chunk-35"> </p>
+<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-352.png" alt="plot of chunk unnamed-chunk-35"> </p>
+<p><img src="assets/fig/unnamed-chunk-35-2.png" alt="plot of chunk unnamed-chunk-35"> </p>
 
 <p>Segue abaixo outras funções comumente utilizadas do pacote <code>graphics</code>:</p>
 
@@ -789,7 +789,7 @@ plot(x, y)
 <pre><code class="r">boxplot(rnorm(10000))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-361.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">c(&quot;Corinthians&quot;, &quot;Palmeiras&quot;, &quot;Santos&quot;, &quot;São Paulo&quot;) %&gt;%
   sample(1000, replace=T, prob = c(0.4, 0.2, 0.1, 0.3)) %&gt;%
@@ -797,7 +797,7 @@ plot(x, y)
   pie
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-362.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-2.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">rnorm(10000) %&gt;%
   abs %&gt;%
@@ -805,7 +805,7 @@ plot(x, y)
   hist
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-363.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-3.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
               <div id="disqus_thread"></div>
             </li>

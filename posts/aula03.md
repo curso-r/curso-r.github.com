@@ -3,6 +3,39 @@ title: Aula 03 - Laboratório I
 date : 2015-01-23
 --- 
 
+## Relatórios dinâmicos com RMarkdown
+
+- Utilização da linguagem de marcação _markdown_.
+- Possibilidade de incluir código R nos arquivos.
+- Roda com o pacote `knitr` e o programa `pandoc`.
+- Possibilidade de criar relatórios em html, docx, pdf, latex, entre outros.
+- Possibilidade de criar apresentações e relatórios com gráficos dinãmicos.
+- Possibilidade de inserir sintaxe matemática, como $e^{i\pi}=-1$, nos documentos.
+- Documentos interativos com o `shiny`.
+
+---
+
+### Como utilizar
+
+- Mais fácil com RStudio
+- Conceitos básicos de Markdown [nesse link](http://daringfireball.net/projects/markdown/).
+- RMarkdown com exemplos [nesse link](http://rmarkdown.rstudio.com/).
+- Sobre YAML.
+
+#### Exemplo: código que gerou estas aulas.
+
+---
+
+### Gráficos dinâmicos
+
+- Somente para output em HTML.
+- É possível criar gráficos baseados em javascript e gerar documentos que funcionam "sozinhos".
+- Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.
+- É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.
+
+#### Exemplo: Apresentação no ioslides
+
+
 O arquivo pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
 Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH.
 
@@ -21,3 +54,4 @@ Você acha que o Brasil está melhorando? Justifique utlizando dados de pelo men
 No nordeste o aummento de distribuição de renda foi maior do que no sudeste?
 
 Insira mais pelo menos 3 estudos que você ache interessante.
+>>>>>>> 3ca58910a2d3ac30fdd11f85c08de783722cde61

@@ -127,7 +127,7 @@
   geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-4.png" alt="plot of chunk unnamed-chunk-4"> </p>
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
 
 <p>Observe que o primeiro argumento da função <code>ggplot</code> é um data frame. A função <code>aes()</code> descreve como as variáveis são mapeadas em aspectos visuais de formas geométricas definidas pelos <em>geoms</em>. Aqui, essas formas geométricas são pontos, selecionados pela função <code>geom_point()</code>, gerando, assim, um gráfico de dispersão. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.</p>
 
@@ -141,7 +141,7 @@
   geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-5.png" alt="plot of chunk unnamed-chunk-5"> </p>
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
 <p>Agora, a variável <code>am</code> (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável <code>am</code> como um fator, pois temos interesse apenas nos valores &quot;0&quot; e &quot;1&quot;. No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:</p>
 
@@ -149,7 +149,7 @@
   geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-6.png" alt="plot of chunk unnamed-chunk-6"> </p>
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
 
 <p>Aqui, o número de cilindros, <code>cyl</code>, é representado pela tonalidade da cor azul.</p>
 
@@ -161,7 +161,7 @@
   geom_point()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-7.png" alt="plot of chunk unnamed-chunk-7"> </p>
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
 <p><strong>Exercício</strong>: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.</p>
 
@@ -185,7 +185,7 @@
   geom_boxplot()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-8.png" alt="plot of chunk unnamed-chunk-8"> </p>
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
 <pre><code class="r">ggplot(mtcars, aes(x = mpg)) + 
   geom_histogram()
@@ -194,7 +194,7 @@
 <pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-9.png" alt="plot of chunk unnamed-chunk-9"> </p>
+<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
 
 <p>Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. </p>
 
@@ -203,14 +203,14 @@
 <pre><code class="r">ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10"> </p>
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
 
 <p>Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento <code>colour</code> pelo argumento <code>fill</code>.</p>
 
 <pre><code class="r">ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-11.png" alt="plot of chunk unnamed-chunk-11"> </p>
+<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
 <p>Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando <code>+ scale_fill_discrete(guide = F)</code>.</p>
 
@@ -225,7 +225,7 @@
 <pre><code class="r">ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-12.png" alt="plot of chunk unnamed-chunk-12"> </p>
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
 
 <h3>Facets</h3>
 
@@ -234,14 +234,14 @@
 <pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-13.png" alt="plot of chunk unnamed-chunk-13"> </p>
+<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
 
 <p>Podemos empilhar os dois gráficos também:</p>
 
 <pre><code class="r">ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-14.png" alt="plot of chunk unnamed-chunk-14"> </p>
+<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
 
 <h1>Tipos de gráficos</h1>
 

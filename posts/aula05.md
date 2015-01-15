@@ -63,7 +63,7 @@ ggplot(data = mtcars, aes(x = disp, y = mpg)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png) 
 
 Observe que o primeiro argumento da função `ggplot` é um data frame. A função `aes()` descreve como as variáveis são mapeadas em aspectos visuais de formas geométricas definidas pelos *geoms*. Aqui, essas formas geométricas são pontos, selecionados pela função `geom_point()`, gerando, assim, um gráfico de dispersão. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.
 
@@ -80,7 +80,7 @@ ggplot(data = mtcars, aes(x = disp, y = mpg, colour = as.factor(am))) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5.png) 
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
 
 Agora, a variável `am` (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável `am` como um fator, pois temos interesse apenas nos valores "0" e "1". No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:
 
@@ -90,7 +90,7 @@ ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png) 
 
 Aqui, o número de cilindros, `cyl`, é representado pela tonalidade da cor azul.
 
@@ -104,7 +104,7 @@ ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
 
 **Exercício**: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
 
@@ -128,7 +128,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) +
   geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
 
 
 ```r
@@ -140,7 +140,7 @@ ggplot(mtcars, aes(x = mpg)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
 
 Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
 
@@ -151,7 +151,7 @@ Da mesma forma podemos deixar o boxplot colorido usando:
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
 
 Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento `colour` pelo argumento `fill`.
 
@@ -160,7 +160,7 @@ Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
 
 Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando `+ scale_fill_discrete(guide = F)`.
 
@@ -174,7 +174,7 @@ O nome da função é composto de três partes:
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
 
 ### Facets
 
@@ -185,7 +185,7 @@ Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
 Podemos empilhar os dois gráficos também:
 
@@ -194,7 +194,7 @@ Podemos empilhar os dois gráficos também:
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
 ```
 
-![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
 
 # Tipos de gráficos

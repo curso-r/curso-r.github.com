@@ -648,7 +648,7 @@ str(dados)
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -664,7 +664,7 @@ str(dados)
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -729,7 +729,7 @@ x %>% sum %>% sqrt
 ```
 
 ```
-## [1] 3.162
+## [1] 3.162278
 ```
 
 
@@ -743,7 +743,7 @@ sqrt(sum(x))
 ```
 
 ```
-## [1] 3.162
+## [1] 3.162278
 ```
 
 A princípio, a utilização do `%>%` não parece trazer grandes vantagens, pois a expressão `sqrt(sum(x))` facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do `pipe` transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:
@@ -775,7 +775,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] 0.2301
+## [1] -0.1577354
 ```
 
 ```r
@@ -802,7 +802,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31.png) 
+![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31-1.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -818,31 +818,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-321.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-1.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-322.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-2.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-323.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-3.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-324.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-4.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-325.png) 
+![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-5.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -851,13 +851,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-331.png) 
+![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-33-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-332.png) 
+![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-33-2.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -866,7 +866,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34.png) 
+![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34-1.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -875,13 +875,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-351.png) 
+![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-352.png) 
+![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-2.png) 
 
 Segue abaixo outras funções comumente utilizadas do pacote `graphics`:
 
@@ -896,7 +896,7 @@ Seguem alguns exemplos:
 boxplot(rnorm(10000))
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-361.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
 
 ```r
 c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
@@ -905,7 +905,7 @@ c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
   pie
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-362.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-2.png) 
 
 ```r
 rnorm(10000) %>%
@@ -914,7 +914,7 @@ rnorm(10000) %>%
   hist
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-363.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-3.png) 
 
 
 

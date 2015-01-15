@@ -9,6 +9,9 @@ date: "2015-01-12"
 ---
 
 
+```
+## Error in library(pander): there is no package called 'pander'
+```
 
 # R como calculadora
 
@@ -24,7 +27,7 @@ pi
 ```
 
 ```
-## [1] 3.142
+## [1] 3.141593
 ```
 
 ```r
@@ -58,25 +61,9 @@ Certas operações matemáticas podem suscitar em valores não numéricos. Exemp
 Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!
 
 
------------------------------------------
- operador             descricao          
------------ -----------------------------
-   x + y          Adição de x com y      
-
-   x - y         Subtração de y em x     
-
-   x * y       Multiplicação de x e y    
-
-   x / y         Divisão de x por y      
-
-x^y ou x**y x elevado a y-ésima potência 
-
-   x%%y      Resto da divisão de x por y 
-                      (módulo)           
-
-   x%/%y    Parte inteira da divisão de x
-                        por y            
------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 
 
@@ -140,30 +127,9 @@ x^y ou x**y x elevado a y-ésima potência
 Operadores lógicos retornarão sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
 
 
------------------------------------------
- operador            descricao           
----------- ------------------------------
-  x < y            x menor que y?        
-
-  x <= y       x menor ou igual a y?     
-
-  x > y            x maior que y?        
-
-  x >= y       x maior ou igual a y?     
-
-  x == y            x igual a y?         
-
-  x != y         x diferente de y?       
-
-    !x             Negativa de x         
-
-  x | y       x ou y são verdadeiros?    
-
-  x & y        x e y são verdadeiros?    
-
-xor(x, y)  x ou y são verdadeiros (apenas
-                     um deles)?          
------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 Exemplos:
 
@@ -314,19 +280,9 @@ is.complex(x)
 A tabela abaixo resume algumas funções interessantes para números complexos.
 
 
---------------------------------
- Função         Descrição       
--------- -----------------------
- Re(z)       Parte real de x    
-
- Im(z)    Parte imaginária de x 
-
- Mod(z)        Módulo de x      
-
- Arg(z)      Argumento de x     
-
-Conj(z)  Complexo conjugado de x
---------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.
 
@@ -582,7 +538,7 @@ lances
 ```
 
 ```
-## [1] 1
+## [1] 15
 ```
 
 A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
@@ -627,7 +583,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   2.384   0.000   2.202
+##   1.783   0.000   1.720
 ```
 
 ```r
@@ -636,7 +592,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.012   0.000   0.012
+##    0.00    0.00    0.01
 ```
 
 ```r
@@ -725,13 +681,13 @@ altura <- rnorm(n = 1000, mean = 1.80, sd = 0.1)
 histograma(altura, "altura")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-251.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
 
 ```r
 histograma(altura, "altura", "Eu escolho o título que eu quiser")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-252.png) 
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
 
 O parâmetro `xlab` define o título do eixo x enquanto `titulo` escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.
 
@@ -757,7 +713,7 @@ histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab
 histograma(altura, breaks = 100, col = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26.png) 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
 
 Repare que nunca precisamos definir os parâmetros `breaks` e `col` na função `histograma()`. O ... fez o trabalho de enviar essas informações à função `hist()`.
 
@@ -828,70 +784,30 @@ O resultado é idêntico como deveria ser, mas agora a função tem nome e pode 
 ## Trigonometria
 
 
----------------------------------------------------------
-          Função                      Descrição          
---------------------------- -----------------------------
- cos(x) / sin(x) / tan(x)    seno/cosseno/tangente de x  
-
-acos(x) / asin(x) / atan(x) arco-seno/cosseno/tangente de
-                                          x              
----------------------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Matemática
 
 
-------------------------------------
-   Função           Descrição       
------------- -----------------------
-   log(x)    Logaritmo natural de x 
-
-   exp(x)         e elevado a x     
-
-   abs(x)      valor absoluto de x  
-
-  sign(x)     sinal de x (1 ou -1)  
-
-  sqrt(x)      raiz quadrada de x   
-
-choose(n, k) combinações de n, k a k
-
-factorial(x)      fatorial de x     
-------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Estatística
 
 
------------------------------------------------
-       Função                 Descrição        
---------------------- -------------------------
-       mean(x)               Média de x        
-
-   var(x) / sd(x)     Variância / Desvio Padrão
-                            amostral de x      
-
-     quantile(x)            Quantis de x       
-
-cov(x, y) / cor(x, y) Covariância / Correlação 
-                         linear entre x e y    
------------------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 ## Diversos
 
 
-------------------------------------
- Função           Descrição         
--------- ---------------------------
-  x:y       Sequencia de x até y    
-
-  x=y      x recebe y (atribuição)  
-
-   ?x         documentação de x     
-
-  x$y     extração de y do objeto x 
-
- x%*%y   Multiplicação matricial das
-               matrizes x e y       
-------------------------------------
+```
+## Error in eval(expr, envir, enclos): could not find function "pander"
+```
 
 # Referências
 
