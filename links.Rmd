@@ -22,10 +22,11 @@ mode: selfcontained
 - [Criação de pacotes do R](http://r-pkgs.had.co.nz/description.html). Guia para criação de pacotes no R.
 - [Guia do R Markdown](http://rmarkdown.rstudio.com/). Guia para utilização do R markdown.
 - [Site do knitr](http://yihui.name/knitr/). Informações sobre o fantástico pacote `knitr`.
-- [Curso básico de R](https://www.codeschool.com/courses/try-r). Curso básico de R.
+- [Curso básico de R](https://www.codeschool.com/courses/try-r). Curso básico de R do Code School.
 - [Shinyapps](http://www.shinyapps.io/). Sobre o ShinyApps.
 - [The R Book](http://www.kharms.biology.lsu.edu/CrawleyMJ_TheRBook.pdf). Clássico livro de R, praticamente uma bíblia.
 - [Modelos de Regressão](http://www.ime.usp.br/~giapaula/texto_2013.pdf). Livro que está sendo escrito pelo professor Gilberto sobre GLM e GEE, com aplicações em R.
+- [Métodos computacionais em inferência estatística](http://www.leg.ufpr.br/lib/exe/fetch.php/pessoais:mcie-sinape-v12.pdf). Livro que trata de aspectos computacionais, eficiência de código, entre outros. E é em português.
 
 ## Outros links úteis
 - [Como criar questões no stack overflow](http://pt.stackoverflow.com/editing-help).
