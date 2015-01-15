@@ -25,6 +25,7 @@ mode: selfcontained
 - [Curso básico de R](https://www.codeschool.com/courses/try-r). Curso básico de R.
 - [Shinyapps](http://www.shinyapps.io/). Sobre o ShinyApps.
 - [The R Book](http://www.kharms.biology.lsu.edu/CrawleyMJ_TheRBook.pdf). Clássico livro de R, praticamente uma bíblia.
+- [Modelos de Regressão](http://www.ime.usp.br/~giapaula/texto_2013.pdf). Livro que está sendo escrito pelo professor Gilberto sobre GLM e GEE, com aplicações em R.
 
 ## Outros links úteis
 - [Como criar questões no stack overflow](http://pt.stackoverflow.com/editing-help).
