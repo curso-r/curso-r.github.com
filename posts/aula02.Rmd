@@ -1,12 +1,11 @@
 ---
+title: Aula 02 - Estruturas de Dados e Vocabulário
+date : 2015-01-21
 output:
   html_document:
     number_sections: no
     toc: yes
----
----
-title: Aula 02 - Estruturas de Dados e Vocabulário
-date : 2015-01-21
+
 --- 
 
 # Estruturas de dados no R

@@ -1,13 +1,10 @@
 ---
+title: Aula 05 - Gráficos com estilo - ggplot2
+date : 2015-01-28
 output:
   html_document:
     number_sections: no
     toc: yes
----
-
----
-title: Aula 05 - Gráficos com estilo - ggplot2
-date : 2015-01-28
 ---
 
 # O pacote ggplot2
