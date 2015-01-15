@@ -1,5 +1,5 @@
 ---
-title: Sobre o curso de R
+title: Links Úteis
 url: {lib: libraries}
 highlighter: prettify
 hitheme: twitter-bootstrap
