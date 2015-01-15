@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aula 01 - Noções básicas</title>
+  <title>Aula 1 - Noções básicas</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
@@ -72,16 +72,11 @@
           <ol id="posts">
             <li class="post">
               <h3>
-                <a href="#">Aula 01 - Noções básicas</a>
+                <a href="#">Aula 1 - Noções básicas</a>
               </h3>
-              <span>2015-01-12</span><br/>
+              <span>2015-01-19</span><br/>
                <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
-              
-<pre><code>## Error in library(pander): there is no package called &#39;pander&#39;
-</code></pre>
-
-<h1>R como calculadora</h1>
-
+              <h1>R como calculadora</h1>
 <p>A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console <code>2*2 - (4 + 4)/2</code>. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!</p>
 
 <p>Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!</p>
@@ -118,8 +113,43 @@
 
 <p>Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x + y</td>
+<td align="center">Adição de x com y</td>
+</tr>
+<tr>
+<td align="center">x - y</td>
+<td align="center">Subtração de y em x</td>
+</tr>
+<tr>
+<td align="center">x * y</td>
+<td align="center">Multiplicação de x e y</td>
+</tr>
+<tr>
+<td align="center">x / y</td>
+<td align="center">Divisão de x por y</td>
+</tr>
+<tr>
+<td align="center">x<sup>y</sup> ou x**y</td>
+<td align="center">x elevado a y-ésima potência</td>
+</tr>
+<tr>
+<td align="center">x%%y</td>
+<td align="center">Resto da divisão de x por y (módulo)</td>
+</tr>
+<tr>
+<td align="center">x%/%y</td>
+<td align="center">Parte inteira da divisão de x por y</td>
+</tr>
+</tbody></table>
+
+<p>Exemplos:</p>
 
 <pre><code class="r">1 + 1
 </code></pre>
@@ -167,100 +197,123 @@
 
 <p>Operadores lógicos retornarão sempre ou <code>TRUE</code> ou <code>FALSE</code>. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">operador</th>
+<th align="center">descricao</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x &lt; y</td>
+<td align="center">x menor que y?</td>
+</tr>
+<tr>
+<td align="center">x &lt;= y</td>
+<td align="center">x menor ou igual a y?</td>
+</tr>
+<tr>
+<td align="center">x &gt; y</td>
+<td align="center">x maior que y?</td>
+</tr>
+<tr>
+<td align="center">x &gt;= y</td>
+<td align="center">x maior ou igual a y?</td>
+</tr>
+<tr>
+<td align="center">x == y</td>
+<td align="center">x igual a y?</td>
+</tr>
+<tr>
+<td align="center">x != y</td>
+<td align="center">x diferente de y?</td>
+</tr>
+<tr>
+<td align="center">!x</td>
+<td align="center">Negativa de x</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">y</td>
+</tr>
+<tr>
+<td align="center">x &amp; y</td>
+<td align="center">x e y são verdadeiros?</td>
+</tr>
+<tr>
+<td align="center">xor(x, y)</td>
+<td align="center">x ou y são verdadeiros (apenas um deles)?</td>
+</tr>
+</tbody></table>
 
 <p>Exemplos:</p>
 
-<pre><code class="r">1 &lt; 1
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">1 &lt;= 1
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">1 == 0.999
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">1 == 0.99999999999999999
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">13.5 != 13.5
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">!TRUE
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">TRUE | FALSE
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">FALSE | FALSE
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">TRUE &amp; FALSE
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">TRUE &amp; TRUE
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">xor(TRUE, TRUE)
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">xor(TRUE, FALSE)
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">TRUE == 1
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
-
-<pre><code class="r">TRUE == 2
-</code></pre>
-
-<pre><code>## [1] FALSE
-</code></pre>
-
-<pre><code class="r">FALSE == 0
-</code></pre>
-
-<pre><code>## [1] TRUE
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Teste</th>
+<th align="center">Resposta</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">1 &lt; 1</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">1 &lt;= 1</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">1 == 0.999</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">1 == 0.99999999999999999</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">13.5 != 13.5</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">!TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE &amp; FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE &amp; TRUE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">xor(TRUE, TRUE)</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">xor(TRUE, FALSE)</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">TRUE == 1</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">TRUE == 2</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">FALSE == 0</td>
+<td align="center">TRUE</td>
+</tr>
+</tbody></table>
 
 <h2>Números complexos</h2>
 
@@ -283,8 +336,20 @@ class(x)
 
 <p>A tabela abaixo resume algumas funções interessantes para números complexos.</p>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+
+<p>Função         Descrição       </p>
+
+<hr>
+
+<p>Re(z)       Parte real de x    </p>
+
+<p>Im(z)    Parte imaginária de x </p>
+
+<p>Mod(z)        Módulo de x      </p>
+
+<p>Arg(z)      Argumento de x     </p>
+
+<h2>Conj(z)  Complexo conjugado de x</h2>
 
 <p>Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.</p>
 
@@ -399,7 +464,7 @@ else { # &lt;----- Na linha abaixo do &quot;}&quot;
 
 <h2>for</h2>
 
-<p>O <code>for</code> é um tipo &quot;laço&quot; (<em>loop</em>, em inglês) que aplica um bloco de </p>
+<p>O <code>for</code> é um tipo &quot;laço&quot; (<em>loop</em>, em inglês) que aplica um bloco de código para um número fixo de iterações. Geralmente, um <code>for</code> percorre um vetor e utiliza um elemento diferente deste vetor em cada iteração.</p>
 
 <h3>Estrutura:</h3>
 
@@ -562,14 +627,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.452   0.000   1.439
+##   1.602   0.000   1.593
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.000   0.000   0.009
+##    0.01    0.00    0.01
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -652,12 +717,12 @@ altura &lt;- rnorm(n = 1000, mean = 1.80, sd = 0.1)
 histograma(altura, &quot;altura&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/hist1-1.png" alt="plot of chunk hist1"> </p>
 
 <pre><code class="r">histograma(altura, &quot;altura&quot;, &quot;Eu escolho o título que eu quiser&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-2.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/hist1-2.png" alt="plot of chunk hist1"> </p>
 
 <p>O parâmetro <code>xlab</code> define o título do eixo x enquanto <code>titulo</code> escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.</p>
 
@@ -682,7 +747,7 @@ histograma(altura, &quot;altura&quot;)
 histograma(altura, breaks = 100, col = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+<p><img src="assets/fig/hist2-1.png" alt="plot of chunk hist2"> </p>
 
 <p>Repare que nunca precisamos definir os parâmetros <code>breaks</code> e <code>col</code> na função <code>histograma()</code>. O ... fez o trabalho de enviar essas informações à função <code>hist()</code>.</p>
 
@@ -736,27 +801,182 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
 
 <p>O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.</p>
 
+<h1>Variáveis Aleatórias</h1>
+
+<p>No R é muito fácil calcular f.d.p&#39;s, f.d.a&#39;s, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:</p>
+
+<pre><code class="r">dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+</code></pre>
+
+<p>Repare nas 4 letras que antecedem <code>norm</code> nos nomes das funções. Essas letras significam:</p>
+
+<ul>
+<li><strong>d</strong> (&quot;density&quot;) Densidade da Normal, ou f.d.p da Normal;</li>
+<li><strong>p</strong> (&quot;probability&quot;) Função de distribuição acumulada (f.d.a) da Normal;</li>
+<li><strong>q</strong> (&quot;quantile&quot;) Quantil da Normal;</li>
+<li><strong>r</strong> (&quot;random&quot;) Gera um número vindo de uma Normal.</li>
+</ul>
+
+<p>No lugar de <code>norm</code>, você pode trocar por outra distribuição de probabilidade. A tabela abaixo lista algumas das possibilidades:</p>
+
+<table><thead>
+<tr>
+<th align="center">Distribuição</th>
+<th align="center">Apelido</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Normal</td>
+<td align="center">norm</td>
+</tr>
+<tr>
+<td align="center">Uniforme</td>
+<td align="center">unif</td>
+</tr>
+<tr>
+<td align="center">Beta</td>
+<td align="center">beta</td>
+</tr>
+<tr>
+<td align="center">Chi Quadrado</td>
+<td align="center">chisq</td>
+</tr>
+<tr>
+<td align="center">Exponencial</td>
+<td align="center">exp</td>
+</tr>
+<tr>
+<td align="center">F de Snedecor</td>
+<td align="center">f</td>
+</tr>
+<tr>
+<td align="center">Gama</td>
+<td align="center">gamma</td>
+</tr>
+<tr>
+<td align="center">Poisson</td>
+<td align="center">pois</td>
+</tr>
+</tbody></table>
+
+<p>Para consultar a lista completa de distribuições da família (d, p, q, r), rode no console <code>?Distributions</code>.</p>
+
 <h1>Vocabulário</h1>
 
 <h2>Trigonometria</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">cos(x) / sin(x) / tan(x)</td>
+<td align="center">seno/cosseno/tangente de x</td>
+</tr>
+<tr>
+<td align="center">acos(x) / asin(x) / atan(x)</td>
+<td align="center">arco-seno/cosseno/tangente de x</td>
+</tr>
+</tbody></table>
 
 <h2>Matemática</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">log(x)</td>
+<td align="center">Logaritmo natural de x</td>
+</tr>
+<tr>
+<td align="center">exp(x)</td>
+<td align="center">e elevado a x</td>
+</tr>
+<tr>
+<td align="center">abs(x)</td>
+<td align="center">valor absoluto de x</td>
+</tr>
+<tr>
+<td align="center">sign(x)</td>
+<td align="center">sinal de x (1 ou -1)</td>
+</tr>
+<tr>
+<td align="center">sqrt(x)</td>
+<td align="center">raiz quadrada de x</td>
+</tr>
+<tr>
+<td align="center">choose(n, k)</td>
+<td align="center">combinações de n, k a k</td>
+</tr>
+<tr>
+<td align="center">factorial(x)</td>
+<td align="center">fatorial de x</td>
+</tr>
+</tbody></table>
 
 <h2>Estatística</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">mean(x)</td>
+<td align="center">Média de x</td>
+</tr>
+<tr>
+<td align="center">var(x) / sd(x)</td>
+<td align="center">Variância / Desvio Padrão amostral de x</td>
+</tr>
+<tr>
+<td align="center">quantile(x)</td>
+<td align="center">Quantis de x</td>
+</tr>
+<tr>
+<td align="center">cov(x, y) / cor(x, y)</td>
+<td align="center">Covariância / Correlação linear entre x e y</td>
+</tr>
+</tbody></table>
 
 <h2>Diversos</h2>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;pander&quot;
-</code></pre>
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x:y</td>
+<td align="center">Sequencia de x até y</td>
+</tr>
+<tr>
+<td align="center">x=y</td>
+<td align="center">x recebe y (atribuição)</td>
+</tr>
+<tr>
+<td align="center">?x</td>
+<td align="center">documentação de x</td>
+</tr>
+<tr>
+<td align="center">x$y</td>
+<td align="center">extração de y do objeto x</td>
+</tr>
+<tr>
+<td align="center">x%*%y</td>
+<td align="center">Multiplicação matricial das matrizes x e y</td>
+</tr>
+</tbody></table>
 
 <h1>Referências</h1>
 

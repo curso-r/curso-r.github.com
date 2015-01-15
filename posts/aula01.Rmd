@@ -1,15 +1,16 @@
 ---
-title: "Aula 01 - Noções básicas"
+title: "Aula 1 - Noções básicas"
 output:
   html_document:
     number_sections: yes
     toc_depth: 2
     toc: yes
-date: "2015-01-12"
+date: 2015-01-19
 ---
 
 ```{r, echo=FALSE}
 library(pander)
+panderOptions("table.style", "rmarkdown")
 ```
 
 # R como calculadora
@@ -46,14 +47,14 @@ tab_valores_especiais <- data.frame("Valor" = c(),
 Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!
 
 ```{r,  echo=FALSE, results='asis'}
-op_aritmetico <- data.frame(operador = c("x + y", "x - y", "x * y", "x / y", "x^y ou x**y", "x%%y", "x%/%y"),
-                            descricao = c("Adição de x com y", "Subtração de y em x", "Multiplicação de x e y", "Divisão de x por y", "x elevado a y-ésima potência", "Resto da divisão de x por y (módulo)", "Parte inteira da divisão de x por y")) 
+op_aritmetico <- data.frame("Operador" = c("x + y", "x - y", "x \\* y", "x / y", "x^y ou x\\*\\*y", "x%%y", "x%/%y"),
+                            "Descrição" = c("Adição de x com y", "Subtração de y em x", "Multiplicação de x e y", "Divisão de x por y", "x elevado a y-ésima potência", "Resto da divisão de x por y (módulo)", "Parte inteira da divisão de x por y")) 
 
 pander(op_aritmetico)
 ```
 
-
-```{r results='markup'}
+Exemplos:
+```{r}
 1 + 1
 10 - 8
 2*10
@@ -66,29 +67,45 @@ pander(op_aritmetico)
 
 Operadores lógicos retornarão sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
 
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE}
 op_logico <- data.frame(operador = c("x < y", "x <= y", "x > y", "x >= y", "x == y", "x != y", "!x", "x | y ", "x & y", "xor(x, y)"),
                         descricao = c("x menor que y?", "x menor ou igual a y?", "x maior que y?", "x maior ou igual a y?", "x igual a y?", "x diferente de y?", "Negativa de x", "x ou y são verdadeiros?", "x e y são verdadeiros?", "x ou y são verdadeiros (apenas um deles)?"))
 pander(op_logico)
 ```
 
 Exemplos:
-```{r}
-1 < 1
-1 <= 1
-1 == 0.999
-1 == 0.99999999999999999
-13.5 != 13.5
-!TRUE
-TRUE | FALSE
-FALSE | FALSE
-TRUE & FALSE
-TRUE & TRUE
-xor(TRUE, TRUE)
-xor(TRUE, FALSE)
-TRUE == 1
-TRUE == 2
-FALSE == 0
+```{r, echo=FALSE}
+testes_logicos <- data.frame("Teste" = c("1 < 1",
+                       "1 <= 1",
+                       "1 == 0.999",
+                       "1 == 0.99999999999999999",
+                       "13.5 != 13.5",
+                       "!TRUE",
+                       "TRUE | FALSE",
+                       "FALSE | FALSE",
+                       "TRUE & FALSE",
+                       "TRUE & TRUE",
+                       "xor(TRUE, TRUE)",
+                       "xor(TRUE, FALSE)",
+                       "TRUE == 1",
+                       "TRUE == 2",
+                       "FALSE == 0"),
+              "Resposta" = c("FALSE",
+                             "TRUE",
+                             "FALSE",
+                             "TRUE",
+                             "FALSE",
+                             "FALSE",
+                             "TRUE",
+                             "FALSE",
+                             "FALSE",
+                             "TRUE",
+                             "FALSE",
+                             "TRUE",
+                             "TRUE",
+                             "FALSE",
+                             "TRUE"))
+pander(testes_logicos)
 ```
 
 ## Números complexos
@@ -212,7 +229,7 @@ else { # <----- Na linha abaixo do "}"
 
 ## for
 
-O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de 
+O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de código para um número fixo de iterações. Geralmente, um `for` percorre um vetor e utiliza um elemento diferente deste vetor em cada iteração.
 
 ### Estrutura:
 
@@ -421,7 +438,7 @@ ecoar <- function(palavra, n_ecos = 3) {
 ### Parâmetros relativos
 Além de parâmetros opcionais, podem existir parâmetros cujo valor padrão usa o valor de outro parâmetro. Exemplo:
 
-```{r, fig.width=6, fig.height=3}
+```{r hist1, fig.width=6, fig.height=3}
 # Função que desenha um histograma
 histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab)) {
   hist(numeros, xlab = xlab, main = titulo)
@@ -448,7 +465,7 @@ Existe um parâmetro especial e frequentemente disponível em funções que é s
 
 Uma utilidade é quando você deseja fazer possível mexer nos parâmetros de uma função, mas não quer copiar todos os seus parâmetros novamente. Retomemos o exemplo da função `histograma()`:
 
-```{r}
+```{r hist2}
 histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab), ...) {
   hist(numeros, xlab = xlab, main = titulo, ...)
 }
@@ -490,6 +507,48 @@ eh_par <- sapply(nums, testa_se_eh_par)
 
 O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
 
+# Variáveis Aleatórias
+
+No R é muito fácil calcular f.d.p's, f.d.a's, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:
+
+```{r, eval=FALSE}
+dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+```
+
+Repare nas 4 letras que antecedem `norm` nos nomes das funções. Essas letras significam:
+
+- **d** ("density") Densidade da Normal, ou f.d.p da Normal;
+- **p** ("probability") Função de distribuição acumulada (f.d.a) da Normal;
+- **q** ("quantile") Quantil da Normal;
+- **r** ("random") Gera um número vindo de uma Normal.
+
+No lugar de `norm`, você pode trocar por outra distribuição de probabilidade. A tabela abaixo lista algumas das possibilidades:
+
+```{r, echo=FALSE, results='asis'}
+dist <- data.frame("Distribuição" = c("Normal",
+                                      "Uniforme",
+                                      "Beta",
+                                      "Chi Quadrado",
+                                      "Exponencial",
+                                      "F de Snedecor",
+                                      "Gama",
+                                      "Poisson"),
+                   "Apelido" = c("norm",
+                                 "unif",
+                                 "beta",
+                                 "chisq",
+                                 "exp",
+                                 "f",
+                                 "gamma",
+                                 "pois"))
+pander(dist)
+```
+
+Para consultar a lista completa de distribuições da família (d, p, q, r), rode no console `?Distributions`.
+
 # Vocabulário
 
 ```{r, echo=FALSE}
@@ -497,7 +556,7 @@ diversos <- data.frame("Função" = c("x:y",
                                     "x=y", 
                                     "?x", 
                                     "x$y", 
-                                    "x%*%y"),
+                                    "x%\\*%y"),
                        "Descrição" = c("Sequencia de x até y", 
                                        "x recebe y (atribuição)", 
                                        "documentação de x", 
@@ -566,3 +625,4 @@ http://adv-r.had.co.nz/Functions.html
 http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
 
 # Próxima aula
+

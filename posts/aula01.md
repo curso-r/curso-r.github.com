@@ -1,17 +1,14 @@
 ---
-title: "Aula 01 - Noções básicas"
+title: "Aula 1 - Noções básicas"
 output:
   html_document:
     number_sections: yes
     toc_depth: 2
     toc: yes
-date: "2015-01-12"
+date: 2015-01-19
 ---
 
 
-```
-## Error in library(pander): there is no package called 'pander'
-```
 
 # R como calculadora
 
@@ -61,11 +58,17 @@ Certas operações matemáticas podem suscitar em valores não numéricos. Exemp
 Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|   Operador    |              Descrição               |
+|:-------------:|:------------------------------------:|
+|     x + y     |          Adição de x com y           |
+|     x - y     |         Subtração de y em x          |
+|    x \* y     |        Multiplicação de x e y        |
+|     x / y     |          Divisão de x por y          |
+| x^y ou x\*\*y |     x elevado a y-ésima potência     |
+|     x%%y      | Resto da divisão de x por y (módulo) |
+|     x%/%y     | Parte inteira da divisão de x por y  |
 
-
+Exemplos:
 
 ```r
 1 + 1
@@ -127,131 +130,38 @@ Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam 
 Operadores lógicos retornarão sempre ou `TRUE` ou `FALSE`. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|  operador  |                 descricao                 |
+|:----------:|:-----------------------------------------:|
+|   x < y    |              x menor que y?               |
+|   x <= y   |           x menor ou igual a y?           |
+|   x > y    |              x maior que y?               |
+|   x >= y   |           x maior ou igual a y?           |
+|   x == y   |               x igual a y?                |
+|   x != y   |             x diferente de y?             |
+|     !x     |               Negativa de x               |
+|   x | y    |          x ou y são verdadeiros?          |
+|   x & y    |          x e y são verdadeiros?           |
+| xor(x, y)  | x ou y são verdadeiros (apenas um deles)? |
 
 Exemplos:
 
-```r
-1 < 1
-```
-
-```
-## [1] FALSE
-```
-
-```r
-1 <= 1
-```
-
-```
-## [1] TRUE
-```
-
-```r
-1 == 0.999
-```
-
-```
-## [1] FALSE
-```
-
-```r
-1 == 0.99999999999999999
-```
-
-```
-## [1] TRUE
-```
-
-```r
-13.5 != 13.5
-```
-
-```
-## [1] FALSE
-```
-
-```r
-!TRUE
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE | FALSE
-```
-
-```
-## [1] TRUE
-```
-
-```r
-FALSE | FALSE
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE & FALSE
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE & TRUE
-```
-
-```
-## [1] TRUE
-```
-
-```r
-xor(TRUE, TRUE)
-```
-
-```
-## [1] FALSE
-```
-
-```r
-xor(TRUE, FALSE)
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == 1
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == 2
-```
-
-```
-## [1] FALSE
-```
-
-```r
-FALSE == 0
-```
-
-```
-## [1] TRUE
-```
+|          Teste           |  Resposta  |
+|:------------------------:|:----------:|
+|          1 < 1           |   FALSE    |
+|          1 <= 1          |    TRUE    |
+|        1 == 0.999        |   FALSE    |
+| 1 == 0.99999999999999999 |    TRUE    |
+|       13.5 != 13.5       |   FALSE    |
+|          !TRUE           |   FALSE    |
+|       TRUE | FALSE       |    TRUE    |
+|      FALSE | FALSE       |   FALSE    |
+|       TRUE & FALSE       |   FALSE    |
+|       TRUE & TRUE        |    TRUE    |
+|     xor(TRUE, TRUE)      |   FALSE    |
+|     xor(TRUE, FALSE)     |    TRUE    |
+|        TRUE == 1         |    TRUE    |
+|        TRUE == 2         |   FALSE    |
+|        FALSE == 0        |    TRUE    |
 
 ## Números complexos
 
@@ -280,9 +190,19 @@ is.complex(x)
 A tabela abaixo resume algumas funções interessantes para números complexos.
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+--------------------------------
+ Função         Descrição       
+-------- -----------------------
+ Re(z)       Parte real de x    
+
+ Im(z)    Parte imaginária de x 
+
+ Mod(z)        Módulo de x      
+
+ Arg(z)      Argumento de x     
+
+Conj(z)  Complexo conjugado de x
+--------------------------------
 
 Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.
 
@@ -403,7 +323,7 @@ else { # <----- Na linha abaixo do "}"
 
 ## for
 
-O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de 
+O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de código para um número fixo de iterações. Geralmente, um `for` percorre um vetor e utiliza um elemento diferente deste vetor em cada iteração.
 
 ### Estrutura:
 
@@ -583,7 +503,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.452   0.000   1.439
+##   1.602   0.000   1.593
 ```
 
 ```r
@@ -592,7 +512,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.000   0.000   0.009
+##    0.01    0.00    0.01
 ```
 
 ```r
@@ -681,13 +601,13 @@ altura <- rnorm(n = 1000, mean = 1.80, sd = 0.1)
 histograma(altura, "altura")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
+![plot of chunk hist1](assets/fig/hist1-1.png) 
 
 ```r
 histograma(altura, "altura", "Eu escolho o título que eu quiser")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-2.png) 
+![plot of chunk hist1](assets/fig/hist1-2.png) 
 
 O parâmetro `xlab` define o título do eixo x enquanto `titulo` escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.
 
@@ -713,7 +633,7 @@ histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab
 histograma(altura, breaks = 100, col = 2)
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
+![plot of chunk hist2](assets/fig/hist2-1.png) 
 
 Repare que nunca precisamos definir os parâmetros `breaks` e `col` na função `histograma()`. O ... fez o trabalho de enviar essas informações à função `hist()`.
 
@@ -777,6 +697,41 @@ eh_par <- sapply(nums, testa_se_eh_par)
 
 O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
 
+# Variáveis Aleatórias
+
+No R é muito fácil calcular f.d.p's, f.d.a's, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:
+
+
+```r
+dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+```
+
+Repare nas 4 letras que antecedem `norm` nos nomes das funções. Essas letras significam:
+
+- **d** ("density") Densidade da Normal, ou f.d.p da Normal;
+- **p** ("probability") Função de distribuição acumulada (f.d.a) da Normal;
+- **q** ("quantile") Quantil da Normal;
+- **r** ("random") Gera um número vindo de uma Normal.
+
+No lugar de `norm`, você pode trocar por outra distribuição de probabilidade. A tabela abaixo lista algumas das possibilidades:
+
+
+|  Distribuição  |  Apelido  |
+|:--------------:|:---------:|
+|     Normal     |   norm    |
+|    Uniforme    |   unif    |
+|      Beta      |   beta    |
+|  Chi Quadrado  |   chisq   |
+|  Exponencial   |    exp    |
+| F de Snedecor  |     f     |
+|      Gama      |   gamma   |
+|    Poisson     |   pois    |
+
+Para consultar a lista completa de distribuições da família (d, p, q, r), rode no console `?Distributions`.
+
 # Vocabulário
 
 
@@ -784,30 +739,44 @@ O resultado é idêntico como deveria ser, mas agora a função tem nome e pode 
 ## Trigonometria
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|           Função            |            Descrição            |
+|:---------------------------:|:-------------------------------:|
+|  cos(x) / sin(x) / tan(x)   |   seno/cosseno/tangente de x    |
+| acos(x) / asin(x) / atan(x) | arco-seno/cosseno/tangente de x |
 
 ## Matemática
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|    Função    |        Descrição        |
+|:------------:|:-----------------------:|
+|    log(x)    | Logaritmo natural de x  |
+|    exp(x)    |      e elevado a x      |
+|    abs(x)    |   valor absoluto de x   |
+|   sign(x)    |  sinal de x (1 ou -1)   |
+|   sqrt(x)    |   raiz quadrada de x    |
+| choose(n, k) | combinações de n, k a k |
+| factorial(x) |      fatorial de x      |
 
 ## Estatística
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|        Função         |                  Descrição                  |
+|:---------------------:|:-------------------------------------------:|
+|        mean(x)        |                 Média de x                  |
+|    var(x) / sd(x)     |   Variância / Desvio Padrão amostral de x   |
+|      quantile(x)      |                Quantis de x                 |
+| cov(x, y) / cor(x, y) | Covariância / Correlação linear entre x e y |
 
 ## Diversos
 
 
-```
-## Error in eval(expr, envir, enclos): could not find function "pander"
-```
+|  Função  |                 Descrição                  |
+|:--------:|:------------------------------------------:|
+|   x:y    |            Sequencia de x até y            |
+|   x=y    |          x recebe y (atribuição)           |
+|    ?x    |             documentação de x              |
+|   x$y    |         extração de y do objeto x          |
+|  x%\*%y  | Multiplicação matricial das matrizes x e y |
 
 # Referências
 
@@ -816,3 +785,4 @@ http://adv-r.had.co.nz/Functions.html
 http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
 
 # Próxima aula
+
