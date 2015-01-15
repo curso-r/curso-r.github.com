@@ -29,7 +29,7 @@ mode: selfcontained
 
 ## Outros links úteis
 - [Como criar questões no stack overflow](http://pt.stackoverflow.com/editing-help).
-- [Melhores práticas para postar no stack overflow](http://meta.stackexchange.com/questions/145499/how-to-ask-best-practice-questions).
+- [Melhores práticas para postar no stack overflow](http://stackoverflow.com/help/how-to-ask).
 - [Guia para utilização do github](http://rogerdudler.github.io/git-guide/index.pt_BR.html). Aprenda a utilizar o github em 5 minutos!
 - [Sobre Markdown](http://daringfireball.net/). Sobre markdown em geral.
 - [Sobre pandoc](http://johnmacfarlane.net/pandoc/). Sobre o conversor de tudo `pandoc`.
