@@ -447,7 +447,7 @@ x &gt; 0
 <li>O <code>else</code> e o <code>else if</code> têm que estar na mesma linha do <code>}</code> da expressão anterior, senão não rodará!</li>
 </ul>
 
-<pre><code class="r">#Certo
+<pre><code class="r"># Certo
 if(1 == 2) {
   &quot;Um resultado muito interessante!&quot;
 } else { # &lt;----- Mesma linha que o &quot;}&quot;
@@ -596,7 +596,7 @@ while(runif(1) &gt; p) {
 lances
 </code></pre>
 
-<pre><code>## [1] 2
+<pre><code>## [1] 3
 </code></pre>
 
 <p>A função <code>runif(1)</code> gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que <code>p</code>, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que <code>p</code>. No fim, teremos nossa desejada variável aleatória simulada de lances até &quot;cara&quot;.</p>
@@ -605,9 +605,9 @@ lances
 
 <h1>Vetorização</h1>
 
-<p>Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um &quot;vetor&quot; (entre aspas por que &quot;vetor&quot; aqui pode ser vetor, matriz, tabela, lista e afins, tipos de objetos que serão explicados em detalhes na próxima aula).</p>
+<p>Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um &quot;vetor&quot; (entre aspas por que &quot;vetor&quot; aqui pode ser vetor, matriz, tabela e afins, tipos de objetos que serão explicados em detalhes na próxima aula).</p>
 
-<p>Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação se verão tentados a usar <em>loops</em> para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, <em>loops</em> no R são sofrivelmente ineficientes.</p>
+<p>Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação, se verão tentados a usar <em>loops</em> para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, <em>loops</em> no R são sofrivelmente ineficientes.</p>
 
 <h2>Tecnicalidades</h2>
 
@@ -640,14 +640,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.747   0.001   1.747
+##   1.542   0.000   1.528
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.005   0.004   0.010
+##   0.000   0.000   0.009
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -657,7 +657,7 @@ identical(x2a, x2b)
 <pre><code>## [1] TRUE
 </code></pre>
 
-<p>Um ganho de 200 vezes na eficiência! E as vantagens não param por aí:</p>
+<p>Um ganho de 100-200 vezes na eficiência! E as vantagens não param por aí:</p>
 
 <ol>
 <li>Essas funções foram construídas e testadas por pessoas que ganham a vida fazendo isso;</li>

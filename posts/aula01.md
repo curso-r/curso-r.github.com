@@ -289,7 +289,7 @@ O que acontece no exemplo acima, passo a passo:
 
 
 ```r
-#Certo
+# Certo
 if(1 == 2) {
   "Um resultado muito interessante!"
 } else { # <----- Mesma linha que o "}"
@@ -452,7 +452,7 @@ lances
 ```
 
 ```
-## [1] 2
+## [1] 3
 ```
 
 A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
@@ -461,9 +461,9 @@ Repare que enquanto a condição retornava `TRUE`, a expressão sera reexecutada
 
 # Vetorização
 
-Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um "vetor" (entre aspas por que "vetor" aqui pode ser vetor, matriz, tabela, lista e afins, tipos de objetos que serão explicados em detalhes na próxima aula).
+Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um "vetor" (entre aspas por que "vetor" aqui pode ser vetor, matriz, tabela e afins, tipos de objetos que serão explicados em detalhes na próxima aula).
 
-Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação se verão tentados a usar *loops* para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, *loops* no R são sofrivelmente ineficientes.
+Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação, se verão tentados a usar *loops* para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, *loops* no R são sofrivelmente ineficientes.
 
 ## Tecnicalidades
 
@@ -497,7 +497,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.747   0.001   1.747
+##   1.542   0.000   1.528
 ```
 
 ```r
@@ -506,7 +506,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.005   0.004   0.010
+##   0.000   0.000   0.009
 ```
 
 ```r
@@ -518,7 +518,7 @@ identical(x2a, x2b)
 ## [1] TRUE
 ```
 
-Um ganho de 200 vezes na eficiência! E as vantagens não param por aí:
+Um ganho de 100-200 vezes na eficiência! E as vantagens não param por aí:
 
 1. Essas funções foram construídas e testadas por pessoas que ganham a vida fazendo isso;
 2. No R, uma função é "esperta" e funciona para diferentes tipos de objetos que passamos a ela, muitas vezes da forma que esperamos.

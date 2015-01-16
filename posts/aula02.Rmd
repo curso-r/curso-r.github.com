@@ -171,7 +171,7 @@ df
 str(df)
 ```
 
-Em um data frame converte, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento `stringAsFactors = F`
+Em um data frame, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento `stringAsFactors = F`
 
 ```{r}
 df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T, stringsAsFactors = F)
