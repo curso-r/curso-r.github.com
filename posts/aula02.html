@@ -83,8 +83,8 @@
 <li><strong>Atomic vector</strong>: homogêneo e unidimensional</li>
 <li><strong>Matriz</strong>: homogêneo e bidimensional</li>
 <li><strong>Array</strong>: homogêneo e multidimensional</li>
-<li><strong>Lista</strong>: heterogêneo e unidimensional</li>
-<li><strong>Data frame</strong>: heterogêneo bidimensional</li>
+<li><strong>Lista</strong>: heterogêneo </li>
+<li><strong>Data frame</strong>: heterogêneo </li>
 </ul>
 
 <p><strong>Nota</strong>: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.</p>
@@ -561,6 +561,16 @@ m
 <pre><code>## [1]  2  4 12 14
 </code></pre>
 
+<p>Um ponto importante é que é possível alterar valores usando subsetting, por exemplo:</p>
+
+<pre><code class="r">x &lt;- c(13, 8, 5, 3, 2, 1, 1) 
+x[x&gt;5] &lt;- 0
+x
+</code></pre>
+
+<pre><code>## [1] 0 0 5 3 2 1 1
+</code></pre>
+
 <h1>Leitura de dados</h1>
 
 <p>Para ler um banco de dados no R usamos a função <code>read.table()</code>. A seguir estão os principais argumentos dessa função e sua descrição:</p>
@@ -625,6 +635,51 @@ str(dados)
 ##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
 ##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
 ##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...
+</code></pre>
+
+<h1>Estatísticas básicas</h1>
+
+<p>A função summary quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.</p>
+
+<pre><code class="r">summary(dados)
+</code></pre>
+
+<pre><code>##    Aleatorio         aleatorio2           cor           
+##  Min.   :-1.5865   Min.   :0.009945   Length:100        
+##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
+##  Median : 0.5795   Median :0.577933   Mode  :character  
+##  Mean   : 0.3675   Mean   :0.540947                     
+##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
+##  Max.   : 1.9053   Max.   :0.990911
+</code></pre>
+
+<p>Também pode ser aplicada em apenas uma variável da base:</p>
+
+<pre><code class="r">summary(dados$aleatorio2)
+</code></pre>
+
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
+</code></pre>
+
+<p>A função <code>table</code> calcula tabela de frequências. </p>
+
+<pre><code class="r">table(dados$cor)
+</code></pre>
+
+<pre><code>## 
+##  amarelo     azul vermelho 
+##       38       37       25
+</code></pre>
+
+<pre><code class="r">table(dados$cor, dados$cor)
+</code></pre>
+
+<pre><code>##           
+##            amarelo azul vermelho
+##   amarelo       38    0        0
+##   azul           0   37        0
+##   vermelho       0    0       25
 </code></pre>
 
 <h1>O operador <em>pipe</em> - %&gt;%</h1>
@@ -707,7 +762,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-31-1.png" alt="plot of chunk unnamed-chunk-31"> </p>
+<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -723,58 +778,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-32-1.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-32-2.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-2.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-32-3.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-3.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-32-4.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-4.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-32-5.png" alt="plot of chunk unnamed-chunk-32"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-5.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-33-1.png" alt="plot of chunk unnamed-chunk-33"> </p>
+<p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-33-2.png" alt="plot of chunk unnamed-chunk-33"> </p>
+<p><img src="assets/fig/unnamed-chunk-37-2.png" alt="plot of chunk unnamed-chunk-37"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"> </p>
+<p><img src="assets/fig/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-35-2.png" alt="plot of chunk unnamed-chunk-35"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-2.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <p>Segue abaixo outras funções comumente utilizadas do pacote <code>graphics</code>:</p>
 
@@ -789,7 +844,7 @@ plot(x, y)
 <pre><code class="r">boxplot(rnorm(10000))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40"> </p>
 
 <pre><code class="r">c(&quot;Corinthians&quot;, &quot;Palmeiras&quot;, &quot;Santos&quot;, &quot;São Paulo&quot;) %&gt;%
   sample(1000, replace=T, prob = c(0.4, 0.2, 0.1, 0.3)) %&gt;%
@@ -797,7 +852,7 @@ plot(x, y)
   pie
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36-2.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-2.png" alt="plot of chunk unnamed-chunk-40"> </p>
 
 <pre><code class="r">rnorm(10000) %&gt;%
   abs %&gt;%
@@ -805,7 +860,7 @@ plot(x, y)
   hist
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36-3.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-3.png" alt="plot of chunk unnamed-chunk-40"> </p>
 
               <div id="disqus_thread"></div>
             </li>

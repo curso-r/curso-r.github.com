@@ -89,6 +89,98 @@ j <- 1
 
 ## Aula 02
 
+### Estruturas de dados
+
+**1**. O senhor Adalberto é dono de uma loja e, utilizando o R, ele quer criar um cadastro de seus clientes. Para isso, ele está armazenando as informações em uma matriz da seguinte maneira:
+
+
+```r
+cadastro <- matrix(c(NA, NA, NA, NA), nrow = 100, ncol = 4, 
+                   dimnames = list(NULL, c("Nome", "Idade", "Cidade", "Telefone")))
+
+cadastro[1,] <- c("Maria das Dores", 56, 3025-111, "São Paulo")
+cadastro[2,] <- c("José Aníbal", 40, 3333-012, "Santos")
+cadastro[3,] <- c("Pedro Silva", 23, 3091-777, "São Paulo")
+# ...
+```
+
+a) O que faz o argumento `dimnames =`? O que significa o primeiro argumento da lista ser `NULL`?
+
+b) O que vai acontecer se o senhor Adalberto tentar tirar a média da idade dos seus clientes fazendo `mean(cadastro[,2])`? Como ele poderia calcular essa média sem mudar a estrutura do objeto `cadastro`?
+
+c) No lugar de `matrix`, qual seria a melhor estrutura para se utilizar neste caso? 
+
+**2**. Por que `0.1 == 0.3/3` retorna `FALSE`? 
+
+### Subsetting
+
+**1**. Considere o `data.frame` *diamonds* do R:
+
+
+a) Como você faria para permutar aleatoriamente as colunas?
+
+b) É possível permutar linhas e colunas simultaneamente em um passo? 
+
+c) Como ordenar as colunas do banco de dados em ordem alfabética?
+
+d) Crie uma nova variável no banco de dados que seja 1 se o preço (`price`) for menor 300 e 0 caso contrário.
+
+**2**. Considere o vetor abaixo:
+
+
+```r
+x1 <- 1:8
+```
+
+a) Por que a expressao `x1 == c(2,3)` não retorna as posições de `x1` que são iguais a 2 ou 3? 
+
+b) O que faz o operador `%in%`?
+
+### Leitura de dados
+
+### O operador *pipe*
+
+1. Reescreva a expressão abaixo utilizando o operador `%>%`.
+
+
+```r
+x <- 0.1
+
+qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram")
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
+
+
+### Gráficos com o pacote *graphics*
+
+**1**. Considere o gráfico abaixo:
+
+
+```r
+x <- seq(-3, 3, 0.01)
+y <- 1/x
+
+plot(x, y, type = "l")
+```
+
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
+
+
+a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.
+
+b) Acrescente um título ao grafico.
+
+C) Acrescente uma reta vertical pontilhada no ponto x = 0.
+
+d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
+
+**2**. Como construir dois gráficos na mesma janela?
+
 ## Aula 03
 
 ## Aula 04

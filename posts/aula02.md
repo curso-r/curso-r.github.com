@@ -15,8 +15,8 @@ Tipos básicos de estrutura no R:
 - **Atomic vector**: homogêneo e unidimensional
 - **Matriz**: homogêneo e bidimensional
 - **Array**: homogêneo e multidimensional
-- **Lista**: heterogêneo e unidimensional
-- **Data frame**: heterogêneo bidimensional
+- **Lista**: heterogêneo 
+- **Data frame**: heterogêneo 
 
 
 **Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.
@@ -613,6 +613,20 @@ m[m%%2 == 0] # Retorna os elementos pares.
 ## [1]  2  4 12 14
 ```
 
+Um ponto importante é que é possível alterar valores usando subsetting, por exemplo:
+
+
+```r
+x <- c(13, 8, 5, 3, 2, 1, 1) 
+x[x>5] <- 0
+x
+```
+
+```
+## [1] 0 0 5 3 2 1 1
+```
+
+
 # Leitura de dados
 
 Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
@@ -699,6 +713,61 @@ str(dados)
 ##  $ cor       : chr  "azul" "vermelho" "amarelo" "azul" ...
 ```
 
+# Estatísticas básicas
+
+A função summary quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.
+
+
+```r
+summary(dados)
+```
+
+```
+##    Aleatorio         aleatorio2           cor           
+##  Min.   :-1.5865   Min.   :0.009945   Length:100        
+##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
+##  Median : 0.5795   Median :0.577933   Mode  :character  
+##  Mean   : 0.3675   Mean   :0.540947                     
+##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
+##  Max.   : 1.9053   Max.   :0.990911
+```
+
+Também pode ser aplicada em apenas uma variável da base:
+
+
+```r
+summary(dados$aleatorio2)
+```
+
+```
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
+```
+
+A função `table` calcula tabela de frequências. 
+
+
+```r
+table(dados$cor)
+```
+
+```
+## 
+##  amarelo     azul vermelho 
+##       38       37       25
+```
+
+```r
+table(dados$cor, dados$cor)
+```
+
+```
+##           
+##            amarelo azul vermelho
+##   amarelo       38    0        0
+##   azul           0   37        0
+##   vermelho       0    0       25
+```
 
 # O operador *pipe* - %>%
 
@@ -801,7 +870,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31-1.png) 
+![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-1.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -817,31 +886,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-1.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-2.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-2.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-3.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-3.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-4.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-4.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-32](assets/fig/unnamed-chunk-32-5.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-5.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -850,13 +919,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-33-1.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-33](assets/fig/unnamed-chunk-33-2.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-2.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -865,7 +934,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34-1.png) 
+![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-38-1.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -874,13 +943,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-1.png) 
+![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-1.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-2.png) 
+![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-2.png) 
 
 Segue abaixo outras funções comumente utilizadas do pacote `graphics`:
 
@@ -895,7 +964,7 @@ Seguem alguns exemplos:
 boxplot(rnorm(10000))
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-1.png) 
 
 ```r
 c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
@@ -904,7 +973,7 @@ c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
   pie
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-2.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-2.png) 
 
 ```r
 rnorm(10000) %>%
@@ -913,7 +982,7 @@ rnorm(10000) %>%
   hist
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-3.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-3.png) 
 
 
 

@@ -116,6 +116,7 @@ Os *geoms* definem qual forma geométrica será utilizada para a visualização 
 - geom_histogram: para histogramas
 - geom_density: para densidades
 - geom_area: para áreas
+- geom_bar: para barras
 
 Veja a seguir como é fácil gerar diversos gráficos diferentes utilizando a mesma estrutura do gráfico de dispersão acima:
 
@@ -139,27 +140,46 @@ ggplot(mtcars, aes(x = mpg)) +
 
 ![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
 
-Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
-
-Da mesma forma podemos deixar o boxplot colorido usando:
-
 
 ```r
-ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
+ggplot(mtcars, aes(x = as.factor(cyl))) + 
+  geom_bar()
 ```
 
 ![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
 
-Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento `colour` pelo argumento `fill`.
+Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
+
+## Personalizando os gráficos
+
+### Cores
+
+
+```r
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + 
+  geom_boxplot()
+```
+
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
+
+O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
 
 
 ```r
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
 
-Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando `+ scale_fill_discrete(guide = F)`.
+### Eixos
+
+para alterar os labels dos eixos acrescentamos as funções `xlab` ou `ylab`
+para alterar os limites dos gráficos usamos as funções `xlim(10, 20)` e `ylim(0, 10)`
+
+### Legendas
+
+
+ `+ scale_fill_discrete(guide = F)`.
 
 O nome da função é composto de três partes: 
 * scale: queremos fazer alguma personalização na escala
@@ -171,7 +191,13 @@ O nome da função é composto de três partes:
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
+
+para trocar o label da legenda usamos o comando `+ labs(fill = "cyl")` 
+
+trocamos o lugar da legenda usando `+ theme(legend.position="top")`
+
+veja mais opções [aqui](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
 
 ### Facets
 
@@ -182,7 +208,7 @@ Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
 Podemos empilhar os dois gráficos também:
 
@@ -191,7 +217,7 @@ Podemos empilhar os dois gráficos também:
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
 ```
 
-![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png) 
 
 
 # Tipos de gráficos
