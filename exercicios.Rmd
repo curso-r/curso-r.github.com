@@ -67,6 +67,26 @@ for(i in 1:n) {
 
 ## Aula 02
 
+### Estruturas de dados
+
+1. O senhor Adalberto é dono de uma loja e quer criar um cadastro de seus clientes. Ele está testando da seguinte maneira:
+
+```{r}
+cadastro <- matrix(c("Adalberto", 56, 30253278, "São Paulo"))
+```
+
+Qual é o problema deste cadastro?
+
+### Subsetting
+
+Considere o `data.frame` diamonds do R:
+
+
+1.a) Como você faria para permutar aleatoriamente as colunas?
+1.b) É possível permutar linhas e colunas simultaneamente em um passo? 
+1.c) Como ordenar as colunas do banco de dados em ordem alfabética?
+1.d) Crie uma nova variável no banco de dados que seja 1 se o preço (`price`) for menor 300 e 0 caso contrário.
+
 ## Aula 03
 
 ## Aula 04
