@@ -24,18 +24,21 @@ date : 2015-01-23
 
 #### Exemplo: código que gerou estas aulas.
 
----
 
-### Gráficos dinâmicos
+```{r eval=FALSE, results='hide', echo=FALSE}
+# ### Gráficos dinâmicos
 
-- Somente para output em HTML.
-- É possível criar gráficos baseados em javascript e gerar documentos que funcionam "sozinhos".
-- Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.
-- É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.
+# - Somente para output em HTML.
+# - É possível criar gráficos baseados em javascript e gerar documentos que funcionam "sozinhos".
+# - Se exigir interação, o shiny é utilizado, e o documento precisa ficar em um servidor.
+# - É possível utilizar o shiny server e o serviço shinyapps.io para publicar documentos interativos.
+# 
+# #### Exemplo: Apresentação no ioslides
+# ---
 
-#### Exemplo: Apresentação no ioslides
+```
 
-## Exercício
+## Exercício do Laboratório
 
 A base de dados pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
 Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH.
