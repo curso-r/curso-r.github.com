@@ -61,9 +61,40 @@ for(i in 1:n) {
 }
 ```
 
-### 
+### Funções
+
+1. Crie uma funçao que recebe um vetor de numeros e devolve a variancia.
+
+2. Calcule a variancia de `x <- 1:100` utilizando a sua funcao criada no item 1 e utilizando a funcao `var()` do R. Compare seus resultados. Eles coincidem? Por que?
+
+3. Altere sua funcao para que agora ela aceite que o usuario escolha entre qual tipo de variancia ela quer calcular. Certifique-se que ela devolva 
+
+4. Construa uma funcao que recebe dois vetores numericos de mesmo tamanho, `v1` e `v2`, e retorne a media ponderada de `v1` por `v2`. Calcule a média ponderada do vetor `v1 <- c(11, 9, 8, 7, 11, 6, 7, 9)` utilizando como pesos o vetor `v2 <- c(1, 2, 1, 2, 1, 2, 1, 2)`. BONUS: certifique que o usuario tenha passado vetores de tamanhos iguais e ambos numericos. Retorne `NULL` caso uma dessas condicoes falhe.  
+
+5. Crie uma versao da funcao `paste()` que una palavras pulando linhas (`\\n`)
 
 
+6. Crie uma função que recebe um vetor de characters e um vetor numérico de mesmo comprimento e imprima um texto com os nomes dessas variáveis, um símbolo de atribuição (`<-`), e os números, separando cada expressão pulando linhas. Por exemplo:
+
+```{r eval=FALSE, results='hide'}
+x <- letters[1:10]
+y <- 10:1
+
+imprime_coisas_legais(x, y)
+```
+
+```{r eval=FALSE, results='hide'}
+a <- 10
+b <- 9
+c <- 8
+d <- 7
+e <- 6
+f <- 5
+g <- 4
+h <- 3
+i <- 2
+j <- 1
+```
 
 ## Aula 02
 

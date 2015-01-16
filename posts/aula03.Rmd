@@ -37,7 +37,7 @@ date : 2015-01-23
 
 ## Exercício
 
-O arquivo pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
+A base de dados pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
 Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH.
 
 Queremos que vocês descubram:

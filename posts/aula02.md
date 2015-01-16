@@ -392,7 +392,7 @@ str(df)
 ##  $ z: logi  TRUE TRUE TRUE TRUE
 ```
 
-Em um data frame converte, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento `stringAsFactors = F`
+Em um data frame, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento `stringAsFactors = F`
 
 
 ```r
