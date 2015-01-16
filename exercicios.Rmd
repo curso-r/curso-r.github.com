@@ -40,10 +40,10 @@ Obs: Existem duas formas de modificar o código que farão ele funcionar.
 
 2. Escreva a frase (em uma linha)
 
-> 1 elefante(s) incomoda(m) muita gente
-> 2 elefante(s) incomoda(m) incomoda(m) muito mais
-> 3 elefante(s) incomoda(m) muita gente
-> 4 elefante(s) incomoda(m) incomoda(m) incomoda(m) incomoda(m) muito mais
+> 1 elefante(s) incomoda(m) muita gente  
+> 2 elefante(s) incomoda(m) incomoda(m) muito mais  
+> 3 elefante(s) incomoda(m) muita gente  
+> 4 elefante(s) incomoda(m) incomoda(m) incomoda(m) incomoda(m) muito mais  
 
 usando `for` ou `while`.
 
