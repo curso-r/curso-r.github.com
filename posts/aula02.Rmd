@@ -15,8 +15,8 @@ Tipos básicos de estrutura no R:
 - **Atomic vector**: homogêneo e unidimensional
 - **Matriz**: homogêneo e bidimensional
 - **Array**: homogêneo e multidimensional
-- **Lista**: heterogêneo e unidimensional
-- **Data frame**: heterogêneo bidimensional
+- **Lista**: heterogêneo 
+- **Data frame**: heterogêneo 
 
 
 **Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.
@@ -251,6 +251,15 @@ m[3,] # Retorna todos os elementos da linha 3.
 m[m%%2 == 0] # Retorna os elementos pares.
 ```
 
+Um ponto importante é que é possível alterar valores usando subsetting, por exemplo:
+
+```{r}
+x <- c(13, 8, 5, 3, 2, 1, 1) 
+x[x>5] <- 0
+x
+```
+
+
 # Leitura de dados
 
 Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
@@ -304,6 +313,26 @@ dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header 
 str(dados)
 ```
 
+# Estatísticas básicas
+
+A função summary quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.
+
+```{r}
+summary(dados)
+```
+
+Também pode ser aplicada em apenas uma variável da base:
+
+```{r}
+summary(dados$aleatorio2)
+```
+
+A função `table` calcula tabela de frequências. 
+
+```{r}
+table(dados$cor)
+table(dados$cor, dados$cor)
+```
 
 # O operador *pipe* - %>%
 

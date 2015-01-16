@@ -91,6 +91,7 @@ Os *geoms* definem qual forma geométrica será utilizada para a visualização 
 - geom_histogram: para histogramas
 - geom_density: para densidades
 - geom_area: para áreas
+- geom_bar: para barras
 
 Veja a seguir como é fácil gerar diversos gráficos diferentes utilizando a mesma estrutura do gráfico de dispersão acima:
 
@@ -104,21 +105,37 @@ ggplot(mtcars, aes(x = mpg)) +
   geom_histogram()
 ```
 
-Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
-
-Da mesma forma podemos deixar o boxplot colorido usando:
-
 ```{r}
-ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + geom_boxplot()
+ggplot(mtcars, aes(x = as.factor(cyl))) + 
+  geom_bar()
 ```
 
-Os aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta trocar o argumento `colour` pelo argumento `fill`.
+Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
 
-```{r}
+## Personalizando os gráficos
+
+### Cores
+
+```{r, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + 
+  geom_boxplot()
+```
+
+O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
+
+```{r, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-Sempre que usamos algum argumento de cor, o ggplot automaticamente inclui uma legenda no gráfico. Mas no caso do boxplot a legenda não faz muito sentido. Para omitir usamos o comando `+ scale_fill_discrete(guide = F)`.
+### Eixos
+
+para alterar os labels dos eixos acrescentamos as funções `xlab` ou `ylab`
+para alterar os limites dos gráficos usamos as funções `xlim(10, 20)` e `ylim(0, 10)`
+
+### Legendas
+
+
+ `+ scale_fill_discrete(guide = F)`.
 
 O nome da função é composto de três partes: 
 * scale: queremos fazer alguma personalização na escala
@@ -128,6 +145,12 @@ O nome da função é composto de três partes:
 ```{r}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
 ```
+
+para trocar o label da legenda usamos o comando `+ labs(fill = "cyl")` 
+
+trocamos o lugar da legenda usando `+ theme(legend.position="top")`
+
+veja mais opções [aqui](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
 
 ### Facets
 
