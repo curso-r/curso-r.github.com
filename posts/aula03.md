@@ -31,6 +31,8 @@ date : 2015-01-23
 A base de dados [pnud.xlsx](http://curso-r.github.io/assets/data/pnud.xlsx) foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010. Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH municipal. A base
 original pode ser baixada [neste link](http://www.atlasbrasil.org.br/2013/pt/download/). A [versão utilizada no laboratório](http://curso-r.github.io/assets/data/pnud.xlsx) foi ligeiramente modificada para facilitar algumas atividades.
 
+### [Download](http://curso-r.github.io/assets/data/pnud.xlsx)
+
 O arquivo contém 4 planilhas. Vamos utilizar a planilha _siglas_, que contém a definição das variáveis,
 e a planilha _mun_, que contém as informações demográficas e socioeconômicas por município 
 brasileiro.
@@ -46,7 +48,7 @@ __Outras atividades__:
 - Visualize como está distribuída a população dos municípios no Brasil. Quantos municípios concentram 25% da população?
 - Categorize a renda per capita e associe com a expectativa de vida.
 - Você acha que a situação do Brasil está melhorando? Justifique utlizando dados de pelo menos 3 variáveis.
-- No nordeste o aummento de distribuição de renda foi maior do que no sudeste?
+- No nordeste o aumento de distribuição de renda foi maior do que no sudeste?
 - Insira mais pelo menos 3 estudos que você ache interessante.
 
 ## Relatório
