@@ -17,12 +17,38 @@ date : 2015-01-23
 
 ### Como utilizar
 
-- Mais fácil com RStudio
+- Mais fácil com RStudio.
 - Conceitos básicos de Markdown [nesse link](http://daringfireball.net/projects/markdown/).
 - RMarkdown com exemplos [nesse link](http://rmarkdown.rstudio.com/).
-- Sobre YAML.
+- Sobre os metadados em YAML [nesse link](http://rmarkdown.rstudio.com/html_document_format.html).
 
 #### Exemplo: código que gerou estas aulas.
+
+
+```{r}
+siglas <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=1)
+mun <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=2)
+est <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=3) %>%
+  tbl_df %>%
+  filter(ANO==2010) %>%
+  select(uf=UF, ufn=UFN)
+
+mun <- mun %>% inner_join(est)
+
+
+
+
+head(est)
+
+names(mun) <- rm_accent(tolower(names(mun)))
+siglas$SIGLA <- rm_accent(tolower(siglas$SIGLA))
+names(siglas) <- rm_accent(tolower(gsub('\\.', '_', names(siglas))))
+
+head(siglas)
+head(mun)
+
+```
+
 
 
 ```{r eval=FALSE, results='hide', echo=FALSE}
@@ -35,26 +61,32 @@ date : 2015-01-23
 # 
 # #### Exemplo: Apresentação no ioslides
 # ---
-
 ```
 
 ## Exercício do Laboratório
 
-A base de dados pnud.xlsx foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010.
-Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH.
+A base de dados [pnud.xlsx](http://curso-r.github.io/assets/data/pnud.xlsx) foi construida pelo Programa das Nações Unidas para o Desenvolvimento e contém informações demográficas e socioeconômicas de cada município brasileiro nos anos de 1991, 2000 e 2010. Essas informações são baseadas nos censos e são utilizadas para o cálculo do IDH municipal. A base
+original pode ser baixada [neste link](http://www.atlasbrasil.org.br/2013/pt/download/). A [versão utilizada no laboratório](http://curso-r.github.io/assets/data/pnud.xlsx) foi ligeiramente modificada para facilitar algumas atividades.
 
-Queremos que vocês descubram:
+O arquivo contém 4 planilhas. Vamos utilizar a planilha _siglas_, que contém a definição das variáveis,
+e a planilha _mun_, que contém as informações demográficas e socioeconômicas por município 
+brasileiro.
+
+__Queremos que vocês descubram__:
 
 - Qual é o município com o maior IDH em 2010.
-- Qual é a unidade federativa com menor expectativa de vida média ponderada pela população dos municípios em 2000.
-- Encontre quais são os municípios _outliers_ com relação ao índice de Gini em 1991 e em 2010.
+- Qual é a unidade federativa com menor expectativa de vida média, ponderada pela população dos municípios em 2000.
+- Quais são os municípios _outliers_ com relação ao índice de Gini em 1991 e em 2010. 
 
-Visualize como está distribuida a população dos municípios no Brasil. Quantos municípios concentram 25% da população?
+__Outras atividades__:
 
-Categorize a renda per capita e associe com a expectativa de vida.
+- Visualize como está distribuída a população dos municípios no Brasil. Quantos municípios concentram 25% da população?
+- Categorize a renda per capita e associe com a expectativa de vida.
+- Você acha que a situação do Brasil está melhorando? Justifique utlizando dados de pelo menos 3 variáveis.
+- No nordeste o aummento de distribuição de renda foi maior do que no sudeste?
+- Insira mais pelo menos 3 estudos que você ache interessante.
 
-Você acha que o Brasil está melhorando? Justifique utlizando dados de pelo menos 3 variáveis.
+## Relatório
 
-No nordeste o aummento de distribuição de renda foi maior do que no sudeste?
-
-Insira mais pelo menos 3 estudos que você ache interessante.
+Elabore um relatório utilizando RMarkdown com uma análise descritiva da base de dados do PNUD, 
+descrevendo as variáveis utilizadas e executando as atividades pedidas.
