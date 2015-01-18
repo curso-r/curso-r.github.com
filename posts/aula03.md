@@ -39,7 +39,7 @@ brasileiro.
 
 __Queremos que vocês descubram__:
 
-- Qual é o município com o maior IDH em 2010.
+- Quais são os seis municípios com os maiores IDH municipais em 2010.
 - Qual é a unidade federativa com menor expectativa de vida média, ponderada pela população dos municípios em 2000.
 - Quais são os municípios _outliers_ com relação ao índice de Gini em 1991 e em 2010. 
 
