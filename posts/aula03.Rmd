@@ -24,33 +24,6 @@ date : 2015-01-23
 
 #### Exemplo: código que gerou estas aulas.
 
-
-```{r}
-siglas <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=1)
-mun <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=2)
-est <- read.xlsx('~/Downloads/atlas2013_dadosbrutos_pt.xlsx', sheet=3) %>%
-  tbl_df %>%
-  filter(ANO==2010) %>%
-  select(uf=UF, ufn=UFN)
-
-mun <- mun %>% inner_join(est)
-
-
-
-
-head(est)
-
-names(mun) <- rm_accent(tolower(names(mun)))
-siglas$SIGLA <- rm_accent(tolower(siglas$SIGLA))
-names(siglas) <- rm_accent(tolower(gsub('\\.', '_', names(siglas))))
-
-head(siglas)
-head(mun)
-
-```
-
-
-
 ```{r eval=FALSE, results='hide', echo=FALSE}
 # ### Gráficos dinâmicos
 

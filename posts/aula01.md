@@ -497,7 +497,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.777   0.000   1.765
+##   1.825   0.003   1.826
 ```
 
 ```r
@@ -506,7 +506,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##    0.00    0.00    0.01
+##   0.007   0.003   0.010
 ```
 
 ```r
