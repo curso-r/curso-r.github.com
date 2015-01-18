@@ -22,7 +22,7 @@ date : 2015-01-23
 - RMarkdown com exemplos [nesse link](http://rmarkdown.rstudio.com/).
 - Sobre os metadados em YAML [nesse link](http://rmarkdown.rstudio.com/html_document_format.html).
 
-#### Exemplo: código que gerou estas aulas.
+#### Exemplo: [código que gerou a aula 01](https://github.com/curso-r/curso-r.github.com/blob/master/posts/aula01.Rmd).
 
 ```{r eval=FALSE, results='hide', echo=FALSE}
 # ### Gráficos dinâmicos
