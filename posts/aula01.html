@@ -76,7 +76,13 @@
               </h3>
               <span>2015-01-19</span><br/>
                <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
-              <h1>R como calculadora</h1>
+              
+<p><a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<p><a href="curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a></p>
+
+<h1>R como calculadora</h1>
+
 <p>A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console <code>2*2 - (4 + 4)/2</code>. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!</p>
 
 <p>Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!</p>
@@ -108,6 +114,22 @@
 <h2>Valores especiais</h2>
 
 <p>Certas operações matemáticas podem suscitar em valores não numéricos. Exemplo disso são log de números negativos e divisões por zero. Para tais operações, o R reservou valores especiais para serem retornadas quando operações não resultarem em um número propriamente dito. A tabela abaixo lista esses objetos:</p>
+
+<table><thead>
+<tr>
+<th align="center">Valor</th>
+<th align="center">Quando.ocorre</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Inf/-Inf</td>
+<td align="center">Divisões por zero, valores da ordem de 10<sup>308</sup></td>
+</tr>
+<tr>
+<td align="center">NaN</td>
+<td align="center">Indeterminações matemáticas, como 0/0 e log(-1)</td>
+</tr>
+</tbody></table>
 
 <h2>Operadores aritméticos</h2>
 
@@ -319,16 +341,16 @@
 
 <p>O R manipula números complexo de maneira fácil e intuitiva do mesmo jeito que trata os números reais. Além disso, disponibiliza funções úteis para eles, como módulo, conjugado e argumento.</p>
 
-<pre><code class="r">x &lt;- -8 + 0i
+<pre><code class="r">z &lt;- -8 + 0i
 
-# verifica se x é um número commplexo
-class(x)
+# verifica se z é um número commplexo
+class(z)
 </code></pre>
 
 <pre><code>## [1] &quot;complex&quot;
 </code></pre>
 
-<pre><code class="r">is.complex(x)
+<pre><code class="r">is.complex(z)
 </code></pre>
 
 <pre><code>## [1] TRUE
@@ -344,23 +366,23 @@ class(x)
 </thead><tbody>
 <tr>
 <td align="center">Re(z)</td>
-<td align="center">Parte real de x</td>
+<td align="center">Parte real de z</td>
 </tr>
 <tr>
 <td align="center">Im(z)</td>
-<td align="center">Parte imaginária de x</td>
+<td align="center">Parte imaginária de z</td>
 </tr>
 <tr>
 <td align="center">Mod(z)</td>
-<td align="center">Módulo de x</td>
+<td align="center">Módulo de z</td>
 </tr>
 <tr>
 <td align="center">Arg(z)</td>
-<td align="center">Argumento de x</td>
+<td align="center">Argumento de z</td>
 </tr>
 <tr>
 <td align="center">Conj(z)</td>
-<td align="center">Complexo conjugado de x</td>
+<td align="center">Complexo conjugado de z</td>
 </tr>
 </tbody></table>
 
@@ -640,14 +662,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.550   0.000   1.548
+##   1.598   0.000   1.600
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.01    0.00    0.01
+##   0.009   0.000   0.010
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -813,6 +835,40 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
 </code></pre>
 
 <p>O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.</p>
+
+<h2>Escopo</h2>
+
+<p>Objetos moram em <strong>ambientes</strong> (<em>environments</em>) e as funções as procuram os objetos que precisam usar nesses <em>environments</em>.</p>
+
+<p>A ordem de procura segue a regra do mais específico até o ambiente global (<code>.GlobalEnv</code>) e se nada for encontrado, retorna um erro informando que não existe tal objeto.</p>
+
+<p>Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o primeiro que for encontrado).</p>
+
+<pre><code class="r">(x &lt;- exp(1))
+</code></pre>
+
+<pre><code>## [1] 2.718282
+</code></pre>
+
+<pre><code class="r">f &lt;- function(x) print(x)
+f(2)
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">g &lt;- function(y) print(x)
+g(2)
+</code></pre>
+
+<pre><code>## [1] 2.718282
+</code></pre>
+
+<p>No exemplo acima, o objeto <code>x</code> existe tanto fora, quanto dentro da função <code>f()</code>. Ao ser chamado para ser usado na função <code>print(x)</code>, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor <code>2</code>.</p>
+
+<p>O <code>x</code> que vale <code>exp(1)</code> está morando no <em>global envirnment</em> (<code>.GlobalEnv</code>) e seria utilizado apenas no caso em que nenhum outro <code>x</code> estivesse no caminho.</p>
+
+<p>Na função <code>g()</code>, não existe mais o objeto <code>x</code> dentro dela (trocamos por <code>y</code>). O único objeto que está dentro de lá é o <code>y</code>. Como ainda chamamos pelo <code>x</code> dentro da função, o R irá buscar por ele, onde quer que ele esteja.</p>
 
 <h1>Variáveis Aleatórias</h1>
 
@@ -996,8 +1052,6 @@ rnorm(n, mean = 0, sd = 1)
 <p><a href="http://adv-r.had.co.nz/Functions.html">http://adv-r.had.co.nz/Functions.html</a></p>
 
 <p><a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">http://www.burns-stat.com/pages/Tutor/R_inferno.pdf</a></p>
-
-<h1>Próxima aula</h1>
 
               <div id="disqus_thread"></div>
             </li>

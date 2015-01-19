@@ -8,6 +8,10 @@ output:
 date: 2015-01-19
 ---
 
+<a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
+
+<a href="curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a>
+
 
 
 # R como calculadora
@@ -52,6 +56,10 @@ Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar! No R, um erro não é
 Certas operações matemáticas podem suscitar em valores não numéricos. Exemplo disso são log de números negativos e divisões por zero. Para tais operações, o R reservou valores especiais para serem retornadas quando operações não resultarem em um número propriamente dito. A tabela abaixo lista esses objetos:
 
 
+|  Valor   |                  Quando.ocorre                  |
+|:--------:|:-----------------------------------------------:|
+| Inf/-Inf |  Divisões por zero, valores da ordem de 10^308  |
+|   NaN    | Indeterminações matemáticas, como 0/0 e log(-1) |
 
 ## Operadores aritméticos
 
@@ -169,10 +177,10 @@ O R manipula números complexo de maneira fácil e intuitiva do mesmo jeito que 
 
 
 ```r
-x <- -8 + 0i
+z <- -8 + 0i
 
-# verifica se x é um número commplexo
-class(x)
+# verifica se z é um número commplexo
+class(z)
 ```
 
 ```
@@ -180,7 +188,7 @@ class(x)
 ```
 
 ```r
-is.complex(x)
+is.complex(z)
 ```
 
 ```
@@ -192,11 +200,11 @@ A tabela abaixo resume algumas funções interessantes para números complexos.
 
 |  Função  |        Descrição        |
 |:--------:|:-----------------------:|
-|  Re(z)   |     Parte real de x     |
-|  Im(z)   |  Parte imaginária de x  |
-|  Mod(z)  |       Módulo de x       |
-|  Arg(z)  |     Argumento de x      |
-| Conj(z)  | Complexo conjugado de x |
+|  Re(z)   |     Parte real de z     |
+|  Im(z)   |  Parte imaginária de z  |
+|  Mod(z)  |       Módulo de z       |
+|  Arg(z)  |     Argumento de z      |
+| Conj(z)  | Complexo conjugado de z |
 
 Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.
 
@@ -497,7 +505,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.550   0.000   1.548
+##   1.598   0.000   1.600
 ```
 
 ```r
@@ -506,7 +514,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##    0.01    0.00    0.01
+##   0.009   0.000   0.010
 ```
 
 ```r
@@ -691,6 +699,47 @@ eh_par <- sapply(nums, testa_se_eh_par)
 
 O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
 
+## Escopo
+
+Objetos moram em **ambientes** (*environments*) e as funções as procuram os objetos que precisam usar nesses *environments*.
+
+A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`) e se nada for encontrado, retorna um erro informando que não existe tal objeto.
+
+Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o primeiro que for encontrado).
+
+
+```r
+(x <- exp(1))
+```
+
+```
+## [1] 2.718282
+```
+
+```r
+f <- function(x) print(x)
+f(2)
+```
+
+```
+## [1] 2
+```
+
+```r
+g <- function(y) print(x)
+g(2)
+```
+
+```
+## [1] 2.718282
+```
+
+No exemplo acima, o objeto `x` existe tanto fora, quanto dentro da função `f()`. Ao ser chamado para ser usado na função `print(x)`, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor `2`.
+
+O `x` que vale `exp(1)` está morando no *global envirnment* (`.GlobalEnv`) e seria utilizado apenas no caso em que nenhum outro `x` estivesse no caminho.
+
+Na função `g()`, não existe mais o objeto `x` dentro dela (trocamos por `y`). O único objeto que está dentro de lá é o `y`. Como ainda chamamos pelo `x` dentro da função, o R irá buscar por ele, onde quer que ele esteja.
+
 # Variáveis Aleatórias
 
 No R é muito fácil calcular f.d.p's, f.d.a's, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:
@@ -777,6 +826,3 @@ Para consultar a lista completa de distribuições da família (d, p, q, r), rod
 http://adv-r.had.co.nz/Functions.html
 
 http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
-
-# Próxima aula
-
