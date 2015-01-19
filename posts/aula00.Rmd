@@ -8,19 +8,9 @@ output:
 date: 2015-01-19
 ---
 
-## Por que R?
+<a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
 
-- De graça
-- É uma linguagem de programação
-- Atualizado e com grande gama de funções analíticas
-- Alto nível
-- Comunidade ativa e crescente
-
-## Prós e contras do R vs outros pacotes estatísticos
-
-- Tabela de coisas que o R faz vs SAS/SPSS
-
-## Agenda do curso
+## Agenda do curso 
 
 * Aula 00 - Sobre o curso e porque usar R
 * Aula 01 - Noções básicas
@@ -35,6 +25,23 @@ date: 2015-01-19
 * Aula 10 - Shiny
 * Aula 11 - Pacotes e tópicos extras
 * Aula 12 - Laboratório IV
+
+## Por que R?
+
+* De graça
+* Tradução da matemática para código é direta
+* R é escrito por estatísticos, para estatísticos
+* É uma linguagem de programação, o que faz dele um ambiente flexível e versátil
+* Atualizado e com grande gama de funções analíticas
+* Comunidade ativa e crescente
+
+## Prós e contras do R vs outros pacotes estatísticos
+
+* SAS é mais preparado para grandes bases de dados. O R guarda tudo na memória.
+* SAS/SPSS tem suporte dedicado e garantia das suas rotinas e ferramentas. O R não tem suporte (apenas comunidade que se ajuda) e não trás nenhuma garantia das rotinas feitas por seus colaboradores.
+* SAS/SPSS está na praça há muito mais tempo que o R.
+* No SAS/SPSS não há necessidade de grandes investimentos em treinamento de pessoal para mexer.
+* SAS é um "canivete suíço". Ele é ferramenta de análise, governança corporativa, de gestão e serviços de TI e muito mais.
 
 ## Instalação do R e do RStudio
 

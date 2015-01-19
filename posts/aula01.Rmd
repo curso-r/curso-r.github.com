@@ -8,6 +8,8 @@ output:
 date: 2015-01-19
 ---
 
+<a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
+
 ```{r, echo=FALSE}
 library(pander)
 panderOptions("table.style", "rmarkdown")
@@ -37,9 +39,11 @@ Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar! No R, um erro não é
 Certas operações matemáticas podem suscitar em valores não numéricos. Exemplo disso são log de números negativos e divisões por zero. Para tais operações, o R reservou valores especiais para serem retornadas quando operações não resultarem em um número propriamente dito. A tabela abaixo lista esses objetos:
 
 ```{r,  echo=FALSE, results='asis'}
-tab_valores_especiais <- data.frame("Valor" = c(),
-                                    "Quando ocorre" = c())
+tab_valores_especiais <- data.frame("Valor" = c("Inf/-Inf", "NaN"),
+                                    "Quando ocorre" = c("Divisões por zero, valores da ordem de 10^308",
+                                                        "Indeterminações matemáticas, como 0/0 e log(-1)"))
 
+pander(tab_valores_especiais)
 ```
 
 ## Operadores aritméticos
@@ -113,11 +117,11 @@ pander(testes_logicos)
 O R manipula números complexo de maneira fácil e intuitiva do mesmo jeito que trata os números reais. Além disso, disponibiliza funções úteis para eles, como módulo, conjugado e argumento.
 
 ```{r}
-x <- -8 + 0i
+z <- -8 + 0i
 
-# verifica se x é um número commplexo
-class(x)
-is.complex(x)
+# verifica se z é um número commplexo
+class(z)
+is.complex(z)
 ```
 
 A tabela abaixo resume algumas funções interessantes para números complexos.
@@ -128,11 +132,11 @@ complexo <- data.frame("Função" = c("Re(z)",
                                     "Mod(z)",
                                     "Arg(z)",
                                     "Conj(z)"),
-                       "Descrição" = c("Parte real de x", 
-                                       "Parte imaginária de x", 
-                                       "Módulo de x", 
-                                       "Argumento de x", 
-                                       "Complexo conjugado de x"))
+                       "Descrição" = c("Parte real de z", 
+                                       "Parte imaginária de z", 
+                                       "Módulo de z", 
+                                       "Argumento de z", 
+                                       "Complexo conjugado de z"))
 
 pander(complexo)
 ```
@@ -507,6 +511,29 @@ eh_par <- sapply(nums, testa_se_eh_par)
 
 O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
 
+## Escopo
+
+Objetos moram em **ambientes** (*environments*) e as funções as procuram os objetos que precisam usar nesses *environments*.
+
+A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`) e se nada for encontrado, retorna um erro informando que não existe tal objeto.
+
+Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o primeiro que for encontrado).
+
+```{r}
+(x <- exp(1))
+f <- function(x) print(x)
+f(2)
+
+g <- function(y) print(x)
+g(2)
+```
+
+No exemplo acima, o objeto `x` existe tanto fora, quanto dentro da função `f()`. Ao ser chamado para ser usado na função `print(x)`, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor `2`.
+
+O `x` que vale `exp(1)` está morando no *global envirnment* (`.GlobalEnv`) e seria utilizado apenas no caso em que nenhum outro `x` estivesse no caminho.
+
+Na função `g()`, não existe mais o objeto `x` dentro dela (trocamos por `y`). O único objeto que está dentro de lá é o `y`. Como ainda chamamos pelo `x` dentro da função, o R irá buscar por ele, onde quer que ele esteja.
+
 # Variáveis Aleatórias
 
 No R é muito fácil calcular f.d.p's, f.d.a's, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:
@@ -623,6 +650,3 @@ pander(diversos)
 http://adv-r.had.co.nz/Functions.html
 
 http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
-
-# Próxima aula
-
