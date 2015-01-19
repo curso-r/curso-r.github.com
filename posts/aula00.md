@@ -8,9 +8,9 @@ output:
 date: 2015-01-19
 ---
 
-<a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
+<a href="http://curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
 
-<a href="curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a>
+<a href="http://curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a>
 
 ## Agenda do curso 
 

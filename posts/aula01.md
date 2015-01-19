@@ -8,9 +8,9 @@ output:
 date: 2015-01-19
 ---
 
-<a href="curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
+<a href="http://curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a>
 
-<a href="curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a>
+<a href="http://curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a>
 
 
 
@@ -505,7 +505,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.598   0.000   1.600
+##   1.513   0.000   1.510
 ```
 
 ```r
@@ -514,7 +514,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.009   0.000   0.010
+##    0.01    0.00    0.01
 ```
 
 ```r
