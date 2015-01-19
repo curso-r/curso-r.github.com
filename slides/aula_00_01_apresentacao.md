@@ -1,14 +1,6 @@
----
-title: "Aula 1 - Noções básicas"
-author: "Curso de R: Do casual ao avançado"
-date: "19 de janeiro de 2015"
-output: 
-  ioslides_presentation:
-    mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    logo: logo.png
-    keep_md: true
-    self_contained: true
----
+# Aula 1 - Noções básicas
+Curso de R: Do casual ao avançado  
+19 de janeiro de 2015  
 
 
 
