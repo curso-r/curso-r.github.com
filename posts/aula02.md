@@ -661,7 +661,7 @@ str(dados)
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -677,7 +677,7 @@ str(dados)
 
 ```
 ## 'data.frame':	101 obs. of  3 variables:
-##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V1: Factor w/ 11 levels "-0,0907448251260999",..: 11 4 10 5 3 1 8 2 9 7 ...
 ##  $ V2: Factor w/ 101 levels "0,00994513742625713",..: 101 27 84 32 76 37 3 2 79 40 ...
 ##  $ V3: Factor w/ 4 levels "amarelo","azul",..: 3 2 4 1 2 1 1 1 1 1 ...
 ```
@@ -843,7 +843,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.02047598
+## [1] -0.1577354
 ```
 
 ```r
