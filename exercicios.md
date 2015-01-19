@@ -11,7 +11,7 @@ mode: selfcontained
 
 ### R como calculadora
 
-1. Calcule o número de ouro no R ($\frac{1 + \sqrt{5}{2}$).
+1. Calcule o número de ouro no R ($\frac{1 + \sqrt{5}}{2}$).
 
 2. O que dá divisão de 1 por 0? E -1 por 0? 
 
@@ -150,10 +150,8 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram
 ```
 
 ```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## Error in eval(expr, envir, enclos): could not find function "qplot"
 ```
-
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
 
 
 ### Gráficos com o pacote *graphics*

@@ -11,7 +11,7 @@ mode: selfcontained
 
 ### R como calculadora
 
-1. Calcule o número de ouro no R ($\frac{1 + \sqrt{5}{2}$).
+1. Calcule o número de ouro no R ($\frac{1 + \sqrt{5}}{2}$).
 
 2. O que dá divisão de 1 por 0? E -1 por 0? 
 
