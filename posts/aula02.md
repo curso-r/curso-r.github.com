@@ -723,13 +723,13 @@ summary(dados)
 ```
 
 ```
-##    Aleatorio         aleatorio2           cor           
-##  Min.   :-1.5865   Min.   :0.009945   Length:100        
-##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
-##  Median : 0.5795   Median :0.577933   Mode  :character  
-##  Mean   : 0.3675   Mean   :0.540947                     
-##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
-##  Max.   : 1.9053   Max.   :0.990911
+##    Aleatorio        aleatorio2         cor           
+##  Min.   :-1.587   Min.   :0.0099   Length:100        
+##  1st Qu.:-0.713   1st Qu.:0.2930   Class :character  
+##  Median : 0.580   Median :0.5779   Mode  :character  
+##  Mean   : 0.367   Mean   :0.5409                     
+##  3rd Qu.: 1.103   3rd Qu.:0.8238                     
+##  Max.   : 1.905   Max.   :0.9909
 ```
 
 Também pode ser aplicada em apenas uma variável da base:
@@ -740,9 +740,47 @@ summary(dados$aleatorio2)
 ```
 
 ```
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.010   0.293   0.578   0.541   0.824   0.991
 ```
+
+A função `summary` calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: `mean`, `median`, `quantile` e `sd`. A seguir alguns exemplos de uso:
+
+
+```r
+mean(dados$aleatorio2)
+```
+
+```
+## [1] 0.5409
+```
+
+```r
+median(dados$aleatorio2)
+```
+
+```
+## [1] 0.5779
+```
+
+```r
+sd(dados$aleatorio2)
+```
+
+```
+## [1] 0.2999
+```
+
+```r
+quantile(dados$aleatorio2, probs = c(0.25,0.75))
+```
+
+```
+##    25%    75% 
+## 0.2930 0.8238
+```
+
+Essas funções só podem ser aplciadas em vetores, diferente da `summary`que pode ser aplciada à um vetor.
 
 A função `table` calcula tabela de frequências. 
 
@@ -768,6 +806,7 @@ table(dados$cor, dados$cor)
 ##   azul           0   37        0
 ##   vermelho       0    0       25
 ```
+
 
 # O operador *pipe* - %>%
 
@@ -797,7 +836,7 @@ x %>% sum %>% sqrt
 ```
 
 ```
-## [1] 3.162278
+## [1] 3.162
 ```
 
 
@@ -811,7 +850,7 @@ sqrt(sum(x))
 ```
 
 ```
-## [1] 3.162278
+## [1] 3.162
 ```
 
 A princípio, a utilização do `%>%` não parece trazer grandes vantagens, pois a expressão `sqrt(sum(x))` facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do `pipe` transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:
@@ -843,7 +882,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.02047598
+## [1] -0.006705
 ```
 
 ```r
@@ -870,7 +909,7 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-1.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36.png) 
 
 Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento `type=`. Aqui estão os principais tipos de visualização disponíveis:
 
@@ -886,31 +925,31 @@ Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano car
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-371.png) 
 
 ```r
 plot(x, y, type = "b")
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-2.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-372.png) 
 
 ```r
 plot(x, y, type = "h")
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-3.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-373.png) 
 
 ```r
 plot(x, y, type = "s")
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-4.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-374.png) 
 
 ```r
 plot(x, y, type = "n")
 ```
 
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-5.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-375.png) 
 
 Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 
@@ -919,13 +958,13 @@ Para alterar a espessura das visualizações, utilizamos o argumento `lwd=`:
 plot(x, y, type = "p", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-1.png) 
+![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-381.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-2.png) 
+![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-382.png) 
 
 Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento `cex=`:
 
@@ -934,7 +973,7 @@ Observe que esse argumento altera apenas a espessura da circunferência do ponto
 plot(x, y, type = "p", lwd = 2, cex = 2)
 ```
 
-![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-38-1.png) 
+![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39.png) 
 
 Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 
@@ -943,13 +982,13 @@ Para alterar a cor do gráfico, utilizamos o argumento `col=`:
 plot(x, y, type = "h", lwd = 3, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-1.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-401.png) 
 
 ```r
 plot(x, y, type = "h", lwd = 3, col = "#9ff115")
 ```
 
-![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-2.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-402.png) 
 
 Segue abaixo outras funções comumente utilizadas do pacote `graphics`:
 
@@ -964,7 +1003,7 @@ Seguem alguns exemplos:
 boxplot(rnorm(10000))
 ```
 
-![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-1.png) 
+![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-411.png) 
 
 ```r
 c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
@@ -973,7 +1012,7 @@ c("Corinthians", "Palmeiras", "Santos", "São Paulo") %>%
   pie
 ```
 
-![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-2.png) 
+![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-412.png) 
 
 ```r
 rnorm(10000) %>%
@@ -982,8 +1021,4 @@ rnorm(10000) %>%
   hist
 ```
 
-![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-3.png) 
-
-
-
-
+![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-413.png) 

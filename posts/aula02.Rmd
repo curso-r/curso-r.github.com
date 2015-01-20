@@ -327,12 +327,24 @@ Também pode ser aplicada em apenas uma variável da base:
 summary(dados$aleatorio2)
 ```
 
+A função `summary` calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: `mean`, `median`, `quantile` e `sd`. A seguir alguns exemplos de uso:
+
+```{r}
+mean(dados$aleatorio2)
+median(dados$aleatorio2)
+sd(dados$aleatorio2)
+quantile(dados$aleatorio2, probs = c(0.25,0.75))
+```
+
+Essas funções só podem ser aplciadas em vetores, diferente da `summary`que pode ser aplciada à um vetor.
+
 A função `table` calcula tabela de frequências. 
 
 ```{r}
 table(dados$cor)
 table(dados$cor, dados$cor)
 ```
+
 
 # O operador *pipe* - %>%
 
@@ -466,7 +478,3 @@ rnorm(10000) %>%
   log %>%
   hist
 ```
-
-
-
-
