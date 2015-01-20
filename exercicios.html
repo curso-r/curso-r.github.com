@@ -201,11 +201,15 @@ cadastro[3,] &lt;- c(&quot;Pedro Silva&quot;, 23, 3091-777, &quot;São Paulo&quo
 
 <pre><code class="r">x &lt;- 0.1
 
+library(ggplot2)
+
 qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom=&quot;histogram&quot;)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;qplot&quot;
+<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 </code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
 <h3>Gráficos com o pacote <em>graphics</em></h3>
 

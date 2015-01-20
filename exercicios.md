@@ -146,12 +146,16 @@ b) O que faz o operador `%in%`?
 ```r
 x <- 0.1
 
+library(ggplot2)
+
 qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram")
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "qplot"
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
+
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
 
 
 ### Gráficos com o pacote *graphics*

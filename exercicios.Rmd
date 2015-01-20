@@ -152,6 +152,8 @@ b) O que faz o operador `%in%`?
 ```{r}
 x <- 0.1
 
+library(ggplot2)
+
 qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram")
 ```
 

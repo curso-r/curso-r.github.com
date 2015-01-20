@@ -38,7 +38,7 @@ pnud
 ```
 ## Source: local data frame [16,695 x 237]
 ## 
-##     ANO UF Codmun6 Codmun7             Município ESPVIDA FECTOT MORT1
+##     ANO UF Codmun6 Codmun7             Municipio ESPVIDA FECTOT MORT1
 ## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
 ## 2  1991 11  110002 1100023             ARIQUEMES   66.02   3.72 32.39
 ## 3  1991 11  110003 1100031                CABIXI   63.16   3.89 41.52
@@ -153,7 +153,7 @@ pnud %>%
 ```
 ## Source: local data frame [16,695 x 10]
 ## 
-##     ANO UF Codmun6 Codmun7             Município ESPVIDA FECTOT MORT1
+##     ANO UF Codmun6 Codmun7             Municipio ESPVIDA FECTOT MORT1
 ## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
 ## 2  1991 11  110002 1100023             ARIQUEMES   66.02   3.72 32.39
 ## 3  1991 11  110003 1100031                CABIXI   63.16   3.89 41.52
@@ -178,7 +178,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [16,695 x 4]
+## 
+##     ANO UF             Municipio  IDHM
+## 1  1991 11 ALTA FLORESTA D'OESTE 0.329
+## 2  1991 11             ARIQUEMES 0.432
+## 3  1991 11                CABIXI 0.309
+## 4  1991 11                CACOAL 0.407
+## 5  1991 11            CEREJEIRAS 0.386
+## 6  1991 11     COLORADO DO OESTE 0.376
+## 7  1991 11            CORUMBIARA 0.203
+## 8  1991 11         COSTA MARQUES 0.425
+## 9  1991 11       ESPIGÃO D'OESTE 0.388
+## 10 1991 11         GUAJARÁ-MIRIM 0.468
+## ..  ... ..                   ...   ...
 ```
 
 ---
@@ -191,7 +204,21 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [16,695 x 9]
+## 
+##     ANO UF Codmun6 Codmun7             Municipio  IDHM IDHM_E IDHM_L
+## 1  1991 11  110001 1100015 ALTA FLORESTA D'OESTE 0.329  0.112  0.617
+## 2  1991 11  110002 1100023             ARIQUEMES 0.432  0.199  0.684
+## 3  1991 11  110003 1100031                CABIXI 0.309  0.108  0.636
+## 4  1991 11  110004 1100049                CACOAL 0.407  0.171  0.667
+## 5  1991 11  110005 1100056            CEREJEIRAS 0.386  0.167  0.629
+## 6  1991 11  110006 1100064     COLORADO DO OESTE 0.376  0.151  0.658
+## 7  1991 11  110007 1100072            CORUMBIARA 0.203  0.039  0.572
+## 8  1991 11  110008 1100080         COSTA MARQUES 0.425  0.220  0.629
+## 9  1991 11  110009 1100098       ESPIGÃO D'OESTE 0.388  0.159  0.653
+## 10 1991 11  110010 1100106         GUAJARÁ-MIRIM 0.468  0.247  0.662
+## ..  ... ..     ...     ...                   ...   ...    ...    ...
+## Variables not shown: IDHM_R (dbl)
 ```
 
 ---
@@ -214,7 +241,30 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [21 x 4]
+## 
+##     ANO UF             Municipio  IDHM
+## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35             AMERICANA 0.811
+## 3  2010 35            ARARAQUARA 0.815
+## 4  2010 35                 ASSIS 0.805
+## 5  2010 35                 BAURU 0.801
+## 6  2010 35              CAMPINAS 0.805
+## 7  2010 35         ILHA SOLTEIRA 0.812
+## 8  2010 35               JUNDIAÍ 0.822
+## 9  2010 35          PIRASSUNUNGA 0.801
+## 10 2010 35   PRESIDENTE PRUDENTE 0.806
+## 11 2010 35             RIO CLARO 0.803
+## 12 2010 35   SANTANA DE PARNAÍBA 0.814
+## 13 2010 35           SANTO ANDRÉ 0.815
+## 14 2010 35                SANTOS 0.840
+## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
+## 16 2010 35    SÃO CAETANO DO SUL 0.862
+## 17 2010 35            SÃO CARLOS 0.805
+## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
+## 19 2010 35             SÃO PAULO 0.805
+## 20 2010 35              VALINHOS 0.819
+## 21 2010 35               VINHEDO 0.817
 ```
 
 ---
@@ -228,7 +278,30 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [21 x 4]
+## 
+##     ANO UF             Municipio  IDHM
+## 1  2010 35    ÁGUAS DE SÃO PEDRO 0.854
+## 2  2010 35             AMERICANA 0.811
+## 3  2010 35            ARARAQUARA 0.815
+## 4  2010 35                 ASSIS 0.805
+## 5  2010 35                 BAURU 0.801
+## 6  2010 35              CAMPINAS 0.805
+## 7  2010 35         ILHA SOLTEIRA 0.812
+## 8  2010 35               JUNDIAÍ 0.822
+## 9  2010 35          PIRASSUNUNGA 0.801
+## 10 2010 35   PRESIDENTE PRUDENTE 0.806
+## 11 2010 35             RIO CLARO 0.803
+## 12 2010 35   SANTANA DE PARNAÍBA 0.814
+## 13 2010 35           SANTO ANDRÉ 0.815
+## 14 2010 35                SANTOS 0.840
+## 15 2010 35 SÃO BERNARDO DO CAMPO 0.805
+## 16 2010 35    SÃO CAETANO DO SUL 0.862
+## 17 2010 35            SÃO CARLOS 0.805
+## 18 2010 35   SÃO JOSÉ DOS CAMPOS 0.807
+## 19 2010 35             SÃO PAULO 0.805
+## 20 2010 35              VALINHOS 0.819
+## 21 2010 35               VINHEDO 0.817
 ```
 
 ---
@@ -242,7 +315,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [11,130 x 5]
+## 
+##     ANO UF             Municipio  IDHM   PEA
+## 1  2000 11 ALTA FLORESTA D'OESTE 0.483 12670
+## 2  2000 11             ARIQUEMES 0.556 33705
+## 3  2000 11                CABIXI 0.488  3227
+## 4  2000 11                CACOAL 0.567 34206
+## 5  2000 11            CEREJEIRAS 0.542  8407
+## 6  2000 11     COLORADO DO OESTE 0.545  9576
+## 7  2000 11            CORUMBIARA 0.401  3729
+## 8  2000 11         COSTA MARQUES 0.486  3686
+## 9  2000 11       ESPIGÃO D'OESTE 0.501 10428
+## 10 2000 11         GUAJARÁ-MIRIM 0.573 15802
+## ..  ... ..                   ...   ...   ...
 ```
 
 ---
@@ -256,7 +342,15 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [6 x 4]
+## 
+##    ANO UF Municipio  IDHM
+## 1 1991 35  CAMPINAS 0.618
+## 2 1991 35 SÃO PAULO 0.626
+## 3 2000 35  CAMPINAS 0.735
+## 4 2000 35 SÃO PAULO 0.733
+## 5 2010 35  CAMPINAS 0.805
+## 6 2010 35 SÃO PAULO 0.805
 ```
 
 ---
@@ -280,7 +374,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [5,565 x 6]
+## 
+##     ANO UF             Municipio  IDHM idhm_porc idhm_porc_txt
+## 1  2010 11 ALTA FLORESTA D'OESTE 0.641      64.1        64.1 %
+## 2  2010 11             ARIQUEMES 0.702      70.2        70.2 %
+## 3  2010 11                CABIXI 0.650      65.0          65 %
+## 4  2010 11                CACOAL 0.718      71.8        71.8 %
+## 5  2010 11            CEREJEIRAS 0.692      69.2        69.2 %
+## 6  2010 11     COLORADO DO OESTE 0.685      68.5        68.5 %
+## 7  2010 11            CORUMBIARA 0.613      61.3        61.3 %
+## 8  2010 11         COSTA MARQUES 0.611      61.1        61.1 %
+## 9  2010 11       ESPIGÃO D'OESTE 0.672      67.2        67.2 %
+## 10 2010 11         GUAJARÁ-MIRIM 0.657      65.7        65.7 %
+## ..  ... ..                   ...   ...       ...           ...
 ```
 
 ---
@@ -295,7 +402,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [5,565 x 8]
+## 
+##     ANO UF             Municipio  IDHM IDHM_E IDHM_L IDHM_R  idhm2
+## 1  2010 11 ALTA FLORESTA D'OESTE 0.641  0.526  0.763  0.657 0.6445
+## 2  2010 11             ARIQUEMES 0.702  0.600  0.806  0.716 0.7030
+## 3  2010 11                CABIXI 0.650  0.559  0.757  0.650 0.6580
+## 4  2010 11                CACOAL 0.718  0.620  0.821  0.727 0.7205
+## 5  2010 11            CEREJEIRAS 0.692  0.602  0.799  0.688 0.7005
+## 6  2010 11     COLORADO DO OESTE 0.685  0.584  0.814  0.676 0.6990
+## 7  2010 11            CORUMBIARA 0.613  0.473  0.774  0.630 0.6235
+## 8  2010 11         COSTA MARQUES 0.611  0.493  0.751  0.616 0.6220
+## 9  2010 11       ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
+## 10 2010 11         GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
+## ..  ... ..                   ...   ...    ...    ...    ...    ...
 ```
 
 ---
@@ -338,7 +458,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [5,565 x 6]
+## 
+##     ANO UF          Municipio  IDHM idhm_porc idhm_porc_txt
+## 1  2010 15            MELGAÇO 0.418      41.8        41.8 %
+## 2  2010 21    FERNANDO FALCÃO 0.443      44.3        44.3 %
+## 3  2010 13   ATALAIA DO NORTE 0.450      45.0          45 %
+## 4  2010 21     MARAJÁ DO SENA 0.452      45.2        45.2 %
+## 5  2010 14           UIRAMUTÃ 0.453      45.3        45.3 %
+## 6  2010 15             CHAVES 0.453      45.3        45.3 %
+## 7  2010 12             JORDÃO 0.469      46.9        46.9 %
+## 8  2010 15              BAGRE 0.471      47.1        47.1 %
+## 9  2010 15 CACHOEIRA DO PIRIÁ 0.473      47.3        47.3 %
+## 10 2010 13          ITAMARATI 0.477      47.7        47.7 %
+## ..  ... ..                ...   ...       ...           ...
 ```
 
 ---
@@ -354,7 +487,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [5,565 x 6]
+## 
+##     ANO UF          Municipio  IDHM idhm_porc idhm_porc_txt
+## 1  2010 35 SÃO CAETANO DO SUL 0.862      86.2        86.2 %
+## 2  2010 35 ÁGUAS DE SÃO PEDRO 0.854      85.4        85.4 %
+## 3  2010 42      FLORIANÓPOLIS 0.847      84.7        84.7 %
+## 4  2010 32            VITÓRIA 0.845      84.5        84.5 %
+## 5  2010 42 BALNEÁRIO CAMBORIÚ 0.845      84.5        84.5 %
+## 6  2010 35             SANTOS 0.840      84.0          84 %
+## 7  2010 33            NITERÓI 0.837      83.7        83.7 %
+## 8  2010 42            JOAÇABA 0.827      82.7        82.7 %
+## 9  2010 53           BRASÍLIA 0.824      82.4        82.4 %
+## 10 2010 41           CURITIBA 0.823      82.3        82.3 %
+## ..  ... ..                ...   ...       ...           ...
 ```
 
 ---
@@ -394,7 +540,23 @@ pnud %>%
 ## 8  32  78  0.6921923         3477471
 ## 9  51 141  0.6842908         2961982
 ## 10 50  78  0.6797051         2404631
-## .. .. ...        ...             ...
+## 11 31 853  0.6678781        19383599
+## 12 11  52  0.6440385         1515023
+## 13 16  16  0.6428125          652768
+## 14 17 139  0.6399281         1349774
+## 15 23 184  0.6166304         8317603
+## 16 24 167  0.6108503         3127816
+## 17 14  15  0.6102000          421159
+## 18 28  75  0.5969333         2038462
+## 19 26 185  0.5962486         8646411
+## 20 29 417  0.5939041        13755196
+## 21 25 223  0.5876547         3706988
+## 22 12  22  0.5860909          690774
+## 23 15 143  0.5815455         7247981
+## 24 21 217  0.5761843         6317986
+## 25 22 224  0.5710491         3050831
+## 26 13  62  0.5651129         3301220
+## 27 27 102  0.5635000         3045853
 ```
 
 ---
@@ -420,7 +582,23 @@ pnud %>%
 ## 8  21 217
 ## 9  22 224
 ## 10 23 184
-## .. .. ...
+## 11 24 167
+## 12 25 223
+## 13 26 185
+## 14 27 102
+## 15 28  75
+## 16 29 417
+## 17 31 853
+## 18 32  78
+## 19 33  92
+## 20 35 645
+## 21 41 399
+## 22 42 293
+## 23 43 496
+## 24 50  78
+## 25 51 141
+## 26 52 246
+## 27 53   1
 ```
 
 ----
@@ -476,18 +654,34 @@ pnud %>%
 ```
 ## Source: local data frame [27 x 4]
 ## 
-##    UF    1991    2000    2010
-## 1  11 1082711 1306213 1515023
-## 2  12  414609  519639  690774
-## 3  13 1977073 2543710 3301220
-## 4  14  172314  296263  421159
-## 5  15 4798976 5817542 7247981
-## 6  16  280599  453547  652768
-## 7  17  891051 1066193 1349774
-## 8  21 4803825 5258529 6317986
-## 9  22 2519184 2699084 3050831
-## 10 23 6255097 6995427 8317603
-## .. ..     ...     ...     ...
+##    UF     1991     2000     2010
+## 1  11  1082711  1306213  1515023
+## 2  12   414609   519639   690774
+## 3  13  1977073  2543710  3301220
+## 4  14   172314   296263   421159
+## 5  15  4798976  5817542  7247981
+## 6  16   280599   453547   652768
+## 7  17   891051  1066193  1349774
+## 8  21  4803825  5258529  6317986
+## 9  22  2519184  2699084  3050831
+## 10 23  6255097  6995427  8317603
+## 11 24  2356168  2613636  3127816
+## 12 25  3126315  3290779  3706988
+## 13 26  6993504  7527891  8646411
+## 14 27  2448544  2611271  3045853
+## 15 28  1462008  1710603  2038462
+## 16 29 11522516 12286822 13755196
+## 17 31 15466865 17468072 19383599
+## 18 32  2562362  3048681  3477471
+## 19 33 12614621 14207409 15871447
+## 20 35 31053551 36529439 40915379
+## 21 41  8297807  9364063 10348247
+## 22 42  4459708  5268781  6199947
+## 23 43  8978875 10022774 10593371
+## 24 50  1739157  2018872  2404631
+## 25 51  1951174  2380431  2961982
+## 26 52  3931474  4887131  5934769
+## 27 53  1551869  2001728  2541714
 ```
 
 ---
@@ -505,7 +699,20 @@ pnud %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Municipio' not found
+## Source: local data frame [16,695 x 4]
+## 
+##    UF             Municipio tipo_idh   idh
+## 1  11 ALTA FLORESTA D'OESTE   IDHM_E 0.526
+## 2  11             ARIQUEMES   IDHM_E 0.600
+## 3  11                CABIXI   IDHM_E 0.559
+## 4  11                CACOAL   IDHM_E 0.620
+## 5  11            CEREJEIRAS   IDHM_E 0.602
+## 6  11     COLORADO DO OESTE   IDHM_E 0.584
+## 7  11            CORUMBIARA   IDHM_E 0.473
+## 8  11         COSTA MARQUES   IDHM_E 0.493
+## 9  11       ESPIGÃO D'OESTE   IDHM_E 0.536
+## 10 11         GUAJARÁ-MIRIM   IDHM_E 0.519
+## .. ..                   ...      ...   ...
 ```
 
 ---
