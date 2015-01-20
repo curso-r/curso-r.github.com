@@ -1,0 +1,605 @@
+---
+title: "Aula 02 - Estruturas de dados e vocabulário"
+author: "Curso de R: Do casual ao avançado"
+date: "21 de janeiro de 2015"
+output: 
+  ioslides_presentation:
+    mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    logo: logo.png
+    keep_md: true
+    self_contained: true
+---
+
+```{r, echo=FALSE}
+library(pander)
+panderOptions("table.style", "rmarkdown")
+```
+
+## Funções
+
+- Funções também são objetos! (tudo à esquerda de `<-` vira objeto no R)
+- Funções podem ser passadas como argumentos de outras funções
+- Use suas funções como se tivessem vindas com o R: `nome_da_funcao(...)`
+- Crie uma função sempre que for repetir o código e for mudar poucas coisas entre essas repetições
+- Crie funções se esta puder ser generalizada para a tarefa específica em que sua implementação foi motivada
+
+## Funções
+
+**Parâmetros**
+
+```{r, eval=FALSE}
+### <b>
+nome_da_funcao <- function(<parâmetros>) {
+### </b>
+  # faz coisas com os parâmetros
+  resultado
+}
+```
+
+- Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário
+- Funções aceitam quantos parâmetros precisar, e de qualquer tipo, inclusive nada (`NULL`)
+- Os nomes dos parâmetros se tornarão objetos que só poderão ser usados dentro da função
+
+## Funções
+
+**Parâmetros opcionais**
+
+Podemos definir parâmetros que possuem valores "padrão".
+
+```{r}
+# função que ecoa uma palavra
+ecoar <- function(palavra, n_ecos = 3) {
+    paste(c(rep(palavra, n_ecos), "!"), collapse = " ")
+}
+
+ecoar("eco")
+ecoar("eco", 5)
+```
+
+## Funções
+
+**Parâmetros relativos**
+
+Um parâmetro pode usar outro parâmetro como valor padrão.
+
+```{r, eval=FALSE}
+# Função que desenha um histograma
+### <b>
+histograma <- function(numeros, xlab = "x", 
+                       titulo = paste("Histograma de", xlab)) {
+### </b>
+  hist(numeros, xlab = xlab, main = titulo)
+}
+```
+
+O parâmetro `titulo` usa o parâmetro `xlab` para compor seu valor padrão.
+
+
+## Funções
+
+**Ordem ou nome dos parâmetros**
+
+Funções entenderão os parâmetros passados...
+
+- se forem passados com o nome, mesmo que fora da ordem
+- se forem passados na ordem, mesmo que sem o nome
+- se não houver ambiguidade, o R aceita parte do nome do parâmetro
+
+```{r, eval=FALSE}
+# As quatro linhas abaixo resultam no mesmo gráfico
+histograma(altura, "altura")                  # na ordem
+histograma(numeros = altura, xlab = "altura") # pelo nome
+histograma(xlab = "altura", altura)           # pelo nome e depois na ordem
+histograma(altura, xl = "altura")             # parte do nome
+```
+
+
+
+## Funções
+
+**Parâmetro '...'**
+
+Utilidade 2: os parâmetros extras serão passados a uma terceira função que tem muitos parâmetros
+
+```{r, eval=FALSE}
+histograma <- function(numeros, xlab = "x", 
+                       titulo = paste("Histograma de", xlab), ...) {
+  hist(numeros, xlab = xlab, main = titulo, ...)
+}
+
+# parâmetros extras para hist()
+histograma(altura, breaks = 100, col = 2)
+```
+
+Passamos `breaks` e `col` à função `histograma()` que repassou à função `hist()`.
+
+
+## Funções
+
+**Escopo**
+
+```{r}
+(x <- exp(1))
+f <- function(x) print(x)
+f(2)
+
+g <- function(y) print(x)
+g(2)
+
+```
+
+## Funções
+
+**Escopo**
+
+- Objetos moram em **ambientes** (*environments*)
+- As funções as procuram os objetos que precisam usar nesses *environments*
+- A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`)
+- Se nada for encontrado, retorna um erro
+- Se houver dois objetos com o mesmo nome, prevalece o mais específico (o primeiro que for encontrado)
+
+## Variáveis aleatórias {.build}
+
+```{r, eval=FALSE}
+dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+```
+
+## Variáveis aleatórias
+
+- **d** ("density") Densidade da Normal, ou f.d.p da Normal
+- **p** ("probability") Função de distribuição acumulada (f.d.a) da Normal
+- **q** ("quantile") Quantil da Normal
+- **r** ("random") Gera um número vindo de uma Normal
+
+## Variáveis aleatórias {.smaller}
+
+No lugar de `norm`, você pode trocar por outra distribuição de probabilidade.
+
+```{r, echo=FALSE, results='asis'}
+dist <- data.frame("Distribuição" = c("Normal",
+                                      "Uniforme",
+                                      "Beta",
+                                      "Chi Quadrado",
+                                      "Exponencial",
+                                      "F de Snedecor",
+                                      "Gama",
+                                      "Poisson"),
+                   "Apelido" = c("norm",
+                                 "unif",
+                                 "beta",
+                                 "chisq",
+                                 "exp",
+                                 "f",
+                                 "gamma",
+                                 "pois"))
+pander(dist)
+```
+
+
+## Vocabulário
+
+```{r, echo=FALSE}
+diversos <- data.frame("Função" = c("x:y", 
+                                    "x=y", 
+                                    "?x", 
+                                    "x$y", 
+                                    "x%\\*%y"),
+                       "Descrição" = c("Sequencia de x até y", 
+                                       "x recebe y (atribuição)", 
+                                       "documentação de x", 
+                                       "extração de y do objeto x", 
+                                       "Multiplicação matricial das matrizes x e y"))
+
+estatistica <- data.frame("Função" = c("mean(x)",
+                                       "var(x) / sd(x)",
+                                       "quantile(x)",
+                                       "cov(x, y) / cor(x, y)"),
+                          "Descrição" = c("Média de x",
+                                          "Variância / Desvio Padrão amostral de x",
+                                          "Quantis de x",
+                                          "Covariância / Correlação linear entre x e y"))
+
+matematica <- data.frame("Função" = c("log(x)",
+                                      "exp(x)",
+                                      "abs(x)",
+                                      "sign(x)",
+                                      "sqrt(x)",
+                                      "choose(n, k)",
+                                      "factorial(x)"
+                                      ),
+                         "Descrição" = c("Logaritmo natural de x",
+                                         "e elevado a x",
+                                         "valor absoluto de x",
+                                         "sinal de x (1 ou -1)",
+                                         "raiz quadrada de x",
+                                         "combinações de n, k a k",
+                                         "fatorial de x"))
+
+trigonometria <- data.frame("Função" = c("cos(x) / sin(x) / tan(x)",
+                                           "acos(x) / asin(x) / atan(x)"),
+                            "Descrição" = c("seno/cosseno/tangente de x",
+                                              "arco-seno/cosseno/tangente de x"))
+```
+
+## Vocabulário {.smaller}
+
+**Matemática**
+
+```{r, echo=FALSE, results='asis'}
+pander(matematica)
+```
+
+## Vocabulário
+
+**Estatística**
+
+```{r, echo=FALSE, results='asis'}
+pander(estatistica)
+```
+
+## Vocabulário
+
+**Diversos**
+
+```{r, echo=FALSE, results='asis'}
+pander(diversos)
+```
+
+## Estruturas de dados no R {.build}
+
+Tipos básicos de estrutura no R:
+
+- **Atomic vector**: homogêneo e unidimensional
+- **Matriz**: homogêneo e bidimensional
+- **Array**: homogêneo e multidimensional
+- **Lista**: heterogêneo 
+- **Data frame**: heterogêneo 
+
+
+**Nota**: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.
+
+
+## Atomic Vectors
+
+Estrutura de objetos mais simples do R, caracterizados por "não ter dimensão"
+
+Tipos de atomic vectos:
+
+- lógico
+- integer
+- double
+- complexo
+- character
+
+## Atomic Vectors 
+
+Exemplos:
+
+```{r}
+var1 <- c(1, 2.5, 4.5)
+var2 <- c(1L, 6L, 10L)
+var3 <- c(TRUE, FALSE, T, F)
+var4 <- c("essas são", "algumas strings")
+```
+
+**Curiosidade**: na função `c()`, o *c* é de *concatenate*.
+
+## Atomic Vectors {.build}
+
+Para saber qual é o tipo de um objeto, utilizamos a função `typeof()`.
+
+```{r tipos}
+typeof(var1)
+typeof(var2)
+typeof(var3)
+typeof(var4)
+```
+
+## Atomic Vectors {.build}
+
+As funções `is.integer()`, `is.double()`, `is.logical()`, `is.character()` são usadas para testar se um objeto é de um determinado tipo.
+
+```{r}
+is.integer(var1)
+is.double(var1)
+is.numeric(var1)
+```
+
+## Atomic Vectors {.build}
+
+```{r}
+is.logical(var3)
+is.character(var4)
+```
+
+Note que a função `is.numeric()` retorna `TRUE` tanto para objetos double quanto para integer.
+
+## Coerção
+
+Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:
+
+- logical
+- integer
+- double
+- character
+
+Na lista acima, character é o tipo mais flexível.
+
+## Coerção {.build}
+
+
+```{r}
+c("a", 1, TRUE, T)
+c(T, 1, F)
+```
+
+Isso pode ser útil, por exemplo, para contar o número de TRUEs em um vetor lógico:
+
+```{r}
+sum(c(T, F, T, F, T))
+```
+
+## Factors
+
+*Factors* são utilizados para armazernar dados categorizados e são caracterizados por:
+
+- conterem apenas valores pré-definidos, chamados *levels*; e
+- se basearem num vetor de inteiros.
+
+
+```{r}
+f <- factor(c("aventura", "terror", "comédia", "drama"))
+f
+levels(f)
+```
+
+Observe que, dentro do objeto, os *levels* são organizados em ordem alfabética.
+
+## Factors {.build}
+
+Sempre tome cuidado ao converter factors em objetos numéricos:
+
+```{r}
+f <- factor(c("2", "3", "1", "10"))
+as.numeric(f)
+as.numeric(as.character(f))
+```
+
+## Matrizes e Arrays
+
+Matrizes e arrays são definidos usando as funções `matrix()` e `array()`.
+
+```{r}
+# Um vetor para descrever todas as dimensões
+arr <- array(1:12, c(3,2,2))
+
+# Dois argumentos para determinar o número de linahs e colunas
+mat <- matrix(1:6, ncol = 3, nrow = 2)
+```
+
+Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito *dimensão*.
+
+**Nota**: observe que uma matriz é um array com duas dimensões.
+
+## Dimmensões e comprimentos
+
+As funções `length()`, `dim()`, `nrow()`, `ncol()` são usadas para determinar o comprimento de cada dimensão de um objeto.
+
+## Dimensões e comprimentos {.build}
+
+```{r}
+dim(c(1,2,3))
+nrow(c(1,2,3))
+ncol(c(1,2,3))
+length(c(1,2,3))
+```
+
+## Dimensões e comprimentos {.build}
+
+```{r}
+dim(arr)
+length(arr)
+nrow(arr)
+ncol(arr)
+```
+
+## Dimensões e comprimentos {.build}
+
+```{r}
+dim(mat)
+length(mat)
+nrow(mat)
+ncol(mat)
+```
+
+## Listas e Data frames
+
+Listas são definidas usando a função `list()`.
+
+```{r, eval = F}
+lista <- list(
+  c(1:5),
+  c("homem", "mulher"),
+  c(T, F, T),
+  list(c(1,2,3), c("a", "b", "c"))
+  )
+```
+
+Data frames são listas em que todos os elementos têm o mesmo comprimento. São definidos usando a função `data.frame()`.
+
+```{r}
+df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+```
+
+## Diferença entre data.frame e matrix
+
+Com o que foi dito até agora, qual é a diferença entre `data.frame` e `matrix`?
+
+No `data.frame` do slide anterior, a variável `z` só foi definida para a primeira linha?
+
+## data.frames e factors {.build}
+
+```{r}
+df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+str(df)
+```
+
+```{r}
+df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T, 
+                 stringsAsFactors = F)
+str(df)
+```
+
+## data.frames {.build}
+
+Se usarmos a função `names()` obtemos o nome das colunas do data frame. 
+
+```{r}
+names(df)
+names(df) <- c("a", "b", "c")
+names(df)
+```
+
+## Combinando data.frames
+
+É possível combinar data frames usando as funções `rbind()` e `cbind()`:
+
+```{r}
+df1 <- data.frame(x = 3:4, y = c("s", "s"), z = T)
+df2 <- data.frame(x = 1:2, y = c("n", "n"), z = F)
+```
+
+## Combinando data.frames {.build}
+
+```{r}
+rbind(df1, df2)
+cbind(df1, df2)
+```
+
+**Nota**: essas funções tammbém funcionam com matrizes
+
+## Subsetting {.build}
+
+Chamamos de *subsetting* a seleção de um subconjunto de um objeto. No R, existem três tipos principais de operação de subsetting:
+
+- Números inteiros positivos
+- Números inteiros negativos
+- Vetores lógicos
+
+## Números inteiros positivos {.build}
+
+```{r}
+x <- c(13, 8, 5, 3, 2, 1, 1) 
+x[c(1,2,3)]
+order(x)
+x[order(x)]
+```
+
+## Números inteiros negativos {.build}
+
+```{r}
+x[-c(2, 5,6)]
+```
+
+## Vetores lógicos {.build}
+
+```{r}
+x == 1
+x[x==1]
+
+x > 5
+x[x>5]
+```
+
+## Outras dimensões {.build}
+
+```{r}
+m <- matrix(c(1:5, 11:15), nrow=5, ncol=2)
+m
+```
+
+## Outras dimensões {.build}
+
+```{r}
+m[5,2] # Retorna o elemento especificado pelos índices.
+m[,1] # Retorna todos os elementos da coluna 1.
+m[3,] # Retorna todos os elementos da linha 3.
+m[m%%2 == 0] # Retorna os elementos pares.
+```
+
+## Alterando valores usando subsetting {.build}
+
+```{r}
+x <- c(13, 8, 5, 3, 2, 1, 1) 
+x[x>5] <- 0
+x
+```
+
+## Leitura de dados
+
+Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
+
+```{r, eval  = F}
+help(read.table)
+```
+
+## Ler arquivo no R
+
+Vá para o R!
+
+## Estatísticas básicas
+
+Vá para o R!
+
+## Operador pipe %>%
+
+O logo do nosso curso!
+o operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. "Só" isso!
+Para usar o operador `%>%`, primeiramente devemos instalar o pacote `magrittr` com a função `install.packages()`
+```{r, , eval=FALSE}
+install.packages("magrittr")
+```
+e carregá-lo com a função `library()`
+```{r}
+library(magrittr)
+```
+
+## Uso do %>%  {.build}
+
+```{r}
+x <- c(1,2,3,4)
+x %>% sum %>% sqrt
+sqrt(sum(x))
+```
+
+## Uso do %>% 
+
+```{r, eval=FALSE}
+esfrie(asse(coloque(bata(acrescente(recipiente(
+  rep("farinha", 2), "água", "fermento", "leite", "óleo"), 
+  "farinha", até = "macio"), duração = "3min"), 
+  lugar = "forma", tipo = "grande", 
+  untada = T), duração = "50min"), "geladeira", "20min")
+```
+
+## Uso do %>% 
+
+```{r, eval = F}
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duração = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = T) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+```
+
+## Uso do %>% {.build}
+
+```{r}
+T %>% mean(c(NA, rnorm(100)), na.rm = .)
+F %>% mean(c(NA, rnorm(100)), na.rm = .)
+```
+
