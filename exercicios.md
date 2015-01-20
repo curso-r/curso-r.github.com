@@ -26,6 +26,7 @@ mode: selfcontained
 1.a) O que acontece se eu rodar
 
 
+
 ```r
 x <- 4
 if(x = 4) {
@@ -138,6 +139,15 @@ b) O que faz o operador `%in%`?
 
 ### Leitura de dados
 
+1. Vamos supor que o seu diretório de trabalho seja `"Desktop/pasta1/pasta2"` e que dentro da *pasta2* você tenha uma *pasta3*. Sem mudar o diretório de trabalho, escreva um código, utilizando a função `read.table()`, para ler um arquivo que esteja
+
+a) dentro da *pasta3*.
+b) dentro da *pasta1*.
+
+2. É possível ler um arquivo em que o separador de valores (`sep`) é igual ao separador de casas deciamais (`dec`)?
+
+3. Qual a diferença entre as funções `read.csv()` e `read.csv2()`?
+
 ### O operador *pipe*
 
 1. Reescreva a expressão abaixo utilizando o operador `%>%`.
@@ -155,8 +165,17 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
+```
+## Warning: position_stack requires constant width: output may be incorrect
+```
 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8.png) 
+
+2. Para que servem os operadores:
+
+a) `%<>%`?
+b) `%T>%`?
+c) `%$%`?
 
 ### Gráficos com o pacote *graphics*
 
@@ -170,7 +189,7 @@ y <- 1/x
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
 
 
 a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.

@@ -24,8 +24,11 @@ mode: selfcontained
 ### Flow Controls
 
 1.a) O que acontece se eu rodar
+```{r, echo = F}
+.Random.seed <- 121321
+```
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 x <- 4
 if(x = 4) {
   'isso aqui apareceu'

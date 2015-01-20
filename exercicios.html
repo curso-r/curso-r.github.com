@@ -193,6 +193,18 @@ cadastro[3,] &lt;- c(&quot;Pedro Silva&quot;, 23, 3091-777, &quot;São Paulo&quo
 
 <h3>Leitura de dados</h3>
 
+<ol>
+<li>Vamos supor que o seu diretório de trabalho seja <code>&quot;Desktop/pasta1/pasta2&quot;</code> e que dentro da <em>pasta2</em> você tenha uma <em>pasta3</em>. Sem mudar o diretório de trabalho, escreva um código, utilizando a função <code>read.table()</code>, para ler um arquivo que esteja</li>
+</ol>
+
+<p>a) dentro da <em>pasta3</em>.
+b) dentro da <em>pasta1</em>.</p>
+
+<ol>
+<li><p>É possível ler um arquivo em que o separador de valores (<code>sep</code>) é igual ao separador de casas deciamais (<code>dec</code>)?</p></li>
+<li><p>Qual a diferença entre as funções <code>read.csv()</code> e <code>read.csv2()</code>?</p></li>
+</ol>
+
 <h3>O operador <em>pipe</em></h3>
 
 <ol>
@@ -209,7 +221,18 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom=&quot;hist
 <pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+<pre><code>## Warning: position_stack requires constant width: output may be incorrect
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<ol>
+<li>Para que servem os operadores:</li>
+</ol>
+
+<p>a) <code>%&lt;&gt;%</code>?
+b) <code>%T&gt;%</code>?
+c) <code>%$%</code>?</p>
 
 <h3>Gráficos com o pacote <em>graphics</em></h3>
 
@@ -221,7 +244,7 @@ y &lt;- 1/x
 plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+<p><img src="assets/fig/unnamed-chunk-9.png" alt="plot of chunk unnamed-chunk-9"> </p>
 
 <p>a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.</p>
 
