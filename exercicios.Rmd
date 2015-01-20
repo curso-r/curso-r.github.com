@@ -145,6 +145,15 @@ b) O que faz o operador `%in%`?
 
 ### Leitura de dados
 
+1. Vamos supor que o seu diretório de trabalho seja `"Desktop/pasta1/pasta2"` e que dentro da *pasta2* você tenha uma *pasta3*. Sem mudar o diretório de trabalho, escreva um código, utilizando a função `read.table()`, para ler um arquivo que esteja
+
+a) dentro da *pasta3*.
+b) dentro da *pasta1*.
+
+2. É possível ler um arquivo em que o separador de valores (`sep`) é igual ao separador de casas deciamais (`dec`)?
+
+3. Qual a diferença entre as funções `read.csv()` e `read.csv2()`?
+
 ### O operador *pipe*
 
 1. Reescreva a expressão abaixo utilizando o operador `%>%`.
@@ -157,6 +166,11 @@ library(ggplot2)
 qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram")
 ```
 
+2. Para que servem os operadores:
+
+a) `%<>%`?
+b) `%T>%`?
+c) `%$%`?
 
 ### Gráficos com o pacote *graphics*
 
