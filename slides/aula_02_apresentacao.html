@@ -832,7 +832,7 @@ x %&gt;% sum %&gt;% sqrt</pre>
 
 <pre class = 'prettyprint lang-r'>T %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
-<pre >## [1] 0.1056</pre>
+<pre >## [1] -0.05766</pre>
 
 <pre class = 'prettyprint lang-r'>F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
@@ -857,17 +857,17 @@ plot(x, y)</pre>
 
 <pre class = 'prettyprint lang-r'>mat &lt;- matrix(rnorm(300), ncol = 3)
 m &lt;- numeric(length = ncol(mat))
-for (i in ncol(mat)){
+for (i in 1:ncol(mat)){
   m[i] &lt;- mean(mat[,i])
 }
 m</pre>
 
-<pre >## [1]  0.000000  0.000000 -0.003504</pre>
+<pre >## [1] -0.05498 -0.12054 -0.10149</pre>
 
 <pre class = 'prettyprint lang-r'>aaply(mat, 2, mean)</pre>
 
-<pre >##         1         2         3 
-## -0.073471 -0.153423 -0.003504</pre>
+<pre >##        1        2        3 
+## -0.05498 -0.12054 -0.10149</pre>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr-2">
 
@@ -879,21 +879,12 @@ for(i in unique(df$x)){
 }
 m</pre>
 
-<pre >## [1]  0.32619  0.28185 -0.07474  0.17279</pre>
+<pre >## [1] -0.01333  0.11788  0.36145 -0.30979</pre>
 
-<pre class = 'prettyprint lang-r'>daply(df, .(x), colwise(mean))</pre>
+<pre class = 'prettyprint lang-r'>library(magrittr)
+daply(df, .(x), colwise(mean)) %&gt;% as.numeric()</pre>
 
-<pre >## $`1`
-## [1] 0.3262
-## 
-## $`2`
-## [1] 0.2819
-## 
-## $`3`
-## [1] -0.07474
-## 
-## $`4`
-## [1] 0.1728</pre></article></slide>
+<pre >## [1] -0.01333  0.11788  0.36145 -0.30979</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

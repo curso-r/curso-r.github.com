@@ -625,7 +625,7 @@ library(plyr)
 ```{r}
 mat <- matrix(rnorm(300), ncol = 3)
 m <- numeric(length = ncol(mat))
-for (i in ncol(mat)){
+for (i in 1:ncol(mat)){
   m[i] <- mean(mat[,i])
 }
 m
@@ -648,7 +648,8 @@ m
 ```
 
 ```{r}
-daply(df, .(x), colwise(mean))
+library(magrittr)
+daply(df, .(x), colwise(mean)) %>% as.numeric()
 ```
 
 
