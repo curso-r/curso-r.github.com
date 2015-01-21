@@ -7,27 +7,48 @@ framework: purus
 mode: selfcontained
 ---
 
-<a href="http://curso-r.github.io/exercicios_com_resolucao.html" target="_blank">Exercícios com resolução</a>
-
 ## Aula 01
 
 ### R como calculadora
 
 1. Calcule o número de ouro no R ($\frac{1 + \sqrt{5}}{2}$).
 
+```{r, eval=FALSE}
+(1 + sqrt(5))/2
+(1 + 5^(1/2))/2
+```
+
+
 2. O que dá divisão de 1 por 0? E -1 por 0? 
+
+```{r}
+1/0
+-1/0
+```
 
 3. Quais as diferenças entre `NaN`, `NULL`, `NA` e `Inf`? 
 
+- `NaN` quer dizer "Not a number", ele aparece quando o resultado de uma expressão matemática não está definida.
+- `NA` significa "Not Available" e simboliza informação ausente/faltante. Usamos NA principalmente para representar dados faltantes em bancos de dados.
+- `NULL` significa vazio, "nada". Quando queremos que uma função não retorne nada, fazemos ela devolver `NULL`.
+- `Inf` representa o infinito, como no limite de funções matemáticas. Valores muito grandes (10e+308) e `1/0` retornam `Inf` (com I maiúsculo).
+
 4.a) Tente mentalmente calcular o que dá a conta `5 + 3 * 10 %/% 3 == 15` no R, sem rodar.
+```{r}
+14 == 15
+```
 
 4.b) Adicionando apenas parênteses, faça a expressão acima retornar o resultado contrário. 
+```{r}
+5 + (3 * 10) %/% 3 == 15
+```
 
 ### Flow Controls
 
 1.a) O que acontece se eu rodar
 ```{r, echo = F}
 .Random.seed <- 121321
+x <- 4
 ```
 
 ```{r, eval=FALSE}
@@ -38,10 +59,32 @@ if(x = 4) {
 x
 ```
 
+R: *Dará um erro de que coisas inesperadas ocorreram.*
+
 Você notou alguma coisa estranha? Como o R se comporta nesse caso?
+
+R: *A condição do if está utilizando o operador "=" em vez do "==".*
 
 1.b) Como você modificaria esse código para não dar erro e aparecer a frase 'isso aqui apareceu'?
 Obs: Existem duas formas de modificar o código que farão ele funcionar.
+
+R: Forma I
+```{r}
+if(x == 4) {
+  'isso aqui apareceu'
+}
+x
+```
+
+R: Forma II
+```{r}
+if(x <- 4) {
+  'isso aqui apareceu'
+}
+x
+```
+
+Esta segunda forma mostra uma das diferenças entre os operadores de atribuição `=` e `<-`.
 
 2. Escreva a frase (em uma linha)
 
@@ -52,32 +95,94 @@ Obs: Existem duas formas de modificar o código que farão ele funcionar.
 
 usando `for` ou `while`.
 
-```{r results='hide', eval=FALSE, echo=FALSE}
-n <- 4
+R: Utilizando `for`:
+```{r}
+n <- 4 # número de repetições
 for(i in 1:n) {
-  parte1 <- paste(i, "elefantes")
+  parte1 <- paste(i, "elefante(s)")
+  
   parte2 <- ""
-  for(j in 1:ifelse(i%%2==0,i,1)) {
+  for(j in 1:ifelse(i%%2 == 0, i, 1)) {
     parte2 <- paste(parte2, "incomoda(m)")
   }
+  
   parte3 <- ifelse(i%%2 == 0, "muito mais", "muita gente")
-  verso <- paste(parte1, parte2, ' ', parte3, sep = '')
+  
+  verso <- paste(parte1, parte2, parte3)
   print(verso)
 }
 ```
 
 ### Funções
 
-1. Crie uma funçao que recebe um vetor de numeros e devolve a variancia.
+1. Crie uma função que recebe um vetor de numeros e devolve a variancia.
+```{r}
+variancia <- function(x) {
+  media <- mean(x)
+  n <- length(x)
+  var <- sum((x - media)^2)/n
+  return(var)
+}
+```
 
 2. Calcule a variancia de `x <- 1:100` utilizando a sua funcao criada no item 1 e utilizando a funcao `var()` do R. Compare seus resultados. Eles coincidem? Por que?
 
-3. Altere sua funcao para que agora ela aceite que o usuario escolha entre qual tipo de variancia ela quer calcular. Certifique-se que ela devolva 
+```{r}
+x <- 1:100
+variancia(x)
+var(x)
+```
 
-4. Construa uma funcao que recebe dois vetores numericos de mesmo tamanho, `v1` e `v2`, e retorne a media ponderada de `v1` por `v2`. Calcule a média ponderada do vetor `v1 <- c(11, 9, 8, 7, 11, 6, 7, 9)` utilizando como pesos o vetor `v2 <- c(1, 2, 1, 2, 1, 2, 1, 2)`. BONUS: certifique que o usuario tenha passado vetores de tamanhos iguais e ambos numericos. Retorne `NULL` caso uma dessas condicoes falhe.  
+R: Elas não coincidem, pois a função `var()` do R calcula a variância amostral (dividido por n - 1 ) em vez da variância populacional (dividido por n).
 
-5. Crie uma versao da funcao `paste()` que una palavras pulando linhas (`\\n`)
+3. Altere sua função para que agora ela aceite que o usuário escolha entre qual tipo de variância ela quer calcular. Certifique-se que ela devolva a variância populacional caso o usuário não escolha explicitamente. 
 
+```{r}
+variancia <- function(x, populacional = TRUE) {
+  media <- mean(x)
+  n <- length(x)
+  if(!populacional) {
+    n <- n - 1
+  }
+  var <- sum((x - media)^2)/n
+  return(var)
+}
+
+# teste
+variancia(x)
+variancia(x, FALSE)
+```
+
+4. Construa uma função que recebe dois vetores numéricos de mesmo tamanho, `v1` e `v2`, e retorne a média ponderada de `v1` por `v2`. Calcule a média ponderada do vetor `v1 <- c(11, 9, 8, 7, 11, 6, 7, 9)` utilizando como pesos o vetor `v2 <- c(1, 2, 1, 2, 1, 2, 1, 2)`. BÔNUS: certifique que o usuario tenha passado vetores de tamanhos iguais e ambos numéricos. Retorne `NULL` caso uma dessas condições falhe.
+
+```{r}
+media_ponderada <- function(v1, v2) {
+  if(!is.numeric(v1) | !is.numeric(v2) | length(v1) != length(v2)) { # BÔNUS
+    NULL
+  } 
+  
+  sum(v1*v2/sum(v2))
+}
+
+v1 <- c(11, 9, 8, 7, 11, 6, 7, 9)
+v2 <- c(1, 2, 1, 2, 1, 2, 1, 2)
+media_ponderada(v1, v2)
+```
+
+
+5. Crie uma versão da função `paste()` que una palavras pulando linhas (`\\n`)
+
+```{r}
+meu_paste <- function(...) {
+  paste(..., sep = "\n")
+}
+
+# Teste
+teste <- meu_paste("print()", "não pula linha", "cat()", "pula linha")
+
+print(teste)
+cat(teste)
+```
 
 6. Crie uma função que recebe um vetor de characters e um vetor numérico de mesmo comprimento e imprima um texto com os nomes dessas variáveis, um símbolo de atribuição (`<-`), e os números, separando cada expressão pulando linhas. Por exemplo:
 
@@ -99,6 +204,21 @@ g <- 4
 h <- 3
 i <- 2
 j <- 1
+```
+
+R:
+
+```{r}
+imprime_coisas_legais <- function(x, y) {
+  for(i in seq_along(x)) {
+    print(paste(x[i], "<-", y[i]))
+  }
+}
+
+x <- letters[1:10]
+y <- 10:1
+
+imprime_coisas_legais(x, y)
 ```
 
 ## Aula 02

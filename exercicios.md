@@ -7,6 +7,8 @@ framework: purus
 mode: selfcontained
 ---
 
+<a href="http://curso-r.github.io/exercicios_com_resolucao.html" target="_blank">Exercícios com resolução</a>
+
 ## Aula 01
 
 ### R como calculadora
