@@ -142,7 +142,8 @@ ldply(frutas, verifica_vogais)
 
 #### adply - não é muito usado
 
-# ozone é um array 24 x 24 x 72 (primeira dimensao=latitude, segunda dimensao=longitude, terceira dimensao=tempo)
+# ozone é um array 24 x 24 x 72 (primeira dimensao=latitude, segunda dimensao=longitude,
+# terceira dimensao=tempo)
 data(ozone)
 adply(ozone, 3, mean)
 
@@ -164,7 +165,6 @@ daply(df, .(x), colwise(mean)) %>% as.numeric()
 #### laply - geralmente para sumarizar as colunas de um data.frame
 
 # verificar o tipo de cada variavel de um data.frame
-
 laply(dados_muni, class)
 
 # média de cada variável
@@ -179,7 +179,7 @@ laply(baseball, function(x) sum(is.na(x))/length(x))
 
 # ozone é um array 24 x 24 x 72 (primeira dimensao=latitude, segunda dimensao=longitude, terceira dimensao=tempo)
 data(ozone)
-aaply(ozone, 3, mean)
+aaply(ozone, c(1,2), mean)
 
 # quero pegar uma matriz, e somar 1, 2, ..., 10 em cada linha
 m <- matrix(runif(100), ncol=10)
@@ -207,6 +207,10 @@ municipios_com_z <- function(x) {
   x[grepl('z', x$municipio), 'municipio']
 }
 dlply(dados_muni, .(uf), municipios_com_z)
+
+# ajuste de modelos
+dlply(iris, .(Species), function(x) lm(Sepal.Length ~ Sepal.Width, data=x))
+
 
 # obs: nesse caso um
 # ddply(dados_muni, .(uf), function(x) x[grepl('z', x$municipio), ])
@@ -279,7 +283,7 @@ system.time({
 })
 
 # vetor ja alocado, com sapply: outra forma
-system.time({
+system.time({l
   x <- sapply(1:n, log)
 })
 
