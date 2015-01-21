@@ -8,6 +8,10 @@ output:
 
 --- 
 
+<a href="http://curso-r.github.io/slides/aula_02_apresentacao.html" target="_blank">Slides dessa aula</a>
+
+<a href="http://curso-r.github.io/script/aula_02.R" target="_blank">Script dessa aula</a>
+
 # Estruturas de dados no R
 
 Tipos básicos de estrutura no R:
