@@ -59,5 +59,7 @@ date: 2015-01-19
 - Help / documentação
 - [Google it](http://bit.ly/1u7tlv1)
 - [Stack Overflow](http://stackoverflow.com/).
-- [Melhores práticas para postar no Stack Overflow](http://stackoverflow.com/help/how-to-ask).
+- [Stack Overflow em Português](http://pt.stackoverflow.com/)
+- [Como criar um exemplo reproduzível em R](http://meta.pt.stackoverflow.com/questions/824/como-criar-um-exemplo-m%C3%ADnimo-reproduz%C3%ADvel-em-r)
+- [Melhores práticas para postar no Stack Overflow - Em inglês](http://stackoverflow.com/help/how-to-ask).
 - Vamos utilizar o Stack Overflow para dúvidas durante o curso.
