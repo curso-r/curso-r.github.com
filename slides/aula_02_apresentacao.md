@@ -929,7 +929,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .)
 ```
 
 ```
-## [1] -0.02636
+## [1] 0.1056
 ```
 
 ```r
@@ -939,4 +939,89 @@ F %>% mean(c(NA, rnorm(100)), na.rm = .)
 ```
 ## [1] NA
 ```
+
+## Gráficos simples
+
+
+```r
+x <- seq(1, 10, 0.1)
+y <- exp(-x)
+
+plot(x, y)
+```
+
+![plot of chunk unnamed-chunk-45](aula_02_apresentacao_files/figure-html/unnamed-chunk-45.png) 
+
+## plyr
+
+principal objetivo: esconder loops tornando o código mais legível e menos repetitivo
+
+
+```r
+library(plyr)
+```
+
+## plyr
+
+
+```r
+mat <- matrix(rnorm(300), ncol = 3)
+m <- numeric(length = ncol(mat))
+for (i in ncol(mat)){
+  m[i] <- mean(mat[,i])
+}
+m
+```
+
+```
+## [1]  0.000000  0.000000 -0.003504
+```
+
+
+```r
+aaply(mat, 2, mean)
+```
+
+```
+##         1         2         3 
+## -0.073471 -0.153423 -0.003504
+```
+
+## plyr
+
+
+```r
+df <- data.frame(x = sample(1:4, size = 100, replace = T), y = rnorm(100))
+
+m <- numeric(length = length(unique(df$x)))
+for(i in unique(df$x)){
+  m[i] <- mean(df$y[df$x == i])
+}
+m
+```
+
+```
+## [1]  0.32619  0.28185 -0.07474  0.17279
+```
+
+
+```r
+daply(df, .(x), colwise(mean))
+```
+
+```
+## $`1`
+## [1] 0.3262
+## 
+## $`2`
+## [1] 0.2819
+## 
+## $`3`
+## [1] -0.07474
+## 
+## $`4`
+## [1] 0.1728
+```
+
+
 

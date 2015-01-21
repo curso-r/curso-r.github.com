@@ -603,3 +603,53 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .)
 F %>% mean(c(NA, rnorm(100)), na.rm = .)
 ```
 
+## Gráficos simples
+
+```{r}
+x <- seq(1, 10, 0.1)
+y <- exp(-x)
+
+plot(x, y)
+```
+
+## plyr
+
+principal objetivo: esconder loops tornando o código mais legível e menos repetitivo
+
+```{r}
+library(plyr)
+```
+
+## plyr
+
+```{r}
+mat <- matrix(rnorm(300), ncol = 3)
+m <- numeric(length = ncol(mat))
+for (i in ncol(mat)){
+  m[i] <- mean(mat[,i])
+}
+m
+```
+
+```{r}
+aaply(mat, 2, mean)
+```
+
+## plyr
+
+```{r}
+df <- data.frame(x = sample(1:4, size = 100, replace = T), y = rnorm(100))
+
+m <- numeric(length = length(unique(df$x)))
+for(i in unique(df$x)){
+  m[i] <- mean(df$y[df$x == i])
+}
+m
+```
+
+```{r}
+daply(df, .(x), colwise(mean))
+```
+
+
+

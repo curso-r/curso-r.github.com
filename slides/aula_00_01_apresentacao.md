@@ -1,6 +1,14 @@
-# Aula 1 - Noções básicas
-Curso de R: Do casual ao avançado  
-19 de janeiro de 2015  
+---
+title: "Aula 1 - Noções básicas"
+author: "Curso de R: Do casual ao avançado"
+date: "19 de janeiro de 2015"
+output: 
+  ioslides_presentation:
+    mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    logo: logo.png
+    keep_md: true
+    self_contained: true
+---
 
 
 
@@ -158,7 +166,7 @@ pi
 ```
 
 ```
-## [1] 3.141593
+## [1] 3.142
 ```
 
 ```r
@@ -451,7 +459,7 @@ log10(nums)
 ```
 
 ```
-## [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700
+## [1] 0.0000 0.3010 0.4771 0.6021 0.6990
 ```
 
 ```r
@@ -672,7 +680,7 @@ O objeto `function(numero) {numero %% 2 == 0}` define uma função, mas essa fun
 ```
 
 ```
-## [1] 2.718282
+## [1] 2.718
 ```
 
 ```r
@@ -690,7 +698,7 @@ g(2)
 ```
 
 ```
-## [1] 2.718282
+## [1] 2.718
 ```
 
 ## Funções
