@@ -100,7 +100,63 @@ barplot(table(y))
 #install.packages("plyr")
 library(plyr)
 
+## COISAS SOBRE PERFORMANCE COM FUNCOES **PLY
 
+n <- 50000
+# alocacao dinamica, com for
+system.time({
+  x <- c()
+  for(i in 1:n) {
+    x[i] <- log(i)
+  }
+})
+
+# vetor ja alocado, com for
+system.time({
+  x <- integer(n)
+  for(i in 1:n) {
+    x[i] <- log(i)
+  }
+})
+
+# alocacao dinamica, com sapply
+system.time({
+  x <- c()
+  invisible(sapply(1:n, function(i) x[i] <<- log(i)))
+})
+
+# vetor ja alocado, com sapply
+system.time({
+  x <- integer(n)
+  invisible(sapply(1:n, function(i) x[i] <<- log(i)))
+  ## equivalente a
+})
+
+# vetor ja alocado, com sapply: outra forma
+system.time({
+  x <- sapply(1:n, log)
+})
+
+# maneira mais rápida de todas
+system.time({
+  x <- log(1:n)
+})
+
+## OBS: Comparando loop_apply, lapply e vetorização
+# require(plyr)
+# system.time({
+#   plyr:::loop_apply(n, log)
+# })
+#
+# system.time({
+#   x <- 1:n
+#   lapply(x, log)
+# })
+#
+# system.time({
+#   x <- 1:n
+#   log(x)
+# })
 
 
 

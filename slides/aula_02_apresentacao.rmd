@@ -384,7 +384,7 @@ Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito *dime
 
 **Nota**: observe que uma matriz é um array com duas dimensões.
 
-## Dimmensões e comprimentos
+## Dimensões e comprimentos
 
 As funções `length()`, `dim()`, `nrow()`, `ncol()` são usadas para determinar o comprimento de cada dimensão de um objeto.
 
@@ -614,7 +614,13 @@ plot(x, y)
 
 ## plyr
 
-principal objetivo: esconder loops tornando o código mais legível e menos repetitivo
+principais vantagens: 
+
+- Esconde loops tornando o código mais legível e menos repetitivo.
+- Incentiva a alocação prévia do objeto que será retornado, o que torna o código mais eficiente.
+- Dependendo dos parãmetros escolhidos, tenta fazer o código tão eficiente quanto as funções `sapply`, `lapply`, `apply` do pacote `base`.
+- Permite acompanhar a execução do código.
+- Permitir paralelização, usando o pacote `foreach`.
 
 ```{r}
 library(plyr)
@@ -651,6 +657,3 @@ m
 library(magrittr)
 daply(df, .(x), colwise(mean)) %>% as.numeric()
 ```
-
-
-

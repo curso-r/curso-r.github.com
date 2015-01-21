@@ -571,6 +571,62 @@ x
 <pre><code>## [1] 0 0 5 3 2 1 1
 </code></pre>
 
+<h2>Um pouco mais de funções: funcionais</h2>
+
+<p>Funcionais são funções que têm outras funções como parâmetro. Elas são úteis para que possamos,
+por exemplo, aplicar funções a pedaços dos dados que estamos trabalhando. No R elas são especialmente
+úteis por conta da vetorização.</p>
+
+<p>Se temos, por exemplo, uma função complexa a ser aplicada a cada elemento de uma lista, por exemplo</p>
+
+<pre><code class="r">lista &lt;- as.list(1:10)
+
+f_complexa &lt;- function(x) {
+  return(c(x, x^2))
+}
+</code></pre>
+
+<p>Uma maneira enxuta de fazer isso é utilizando a função <code>lapply</code>, que <em>aplica</em> a função <code>f_complexa</code>
+em cada elemento de <code>lista</code>, assim</p>
+
+<pre><code class="r">lapply(lista, f_complexa)
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] 1 1
+## 
+## [[2]]
+## [1] 2 4
+## 
+## [[3]]
+## [1] 3 9
+## 
+## [[4]]
+## [1]  4 16
+## 
+## [[5]]
+## [1]  5 25
+## 
+## [[6]]
+## [1]  6 36
+## 
+## [[7]]
+## [1]  7 49
+## 
+## [[8]]
+## [1]  8 64
+## 
+## [[9]]
+## [1]  9 81
+## 
+## [[10]]
+## [1]  10 100
+</code></pre>
+
+<p>Digite <code>?lapply</code> para mais detalhes. Note que são vários os tipos de funcionais no pacote <code>base</code> do R.
+Esse assunto será retomado quando falarmos de <code>plyr</code> e <code>dplyr</code>, que são pacotes que simplificam e generalizam
+a sintaxe dessas funções.</p>
+
 <h1>Leitura de dados</h1>
 
 <p>Para ler um banco de dados no R usamos a função <code>read.table()</code>. A seguir estão os principais argumentos dessa função e sua descrição:</p>
@@ -644,13 +700,13 @@ str(dados)
 <pre><code class="r">summary(dados)
 </code></pre>
 
-<pre><code>##    Aleatorio        aleatorio2         cor           
-##  Min.   :-1.587   Min.   :0.0099   Length:100        
-##  1st Qu.:-0.713   1st Qu.:0.2930   Class :character  
-##  Median : 0.580   Median :0.5779   Mode  :character  
-##  Mean   : 0.367   Mean   :0.5409                     
-##  3rd Qu.: 1.103   3rd Qu.:0.8238                     
-##  Max.   : 1.905   Max.   :0.9909
+<pre><code>##    Aleatorio         aleatorio2           cor           
+##  Min.   :-1.5865   Min.   :0.009945   Length:100        
+##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
+##  Median : 0.5795   Median :0.577933   Mode  :character  
+##  Mean   : 0.3675   Mean   :0.540947                     
+##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
+##  Max.   : 1.9053   Max.   :0.990911
 </code></pre>
 
 <p>Também pode ser aplicada em apenas uma variável da base:</p>
@@ -658,8 +714,8 @@ str(dados)
 <pre><code class="r">summary(dados$aleatorio2)
 </code></pre>
 
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.010   0.293   0.578   0.541   0.824   0.991
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
 </code></pre>
 
 <p>A função <code>summary</code> calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: <code>mean</code>, <code>median</code>, <code>quantile</code> e <code>sd</code>. A seguir alguns exemplos de uso:</p>
@@ -667,26 +723,26 @@ str(dados)
 <pre><code class="r">mean(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.5409
+<pre><code>## [1] 0.5409474
 </code></pre>
 
 <pre><code class="r">median(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.5779
+<pre><code>## [1] 0.5779335
 </code></pre>
 
 <pre><code class="r">sd(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.2999
+<pre><code>## [1] 0.2999107
 </code></pre>
 
 <pre><code class="r">quantile(dados$aleatorio2, probs = c(0.25,0.75))
 </code></pre>
 
-<pre><code>##    25%    75% 
-## 0.2930 0.8238
+<pre><code>##       25%       75% 
+## 0.2929519 0.8237975
 </code></pre>
 
 <p>Essas funções só podem ser aplciadas em vetores, diferente da <code>summary</code>que pode ser aplciada à um vetor.</p>
@@ -733,7 +789,7 @@ str(dados)
 x %&gt;% sum %&gt;% sqrt
 </code></pre>
 
-<pre><code>## [1] 3.162
+<pre><code>## [1] 3.162278
 </code></pre>
 
 <p>O caminho que o código acima seguiu foi enviar o objeto <code>x</code> como argumento da função <code>sum()</code> e, em seguida, enviar a saida da expressão <code>sum(x)</code> como argumento da função <code>sqrt()</code>. Observe que não é necessario colocar os parênteses após o nome das funções.</p>
@@ -743,7 +799,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">sqrt(sum(x))
 </code></pre>
 
-<pre><code>## [1] 3.162
+<pre><code>## [1] 3.162278
 </code></pre>
 
 <p>A princípio, a utilização do <code>%&gt;%</code> não parece trazer grandes vantagens, pois a expressão <code>sqrt(sum(x))</code> facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do <code>pipe</code> transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:</p>
@@ -768,11 +824,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<<<<<<< HEAD
-<pre><code>## [1] -0.006705
-=======
 <pre><code>## [1] -0.1577354
->>>>>>> ee962c90a6e746108183abe0f404fcc8a1370a16
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)
@@ -795,7 +847,7 @@ y &lt;- exp(-x)
 plot(x, y)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"> </p>
 
 <p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
 
@@ -811,58 +863,58 @@ plot(x, y)
 <pre><code class="r">plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-371.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;b&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-372.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-2.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-373.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-3.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;s&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-374.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-4.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;n&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-375.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-5.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
 <p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-381.png" alt="plot of chunk unnamed-chunk-38"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-382.png" alt="plot of chunk unnamed-chunk-38"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-2.png" alt="plot of chunk unnamed-chunk-40"> </p>
 
 <p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;p&quot;, lwd = 2, cex = 2)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-39.png" alt="plot of chunk unnamed-chunk-39"> </p>
+<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
 
 <p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-401.png" alt="plot of chunk unnamed-chunk-40"> </p>
+<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
 
 <pre><code class="r">plot(x, y, type = &quot;h&quot;, lwd = 3, col = &quot;#9ff115&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-402.png" alt="plot of chunk unnamed-chunk-40"> </p>
+<p><img src="assets/fig/unnamed-chunk-42-2.png" alt="plot of chunk unnamed-chunk-42"> </p>
 
 <p>Segue abaixo outras funções comumente utilizadas do pacote <code>graphics</code>:</p>
 
@@ -877,7 +929,7 @@ plot(x, y)
 <pre><code class="r">boxplot(rnorm(10000))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-411.png" alt="plot of chunk unnamed-chunk-41"> </p>
+<p><img src="assets/fig/unnamed-chunk-43-1.png" alt="plot of chunk unnamed-chunk-43"> </p>
 
 <pre><code class="r">c(&quot;Corinthians&quot;, &quot;Palmeiras&quot;, &quot;Santos&quot;, &quot;São Paulo&quot;) %&gt;%
   sample(1000, replace=T, prob = c(0.4, 0.2, 0.1, 0.3)) %&gt;%
@@ -885,7 +937,7 @@ plot(x, y)
   pie
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-412.png" alt="plot of chunk unnamed-chunk-41"> </p>
+<p><img src="assets/fig/unnamed-chunk-43-2.png" alt="plot of chunk unnamed-chunk-43"> </p>
 
 <pre><code class="r">rnorm(10000) %&gt;%
   abs %&gt;%
@@ -893,7 +945,7 @@ plot(x, y)
   hist
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-413.png" alt="plot of chunk unnamed-chunk-41"> </p>
+<p><img src="assets/fig/unnamed-chunk-43-3.png" alt="plot of chunk unnamed-chunk-43"> </p>
 
               <div id="disqus_thread"></div>
             </li>

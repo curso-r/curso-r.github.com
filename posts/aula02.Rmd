@@ -259,6 +259,32 @@ x[x>5] <- 0
 x
 ```
 
+## Um pouco mais de funções: funcionais
+
+Funcionais são funções que têm outras funções como parâmetro. Elas são úteis para que possamos,
+por exemplo, aplicar funções a pedaços dos dados que estamos trabalhando. No R elas são especialmente
+úteis por conta da vetorização.
+
+Se temos, por exemplo, uma função complexa a ser aplicada a cada elemento de uma lista, por exemplo
+
+```{r}
+lista <- as.list(1:10)
+
+f_complexa <- function(x) {
+  return(c(x, x^2))
+}
+```
+
+Uma maneira enxuta de fazer isso é utilizando a função `lapply`, que _aplica_ a função `f_complexa`
+em cada elemento de `lista`, assim
+
+```{r}
+lapply(lista, f_complexa)
+```
+
+Digite `?lapply` para mais detalhes. Note que são vários os tipos de funcionais no pacote `base` do R.
+Esse assunto será retomado quando falarmos de `plyr` e `dplyr`, que são pacotes que simplificam e generalizam
+a sintaxe dessas funções.
 
 # Leitura de dados
 
@@ -344,7 +370,6 @@ A função `table` calcula tabela de frequências.
 table(dados$cor)
 table(dados$cor, dados$cor)
 ```
-
 
 # O operador *pipe* - %>%
 

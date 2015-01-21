@@ -129,7 +129,7 @@ Passamos `breaks` e `col` à função `histograma()` que repassou à função `h
 ```
 
 ```
-## [1] 2.718
+## [1] 2.718282
 ```
 
 ```r
@@ -147,7 +147,7 @@ g(2)
 ```
 
 ```
-## [1] 2.718
+## [1] 2.718282
 ```
 
 ## Funções
@@ -475,7 +475,7 @@ Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito *dime
 
 **Nota**: observe que uma matriz é um array com duas dimensões.
 
-## Dimmensões e comprimentos
+## Dimensões e comprimentos
 
 As funções `length()`, `dim()`, `nrow()`, `ncol()` são usadas para determinar o comprimento de cada dimensão de um objeto.
 
@@ -887,7 +887,7 @@ x %>% sum %>% sqrt
 ```
 
 ```
-## [1] 3.162
+## [1] 3.162278
 ```
 
 ```r
@@ -895,7 +895,7 @@ sqrt(sum(x))
 ```
 
 ```
-## [1] 3.162
+## [1] 3.162278
 ```
 
 ## Uso do %>% 
@@ -929,7 +929,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .)
 ```
 
 ```
-## [1] -0.05766
+## [1] 0.03019702
 ```
 
 ```r
@@ -950,11 +950,17 @@ y <- exp(-x)
 plot(x, y)
 ```
 
-![plot of chunk unnamed-chunk-45](aula_02_apresentacao_files/figure-html/unnamed-chunk-45.png) 
+![](aula_02_apresentacao_files/figure-html/unnamed-chunk-45-1.png) 
 
 ## plyr
 
-principal objetivo: esconder loops tornando o código mais legível e menos repetitivo
+principais vantagens: 
+
+- Esconde loops tornando o código mais legível e menos repetitivo.
+- Incentiva a alocação prévia do objeto que será retornado, o que torna o código mais eficiente.
+- Dependendo dos parãmetros escolhidos, tenta fazer o código tão eficiente quanto as funções `sapply`, `lapply`, `apply` do pacote `base`.
+- Permite acompanhar a execução do código.
+- Permitir paralelização, usando o pacote `foreach`.
 
 
 ```r
@@ -974,7 +980,7 @@ m
 ```
 
 ```
-## [1] -0.05498 -0.12054 -0.10149
+## [1]  0.15988617  0.06634748 -0.15883948
 ```
 
 
@@ -983,8 +989,8 @@ aaply(mat, 2, mean)
 ```
 
 ```
-##        1        2        3 
-## -0.05498 -0.12054 -0.10149
+##           1           2           3 
+##  0.15988617  0.06634748 -0.15883948
 ```
 
 ## plyr
@@ -1001,7 +1007,7 @@ m
 ```
 
 ```
-## [1] -0.01333  0.11788  0.36145 -0.30979
+## [1]  0.19066776  0.28477073 -0.01600330  0.05344219
 ```
 
 
@@ -1011,7 +1017,7 @@ daply(df, .(x), colwise(mean)) %>% as.numeric()
 ```
 
 ```
-## [1] -0.01333  0.11788  0.36145 -0.30979
+## [1]  0.19066776  0.28477073 -0.01600330  0.05344219
 ```
 
 

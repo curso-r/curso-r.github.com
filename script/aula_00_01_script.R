@@ -11,6 +11,7 @@ caminho_local <- "ToothGrowth.csv"
 dados <- read.csv(caminho_local)
 
 caminho_da_internet <- "https://raw.githubusercontent.com/Athospd/bds/master/csv/ToothGrowth.csv"
+download.file(caminho_da_internet, 'teste.csv', method = 'wget')
 dados <- read.csv(caminho_da_internet)
 
 str(dados)
