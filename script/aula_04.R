@@ -31,12 +31,12 @@ pnud_muni %>%
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud_muni %>%
   select(ano, ufn, municipio, idhm) %>%
-  filter(uf==35, idhm > .8, ano==2010)
+  filter(ufn=='São Paulo', idhm > .8, ano==2010)
 
 # mesma coisa que o anterior
 pnud_muni %>%
   select(ano, ufn, municipio, idhm) %>%
-  filter(uf==35 & idhm > .8 & ano == 2010)
+  filter(ufn=='São Paulo' & idhm > .8 & ano == 2010)
 
 # !is.na(x)
 pnud_muni %>%
@@ -134,9 +134,9 @@ pnud_muni %>%
 # SEPARATE__________________________________________________________________________________________
 
 pnud_muni %>%
-  select(municipio, ufn, ano, starts_with('idhm')) %>%
+  select(municipio, ufn, ano, starts_with('idhm_')) %>%
   filter(ano==2010) %>%
-  gather(tipo_idh, idh, starts_with('idhm')) %>%
+  gather(tipo_idh, idh, starts_with('idhm_')) %>%
   separate(tipo_idh, c('nada', 'tipo_idh'), sep='_') %>%
   select(-nada)
 
@@ -145,22 +145,23 @@ pnud_muni %>%
 pnud_muni %>%
   distinct(ufn, ano) %>%
   select(ufn, ano, municipio, starts_with('idhm')) %>%
-  inner_join(pnud_estado, c('ufn', 'ano')) %>%
+  inner_join(pnud_uf, c('ufn', 'ano')) %>%
   select(ufn, ano, municipio, starts_with('idhm'))
 
 # STR_DETECT________________________________________________________________________________________
 
+library(stringr)
 pnud_muni %>%
   filter(ano==2010, str_detect(municipio, 'SÃO P')) %>%
   select(municipio, ano, ufn, idhm)
 
 # DMY/YMD/MDY_______________________________________________________________________________________
 
+library(lubridate)
 temp <- pnud_muni %>%
   select(ufn, municipio, idhm, ano) %>%
   mutate(aux1='01', aux2='01') %>%
   unite(ano_date, ano, aux1, aux2, sep='-') %>%
-  select(-aux1, -aux2) %>%
   mutate(ano_date=ymd(ano_date))
 
 str(temp)
