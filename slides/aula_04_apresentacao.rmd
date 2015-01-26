@@ -19,6 +19,10 @@ output:
 # names(pnud_muni)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "municipio"
 ```
 
+## Hadley Wickham
+
+<img src="figure/hadley.png" style="heigth: 300px;"/>
+
 ## Manipulação de dados com dplyr
 
 A manipulação de dados é uma tarefa usualmente bastante

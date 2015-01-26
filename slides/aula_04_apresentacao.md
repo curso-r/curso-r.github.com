@@ -4,6 +4,10 @@ Curso de R: Do casual ao avançado
 
 
 
+## Hadley Wickham
+
+<img src="figure/hadley.png" style="heigth: 300px;"/>
+
 ## Manipulação de dados com dplyr
 
 A manipulação de dados é uma tarefa usualmente bastante
