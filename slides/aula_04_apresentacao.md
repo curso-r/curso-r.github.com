@@ -1,19 +1,8 @@
----
-title: Aula 04 - Manipulação de dados
-date : 2015-01-26
----
-
-<a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a>
-
-<a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a>
+# Aula 04 - Manipulação
+Curso de R: Do casual ao avançado  
+2015-01-26  
 
 
-```{r pacotes, echo=FALSE, message=FALSE, warning=FALSE}
-require(dplyr)
-require(tidyr)
-data(pnud, package = 'abjutils')
-names(pnud)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "Municipio"
-```
 
 ## Manipulação de dados com dplyr
 
@@ -21,28 +10,43 @@ A manipulação de dados é uma tarefa usualmente bastante
 dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
 como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.
 
+## Introdução
 
 O `dplyr` é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
 simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que fazem uso 
 inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.
 
+## Introdução
 
 Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
 como uma revolução no `R`.
 
+
+```r
+library(dplyr)
+data(pnud, package = 'abjutils')
+names(pnud)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "Municipio"
+```
+
+## Introdução
+
 ### Trabalhando com tbl e tbl_df
 
-```{r}
+
+```r
 pnud <- tbl_df(pnud)
 pnud
 ```
 
+## Introdução
 
 ### Filosofia do Hadley para análise de dados
 
-<img src="assets/fig/hadley_view.png" style="width: 800px;"/>
+<img src="figure/hadley_view.png" style="width: 800px;"/>
+
+## Introdução
 
 ### As cinco funções principais do dplyr
 
@@ -52,79 +56,114 @@ pnud
 - `arrange`
 - `summarise`
 
-#### Características
+## Introdução
+
+### Características
 
 - O _input_  é sempre um `data.frame` (`tbl`), e o _output_  é sempre um `data.frame` (`tbl`).
 - No primeiro argumento colocamos o `data.frame`, e nos outros argumentos colocamo o que queremos fazer.
 - A utilização é facilitada com o emprego do operador `%>%`
 
-#### Vantagens
+### Vantagens
 
 - Utiliza `C` e `C++` por trás da maioria das funções, o que geralmente torna o código mais eficiente.
 - Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e `data.table`.
 
-## select
+## select {.build}
 
 - Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
-- Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+- Colocar nomes, índices, e intervalos de variáveis com `:`.
 
-```{r}
+## select {.build}
+
+
+```r
 # por indice (nao recomendavel!)
 pnud %>%
   select(1:10)
 ```
 
-```{r}
+## select {.build}
+
+
+```r
 # especificando nomes (maneira mais usual)
 pnud %>%
   select(ANO, UF, Municipio, IDHM)
 ```
 
-```{r}
+## select {.build}
+
+
+```r
 # intervalos e funcoes auxiliares (para economizar trabalho)
 pnud %>%
   select(ANO:Municipio, starts_with('IDHM'))
 ```
+
+## Exercício
+
+Selecione município, estado, ano, coeficiente de gini e todas as medidas de idhm.
 
 ## filter
 
 - Parecido com `subset`.
 - Condições separadas por vírgulas é o mesmo que separar por `&`.
 
-```{r}
+## filter
+
+
+```r
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35, IDHM > .8, ANO==2010)
 ```
 
-```{r}
+## filter
+
+
+```r
 # mesma coisa que o anterior
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(UF==35 & IDHM > .8 & ANO==2010)
 ```
 
-```{r}
+## filter
+
+
+```r
 # !is.na(x)
 pnud %>%
   select(ANO, UF, Municipio, IDHM, PEA) %>%
   filter(!is.na(PEA))
 ```
 
-```{r}
+## filter
+
+
+```r
 # %in%
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(Municipio %in% c('CAMPINAS', 'SÃO PAULO'))
 ```
 
+## Exercício
+
+Selecione ano, município, uf, gini e as medidas de idh, e depois filtre apenas para os
+casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o IDHM é maior que 0.7
+
 ## mutate
 
 - Parecido com `transform`, mas aceita várias novas colunas iterativamente.
 - Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
 
-```{r}
+## mutate
+
+
+```r
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
@@ -132,7 +171,10 @@ pnud %>%
          idhm_porc_txt = paste(idhm_porc, '%'))
 ```
 
-```{r}
+## mutate
+
+
+```r
 # media de idhm_l e idhm_e
 pnud %>%
   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
@@ -140,27 +182,38 @@ pnud %>%
   mutate(idhm2 = (IDHM_E + IDHM_L)/2)
 ```
 
-```{r}
-## errado
-# pnud %>%
-#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
-#   filter(ANO==2010) %>%
-#   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+## mutate
 
-## uma alternativa (+ demorada)
-# pnud %>%
-#   select(ANO, UF, Municipio, starts_with('IDHM')) %>%
-#   filter(ANO==2010) %>%
-#   rowwise() %>%
-#   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+
+```r
+# errado
+pnud %>%
+  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
+  filter(ANO==2010) %>%
+  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+
+# uma alternativa (+ demorada)
+pnud %>%
+  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
+  filter(ANO==2010) %>%
+  rowwise %>%
+  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
 ```
+
+## Exercício
+
+Selecione ano, município, uf, gini e as medidas de idh, depois filtre apenas para os
+casos em que o ano é 2010, e depois escreva o idhm em forma de porcentagem, com 1 casa decimal
 
 ## arrange
 
 - Simplesmente ordena de acordo com as opções.
 - Utilizar `desc` para ordem decrescente.
 
-```{r}
+## arrange
+
+
+```r
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
@@ -169,7 +222,10 @@ pnud %>%
   arrange(IDHM)
 ```
 
-```{r}
+## arrange
+
+
+```r
 pnud %>%
   select(ANO, UF, Municipio, IDHM) %>%
   filter(ANO==2010) %>%
@@ -178,13 +234,20 @@ pnud %>%
   arrange(desc(IDHM))
 ```
 
+## Exercício
+
+Obtenha os 10 municipios com maior IDHM em 2010 e mostre esses IDHM./
+
 ## summarise
 
 - Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
 - Geralmente é utilizado em conjunto com `group_by`.
 - Algumas funções importantes: `n()`, `n_distinct()`.
 
-```{r}
+## summarise
+
+
+```r
 pnud %>%
   filter(ANO==2010) %>%  
   group_by(UF) %>%
@@ -194,32 +257,48 @@ pnud %>%
   arrange(desc(idhm_medio))
 ```
 
-```{r}
+## summarise
+
+
+```r
 pnud %>%
   filter(ANO==2010) %>%  
   count(UF)
 ```
 
-```{r}
+## summarise
+
+
+```r
 pnud %>%
   group_by(ANO, UF) %>%
   tally() %>%
   head # nao precisa de parenteses!
 ```
 
+## Exercício
+
+Calcule a expectativa de vida média de cada estado, ponderada pela população dos municípios no ano 2000.
+
 ## Data Tidying com tidyr
 
-### Sobre tidy data
+## Sobre tidy data
 
 - Cada observação é uma linha do bd.
 - Cada variável é uma coluna do bd.
 - Para cada unidade observacional temos um bd separado (possivelmente com chaves de associacao).
 
-### spread
+
+```r
+library(tidyr)
+```
+
+## spread
 
 - "Joga" uma variável nas colunas
 
-```{r}
+
+```r
 pnud %>%
   group_by(ANO, UF) %>%
   summarise(populacao=sum(POPT)) %>%
@@ -227,18 +306,23 @@ pnud %>%
   spread(ANO, populacao)
 ```
 
-### gather
+## gather
 
 - "Empilha" o banco de dados
 
-```{r}
+
+```r
 pnud %>%
   filter(ANO==2010) %>%
   select(UF, Municipio, starts_with('IDHM_')) %>%
   gather(tipo_idh, idh, starts_with('IDHM_'))
 ```
 
-### Funções auxiliares
+## Exercício
+
+Verifique se `gather(spread(dados))`, `spread(gather(dados))` e `dados` são equivalentes.
+
+## Funções auxiliares
 
 - `unite` junta duas ou mais colunas usando algum separador (`_`, por exemplo).
 - `separate` faz o inverso de `unite`, e uma coluna em várias usando um separador.
@@ -249,7 +333,7 @@ pnud %>%
 - Para realizar operações mais gerais, usar `do`.
 - Para retirar duplicatas, utilizar `distinct`.
 
-### Outros pacotes úteis para limpar bases de dados
+## Outros pacotes úteis para limpar bases de dados
 
 - `stringr` para trabalhar com textos.
 - `lubridate` para trabalhar com datas.

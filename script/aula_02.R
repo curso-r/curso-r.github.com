@@ -33,6 +33,9 @@ summary(dados)
 table(dados$Grupo)
 mean(dados$Idade)
 summary(dados$Idade)
+str(dados)
+head(dados)
+tail(dados)
 
 # Gráficos ---------------------------------
 
@@ -86,7 +89,8 @@ x <- rnorm(100)
 hist(x)
 x <- rnorm(1000)
 hist(x)
-
+x <- rnorm(10000)
+hist(x)
 
 # grafico de pizza
 pie(table(y))
