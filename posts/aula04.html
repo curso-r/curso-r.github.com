@@ -76,23 +76,28 @@
               </h3>
               <span>2015-01-26</span><br/>
                <a class='label label-success' href='posts/aula04.Rmd'>Source</a>
-              <h2>Manipulação de dados com dplyr</h2>
+              
+<p><a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<p><a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a></p>
+
+<h2>Manipulação de dados com dplyr</h2>
+
 <p>A manipulação de dados é uma tarefa usualmente bastante
 dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
 como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.</p>
-
 
 <p>O <code>dplyr</code> é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
 simplicidade e eficiência de uma forma bastante elegante. Os scripts em <code>R</code> que fazem uso 
 inteligente dos verbos <code>dplyr</code> e as facilidades do operador <em>pipe</em> tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.</p>
 
-
 <p>Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o <code>dplyr</code> pode ser considerado 
 como uma revolução no <code>R</code>.</p>
 
 <h3>Trabalhando com tbl e tbl_df</h3>
+
 <pre><code class="r">pnud &lt;- tbl_df(pnud)
 pnud
 </code></pre>
@@ -169,9 +174,11 @@ pnud
 </code></pre>
 
 <h3>Filosofia do Hadley para análise de dados</h3>
+
 <p><img src="assets/fig/hadley_view.png" style="width: 800px;"/></p>
 
 <h3>As cinco funções principais do dplyr</h3>
+
 <ul>
 <li><code>filter</code></li>
 <li><code>mutate</code></li>
@@ -181,6 +188,7 @@ pnud
 </ul>
 
 <h4>Características</h4>
+
 <ul>
 <li>O <em>input</em>  é sempre um <code>data.frame</code> (<code>tbl</code>), e o <em>output</em>  é sempre um <code>data.frame</code> (<code>tbl</code>).</li>
 <li>No primeiro argumento colocamos o <code>data.frame</code>, e nos outros argumentos colocamo o que queremos fazer.</li>
@@ -200,7 +208,6 @@ pnud
 <li>Utilizar <code>starts_with(x)</code>, <code>contains(x)</code>, <code>matches(x)</code>, <code>one_of(x)</code>, etc.</li>
 <li>Possível colocar nomes, índices, e intervalos de variáveis com <code>:</code>.</li>
 </ul>
-
 
 <pre><code class="r"># por indice (nao recomendavel!)
 pnud %&gt;%
@@ -224,7 +231,6 @@ pnud %&gt;%
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl)
 </code></pre>
 
-
 <pre><code class="r"># especificando nomes (maneira mais usual)
 pnud %&gt;%
   select(ANO, UF, Municipio, IDHM)
@@ -245,7 +251,6 @@ pnud %&gt;%
 ## 10 1991 11         GUAJARÁ-MIRIM 0.468
 ## ..  ... ..                   ...   ...
 </code></pre>
-
 
 <pre><code class="r"># intervalos e funcoes auxiliares (para economizar trabalho)
 pnud %&gt;%
@@ -269,14 +274,12 @@ pnud %&gt;%
 ## Variables not shown: IDHM_R (dbl)
 </code></pre>
 
-<h3>Exercício</h3>
 <h2>filter</h2>
 
 <ul>
 <li>Parecido com <code>subset</code>.</li>
 <li>Condições separadas por vírgulas é o mesmo que separar por <code>&amp;</code>.</li>
 </ul>
-
 
 <pre><code class="r"># somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud %&gt;%
@@ -310,7 +313,6 @@ pnud %&gt;%
 ## 21 2010 35               VINHEDO 0.817
 </code></pre>
 
-
 <pre><code class="r"># mesma coisa que o anterior
 pnud %&gt;%
   select(ANO, UF, Municipio, IDHM) %&gt;%
@@ -343,7 +345,6 @@ pnud %&gt;%
 ## 21 2010 35               VINHEDO 0.817
 </code></pre>
 
-
 <pre><code class="r"># !is.na(x)
 pnud %&gt;%
   select(ANO, UF, Municipio, IDHM, PEA) %&gt;%
@@ -366,7 +367,6 @@ pnud %&gt;%
 ## ..  ... ..                   ...   ...   ...
 </code></pre>
 
-
 <pre><code class="r"># %in%
 pnud %&gt;%
   select(ANO, UF, Municipio, IDHM) %&gt;%
@@ -384,14 +384,12 @@ pnud %&gt;%
 ## 6 2010 35 SÃO PAULO 0.805
 </code></pre>
 
-<h3>Exercício</h3>
 <h2>mutate</h2>
 
 <ul>
 <li>Parecido com <code>transform</code>, mas aceita várias novas colunas iterativamente.</li>
 <li>Novas variáveis devem ter o mesmo <code>length</code> que o <code>nrow</code> do bd oridinal ou <code>1</code>.</li>
 </ul>
-
 
 <pre><code class="r">pnud %&gt;%
   select(ANO, UF, Municipio, IDHM) %&gt;%
@@ -416,7 +414,6 @@ pnud %&gt;%
 ## ..  ... ..                   ...   ...       ...           ...
 </code></pre>
 
-
 <pre><code class="r"># media de idhm_l e idhm_e
 pnud %&gt;%
   select(ANO, UF, Municipio, starts_with(&#39;IDHM&#39;)) %&gt;%
@@ -440,7 +437,6 @@ pnud %&gt;%
 ## ..  ... ..                   ...   ...    ...    ...    ...    ...
 </code></pre>
 
-
 <pre><code class="r">## errado
 # pnud %&gt;%
 #   select(ANO, UF, Municipio, starts_with(&#39;IDHM&#39;)) %&gt;%
@@ -455,14 +451,12 @@ pnud %&gt;%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
 </code></pre>
 
-<h3>Exercício</h3>
 <h2>arrange</h2>
 
 <ul>
 <li>Simplesmente ordena de acordo com as opções.</li>
 <li>Utilizar <code>desc</code> para ordem decrescente.</li>
 </ul>
-
 
 <pre><code class="r">pnud %&gt;%
   select(ANO, UF, Municipio, IDHM) %&gt;%
@@ -488,7 +482,6 @@ pnud %&gt;%
 ## ..  ... ..                ...   ...       ...           ...
 </code></pre>
 
-
 <pre><code class="r">pnud %&gt;%
   select(ANO, UF, Municipio, IDHM) %&gt;%
   filter(ANO==2010) %&gt;%
@@ -513,7 +506,6 @@ pnud %&gt;%
 ## ..  ... ..                ...   ...       ...           ...
 </code></pre>
 
-<h3>Exercício</h3>
 <h2>summarise</h2>
 
 <ul>
@@ -521,7 +513,6 @@ pnud %&gt;%
 <li>Geralmente é utilizado em conjunto com <code>group_by</code>.</li>
 <li>Algumas funções importantes: <code>n()</code>, <code>n_distinct()</code>.</li>
 </ul>
-
 
 <pre><code class="r">pnud %&gt;%
   filter(ANO==2010) %&gt;%  
@@ -564,7 +555,6 @@ pnud %&gt;%
 ## 27 27 102  0.5635000         3045853
 </code></pre>
 
-
 <pre><code class="r">pnud %&gt;%
   filter(ANO==2010) %&gt;%  
   count(UF)
@@ -602,7 +592,6 @@ pnud %&gt;%
 ## 27 53   1
 </code></pre>
 
-
 <pre><code class="r">pnud %&gt;%
   group_by(ANO, UF) %&gt;%
   tally() %&gt;%
@@ -621,7 +610,6 @@ pnud %&gt;%
 ## 6 1991 16  16
 </code></pre>
 
-<h3>Exercício</h3>
 <h2>Data Tidying com tidyr</h2>
 
 <h3>Sobre tidy data</h3>
@@ -633,6 +621,7 @@ pnud %&gt;%
 </ul>
 
 <h3>spread</h3>
+
 <ul>
 <li>&quot;Joga&quot; uma variável nas colunas</li>
 </ul>
@@ -677,6 +666,7 @@ pnud %&gt;%
 </code></pre>
 
 <h3>gather</h3>
+
 <ul>
 <li>&quot;Empilha&quot; o banco de dados</li>
 </ul>
@@ -704,6 +694,7 @@ pnud %&gt;%
 </code></pre>
 
 <h3>Funções auxiliares</h3>
+
 <ul>
 <li><code>unite</code> junta duas ou mais colunas usando algum separador (<code>_</code>, por exemplo).</li>
 <li><code>separate</code> faz o inverso de <code>unite</code>, e uma coluna em várias usando um separador.</li>

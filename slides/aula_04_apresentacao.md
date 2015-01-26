@@ -50,9 +50,9 @@ pnud
 
 ### As cinco funções principais do dplyr
 
+- `select`
 - `filter`
 - `mutate`
-- `select`
 - `arrange`
 - `summarise`
 
@@ -281,8 +281,6 @@ pnud %>%
 Calcule a expectativa de vida média de cada estado, ponderada pela população dos municípios no ano 2000.
 
 ## Data Tidying com tidyr
-
-## Sobre tidy data
 
 - Cada observação é uma linha do bd.
 - Cada variável é uma coluna do bd.

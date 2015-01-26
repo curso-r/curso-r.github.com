@@ -1,8 +1,12 @@
 ---
 title: Aula 04 - Manipulação de dados
 date : 2015-01-26
-# output: ioslides_presentation
 ---
+
+<a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a>
+
+<a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a>
+
 
 
 
@@ -12,20 +16,16 @@ A manipulação de dados é uma tarefa usualmente bastante
 dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
 como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.
 
----
 
 O `dplyr` é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
 simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que fazem uso 
 inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.
 
----
 
 Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
 como uma revolução no `R`.
-
----
 
 ### Trabalhando com tbl e tbl_df
 
@@ -107,13 +107,10 @@ pnud
 ##   (dbl), IDHM (dbl), IDHM_E (dbl), IDHM_L (dbl), IDHM_R (dbl)
 ```
 
----
 
 ### Filosofia do Hadley para análise de dados
 
 <img src="assets/fig/hadley_view.png" style="width: 800px;"/>
-
----
 
 ### As cinco funções principais do dplyr
 
@@ -122,8 +119,6 @@ pnud
 - `select`
 - `arrange`
 - `summarise`
-
----
 
 #### Características
 
@@ -140,8 +135,6 @@ pnud
 
 - Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
 - Possível colocar nomes, índices, e intervalos de variáveis com `:`.
-
----
 
 
 ```r
@@ -168,8 +161,6 @@ pnud %>%
 ## Variables not shown: MORT5 (dbl), RAZDEP (dbl)
 ```
 
----
-
 
 ```r
 # especificando nomes (maneira mais usual)
@@ -193,8 +184,6 @@ pnud %>%
 ## 10 1991 11         GUAJARÁ-MIRIM 0.468
 ## ..  ... ..                   ...   ...
 ```
-
----
 
 
 ```r
@@ -221,16 +210,10 @@ pnud %>%
 ## Variables not shown: IDHM_R (dbl)
 ```
 
----
-
-### Exercício
-
 ## filter
 
 - Parecido com `subset`.
 - Condições separadas por vírgulas é o mesmo que separar por `&`.
-
----
 
 
 ```r
@@ -267,8 +250,6 @@ pnud %>%
 ## 21 2010 35               VINHEDO 0.817
 ```
 
----
-
 
 ```r
 # mesma coisa que o anterior
@@ -304,8 +285,6 @@ pnud %>%
 ## 21 2010 35               VINHEDO 0.817
 ```
 
----
-
 
 ```r
 # !is.na(x)
@@ -331,8 +310,6 @@ pnud %>%
 ## ..  ... ..                   ...   ...   ...
 ```
 
----
-
 
 ```r
 # %in%
@@ -353,16 +330,10 @@ pnud %>%
 ## 6 2010 35 SÃO PAULO 0.805
 ```
 
----
-
-### Exercício
-
 ## mutate
 
 - Parecido com `transform`, mas aceita várias novas colunas iterativamente.
 - Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
-
----
 
 
 ```r
@@ -390,8 +361,6 @@ pnud %>%
 ## ..  ... ..                   ...   ...       ...           ...
 ```
 
----
-
 
 ```r
 # media de idhm_l e idhm_e
@@ -418,8 +387,6 @@ pnud %>%
 ## ..  ... ..                   ...   ...    ...    ...    ...    ...
 ```
 
----
-
 
 ```r
 ## errado
@@ -436,16 +403,10 @@ pnud %>%
 #   mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
 ```
 
----
-
-### Exercício
-
 ## arrange
 
 - Simplesmente ordena de acordo com as opções.
 - Utilizar `desc` para ordem decrescente.
-
----
 
 
 ```r
@@ -474,8 +435,6 @@ pnud %>%
 ## ..  ... ..                ...   ...       ...           ...
 ```
 
----
-
 
 ```r
 pnud %>%
@@ -503,17 +462,11 @@ pnud %>%
 ## ..  ... ..                ...   ...       ...           ...
 ```
 
----
-
-### Exercício
-
 ## summarise
 
 - Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
 - Geralmente é utilizado em conjunto com `group_by`.
 - Algumas funções importantes: `n()`, `n_distinct()`.
-
----
 
 
 ```r
@@ -559,8 +512,6 @@ pnud %>%
 ## 27 27 102  0.5635000         3045853
 ```
 
----
-
 
 ```r
 pnud %>%
@@ -601,8 +552,6 @@ pnud %>%
 ## 27 53   1
 ```
 
-----
-
 
 ```r
 pnud %>%
@@ -624,10 +573,6 @@ pnud %>%
 ## 6 1991 16  16
 ```
 
----
-
-### Exercício
-
 ## Data Tidying com tidyr
 
 ### Sobre tidy data
@@ -635,8 +580,6 @@ pnud %>%
 - Cada observação é uma linha do bd.
 - Cada variável é uma coluna do bd.
 - Para cada unidade observacional temos um bd separado (possivelmente com chaves de associacao).
-
----
 
 ### spread
 
@@ -684,8 +627,6 @@ pnud %>%
 ## 27 53  1551869  2001728  2541714
 ```
 
----
-
 ### gather
 
 - "Empilha" o banco de dados
@@ -714,8 +655,6 @@ pnud %>%
 ## 10 11         GUAJARÁ-MIRIM   IDHM_E 0.519
 ## .. ..                   ...      ...   ...
 ```
-
----
 
 ### Funções auxiliares
 

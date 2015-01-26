@@ -109,7 +109,7 @@ ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
 
 Os *geoms* definem qual forma geométrica será utilizada para a visualização dos dados no gráfico. Como já vimos, a função `geom_point()` gera gráficos de dispersão transformando pares (x,y) em pontos. Veja a seguir outros *geoms* bastante utilizados:
 
-- geom_line: para retas por pares (x,y)
+- geom_line: para retas definidas por pares (x,y)
 - geom_abline: para retas definidas por um intercepto e uma inclinação
 - geom_hline: para retas horizontais
 - geom_boxplot: para boxplots
@@ -154,6 +154,8 @@ Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gr�
 
 ### Cores
 
+O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
+
 
 ```r
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + 
@@ -162,7 +164,6 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) +
 
 ![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
 
-O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
 
 
 ```r
@@ -171,55 +172,117 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_b
 
 ![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
 
-### Eixos
-
-para alterar os labels dos eixos acrescentamos as funções `xlab` ou `ylab`
-para alterar os limites dos gráficos usamos as funções `xlim(10, 20)` e `ylim(0, 10)`
-
-### Legendas
-
-
- `+ scale_fill_discrete(guide = F)`.
-
-O nome da função é composto de três partes: 
-* scale: queremos fazer alguma personalização na escala
-* fill: a alteração será na escala de preenchimento
-* discrete: a escala de cores é discreta
+Você pode também mudar a cor dos objetos sem mapeá-la a uma variável. Para isso, observe que os aspectos `colour` e `fill` são especificados fora do `aes()`.
 
 
 ```r
-ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot() + scale_fill_discrete(guide = F)
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
+  geom_boxplot(color = "red", fill = "pink")
 ```
 
 ![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
-para trocar o label da legenda usamos o comando `+ labs(fill = "cyl")` 
+### Eixos
 
-trocamos o lugar da legenda usando `+ theme(legend.position="top")`
-
-veja mais opções [aqui](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
-
-### Facets
-
-Outra funcionalidade muito importante do ggplot é o uso de facets (?) Já temos bastante informação no gráfico acima, mas se quiséssemos ver as diferenças entre os carros automaticos e manuais (variável am) poderiamos usar ainda o aspecto de formato do ponto. Também podemos usar o facet:
+Para alterar os labels dos eixos acrescentamos as funções `xlab()` ou `ylab()`.
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(.~am)
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram() +
+  xlab("Milhas por galão") +
+  ylab("Frequência")
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
 ![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
-Podemos empilhar os dois gráficos também:
+
+Para alterar os limites dos gráficos usamos as funções `xlim()` e `ylim()`.
 
 
 ```r
-ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl), size = wt)) + geom_point() + facet_grid(am~.)
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram() +
+  xlab("Milhas por galão") +
+  ylab("Frequência") +
+  xlim(c(0, 40)) +
+  ylim(c(0,8))
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
 ![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png) 
 
 
-# Tipos de gráficos
+### Legendas
 
-# Personalizando o seu gráfico: 'theme()' 
+A legenda de um gráfico pode ser facilmente personalizada.
+
+Para trocar o *label* da leganda:
+
+
+```r
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  labs(fill = "cyl")
+```
+
+![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
+
+
+Para trocar a posição da legenda:
+
+
+```r
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  labs(fill = "cyl") +
+  theme(legend.position="top")
+```
+
+![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
+
+Para retirar a legenda:
+
+
+```r
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  guides(fill=FALSE)
+```
+
+![plot of chunk unnamed-chunk-18](assets/fig/unnamed-chunk-18-1.png) 
+
+
+Veja mais opções de personalização [aqui!](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
+
+### Facets
+
+Outra funcionalidade muito importante do ggplot é o uso de *facets*.
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + 
+  geom_point() + 
+  facet_grid(am~.)
+```
+
+![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png) 
+
+Podemos colocar os graficos lado a lado também:
+
+
+```r
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
+  geom_point() + 
+  facet_grid(.~am)
+```
+
+![plot of chunk unnamed-chunk-20](assets/fig/unnamed-chunk-20-1.png) 
+
