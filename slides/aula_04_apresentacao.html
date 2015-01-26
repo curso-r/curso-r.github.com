@@ -118,15 +118,14 @@
 <p>Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística, e por atingir esse objetivo de forma elegante, eficaz e eficiente, o <code>dplyr</code> pode ser considerado como uma revolução no <code>R</code>.</p>
 
 <pre class = 'prettyprint lang-r'>library(dplyr)
-data(pnud, package = &#39;abjutils&#39;)
-names(pnud)[names(pnud) %&gt;% stringr::str_detect(&quot;(Muni)?(pio)&quot;)] &lt;- &quot;Municipio&quot;</pre>
+data(pnud_muni, package = &#39;abjutils&#39;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Introdução</h2></hgroup><article  id="introducao-2">
 
 <h3>Trabalhando com tbl e tbl_df</h3>
 
-<pre class = 'prettyprint lang-r'>pnud &lt;- tbl_df(pnud)
-pnud</pre>
+<pre class = 'prettyprint lang-r'>pnud_muni &lt;- tbl_df(pnud_muni)
+pnud_muni</pre>
 
 </article></slide><slide class=''><hgroup><h2>Introdução</h2></hgroup><article  id="introducao-3">
 
@@ -173,20 +172,20 @@ pnud</pre>
 </article></slide><slide class=''><hgroup><h2>select</h2></hgroup><article  id="select-1" class="build">
 
 <pre class = 'prettyprint lang-r'># por indice (nao recomendavel!)
-pnud %&gt;%
+pnud_muni %&gt;%
   select(1:10)</pre>
 
 </article></slide><slide class=''><hgroup><h2>select</h2></hgroup><article  id="select-2" class="build">
 
 <pre class = 'prettyprint lang-r'># especificando nomes (maneira mais usual)
-pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM)</pre>
+pnud_muni %&gt;%
+  select(ano, uf, municipio, idhm)</pre>
 
 </article></slide><slide class=''><hgroup><h2>select</h2></hgroup><article  id="select-3" class="build">
 
 <pre class = 'prettyprint lang-r'># intervalos e funcoes auxiliares (para economizar trabalho)
-pnud %&gt;%
-  select(ANO:Municipio, starts_with(&#39;IDHM&#39;))</pre>
+pnud_muni %&gt;%
+  select(ano:municipio, starts_with(&#39;idhm&#39;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio">
 
@@ -202,34 +201,34 @@ pnud %&gt;%
 </article></slide><slide class=''><hgroup><h2>filter</h2></hgroup><article  id="filter-1">
 
 <pre class = 'prettyprint lang-r'># somente estado de SP, com IDH municipal maior que 80% no ano 2010
-pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(UF==35, IDHM &gt; .8, ANO==2010)</pre>
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm) %&gt;%
+  filter(ufn==35, idhm &gt; .8, ano==2010)</pre>
 
 </article></slide><slide class=''><hgroup><h2>filter</h2></hgroup><article  id="filter-2">
 
 <pre class = 'prettyprint lang-r'># mesma coisa que o anterior
-pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(UF==35 &amp; IDHM &gt; .8 &amp; ANO==2010)</pre>
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm) %&gt;%
+  filter(ufn==35 &amp; idhm &gt; .8 &amp; ano==2010)</pre>
 
 </article></slide><slide class=''><hgroup><h2>filter</h2></hgroup><article  id="filter-3">
 
 <pre class = 'prettyprint lang-r'># !is.na(x)
-pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM, PEA) %&gt;%
-  filter(!is.na(PEA))</pre>
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm, pea) %&gt;%
+  filter(!is.na(pea))</pre>
 
 </article></slide><slide class=''><hgroup><h2>filter</h2></hgroup><article  id="filter-4">
 
 <pre class = 'prettyprint lang-r'># %in%
-pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(Municipio %in% c(&#39;CAMPINAS&#39;, &#39;SÃO PAULO&#39;))</pre>
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm) %&gt;%
+  filter(municipio %in% c(&#39;CAMPINAS&#39;, &#39;SÃO PAULO&#39;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio-1">
 
-<p>Selecione ano, município, uf, gini e as medidas de idh, e depois filtre apenas para os casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o IDHM é maior que 0.7</p>
+<p>Selecione ano, município, ufn, gini e as medidas de idh, e depois filtre apenas para os casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o idhm é maior que 0.7</p>
 
 </article></slide><slide class=''><hgroup><h2>mutate</h2></hgroup><article  id="mutate">
 
@@ -240,38 +239,30 @@ pnud %&gt;%
 
 </article></slide><slide class=''><hgroup><h2>mutate</h2></hgroup><article  id="mutate-1">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(ANO==2010) %&gt;%
-  mutate(idhm_porc = IDHM * 100,
-         idhm_porc_txt = paste(idhm_porc, &#39;%&#39;))</pre>
+<pre class = 'prettyprint lang-r'># media de idhm_l e idhm_e
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+  filter(ano==2010) %&gt;%
+  mutate(idhm2 = (idhm_E + idhm_L)/2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>mutate</h2></hgroup><article  id="mutate-2">
 
-<pre class = 'prettyprint lang-r'># media de idhm_l e idhm_e
-pnud %&gt;%
-  select(ANO, UF, Municipio, starts_with(&#39;IDHM&#39;)) %&gt;%
-  filter(ANO==2010) %&gt;%
-  mutate(idhm2 = (IDHM_E + IDHM_L)/2)</pre>
-
-</article></slide><slide class=''><hgroup><h2>mutate</h2></hgroup><article  id="mutate-3">
-
 <pre class = 'prettyprint lang-r'># errado
-pnud %&gt;%
-  select(ANO, UF, Municipio, starts_with(&#39;IDHM&#39;)) %&gt;%
-  filter(ANO==2010) %&gt;%
-  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+  filter(ano==2010) %&gt;%
+  mutate(idhm2 = mean(c(idhm_E, idhm_L)))
 
 # uma alternativa (+ demorada)
-pnud %&gt;%
-  select(ANO, UF, Municipio, starts_with(&#39;IDHM&#39;)) %&gt;%
-  filter(ANO==2010) %&gt;%
+pnud_muni %&gt;%
+  select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+  filter(ano==2010) %&gt;%
   rowwise %&gt;%
-  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))</pre>
+  mutate(idhm2 = mean(c(idhm_E, idhm_L)))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio-2">
 
-<p>Selecione ano, município, uf, gini e as medidas de idh, depois filtre apenas para os casos em que o ano é 2010, e depois escreva o idhm em forma de porcentagem, com 1 casa decimal</p>
+<p>Selecione ano, município, ufn, gini e as medidas de idh, depois filtre apenas para os casos em que o ano é 2010, e depois escreva o idhm em forma de porcentagem, com 1 casa decimal</p>
 
 </article></slide><slide class=''><hgroup><h2>arrange</h2></hgroup><article  id="arrange">
 
@@ -282,25 +273,25 @@ pnud %&gt;%
 
 </article></slide><slide class=''><hgroup><h2>arrange</h2></hgroup><article  id="arrange-1">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(ANO==2010) %&gt;%
-  mutate(idhm_porc = IDHM * 100,
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm) %&gt;%
+  filter(ano==2010) %&gt;%
+  mutate(idhm_porc = idhm * 100,
          idhm_porc_txt = paste(idhm_porc, &#39;%&#39;)) %&gt;%
-  arrange(IDHM)</pre>
+  arrange(idhm)</pre>
 
 </article></slide><slide class=''><hgroup><h2>arrange</h2></hgroup><article  id="arrange-2">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  select(ANO, UF, Municipio, IDHM) %&gt;%
-  filter(ANO==2010) %&gt;%
-  mutate(idhm_porc = IDHM * 100,
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  select(ano, ufn, municipio, idhm) %&gt;%
+  filter(ano==2010) %&gt;%
+  mutate(idhm_porc = idhm * 100,
          idhm_porc_txt = paste(idhm_porc, &#39;%&#39;)) %&gt;%
-  arrange(desc(IDHM))</pre>
+  arrange(desc(idhm))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio-3">
 
-<p>Obtenha os 10 municipios com maior IDHM em 2010 e mostre esses IDHM./</p>
+<p>Obtenha os 10 municipios com maior idhm em 2010 e mostre esses idhm./</p>
 
 </article></slide><slide class=''><hgroup><h2>summarise</h2></hgroup><article  id="summarise">
 
@@ -312,24 +303,24 @@ pnud %&gt;%
 
 </article></slide><slide class=''><hgroup><h2>summarise</h2></hgroup><article  id="summarise-1">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  filter(ANO==2010) %&gt;%  
-  group_by(UF) %&gt;%
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  filter(ano==2010) %&gt;%  
+  group_by(ufn) %&gt;%
   summarise(n=n(), 
-            idhm_medio=mean(IDHM),
-            populacao_total=sum(POPT)) %&gt;%
+            idhm_medio=mean(idhm),
+            populacao_total=sum(popt)) %&gt;%
   arrange(desc(idhm_medio))</pre>
 
 </article></slide><slide class=''><hgroup><h2>summarise</h2></hgroup><article  id="summarise-2">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  filter(ANO==2010) %&gt;%  
-  count(UF)</pre>
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  filter(ano==2010) %&gt;%  
+  count(ufn)</pre>
 
 </article></slide><slide class=''><hgroup><h2>summarise</h2></hgroup><article  id="summarise-3">
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  group_by(ANO, UF) %&gt;%
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  group_by(ano, ufn) %&gt;%
   tally() %&gt;%
   head # nao precisa de parenteses!</pre>
 
@@ -353,11 +344,11 @@ pnud %&gt;%
 <li>&quot;Joga&quot; uma variável nas colunas</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  group_by(ANO, UF) %&gt;%
-  summarise(populacao=sum(POPT)) %&gt;%
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  group_by(ano, ufn) %&gt;%
+  summarise(populacao=sum(popt)) %&gt;%
   ungroup() %&gt;%
-  spread(ANO, populacao)</pre>
+  spread(ano, populacao)</pre>
 
 </article></slide><slide class=''><hgroup><h2>gather</h2></hgroup><article  id="gather">
 
@@ -365,10 +356,10 @@ pnud %&gt;%
 <li>&quot;Empilha&quot; o banco de dados</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>pnud %&gt;%
-  filter(ANO==2010) %&gt;%
-  select(UF, Municipio, starts_with(&#39;IDHM_&#39;)) %&gt;%
-  gather(tipo_idh, idh, starts_with(&#39;IDHM_&#39;))</pre>
+<pre class = 'prettyprint lang-r'>pnud_muni %&gt;%
+  filter(ano==2010) %&gt;%
+  select(ufn, municipio, starts_with(&#39;idhm_&#39;)) %&gt;%
+  gather(tipo_idh, idh, starts_with(&#39;idhm_&#39;))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio-5">
 

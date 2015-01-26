@@ -38,10 +38,9 @@ Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da an�
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
 como uma revolução no `R`.
 
-```{r}
-# library(dplyr)
-# data(pnud_muni, package = 'abjutils')
-# names(pnud_muni)[names(pnud_muni) %>% stringr::str_detect("(Muni)?(pio)")] <- "municipio"
+```{r, eval=FALSE}
+library(dplyr)
+data(pnud_muni, package = 'abjutils')
 ```
 
 ## Introdução
@@ -165,16 +164,6 @@ casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o idhm é 
 
 - Parecido com `transform`, mas aceita várias novas colunas iterativamente.
 - Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
-
-## mutate
-
-```{r, eval=FALSE}
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ano==2010) %>%
-  mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, '%'))
-```
 
 ## mutate
 

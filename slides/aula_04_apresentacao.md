@@ -26,8 +26,7 @@ como uma revolução no `R`.
 
 ```r
 library(dplyr)
-data(pnud, package = 'abjutils')
-names(pnud)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "Municipio"
+data(pnud_muni, package = 'abjutils')
 ```
 
 ## Introdução
@@ -36,8 +35,8 @@ names(pnud)[names(pnud) %>% stringr::str_detect("(Muni)?(pio)")] <- "Municipio"
 
 
 ```r
-pnud <- tbl_df(pnud)
-pnud
+pnud_muni <- tbl_df(pnud_muni)
+pnud_muni
 ```
 
 ## Introdução
@@ -79,7 +78,7 @@ pnud
 
 ```r
 # por indice (nao recomendavel!)
-pnud %>%
+pnud_muni %>%
   select(1:10)
 ```
 
@@ -88,8 +87,8 @@ pnud %>%
 
 ```r
 # especificando nomes (maneira mais usual)
-pnud %>%
-  select(ANO, UF, Municipio, IDHM)
+pnud_muni %>%
+  select(ano, uf, municipio, idhm)
 ```
 
 ## select {.build}
@@ -97,8 +96,8 @@ pnud %>%
 
 ```r
 # intervalos e funcoes auxiliares (para economizar trabalho)
-pnud %>%
-  select(ANO:Municipio, starts_with('IDHM'))
+pnud_muni %>%
+  select(ano:municipio, starts_with('idhm'))
 ```
 
 ## Exercício
@@ -115,9 +114,9 @@ Selecione município, estado, ano, coeficiente de gini e todas as medidas de idh
 
 ```r
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(UF==35, IDHM > .8, ANO==2010)
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm) %>%
+  filter(ufn==35, idhm > .8, ano==2010)
 ```
 
 ## filter
@@ -125,9 +124,9 @@ pnud %>%
 
 ```r
 # mesma coisa que o anterior
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(UF==35 & IDHM > .8 & ANO==2010)
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm) %>%
+  filter(ufn==35 & idhm > .8 & ano==2010)
 ```
 
 ## filter
@@ -135,9 +134,9 @@ pnud %>%
 
 ```r
 # !is.na(x)
-pnud %>%
-  select(ANO, UF, Municipio, IDHM, PEA) %>%
-  filter(!is.na(PEA))
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm, pea) %>%
+  filter(!is.na(pea))
 ```
 
 ## filter
@@ -145,15 +144,15 @@ pnud %>%
 
 ```r
 # %in%
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(Municipio %in% c('CAMPINAS', 'SÃO PAULO'))
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm) %>%
+  filter(municipio %in% c('CAMPINAS', 'SÃO PAULO'))
 ```
 
 ## Exercício
 
-Selecione ano, município, uf, gini e as medidas de idh, e depois filtre apenas para os
-casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o IDHM é maior que 0.7
+Selecione ano, município, ufn, gini e as medidas de idh, e depois filtre apenas para os
+casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o idhm é maior que 0.7
 
 ## mutate
 
@@ -164,22 +163,11 @@ casos em que o ano é 2010, o coeficiente de Gini é maior que 0.5 ou o IDHM é 
 
 
 ```r
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(ANO==2010) %>%
-  mutate(idhm_porc = IDHM * 100,
-         idhm_porc_txt = paste(idhm_porc, '%'))
-```
-
-## mutate
-
-
-```r
 # media de idhm_l e idhm_e
-pnud %>%
-  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
-  filter(ANO==2010) %>%
-  mutate(idhm2 = (IDHM_E + IDHM_L)/2)
+pnud_muni %>%
+  select(ano, ufn, municipio, starts_with('idhm')) %>%
+  filter(ano==2010) %>%
+  mutate(idhm2 = (idhm_E + idhm_L)/2)
 ```
 
 ## mutate
@@ -187,22 +175,22 @@ pnud %>%
 
 ```r
 # errado
-pnud %>%
-  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
-  filter(ANO==2010) %>%
-  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+pnud_muni %>%
+  select(ano, ufn, municipio, starts_with('idhm')) %>%
+  filter(ano==2010) %>%
+  mutate(idhm2 = mean(c(idhm_E, idhm_L)))
 
 # uma alternativa (+ demorada)
-pnud %>%
-  select(ANO, UF, Municipio, starts_with('IDHM')) %>%
-  filter(ANO==2010) %>%
+pnud_muni %>%
+  select(ano, ufn, municipio, starts_with('idhm')) %>%
+  filter(ano==2010) %>%
   rowwise %>%
-  mutate(idhm2 = mean(c(IDHM_E, IDHM_L)))
+  mutate(idhm2 = mean(c(idhm_E, idhm_L)))
 ```
 
 ## Exercício
 
-Selecione ano, município, uf, gini e as medidas de idh, depois filtre apenas para os
+Selecione ano, município, ufn, gini e as medidas de idh, depois filtre apenas para os
 casos em que o ano é 2010, e depois escreva o idhm em forma de porcentagem, com 1 casa decimal
 
 ## arrange
@@ -214,29 +202,29 @@ casos em que o ano é 2010, e depois escreva o idhm em forma de porcentagem, com
 
 
 ```r
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(ANO==2010) %>%
-  mutate(idhm_porc = IDHM * 100,
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm) %>%
+  filter(ano==2010) %>%
+  mutate(idhm_porc = idhm * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
-  arrange(IDHM)
+  arrange(idhm)
 ```
 
 ## arrange
 
 
 ```r
-pnud %>%
-  select(ANO, UF, Municipio, IDHM) %>%
-  filter(ANO==2010) %>%
-  mutate(idhm_porc = IDHM * 100,
+pnud_muni %>%
+  select(ano, ufn, municipio, idhm) %>%
+  filter(ano==2010) %>%
+  mutate(idhm_porc = idhm * 100,
          idhm_porc_txt = paste(idhm_porc, '%')) %>%
-  arrange(desc(IDHM))
+  arrange(desc(idhm))
 ```
 
 ## Exercício
 
-Obtenha os 10 municipios com maior IDHM em 2010 e mostre esses IDHM./
+Obtenha os 10 municipios com maior idhm em 2010 e mostre esses idhm./
 
 ## summarise
 
@@ -248,12 +236,12 @@ Obtenha os 10 municipios com maior IDHM em 2010 e mostre esses IDHM./
 
 
 ```r
-pnud %>%
-  filter(ANO==2010) %>%  
-  group_by(UF) %>%
+pnud_muni %>%
+  filter(ano==2010) %>%  
+  group_by(ufn) %>%
   summarise(n=n(), 
-            idhm_medio=mean(IDHM),
-            populacao_total=sum(POPT)) %>%
+            idhm_medio=mean(idhm),
+            populacao_total=sum(popt)) %>%
   arrange(desc(idhm_medio))
 ```
 
@@ -261,17 +249,17 @@ pnud %>%
 
 
 ```r
-pnud %>%
-  filter(ANO==2010) %>%  
-  count(UF)
+pnud_muni %>%
+  filter(ano==2010) %>%  
+  count(ufn)
 ```
 
 ## summarise
 
 
 ```r
-pnud %>%
-  group_by(ANO, UF) %>%
+pnud_muni %>%
+  group_by(ano, ufn) %>%
   tally() %>%
   head # nao precisa de parenteses!
 ```
@@ -297,11 +285,11 @@ library(tidyr)
 
 
 ```r
-pnud %>%
-  group_by(ANO, UF) %>%
-  summarise(populacao=sum(POPT)) %>%
+pnud_muni %>%
+  group_by(ano, ufn) %>%
+  summarise(populacao=sum(popt)) %>%
   ungroup() %>%
-  spread(ANO, populacao)
+  spread(ano, populacao)
 ```
 
 ## gather
@@ -310,10 +298,10 @@ pnud %>%
 
 
 ```r
-pnud %>%
-  filter(ANO==2010) %>%
-  select(UF, Municipio, starts_with('IDHM_')) %>%
-  gather(tipo_idh, idh, starts_with('IDHM_'))
+pnud_muni %>%
+  filter(ano==2010) %>%
+  select(ufn, municipio, starts_with('idhm_')) %>%
+  gather(tipo_idh, idh, starts_with('idhm_'))
 ```
 
 ## Exercício
