@@ -1,0 +1,309 @@
+---
+title: Aula 05 - ggplot2
+author: "Curso de R: Do casual ao avançado"
+date : 2015-01-26
+output: 
+  ioslides_presentation:
+    mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    logo: logo.png
+    keep_md: true
+    self_contained: true
+---
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+```
+
+
+## Introdução {.build}
+
+O que é um gráfico estatísstico? 
+
+Leland Wilkinson respondeu essa pergunta!
+
+- Conjunto de dados
+
+- Aspectos estéticos
+
+- Formas geométricas
+
+
+## Motivação 1
+
+- é fácil de usar
+
+- foi criado pelo Hardley
+
+- gráficos bonitos e elegantes.
+
+## Motivação 2 | SAS
+
+<img src="figure/ggplot2/g_sas.png" height="430px" width="650px"/>
+
+## Motivação 2 | SPSS
+
+<img src="figure/ggplot2/g_spss.png" height="430px" width="650px"/>
+
+## Motivação 2 | Matlab
+
+<img src="figure/ggplot2/g_matlab.png" height="430px" width="650px"/>
+
+## Motivação 2 | Minitab
+
+<img src="figure/ggplot2/g_minitab.gif" height="430px" width="650px"/>
+
+## Motivação 2 | R-base
+
+```{r, echo=FALSE}
+
+x <- sample(1:50, 80, replace=T)
+y <- x + rnorm(80, 0, 5)
+
+plot(x, y)
+
+```
+
+## Motivação 2 | R-ggplot2
+
+```{r, echo=FALSE}
+qplot(x, y, geom="point")
+```
+
+
+## Motivação 3
+
+```{r, echo=FALSE}
+
+df <- data.frame(usa = rep(c("Sim", "Não"), c(5, 5)),
+                 expec = c(70, 80, 85, 96, 121, 78, 74, 71, 66, 59),
+                 ano = rep(2010:2014, 2))
+
+ggplot(df, aes(x = ano, y = expec, fill = usa)) +  
+  geom_bar(stat="identity", width = 0.4, position = "dodge") +
+  xlab("Ano") +
+  ylab("Expectativa de vida") +
+  labs(fill = "Utiliza o ggplot?")
+  
+
+```
+
+## Motivação 3
+
+```{r, echo=FALSE}
+
+df <- data.frame(usa = rep(c("Sim", "Não"), c(100,100)),                 
+                 salario = c(rnorm(100, 7000, 1000), abs(rnorm(100, 2000, 1200))))
+
+df$salario[1] = df$salario[1] - 4000
+
+ggplot(df, aes(x = usa, y = salario, fill = usa)) +
+  geom_boxplot(width = 0.5) +
+  guides(fill=FALSE) +
+  xlab("Utiliza o ggplot") +
+  ylab("Salário (reais)")
+  
+```
+
+
+## Motivação 3
+
+```{r, echo=FALSE}
+
+df <- data.frame(ano = 2010:2020,
+                 prop = c(0.01, 0.09, 0.14, 0.18, 0.23, 0.34, 0.39, 0.44, 0.60, 0.88, 1.1))
+
+ggplot(df, aes(x = as.character(ano), y = prop, group = 1)) +
+  geom_line() +
+  geom_point(size=5, shape = 22, fill = "green") +  
+  guides(fill=FALSE) +
+  xlab("Ano") +
+  ylab("Proporção de usuários no mundo")
+  
+```
+
+## Estrutura
+
+- Dados --- `data =`
+
+- Aspectos estéticos (*mapping*) --- `aes()` 
+
+- Formas geométricas --- `geom_()`
+
+- Transformações estatísticas --- `stat =`
+
+## Exemplos
+
+```{r}
+
+head(mtcars, 10)
+
+```
+
+
+## Exemplos
+
+```{r}
+
+ggplot(data = mtcars, aes(x = disp, y = mpg)) +
+  geom_point()
+
+```
+
+
+## Exemplos
+
+```{r}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg))
+
+```
+
+
+## Exemplos
+
+```{r}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg))
+
+```
+
+
+## Exemplos
+
+```{r}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg, colour = as.character(am)))
+
+```
+
+
+## Exemplos
+
+```{r}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg, colour = as.character(am),
+                                size = cyl))
+
+```
+
+## Exemplos {.build}
+
+```{r, eval=F}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg), colour = "blue", size = 5, 
+             shape = 2)
+
+```
+
+```{r, echo=F}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = disp, y = mpg), colour = "blue", size = 5, 
+             shape = 2)
+
+```
+
+## Exemplos {.build}
+
+```{r, eval=FALSE}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
+
+```
+
+```{r, echo = TRUE}
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
+
+```
+
+
+## Exemplos {.build}
+
+```{r, eval = FALSE}
+
+ggplot(data = mtcars) +
+  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
+
+```
+
+```{r, echo = FALSE}
+
+ggplot(data = mtcars) +
+  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
+
+```
+
+## Exemplos
+
+```{r, fig.height=3, fig.width=5}
+
+ggplot(data = mtcars) +
+  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean) +
+  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
+
+```
+
+
+## Exemplos
+
+```{r, fig.height=3, fig.width=5, eval = FALSE}
+
+ggplot(data = mtcars) +
+  geom_boxplot(aes(x = as.character(gear), y = mpg, 
+                   fill = as.character(gear)))
+
+```
+
+```{r, fig.height=3, fig.width=5, echo = FALSE}
+
+ggplot(data = mtcars) +
+  geom_boxplot(aes(x = as.character(gear), y = mpg, 
+                   fill = as.character(gear)))
+
+```
+
+
+## Exemplos
+
+```{r, fig.height=3, fig.width=5}
+
+ggplot(data = mtcars) +
+  geom_boxplot(aes(x = as.character(gear), y = mpg, 
+                   fill = as.character(gear))) +
+  xlab("") +
+  ylab("Milhas por galão") +
+  labs(fill="Número de marchas")
+
+```
+
+## Desafio {.build}
+
+```{r, echo=FALSE, fig.height=3, fig.width=5}
+
+df <- data.frame(ano = 2010:2020,
+                 prop = c(0.01, 0.09, 0.14, 0.18, 0.23, 0.34, 0.39, 0.44, 0.60, 0.88, 1.1))
+
+ggplot(df, aes(x = as.character(ano), y = prop, group = 1)) +
+  geom_line() +
+  geom_point(size=5, shape = 22, fill = "green") +  
+  guides(fill=FALSE) +
+  xlab("Ano") +
+  ylab("Proporção de usuários no mundo")
+  
+```
+
+```{r}
+head(df, 3) # Shape = 22 e Size = 5.
+```
+
+

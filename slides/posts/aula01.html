@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aula 01 - Noções básicas</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="" />
+  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
+  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
+  <link rel="alternate" type="application/rss+xml" href="">
+  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
+  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
+  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-58167912-1', 'auto');
+    ga('send', 'pageview');
+  
+  </script>
+    <style>
+	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
+	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
+	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
+    p {text-align: justify;}
+  </style>
+  <link rel="stylesheet" href = "../assets/css/custom.css">
+<link rel="stylesheet" href = "../assets/css/ribbons.css">
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="sidebar" class="span2">
+			  <div class="sidebar-nav sidebar-nav-fixed">
+			    <a href="https://github.com/ramnathv/poirot">
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
+        alt="Fork me on GitHub" 
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
+    </a>
+	  <div class="info">
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <h3><a href="/">Curso R </a></h3>
+					  <p class="description">Do casual ao avançado</p>
+					</div>
+					<ul id="links">
+			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+        <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
+        <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
+        <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
+      
+        <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
+                      
+			    </ul>
+				</div>
+			</div>
+						<div id="content" class='span10'>
+				<div id="post-wrapper">
+          <ol id="posts">
+            <li class="post">
+              <h3>
+                <a href="#">Aula 01 - Noções básicas</a>
+              </h3>
+              <span>2015-01-19</span><br/>
+               <a class='label label-success' href='posts/aula01.Rmd'>Source</a>
+              
+<p><a href="http://curso-r.github.io/slides/aula_00_01_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<p><a href="http://curso-r.github.io/script/aula_00_01_script.R" target="_blank">Script dessa aula</a></p>
+
+<h1>R como calculadora</h1>
+
+<p>A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console <code>2*2 - (4 + 4)/2</code>. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!</p>
+
+<p>Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!</p>
+
+<p>Falando em matemática, o \(\pi\) já vem definido!</p>
+
+<pre><code class="r">pi
+</code></pre>
+
+<pre><code>## [1] 3.141593
+</code></pre>
+
+<pre><code class="r">sin(pi/2) + 2*3
+</code></pre>
+
+<pre><code>## [1] 7
+</code></pre>
+
+<pre><code class="r">(sin(pi/2) + 2)*3
+</code></pre>
+
+<pre><code>## [1] 9
+</code></pre>
+
+<p>Veja que apareceu a função <code>sin()</code>, o famoso seno. Tente outras funções trigonométricas para ver se acerta de prima!</p>
+
+<p>Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar! No R, um erro não é nenhuma dor de cabeça, é rápido consertar e testar (<strong>debugar</strong>, para os mais íntimos).</p>
+
+<h2>Valores especiais</h2>
+
+<p>Certas operações matemáticas podem suscitar em valores não numéricos. Exemplo disso são log de números negativos e divisões por zero. Para tais operações, o R reservou valores especiais para serem retornadas quando operações não resultarem em um número propriamente dito. A tabela abaixo lista esses objetos:</p>
+
+<table><thead>
+<tr>
+<th align="center">Valor</th>
+<th align="center">Quando.ocorre</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Inf/-Inf</td>
+<td align="center">Divisões por zero, valores da ordem de 10<sup>308</sup></td>
+</tr>
+<tr>
+<td align="center">NaN</td>
+<td align="center">Indeterminações matemáticas, como 0/0 e log(-1)</td>
+</tr>
+</tbody></table>
+
+<h2>Operadores aritméticos</h2>
+
+<p>Os bons e conhecidos operadores aritméticos. Com números reais eles funcionam como na matemática, mas ao saírmos da reta, eles podem fazer muito mais!</p>
+
+<table><thead>
+<tr>
+<th align="center">Operador</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x + y</td>
+<td align="center">Adição de x com y</td>
+</tr>
+<tr>
+<td align="center">x - y</td>
+<td align="center">Subtração de y em x</td>
+</tr>
+<tr>
+<td align="center">x * y</td>
+<td align="center">Multiplicação de x e y</td>
+</tr>
+<tr>
+<td align="center">x / y</td>
+<td align="center">Divisão de x por y</td>
+</tr>
+<tr>
+<td align="center">x<sup>y</sup> ou x**y</td>
+<td align="center">x elevado a y-ésima potência</td>
+</tr>
+<tr>
+<td align="center">x%%y</td>
+<td align="center">Resto da divisão de x por y (módulo)</td>
+</tr>
+<tr>
+<td align="center">x%/%y</td>
+<td align="center">Parte inteira da divisão de x por y</td>
+</tr>
+</tbody></table>
+
+<p>Exemplos:</p>
+
+<pre><code class="r">1 + 1
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">10 - 8
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">2*10
+</code></pre>
+
+<pre><code>## [1] 20
+</code></pre>
+
+<pre><code class="r">18/3
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+<pre><code class="r">2^4
+</code></pre>
+
+<pre><code>## [1] 16
+</code></pre>
+
+<pre><code class="r">9%%2
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<pre><code class="r">9%/%2
+</code></pre>
+
+<pre><code>## [1] 4
+</code></pre>
+
+<h2>Operadores lógicos</h2>
+
+<p>Operadores lógicos retornarão sempre ou <code>TRUE</code> ou <code>FALSE</code>. Eles definem perguntas que aceitam apenas verdadeiro e falso como resposta, como sugere o quadro abaixo.</p>
+
+<table><thead>
+<tr>
+<th align="center">operador</th>
+<th align="center">descricao</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x &lt; y</td>
+<td align="center">x menor que y?</td>
+</tr>
+<tr>
+<td align="center">x &lt;= y</td>
+<td align="center">x menor ou igual a y?</td>
+</tr>
+<tr>
+<td align="center">x &gt; y</td>
+<td align="center">x maior que y?</td>
+</tr>
+<tr>
+<td align="center">x &gt;= y</td>
+<td align="center">x maior ou igual a y?</td>
+</tr>
+<tr>
+<td align="center">x == y</td>
+<td align="center">x igual a y?</td>
+</tr>
+<tr>
+<td align="center">x != y</td>
+<td align="center">x diferente de y?</td>
+</tr>
+<tr>
+<td align="center">!x</td>
+<td align="center">Negativa de x</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">y</td>
+</tr>
+<tr>
+<td align="center">x &amp; y</td>
+<td align="center">x e y são verdadeiros?</td>
+</tr>
+<tr>
+<td align="center">xor(x, y)</td>
+<td align="center">x ou y são verdadeiros (apenas um deles)?</td>
+</tr>
+</tbody></table>
+
+<p>Exemplos:</p>
+
+<table><thead>
+<tr>
+<th align="center">Teste</th>
+<th align="center">Resposta</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">1 &lt; 1</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">1 &lt;= 1</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">1 == 0.999</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">1 == 0.99999999999999999</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">13.5 != 13.5</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">!TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE &amp; FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">TRUE &amp; TRUE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">xor(TRUE, TRUE)</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">xor(TRUE, FALSE)</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">TRUE == 1</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">TRUE == 2</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">FALSE == 0</td>
+<td align="center">TRUE</td>
+</tr>
+</tbody></table>
+
+<h2>Números complexos</h2>
+
+<p>O R manipula números complexo de maneira fácil e intuitiva do mesmo jeito que trata os números reais. Além disso, disponibiliza funções úteis para eles, como módulo, conjugado e argumento.</p>
+
+<pre><code class="r">z &lt;- -8 + 0i
+
+# verifica se z é um número commplexo
+class(z)
+</code></pre>
+
+<pre><code>## [1] &quot;complex&quot;
+</code></pre>
+
+<pre><code class="r">is.complex(z)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>A tabela abaixo resume algumas funções interessantes para números complexos.</p>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Re(z)</td>
+<td align="center">Parte real de z</td>
+</tr>
+<tr>
+<td align="center">Im(z)</td>
+<td align="center">Parte imaginária de z</td>
+</tr>
+<tr>
+<td align="center">Mod(z)</td>
+<td align="center">Módulo de z</td>
+</tr>
+<tr>
+<td align="center">Arg(z)</td>
+<td align="center">Argumento de z</td>
+</tr>
+<tr>
+<td align="center">Conj(z)</td>
+<td align="center">Complexo conjugado de z</td>
+</tr>
+</tbody></table>
+
+<p>Demais funções matemáticas, como logaritmo, funções trigonométricas, exponencial e radiciação também estão implementadas para números complexos.</p>
+
+<h1>Controle de fluxo (<em>flow controls</em>)</h1>
+
+<h2>Sumário</h2>
+
+<ul>
+<li>if, else, else if: testa uma condição</li>
+<li>for, while: &quot;laços&quot; ou iterações</li>
+<li>break, next: ações dentro de laços</li>
+</ul>
+
+<h2>if, else e else if</h2>
+
+<h3>Estrutura:</h3>
+
+<pre><code class="r">if(&lt;condição1&gt;) {
+  # se a condição1 for verdadeira...
+  # faz coisas interessantes.
+} else if (&lt;condição2&gt;) {
+  # caso a condição1 seja falsa e a condição2 seja verdadeira...
+  # faz coisas legais para este caso.
+} else {
+  # faz coisas necessárias caso todas as condições anteriores falharem
+}
+</code></pre>
+
+<p>As condições devem ser expressões lógicas, ou seja, testes que retornem <code>TRUE</code> ou <code>FALSE</code>. Assim, o código entre <code>{}</code> será executado se a condição for <code>TRUE</code> ou será ignorada se a condição retornar <code>FALSE</code>.</p>
+
+<h3>Exemplo:</h3>
+
+<pre><code class="r">x &lt;- 4
+
+# teste: x NÃO é um número?
+!is.numeric(x)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r"># teste: x é menor que zero?
+x &lt; 0
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r"># teste: x é maior que zero?
+x &gt; 0
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">if(!is.numeric(x)) {
+  &quot;x não é um número&quot;
+} else if(x &gt; 0) {
+  &quot;x é positivo&quot;
+} else if(x &lt; 0) {
+  &quot;x é negativo&quot;
+} else {
+  &quot;x é nulo&quot;
+}
+</code></pre>
+
+<pre><code>## [1] &quot;x é positivo&quot;
+</code></pre>
+
+<p>O que acontece no exemplo acima, passo a passo:</p>
+
+<ol>
+<li><p>A expressão <code>!is.numeric(x)</code> testa se <code>x</code> NÃO é um número. Como <code>x</code> vale 4, ele retorna <code>FALSE</code>. Assim, a expressão <code>{&quot;x não é um número&quot;}</code> não é executada e a próxima condição é testada;</p></li>
+<li><p>No primeiro <code>else if</code>, o teste lógico <code>x &gt; 0</code> retorna <code>TRUE</code>, fazendo com que a expressão <code>{&quot;x é positivo&quot;}</code> seja executada e todo o restante dos testes, ignorado.</p></li>
+</ol>
+
+<p><strong>OBS:</strong> a condições <code>x &lt; 0</code> nunca chegou a ser testada. Uma vez encontrada uma condição verdadeira, o programa executa o respectivo bloco de códigos entre <code>{}</code> e descarta as demais instruções.</p>
+
+<h3>Considerações:</h3>
+
+<ul>
+<li>O <code>else</code> e o <code>else if</code> têm que estar na mesma linha do <code>}</code> da expressão anterior, senão não rodará!</li>
+</ul>
+
+<pre><code class="r"># Certo
+if(1 == 2) {
+  &quot;Um resultado muito interessante!&quot;
+} else { # &lt;----- Mesma linha que o &quot;}&quot;
+  &quot;1 é diferente de 2&quot;
+}
+
+# ERRADO!!! Não rodará
+if(1 == 2) {
+  &quot;Um resultado muito interessante!&quot;
+}
+else { # &lt;----- Na linha abaixo do &quot;}&quot;
+  &quot;1 é diferente de 2&quot;
+}
+</code></pre>
+
+<ul>
+<li><p>Além de <code>TRUE</code> e <code>FALSE</code>, o R aceita <code>1</code> e <code>0</code>, respectivamente. Na verdade, não precisa ser <code>1</code> exatamente, a regra é: </p>
+
+<ul>
+<li>número diferente de zero é <code>TRUE</code>; e </li>
+<li>número igual a zero é <code>FALSE</code>.</li>
+</ul></li>
+<li><p>Objetos <code>character</code>, <code>NA</code>, <code>NaN</code> e <code>list</code> não são interpretáveis como lógicos. Será retornado um erro caso tente passá-los como condições.</p></li>
+<li><p>Caso seja passado um <code>array</code>, <code>vector</code> ou <code>matrix</code>, será utilizado apenas o primeiro elemento (é melhor evitar usar arrays como condições!). Será enviado um aviso de que isso ocorreu.</p></li>
+<li><p><code>else</code> e <code>else if</code> são opcionais.</p></li>
+</ul>
+
+<h2>for</h2>
+
+<p>O <code>for</code> é um tipo &quot;laço&quot; (<em>loop</em>, em inglês) que aplica um bloco de código para um número fixo de iterações. Geralmente, um <code>for</code> percorre um vetor e utiliza um elemento diferente deste vetor em cada iteração.</p>
+
+<h3>Estrutura:</h3>
+
+<pre><code class="r">for(iterador in &lt;sequencia&gt;) {
+  # Fazer algo para cada item da &lt;sequencia&gt;
+  # pode ter outros for&#39;s aqui dentro!
+}
+</code></pre>
+
+<h3>Exemplo:</h3>
+
+<p>O uso mais simples é quando iteramos em um vetor de inteiros, como se fossem contadores.</p>
+
+<pre><code class="r">for(i in 1:5) {
+  print(i)
+}
+</code></pre>
+
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+</code></pre>
+
+<p>Mas podemos iterar em um vetor qualquer.</p>
+
+<pre><code class="r">frutas &lt;- c(&quot;banana&quot;, &quot;uva&quot;, &quot;abacaxi&quot;)
+
+# Brincadeira da &lt;fruta&gt; + &quot;guei&quot;
+for(fruta in frutas) {
+  print(paste(fruta, &quot;guei&quot;, sep = &quot;&quot;))
+}
+</code></pre>
+
+<pre><code>## [1] &quot;bananaguei&quot;
+## [1] &quot;uvaguei&quot;
+## [1] &quot;abacaxiguei&quot;
+</code></pre>
+
+<p>Para cada item do vetor <code>frutas</code>, o <code>for</code> atribuiu ao objeto <code>fruta</code> o valor do respectivo item e aplicou a função <code>print(paste(fruta, &quot;guei&quot;, sep = &quot;&quot;))</code>.</p>
+
+<p>Formas alternativas com o mesmo comportamento que o acima:</p>
+
+<pre><code class="r"># repare nos []&#39;s depois do vetor &#39;frutas&#39;
+for(i in 1:length(frutas)) {
+  print(paste(frutas[i], &quot;guei&quot;, sep = &quot;&quot;))
+}
+
+# seq_along() é uma função especialmente útil para for&#39;s
+for(i in seq_along(frutas)) {
+  print(paste(frutas[i], &quot;guei&quot;, sep = &quot;&quot;))
+}
+</code></pre>
+
+<p><strong>OBS</strong> Apesar de parecer mais &#39;elegante&#39; atribuir diretamente os valores ao iterador (como no caso do <code>fruta in frutas</code>), muitas vezes você se pegará na necessidade de usar os índices dos valores. Casos típicos é quando se tem um outro vetor que faz relação com outro. O exemplo abaixo não seria possível caso utilizássemos <code>fruta in frutas</code> no lugar de <code>i in seq_along(frutas)</code>.</p>
+
+<pre><code class="r"># Exemplo simples de quando é util utilizar índice em vez de valor.
+frutas1 &lt;- c(&quot;banana&quot;, &quot;uva&quot;, &quot;abacaxi&quot;)
+frutas2 &lt;- c(&quot;kiwi&quot;, &quot;uva&quot;, &quot;laranja&quot;)
+pessoas &lt;- c(&quot;Amanda&quot;, &quot;Bruno&quot;, &quot;Caio&quot;)
+
+for(i in seq_along(frutas1)) {
+  if(frutas1[i] == frutas2[i]) {
+    frutas1[i] &lt;- &quot;manga&quot; # Troca a fruta 1
+    print(paste(pessoas[i], &quot;ganhou frutas repetidas. Uma delas foi trocada por manga.&quot;))
+  }
+}
+</code></pre>
+
+<pre><code>## [1] &quot;Bruno ganhou frutas repetidas. Uma delas foi trocada por manga.&quot;
+</code></pre>
+
+<h3><em>ifelse()</em>: <em>for</em> com <em>if else</em></h3>
+
+<p>Como veremos mais para frente, vetores são quase sempre bem-vindos no R. Muitas funções trabalham com vetores de maneira muito conveniente e a função <code>ifelse()</code> é um exemplo disso. Ela é a abordagem mais simples quando queremos que cada elemento de um vetor passe por algum teste lógico (como no exemplo acima) para retornar um valor dependendo se a condiçao for <code>TRUE</code> ou <code>FALSE</code> (como nunca é demais, dê um <code>?ifelse</code> para ver a documentação se for preciso). Abaixo está a replicação do exemplo acima, mas sem a mensagem de aviso.</p>
+
+<pre><code class="r">frutas1 &lt;- c(&quot;banana&quot;, &quot;uva&quot;, &quot;abacaxi&quot;)
+frutas2 &lt;- c(&quot;kiwi&quot;, &quot;uva&quot;, &quot;laranja&quot;)
+pessoas &lt;- c(&quot;Amanda&quot;, &quot;Bruno&quot;, &quot;Caio&quot;)
+
+frutas1 &lt;- ifelse(frutas1 == frutas2, &quot;manga&quot;, frutas1)
+</code></pre>
+
+<p>O código acima está dizendo que se os respectivos elementos de frutas1 e frutas2 calharem de serem iguais, então substitua por &quot;manga&quot;. Se forem diferentes, então mantenha a fruta 1 original. Finalmente, atualize o vetor <code>frutas1</code>.</p>
+
+<p>Na parte de vetorização será descrita com mais detalhe o que está acontecendo por trás dos panos.</p>
+
+<h3>Considerações:</h3>
+
+<p>O uso do <em>for</em>, ao contrário das outras linguagens de programação, se tornará cada vez menos frequente conforme você for se aprimorando no R. Ele é especialmente ineficiente no R e, além disso, existem outras funções que o substituem e ainda facilitam muito mais a vida.</p>
+
+<h2>while</h2>
+
+<p>O laço <code>while</code> é especialmente útil quando não sabemos quando iremos parar (a condição para o laço deixar de rodar pode envolver o acaso ou convergência, por exemplo). Cuidado com os <em>loops</em> infinitos! =)</p>
+
+<h3>Estrutura:</h3>
+
+<p>A estrutura é muito similar ao <code>if</code>. Tem a condição (ou teste lógico) e a expressão a ser executada enquanto a condição for verdadeira.</p>
+
+<pre><code class="r">while(&lt;condições&gt;) {
+  # coisas para fazzer enquanto as &lt;condições&gt; forem TRUE
+}
+</code></pre>
+
+<h3>Exemplo:</h3>
+
+<p>Abaixo está uma simulação de lançamento de moedas do qual se tem interesse em saber quantos lançamentos foram necessários até o aparecimento de uma &quot;cara&quot;.</p>
+
+<pre><code class="r">p &lt;- 0.2 # probabilidade de cair &quot;cara&quot;
+lances &lt;- 0 # contador de lançamentos
+while(runif(1) &gt; p) {
+  lances &lt;- lances + 1
+}
+
+lances
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<p>A função <code>runif(1)</code> gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que <code>p</code>, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que <code>p</code>. No fim, teremos nossa desejada variável aleatória simulada de lances até &quot;cara&quot;.</p>
+
+<p>Repare que enquanto a condição retornava <code>TRUE</code>, a expressão sera reexecutada. O laço só parou quando a condição retornou <code>FALSE</code>. Essa é a regra do <code>while</code>.</p>
+
+<h1>Vetorização</h1>
+
+<p>Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavras) e são os objetos de maior interesse porque são eles que guardam os dados a serem analisados. Por essa razão que quase tudo feito no R aceita de braços abertos um &quot;vetor&quot; (entre aspas por que &quot;vetor&quot; aqui pode ser vetor, matriz, tabela e afins, tipos de objetos que serão explicados em detalhes na próxima aula).</p>
+
+<p>Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação, se verão tentados a usar <em>loops</em> para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, <em>loops</em> no R são sofrivelmente ineficientes.</p>
+
+<h2>Tecnicalidades</h2>
+
+<p>Tecnicamente, vetorização nada mais é do que a cultura de se criar e usar funções vetorizadas. Essas funções recebem vetor(es) [x1, ..., xn] e devolvem vetor(es) [f(x1), ..., f(xn)]. Mas por quê é importante, afinal?</p>
+
+<p>Implementar funções vetorizadas seria uma tarefa simples, não fosse a lentidão dos <em>loops</em>. No R, funções vetorizadas realmente úteis são implementadas nas linguagens de baixo nível, que são muito mais rápidas. Por isso, a não ser que domine C, FORTRAN ou C++, você ficará dependente das funções vetorizadas disponíveis pelo R ou por terceiros.</p>
+
+<h2>Eficiência</h2>
+
+<p>Abaixo está um exemplo que mostra a diferença de tempo que leva para calcular a raiz quadrada de cada elemento de um vetor de números. </p>
+
+<ul>
+<li>Uma das funções está implementada inteiramente em R utilizando um <em>for</em> para calcular a raiz quadrada em cada elemento do vetor por meio da função <code>sqrt()</code>;</li>
+<li>Uma segunda maneira de efetuar a mesma operação tira proveito da implementação vetorizada em C da função <code>sqrt()</code>.</li>
+</ul>
+
+<pre><code class="r">x &lt;- 1:1000000 # sequência de inteiros de 1 a 1000000
+
+# função que calcula a raiz quadrada de cada elemento de um vetor de números
+meu_sqrt &lt;- function(numeros) {
+  resp &lt;- numeric(length(numeros))
+  for(i in seq_along(numeros)) {
+    resp[i] &lt;- sqrt(numeros[i])
+  }
+  return(resp)
+}
+
+# Comparação de eficiência entre função vetorizada e função &quot;vetorizada no R&quot;
+system.time(x2a &lt;- meu_sqrt(x))
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   1.370   0.000   1.369
+</code></pre>
+
+<pre><code class="r">system.time(x2b &lt;- sqrt(x))
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.009   0.000   0.009
+</code></pre>
+
+<pre><code class="r"># Verifica que os dois vetores são iguais
+identical(x2a, x2b)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>Um ganho de 100-200 vezes na eficiência! E as vantagens não param por aí:</p>
+
+<ol>
+<li>Essas funções foram construídas e testadas por pessoas que ganham a vida fazendo isso;</li>
+<li>No R, uma função é &quot;esperta&quot; e funciona para diferentes tipos de objetos que passamos a ela, muitas vezes da forma que esperamos.</li>
+</ol>
+
+<h2>Reciclagem</h2>
+
+<p>Um conceito que caminha junto com a vetorização é a chamada Reciclagem. Um exemplo ajuda a esclarecer o que isso significa.</p>
+
+<pre><code class="r">x &lt;- c(1,5)
+y &lt;- c(1,10,100,1000)
+x + y
+</code></pre>
+
+<pre><code>## [1]    2   15  101 1005
+</code></pre>
+
+<p>Neste exemplo estamos somando dois vetores de tamanhos diferentes. Na matemática isso não faz sentido, mas no R faz! E qual convenção se usa para que essa operação seja bem definida? A resposta é Reciclagem. O operador <code>+</code> é uma função vetorizada e que está programado para lidar com quase qualquer tipo de soma que o usuário queira desafiá-lo a fazer. Ao ser incumbido da árdua missão de somar dois vetores de tamanhos diferentes, o <code>+</code> &quot;recicla&quot; os valores do menor vetor, no caso o vetor <code>x</code>, reutilizando seus valores até preencher o vetor maior. </p>
+
+<p>Esta convenção aparece sempre que possível no R e vale tomar cuidado: há vezes em que o R não avisa que reciclou valores.</p>
+
+<h1>Funções</h1>
+
+<p>Funções são grandes trunfos das linguagens de programação. Função no R tem a mesma finalidade das funções das demais linguagens: evitar repetir códigos e construir abstrações. Funções deixam o código mais legível, elegante e menos repetitivo. Além disso, funções abstraem uma rotina para casos mais gerais por meio de parâmetros, fazendo-a útil para casos além daquela configuração específica que motivou sua implementação.</p>
+
+<h2>Estrutura</h2>
+
+<pre><code class="r">nome_da_funcao &lt;- function(&lt;parâmetros&gt;) {
+  # faz coisas com os parâmetros
+  resultado
+}
+
+# uso da função
+nome_da_funcao(param1, param2, ...)
+</code></pre>
+
+<p>Pontos relevantes:</p>
+
+<ul>
+<li><p>Funções também são objetos! Aliás, tudo que você atribui com <code>&lt;-</code> vira um objeto no R. Assim, é natural pensar que funções podem receber outras funções como argumento e isso é bem comum.</p></li>
+<li><p>Assim que uma função for atribuída a um objeto, use esta função como se ela tivesse vinda com o R: <code>nome_da_funcao(...)</code>.</p></li>
+</ul>
+
+<h2>Parâmetros</h2>
+
+<p>Funções aceitam quaisquer e quantos parâmetros precisar e retorna um objeto, de qualquer tipo, inclusive nada (<code>NULL</code>). No lugar do <code>&lt;parâmetros&gt;</code> você pode colocar nomes que servirão de objetos (número, texto, vetor, lista, etc.) dentro da sua função.</p>
+
+<h3>Parâmetros opcionais</h3>
+
+<p>Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário. Porém, existem parâmetros opcionais, que assumem um dado valor padrão caso o usuário opte por não especificar explicitamente.</p>
+
+<pre><code class="r"># função que ecoa uma palavra
+ecoar &lt;- function(palavra, n_ecos = 3) {
+    paste(c(rep(palavra, n_ecos), &quot;!&quot;), collapse = &quot; &quot;)
+}
+</code></pre>
+
+<h3>Parâmetros relativos</h3>
+
+<p>Além de parâmetros opcionais, podem existir parâmetros cujo valor padrão usa o valor de outro parâmetro. Exemplo:</p>
+
+<pre><code class="r"># Função que desenha um histograma
+histograma &lt;- function(numeros, xlab = &quot;x&quot;, titulo = paste(&quot;Histograma de&quot;, xlab)) {
+  hist(numeros, xlab = xlab, main = titulo)
+}
+
+# Simula 1000 medidas de altura de pessoas de uma Normal com média 1,80 e desvio padrão de 0,1.
+altura &lt;- rnorm(n = 1000, mean = 1.80, sd = 0.1)
+histograma(altura, &quot;altura&quot;)
+</code></pre>
+
+<p><img src="assets/fig/hist1-1.png" alt="plot of chunk hist1"> </p>
+
+<pre><code class="r">histograma(altura, &quot;altura&quot;, &quot;Eu escolho o título que eu quiser&quot;)
+</code></pre>
+
+<p><img src="assets/fig/hist1-2.png" alt="plot of chunk hist1"> </p>
+
+<p>O parâmetro <code>xlab</code> define o título do eixo x enquanto <code>titulo</code> escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.</p>
+
+<h3>Ordem ou nome</h3>
+
+<p>Podemos passar valores aos parâmetros explicitamente ou implicitamente. Passar valor explicitamente significa associar o valor desejado ao nome do parâmetro. Por exemplo, no código <code>rnorm(n = 1000, mean = 1.80, sd = 0.1)</code> está claro qual valor será passado para cada parâmetro. Se quisermos omitir os nomes dos parâmetros, as funções terão a boa vontade de deduzir a qual parâmetro você deseja atribuir certo valor e isso é feito utilizando a ORDEM dos parâmetros definidos na criação da função. No comando <code>histograma(altura, &quot;altura&quot;)</code> nenhum parâmetro foi diretamente definido, mas pela ordem, o vetor <code>altura</code> foi atribuído ao parâmetro <code>numeros</code> e a <em>string</em> <code>&quot;altura&quot;</code> foi atribuída ao parâmetro <code>xlab</code> da função <code>histograma()</code>. A versão &quot;explícita&quot; desse comando seria <code>histograma(numeros = altura, xlab = &quot;altura&quot;)</code>.</p>
+
+<p><strong>OBS:</strong> Misturar as formas, explícitas e implícitas, também funciona e versões explícitas aceitam que os parâmetros sejam passados fora de ordem. A expressão <code>histograma(xlab = &quot;altura&quot;, altura)</code> daria certo também!</p>
+
+<p><strong>OBS 2:</strong> Se não for ambíguo, o R aceita que apenas parte do nome do parâmetro seja passado. No nosso exemplo, <code>histograma(altura, t = &quot;Eu escolho o título que eu quiser&quot;, x = &quot;altura&quot;)</code> levaria ao mesmo resultado que todos os citados até aqui.</p>
+
+<h3>Parâmetro &quot;...&quot;</h3>
+
+<p>Existe um parâmetro especial e frequentemente disponível em funções que é simbolizado por três pontinhos &quot;...&quot;. Esse argumento indica que pode ser passado um número variável de parâmetros e que, geralmente, estes serão repassados para outras funções. </p>
+
+<p>Uma utilidade é quando você deseja fazer possível mexer nos parâmetros de uma função, mas não quer copiar todos os seus parâmetros novamente. Retomemos o exemplo da função <code>histograma()</code>:</p>
+
+<pre><code class="r">histograma &lt;- function(numeros, xlab = &quot;x&quot;, titulo = paste(&quot;Histograma de&quot;, xlab), ...) {
+  hist(numeros, xlab = xlab, main = titulo, ...)
+}
+
+histograma(altura, breaks = 100, col = 2)
+</code></pre>
+
+<p><img src="assets/fig/hist2-1.png" alt="plot of chunk hist2"> </p>
+
+<p>Repare que nunca precisamos definir os parâmetros <code>breaks</code> e <code>col</code> na função <code>histograma()</code>. O ... fez o trabalho de enviar essas informações à função <code>hist()</code>.</p>
+
+<p>Um segundo cenário que ... se faz útil é quando uma função aceita um número indefinido de argumentos. Um exemplo disso é a função <code>paste()</code>, que concatena palavras. A ela, podemos passar quantas palavras quisermos. Não fosse o ..., teríamos que ter os parâmetros <code>(palavra1, palavra2, palavra3, ...)</code>. Sem chances.</p>
+
+<pre><code class="r">args(paste)
+</code></pre>
+
+<pre><code>## function (..., sep = &quot; &quot;, collapse = NULL) 
+## NULL
+</code></pre>
+
+<pre><code class="r">paste(&quot;Eu&quot;, &quot;sou&quot;, &quot;o&quot;, &quot;capitão&quot;, &quot;planeta&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;Eu sou o capitão planeta&quot;
+</code></pre>
+
+<h2>Funções anônimas</h2>
+
+<p>As funções anônimas são frequentemente utilizadas e têm essa denominação pois não nos damos o trabalho de defini-las como um objeto permanente no nosso ambiente de trabalho. Veja o exemplo abaixo:</p>
+
+<pre><code class="r">nums &lt;- 1:10
+
+eh_par &lt;- sapply(nums, function(numero) {numero %% 2 == 0})
+
+cbind(nums, eh_par) 
+</code></pre>
+
+<pre><code>##       nums eh_par
+##  [1,]    1      0
+##  [2,]    2      1
+##  [3,]    3      0
+##  [4,]    4      1
+##  [5,]    5      0
+##  [6,]    6      1
+##  [7,]    7      0
+##  [8,]    8      1
+##  [9,]    9      0
+## [10,]   10      1
+</code></pre>
+
+<p>Não se preocupe em entender tudo o que o código acima está fazendo, você aprenderá adiante tudo sobre a função <code>sapply()</code> e <code>cbind()</code>. O ponto deste exemplo está na parte <code>function(numero) {numero %% 2 == 0}</code>. Este pedaço de código define uma função, mas essa função não tem nome! Apesar disso, ela continua sendo um objeto e pode ser passada como parâmetro de função, assim como faríamos com números, textos e vetores. Caso a função fosse útil em outros contextos ou tivesse que ser repetida em outra parte do código, poderíamos guardá-la no ambiente de trabalho, como mostra o exemplo que segue:</p>
+
+<pre><code class="r">testa_se_eh_par &lt;- function(numero) {
+  numero %% 2 == 0
+}
+
+eh_par &lt;- sapply(nums, testa_se_eh_par)
+</code></pre>
+
+<p>O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.</p>
+
+<h2>Escopo</h2>
+
+<p>Objetos moram em <strong>ambientes</strong> (<em>environments</em>) e as funções as procuram os objetos que precisam usar nesses <em>environments</em>.</p>
+
+<p>A ordem de procura segue a regra do mais específico até o ambiente global (<code>.GlobalEnv</code>) e se nada for encontrado, retorna um erro informando que não existe tal objeto.</p>
+
+<p>Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o primeiro que for encontrado).</p>
+
+<pre><code class="r">(x &lt;- exp(1))
+</code></pre>
+
+<pre><code>## [1] 2.718282
+</code></pre>
+
+<pre><code class="r">f &lt;- function(x) print(x)
+f(2)
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<pre><code class="r">g &lt;- function(y) print(x)
+g(2)
+</code></pre>
+
+<pre><code>## [1] 2.718282
+</code></pre>
+
+<p>No exemplo acima, o objeto <code>x</code> existe tanto fora, quanto dentro da função <code>f()</code>. Ao ser chamado para ser usado na função <code>print(x)</code>, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor <code>2</code>.</p>
+
+<p>O <code>x</code> que vale <code>exp(1)</code> está morando no <em>global envirnment</em> (<code>.GlobalEnv</code>) e seria utilizado apenas no caso em que nenhum outro <code>x</code> estivesse no caminho.</p>
+
+<p>Na função <code>g()</code>, não existe mais o objeto <code>x</code> dentro dela (trocamos por <code>y</code>). O único objeto que está dentro de lá é o <code>y</code>. Como ainda chamamos pelo <code>x</code> dentro da função, o R irá buscar por ele, onde quer que ele esteja.</p>
+
+<h1>Variáveis Aleatórias</h1>
+
+<p>No R é muito fácil calcular f.d.p&#39;s, f.d.a&#39;s, quantis e até mesmo simular variáveis aleatórias das mais consagradas distribuições de probabilidade. O nome dessas funções segue um padrão que chamamos de funções (d, p, q, r). Exemplo para a distribuição Normal:</p>
+
+<pre><code class="r">dnorm(x, mean = 0, sd = 1, log = FALSE)
+pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean = 0, sd = 1)
+</code></pre>
+
+<p>Repare nas 4 letras que antecedem <code>norm</code> nos nomes das funções. Essas letras significam:</p>
+
+<ul>
+<li><strong>d</strong> (&quot;density&quot;) Densidade da Normal, ou f.d.p da Normal;</li>
+<li><strong>p</strong> (&quot;probability&quot;) Função de distribuição acumulada (f.d.a) da Normal;</li>
+<li><strong>q</strong> (&quot;quantile&quot;) Quantil da Normal;</li>
+<li><strong>r</strong> (&quot;random&quot;) Gera um número vindo de uma Normal.</li>
+</ul>
+
+<p>No lugar de <code>norm</code>, você pode trocar por outra distribuição de probabilidade. A tabela abaixo lista algumas das possibilidades:</p>
+
+<table><thead>
+<tr>
+<th align="center">Distribuição</th>
+<th align="center">Apelido</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Normal</td>
+<td align="center">norm</td>
+</tr>
+<tr>
+<td align="center">Uniforme</td>
+<td align="center">unif</td>
+</tr>
+<tr>
+<td align="center">Beta</td>
+<td align="center">beta</td>
+</tr>
+<tr>
+<td align="center">Chi Quadrado</td>
+<td align="center">chisq</td>
+</tr>
+<tr>
+<td align="center">Exponencial</td>
+<td align="center">exp</td>
+</tr>
+<tr>
+<td align="center">F de Snedecor</td>
+<td align="center">f</td>
+</tr>
+<tr>
+<td align="center">Gama</td>
+<td align="center">gamma</td>
+</tr>
+<tr>
+<td align="center">Poisson</td>
+<td align="center">pois</td>
+</tr>
+</tbody></table>
+
+<p>Para consultar a lista completa de distribuições da família (d, p, q, r), rode no console <code>?Distributions</code>.</p>
+
+<h1>Vocabulário</h1>
+
+<h2>Trigonometria</h2>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">cos(x) / sin(x) / tan(x)</td>
+<td align="center">seno/cosseno/tangente de x</td>
+</tr>
+<tr>
+<td align="center">acos(x) / asin(x) / atan(x)</td>
+<td align="center">arco-seno/cosseno/tangente de x</td>
+</tr>
+</tbody></table>
+
+<h2>Matemática</h2>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">log(x)</td>
+<td align="center">Logaritmo natural de x</td>
+</tr>
+<tr>
+<td align="center">exp(x)</td>
+<td align="center">e elevado a x</td>
+</tr>
+<tr>
+<td align="center">abs(x)</td>
+<td align="center">valor absoluto de x</td>
+</tr>
+<tr>
+<td align="center">sign(x)</td>
+<td align="center">sinal de x (1 ou -1)</td>
+</tr>
+<tr>
+<td align="center">sqrt(x)</td>
+<td align="center">raiz quadrada de x</td>
+</tr>
+<tr>
+<td align="center">choose(n, k)</td>
+<td align="center">combinações de n, k a k</td>
+</tr>
+<tr>
+<td align="center">factorial(x)</td>
+<td align="center">fatorial de x</td>
+</tr>
+</tbody></table>
+
+<h2>Estatística</h2>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">mean(x)</td>
+<td align="center">Média de x</td>
+</tr>
+<tr>
+<td align="center">var(x) / sd(x)</td>
+<td align="center">Variância / Desvio Padrão amostral de x</td>
+</tr>
+<tr>
+<td align="center">quantile(x)</td>
+<td align="center">Quantis de x</td>
+</tr>
+<tr>
+<td align="center">cov(x, y) / cor(x, y)</td>
+<td align="center">Covariância / Correlação linear entre x e y</td>
+</tr>
+</tbody></table>
+
+<h2>Diversos</h2>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">x:y</td>
+<td align="center">Sequencia de x até y</td>
+</tr>
+<tr>
+<td align="center">x=y</td>
+<td align="center">x recebe y (atribuição)</td>
+</tr>
+<tr>
+<td align="center">?x</td>
+<td align="center">documentação de x</td>
+</tr>
+<tr>
+<td align="center">x$y</td>
+<td align="center">extração de y do objeto x</td>
+</tr>
+<tr>
+<td align="center">x%*%y</td>
+<td align="center">Multiplicação matricial das matrizes x e y</td>
+</tr>
+</tbody></table>
+
+<h1>Referências</h1>
+
+<p><a href="http://adv-r.had.co.nz/Functions.html">http://adv-r.had.co.nz/Functions.html</a></p>
+
+<p><a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">http://www.burns-stat.com/pages/Tutor/R_inferno.pdf</a></p>
+
+              <div id="disqus_thread"></div>
+            </li>
+          </ol>
+          <div class="pagination">
+            <ul>
+              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
+            </ul>
+          </div> 
+        </div>
+			</div>
+		</div>
+  </div>
+</body>
+  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
+  <script>
+      var disqus_developer = 1;
+      var disqus_shortname = 'curso-r'; 
+      // required: replace example with your forum shortname
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); 
+          dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || 
+           document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- Google Prettify -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
+  <script>
+    var pres = document.getElementsByTagName("pre");
+    for (var i=0; i < pres.length; ++i) {
+      pres[i].className = "prettyprint linenums";
+    }
+    prettyPrint();
+  </script>
+  <!-- End Google Prettify --> 
+  </html>
