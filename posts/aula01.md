@@ -460,7 +460,7 @@ lances
 ```
 
 ```
-## [1] 1
+## [1] 5
 ```
 
 A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
@@ -505,7 +505,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.370   0.000   1.369
+##   1.670   0.004   1.672
 ```
 
 ```r
@@ -514,7 +514,7 @@ system.time(x2b <- sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   0.009   0.000   0.009
+##    0.01    0.00    0.01
 ```
 
 ```r

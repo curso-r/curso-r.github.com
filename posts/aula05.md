@@ -7,6 +7,10 @@ output:
     toc: yes
 ---
 
+<a href="http://curso-r.github.io/slides/aula_05_apresentacao.html" target="_blank">Slides dessa aula</a>
+
+<a href="http://curso-r.github.io/script/aula_05.R" target="_blank">Script dessa aula</a>
+
 # O pacote ggplot2
 
 O `ggplot2` é um pacote do R voltado para a criação de gráficos estatísticos. Ele é baseado na Gramática dos Gráficos (*grammar of graphics*, em inglês), criado por Leland Wilkinson, que é uma resposta para a pergunta: o que é um gráfico estatístico? Resumidamente, a gramática diz que um gráfico estatístico é um mapeamento dos dados a partir de atributos estéticos (cores, formas, tamanho) de formas geométricas (pontos, linhas, barras).

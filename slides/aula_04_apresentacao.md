@@ -2,8 +2,6 @@
 Curso de R: Do casual ao avançado  
 2015-01-26  
 
-
-
 ## Hadley Wickham
 
 <img src="figure/hadley.png" style="heigth: 300px;"/>
