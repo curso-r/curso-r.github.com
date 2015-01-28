@@ -7,7 +7,6 @@ date : 2015-01-26
 
 <a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a>
 
-
 ```{r pacotes, echo=FALSE, message=FALSE, warning=FALSE}
 require(dplyr)
 require(tidyr)
@@ -20,12 +19,10 @@ A manipulação de dados é uma tarefa usualmente bastante
 dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
 como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.
 
-
 O `dplyr` é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
 simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que fazem uso 
 inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.
-
 
 Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
@@ -37,7 +34,6 @@ como uma revolução no `R`.
 pnud_muni <- tbl_df(pnud_muni)
 pnud_muni
 ```
-
 
 ### Filosofia do Hadley para análise de dados
 
