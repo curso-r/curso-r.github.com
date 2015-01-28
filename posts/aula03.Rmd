@@ -55,7 +55,7 @@ __Queremos que vocês descubram__:
 
 __Outras atividades__:
 
-- Visualize como está distribuída a população dos municípios no Brasil. Quantos municípios concentram 25% da população?
+- Monte um gráfico que mostre no eixo `x` a quantidade de municípios (em forma de porcentagem) e no eixo `y` a população acumulada desses municípios. Ordene os dados de forma apropriada para responder a pergunta: 20% dos municípios concentram quantos % da população? E os 30%? E x% (crie uma função)?
 - Categorize a renda per capita e associe com a expectativa de vida.
 - Você acha que a situação do Brasil está melhorando? Justifique utlizando dados de pelo menos 3 variáveis.
 - No nordeste o aumento de distribuição de renda foi maior do que no sudeste?

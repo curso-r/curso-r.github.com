@@ -264,6 +264,24 @@ plot(x, y, type = &quot;l&quot;)
 
 <h2>Aula 04</h2>
 
+<p>A base de dados <code>bd_dyad_sample</code> (leia executando <code>data(bd_dyad_sample, package=&#39;abjutils&#39;)</code>) contém em cada linha uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países. Os países estão identificados pelas colunas <code>ccode1</code> e <code>ccode2</code>. A coalizão é identificada pela variável <code>Freq</code> ou a variável <code>coalition</code>, que são iguais e valem <code>1</code> se houve coalizão e <code>0</code> caso contrário. A coluna <code>ccoalition</code> é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).</p>
+
+<p>As outras medidas da base são basicamente medidas de distância entre caracteísticas dos países em relação a um dado ano. Por exemplo, <code>pwt_lrgdp</code> mede a diferença (em log) dos PIBs dos países, e <code>dist_latlon</code> mede a distância dos países.</p>
+
+<h3>Tidy data</h3>
+
+<p><strong>1</strong>. Qual é a unidade observacional (o que identifica uma observação)?</p>
+
+<h3>select, filter, mutate, arrange, summarise, gather, spread</h3>
+
+<p><strong>2</strong>. Qual é o código do país que entrou mais vezes em alguma coalizão?</p>
+
+<p><strong>3</strong>. Qual é o código do país que entrou em coalizão com mais países?</p>
+
+<p><strong>4</strong>. Quantas coalizões tivemos em cada ano?</p>
+
+<p><strong>5</strong>. Construa uma matriz de adjacências usando <code>dplyr</code>. Queremos um <code>data.frame</code> com número de linhas igual ao número de colunas, e o conteúdo da tabela é <code>1</code> se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e <code>0</code> caso contrário. </p>
+
 <h2>Aula 05</h2>
 
 <h2>Aula 06</h2>

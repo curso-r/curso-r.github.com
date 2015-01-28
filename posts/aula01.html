@@ -618,7 +618,7 @@ while(runif(1) &gt; p) {
 lances
 </code></pre>
 
-<pre><code>## [1] 5
+<pre><code>## [1] 0
 </code></pre>
 
 <p>A função <code>runif(1)</code> gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que <code>p</code>, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que <code>p</code>. No fim, teremos nossa desejada variável aleatória simulada de lances até &quot;cara&quot;.</p>
@@ -662,14 +662,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.670   0.004   1.672
+##   1.895   0.000   1.875
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.01    0.00    0.01
+##    0.00    0.00    0.01
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais

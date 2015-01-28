@@ -203,6 +203,24 @@ d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
 
 ## Aula 04
 
+A base de dados `bd_dyad_sample` (leia executando `data(bd_dyad_sample, package='abjutils')`) contém em cada linha uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países. Os países estão identificados pelas colunas `ccode1` e `ccode2`. A coalizão é identificada pela variável `Freq` ou a variável `coalition`, que são iguais e valem `1` se houve coalizão e `0` caso contrário. A coluna `ccoalition` é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).
+
+As outras medidas da base são basicamente medidas de distância entre caracteísticas dos países em relação a um dado ano. Por exemplo, `pwt_lrgdp` mede a diferença (em log) dos PIBs dos países, e `dist_latlon` mede a distância dos países.
+
+### Tidy data
+
+**1**. Qual é a unidade observacional (o que identifica uma observação)?
+
+### select, filter, mutate, arrange, summarise, gather, spread
+
+**2**. Qual é o código do país que entrou mais vezes em alguma coalizão?
+
+**3**. Qual é o código do país que entrou em coalizão com mais países?
+
+**4**. Quantas coalizões tivemos em cada ano?
+
+**5**. Construa uma matriz de adjacências usando `dplyr`. Queremos um `data.frame` com número de linhas igual ao número de colunas, e o conteúdo da tabela é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. 
+
 ## Aula 05
 
 ## Aula 06
