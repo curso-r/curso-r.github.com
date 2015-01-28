@@ -58,4 +58,12 @@ airquality
 
 
 
+### Banco de dados: Locations of Earthquakes off Fiji
+###########################################################
+
+quakes
+
+# 1) Fazer um histograma da magnitude
+
+# 2) Fazer um mapa das ocorrências
 

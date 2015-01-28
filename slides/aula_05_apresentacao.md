@@ -7,24 +7,24 @@ Curso de R: Do casual ao avançado
 
 ## Introdução {.build}
 
-O que é um gráfico estatísstico? 
+O que é um gráfico estatístico? 
 
 Leland Wilkinson respondeu essa pergunta!
 
+*The Grammar of Graphics*
+
 - Conjunto de dados
 
-- Aspectos estéticos
-
-- Formas geométricas
+- Aspectos estéticos de formas geométricas
 
 
 ## Motivação 1
 
-- é fácil de usar
+- É fácil de usar.
 
-- foi criado pelo Hardley
+- Foi criado pelo Hardley.
 
-- gráficos bonitos e elegantes.
+- Gráficos bonitos e elegantes.
 
 ## Motivação 2 | SAS
 
@@ -163,12 +163,6 @@ ggplot(data = mtcars) +
 ![](aula_05_apresentacao_files/figure-html/unnamed-chunk-14-1.png) 
 
 ## Exemplos {.build}
-
-
-```r
-ggplot(data = mtcars) +
-  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-```
 
 
 ```r

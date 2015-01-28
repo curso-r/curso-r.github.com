@@ -19,24 +19,24 @@ library(ggplot2)
 
 ## Introdução {.build}
 
-O que é um gráfico estatísstico? 
+O que é um gráfico estatístico? 
 
 Leland Wilkinson respondeu essa pergunta!
 
+*The Grammar of Graphics*
+
 - Conjunto de dados
 
-- Aspectos estéticos
-
-- Formas geométricas
+- Aspectos estéticos de formas geométricas
 
 
 ## Motivação 1
 
-- é fácil de usar
+- É fácil de usar.
 
-- foi criado pelo Hardley
+- Foi criado pelo Hardley.
 
-- gráficos bonitos e elegantes.
+- Gráficos bonitos e elegantes.
 
 ## Motivação 2 | SAS
 
@@ -96,7 +96,7 @@ ggplot(df, aes(x = ano, y = expec, fill = usa)) +
 df <- data.frame(usa = rep(c("Sim", "Não"), c(100,100)),                 
                  salario = c(rnorm(100, 7000, 1000), abs(rnorm(100, 2000, 1200))))
 
-df$salario[1] = df$salario[1] - 4000
+df$salario[1] = 2500
 
 ggplot(df, aes(x = usa, y = salario, fill = usa)) +
   geom_boxplot(width = 0.5) +
@@ -219,7 +219,7 @@ ggplot(data = mtcars) +
 
 ```
 
-```{r, echo = TRUE}
+```{r, echo = FALSE}
 
 ggplot(data = mtcars) +
   geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
