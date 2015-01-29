@@ -3,6 +3,7 @@ title: Aula 06 - Laboratório II
 date : 2015-01-30
 --- 
 
+
 # Questões iniciais
 
 ## Sobre dplyr e tidyr
@@ -93,7 +94,7 @@ data(diamonds)
 
 # Desafios com bases de dados reais
 
-Primeiro, instale o pacote `abjutils`. Para isso, instale primeiro o pacote `devtools`
+Primeiro, instale o pacote `abjutils`. Para isso, instale primeiro o pacote `devtools`.
 
 ```{r eval=FALSE}
 # verifica se o pacote devtools já está instalado e instala se não estiver

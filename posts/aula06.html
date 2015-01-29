@@ -76,24 +76,78 @@
               </h3>
               <span>2015-01-30</span><br/>
                <a class='label label-success' href='posts/aula06.Rmd'>Source</a>
-              <h1>Questões iniciais (flights)</h1>
+              <h1>Questões iniciais</h1>
 <h2>Sobre dplyr e tidyr</h2>
+
+<p>Para estas questões usaremos a base de dados flights, ela está inserida no pacote <code>nycflights13</code> por isso é necessário utilizar o comando:</p>
+
+<pre><code class="r">library(nycflights13)
+</code></pre>
+
+<pre><code>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
+</code></pre>
+
+<p>Se você não tiver o pacote instalado use o comando:</p>
+
+<pre><code class="r">install.packages(&quot;nycflighs13&quot;)
+</code></pre>
+
+<p>E em seguida use o <code>library(nycflights13)</code>.</p>
+
+<pre><code class="r">library(dplyr)
+flights %&gt;% tbl_df
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+</code></pre>
+
+<p>Com o comando <code>?flights</code> você pode ver o que significa cada uma das variáveis do banco de dados.</p>
 
 <h3>filter</h3>
 
+<ol>
+<li>Atribua a uma tabela apenas os voos de janeiro de 2013.</li>
+<li>Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.</li>
+</ol>
+
 <h3>select</h3>
+
+<ol>
+<li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>.</li>
+<li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>, os nomes dessas colunas devem ser <code>mes</code>e <code>atraso</code>.</li>
+</ol>
 
 <h3>mutate</h3>
 
+<ol>
+<li>Calcule as colunas <code>ganho_de_tempo</code> que é dado por <code>dep_delay - arr_delay</code> e <code>velocidade</code> dada por <code>distance / air_time * 60</code>.</li>
+</ol>
+
 <h3>summarise</h3>
 
+<ol>
+<li>Calcule a média da distância de todos os vôos.</li>
+<li>Calcule a média da distância dos vôos por mês.</li>
+</ol>
+
 <h3>arrange</h3>
+
+<ol>
+<li>Ordene a base de dados pelo atraso na partida em ordem crescente.</li>
+<li>Repita a questão anterior, poém na ordem decrescente.</li>
+</ol>
 
 <h3>gather</h3>
 
 <h3>spread</h3>
 
 <h3>desafios (opcional)</h3>
+
+<ol>
+<li><p>Sumarise em uma tabela qual foi a média de atraso total (<code>dep_delay + arr_delay</code>) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+Dica: o intervalo de confiança pode ser calculado por \(média \pm 1,96*\sqrt{\frac{var(x)}{n}}\)</p></li>
+<li><p>Summarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.</p></li>
+</ol>
 
 <h2>Sobre ggplot2</h2>
 <p>Nestes exercícios você utilizará a base de dados <code>diamonds</code></p>
@@ -118,7 +172,7 @@
 <h3>desafios (opcional)</h3>
 
 <h1>Desafios com bases de dados reais</h1>
-<p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code></p>
+<p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code>.</p>
 
 <pre><code class="r"># verifica se o pacote devtools já está instalado e instala se não estiver
 if(!require(devtools)) install.packages(&#39;devtools&#39;)

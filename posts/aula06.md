@@ -3,25 +3,77 @@ title: Aula 06 - Laboratório II
 date : 2015-01-30
 --- 
 
-# Questões iniciais (flights)
+
+# Questões iniciais
 
 ## Sobre dplyr e tidyr
 
+Para estas questões usaremos a base de dados flights, ela está inserida no pacote `nycflights13` por isso é necessário utilizar o comando:
+
+
+```r
+library(nycflights13)
+```
+
+```
+## Error in library(nycflights13): there is no package called 'nycflights13'
+```
+
+Se você não tiver o pacote instalado use o comando:
+
+
+```r
+install.packages("nycflighs13")
+```
+
+E em seguida use o `library(nycflights13)`.
+
+
+```r
+library(dplyr)
+flights %>% tbl_df
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'flights' not found
+```
+
+Com o comando `?flights` você pode ver o que significa cada uma das variáveis do banco de dados.
+
 ### filter
+
+1. Atribua a uma tabela apenas os voos de janeiro de 2013.
+2. Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.
 
 ### select
 
+1. Atribua a uma tabela apenas as colunas `month` e `dep_delay`.
+2. Atribua a uma tabela apenas as colunas `month` e `dep_delay`, os nomes dessas colunas devem ser `mes`e `atraso`.
+
 ### mutate
+
+1. Calcule as colunas `ganho_de_tempo` que é dado por `dep_delay - arr_delay` e `velocidade` dada por `distance / air_time * 60`.
 
 ### summarise
 
+1. Calcule a média da distância de todos os vôos.
+2. Calcule a média da distância dos vôos por mês.
+
 ### arrange
+
+1. Ordene a base de dados pelo atraso na partida em ordem crescente.
+2. Repita a questão anterior, poém na ordem decrescente.
 
 ### gather
 
 ### spread
 
 ### desafios (opcional)
+
+1. Sumarise em uma tabela qual foi a média de atraso total (`dep_delay + arr_delay`) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\frac{var(x)}{n}}$
+
+2. Summarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.
 
 ---
 
@@ -54,7 +106,7 @@ data(diamonds)
 
 # Desafios com bases de dados reais
 
-Primeiro, instale o pacote `abjutils`. Para isso, instale primeiro o pacote `devtools`
+Primeiro, instale o pacote `abjutils`. Para isso, instale primeiro o pacote `devtools`.
 
 
 ```r
