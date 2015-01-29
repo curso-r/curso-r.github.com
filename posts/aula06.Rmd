@@ -64,7 +64,3 @@ data(diamonds)
 5. SABESP
 
 
-
-
-
-
