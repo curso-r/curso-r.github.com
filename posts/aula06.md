@@ -15,6 +15,10 @@ Para estas questões usaremos a base de dados flights, ela está inserida no pac
 library(nycflights13)
 ```
 
+```
+## Error in library(nycflights13): there is no package called 'nycflights13'
+```
+
 Se você não tiver o pacote instalado use o comando:
 
 
@@ -27,26 +31,18 @@ E em seguida use o `library(nycflights13)`.
 
 ```r
 library(dplyr)
+```
+
+```
+## Error in library(dplyr): there is no package called 'dplyr'
+```
+
+```r
 flights %>% tbl_df
 ```
 
 ```
-## Source: local data frame [336,776 x 16]
-## 
-##    year month day dep_time dep_delay arr_time arr_delay carrier tailnum
-## 1  2013     1   1      517         2      830        11      UA  N14228
-## 2  2013     1   1      533         4      850        20      UA  N24211
-## 3  2013     1   1      542         2      923        33      AA  N619AA
-## 4  2013     1   1      544        -1     1004       -18      B6  N804JB
-## 5  2013     1   1      554        -6      812       -25      DL  N668DN
-## 6  2013     1   1      554        -4      740        12      UA  N39463
-## 7  2013     1   1      555        -5      913        19      B6  N516JB
-## 8  2013     1   1      557        -3      709       -14      EV  N829AS
-## 9  2013     1   1      557        -3      838        -8      B6  N593JB
-## 10 2013     1   1      558        -2      753         8      AA  N3ALAA
-## ..  ...   ... ...      ...       ...      ...       ...     ...     ...
-## Variables not shown: flight (int), origin (chr), dest (chr), air_time
-##   (dbl), distance (dbl), hour (dbl), minute (dbl)
+## Error in eval(expr, envir, enclos): could not find function "%>%"
 ```
 
 Com o comando `?flights` você pode ver o que significa cada uma das variáveis do banco de dados.
@@ -86,16 +82,11 @@ Com o comando `?flights` você pode ver o que significa cada uma das variáveis 
 Resultado esperado:
 
 ```
-## Source: local data frame [6 x 13]
-## 
-##   day      1      2      3      4      5      6      7      8       9
-## 1   1 11.549 10.853 11.016 12.421  2.903  2.778 56.234 34.574  4.2329
-## 2   2 13.859  5.422  8.027  8.260  6.389 34.013 19.285 13.254 53.0296
-## 3   3 10.988  7.019  6.066  3.453 14.182 25.310 24.296 12.146  6.9799
-## 4   4  8.952 10.924  4.754  6.963  8.820  4.112  4.341  9.390  0.6023
-## 5   5  5.732  5.323  5.018  5.905  4.577  4.879  4.858  6.715 -0.3878
-## 6   6  7.148  5.622 21.013  4.951  7.596  5.057  7.025  7.415 -0.3979
-## Variables not shown: 10 (dbl), 11 (dbl), 12 (dbl)
+## Error in library(tidyr): there is no package called 'tidyr'
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "%>%"
 ```
 
 Dica: você precisará usar `group_by`, `summarise`e `spread`. Lembre-se também do argumento `na.rm`.
@@ -106,19 +97,7 @@ Dica: você precisará usar `group_by`, `summarise`e `spread`. Lembre-se também
 Resultado esperado:
 
 ```
-## Source: local data frame [6 x 32]
-## 
-##   hour       1       2       3      4       5       6       7       8
-## 1    0 120.143 127.387  91.600  34.50 102.882  39.556 168.977 159.240
-## 2    1 150.875 185.714 202.000 218.50 159.333 257.000 174.000 166.053
-## 3    2      NA 324.000 156.000     NA      NA      NA 216.500 220.500
-## 4    3      NA 348.000      NA     NA      NA      NA      NA 273.000
-## 5    4  -6.100  -6.500  -4.571  -6.00  -7.300  -6.182  -5.909  -6.000
-## 6    5  -4.565  -4.621  -4.427  -4.68  -4.734  -4.593  -4.705  -3.537
-## Variables not shown: 9 (dbl), 10 (dbl), 11 (dbl), 12 (dbl), 13 (dbl), 14
-##   (dbl), 15 (dbl), 16 (dbl), 17 (dbl), 18 (dbl), 19 (dbl), 20 (dbl), 21
-##   (dbl), 22 (dbl), 23 (dbl), 24 (dbl), 25 (dbl), 26 (dbl), 27 (dbl), 28
-##   (dbl), 29 (dbl), 30 (dbl), 31 (dbl)
+## Error in eval(expr, envir, enclos): could not find function "%>%"
 ```
 
 ### gather
@@ -130,15 +109,7 @@ Considerando as tabelas criadas nas perguntas sobre o `spread`:
 Resultado esperado:
 
 ```
-## Source: local data frame [6 x 3]
-## 
-##   day mes  delay
-## 1   1   1 11.549
-## 2   2   1 13.859
-## 3   3   1 10.988
-## 4   4   1  8.952
-## 5   5   1  5.732
-## 6   6   1  7.148
+## Error in eval(expr, envir, enclos): could not find function "%>%"
 ```
 
 
@@ -153,26 +124,86 @@ Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\f
 
 ## Sobre ggplot2
 
-Nestes exercícios você utilizará a base de dados `diamonds`
+Nestes exercícios você utilizará a base de dados `diamonds`, do pacote `ggplot2`.
+
+Instalação do pacote `ggplot2`:
 
 
 ```r
-data(diamonds)
+install.packages("ggplot2")
 ```
+
+Para carregar o pacote `ggplot2`:
+
+
+```r
+library(ggplot2)
+```
+
+Enfim, os dados:
+
+
+```r
+head(diamonds, 10)
+```
+
+```
+##    carat       cut color clarity depth table price    x    y    z
+## 1   0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+## 2   0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+## 3   0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4   0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5   0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+## 6   0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+## 7   0.24 Very Good     I    VVS1  62.3    57   336 3.95 3.98 2.47
+## 8   0.26 Very Good     H     SI1  61.9    55   337 4.07 4.11 2.53
+## 9   0.22      Fair     E     VS2  65.1    61   337 3.87 3.78 2.49
+## 10  0.23 Very Good     H     VS1  59.4    61   338 4.00 4.05 2.39
+```
+
+Para ver uma descrição das variáveis deste banco de dados, utilize a função `help()`:
+
+
+```r
+help(diamonds)
+```
+
+
+## Geral
+
+**1.** Segundo a *Grammar of Graphics*, o que é um gráfico estatístico? Responda de forma sucinta.
+
+**2.** Qual operador é usado para acrescentar *camadas* em um gráfico no ggplot?
 
 ### geom_point
 
+**3.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_point()`?
+
+Dica: utilizar a função `help()`.
+
+**4.** Faça um gráfico de dispersão do preço (*price*) pela variável quilates (*carat*). Utilize as funções `xlab()` e `ylab()` para trocar os *labels* dos eixos x e y, respectivamente.
+
+**5.** Utilize a função `facet_grid()` ou `facet_wrap()` para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (*clarity*).
+
 ### geom_line
+
+**6.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_line()`?
+
+Dica: visitar o [a](www.google.com).
 
 ### geom_histogram
 
+**.** Faça um histograma da variável preço. 
+
+**.** Utilize a função `geom_density()` para **adicionar** ao gráfico anterior uma estimativa suavizada da densidade. Por que, neste caso, é preciso especificar o argumento `y = ` como `..density..`?
+
+
 ### geom_boxplot
+
+) Faça boxplots da variável preço pela variável corte.
 
 ### geom_bar
 
-### facet_wrap
-
-### facet_grid
 
 ### desafios (opcional)
 

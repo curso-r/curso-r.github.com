@@ -110,28 +110,96 @@ Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\f
 
 ## Sobre ggplot2
 
-Nestes exercícios você utilizará a base de dados `diamonds`
+Nestes exercícios você utilizará a base de dados `diamonds`, do pacote `ggplot2`.
+
+Instalação do pacote `ggplot2`:
+
+```{r, eval = F}
+install.packages("ggplot2")
+```
+
+Para carregar o pacote `ggplot2`:
 
 ```{r}
-data(diamonds)
+library(ggplot2)
 ```
+
+Enfim, os dados:
+
+```{r}
+head(diamonds, 10)
+```
+
+Para ver uma descrição das variáveis deste banco de dados, utilize a função `help()`:
+
+```{r}
+help(diamonds)
+```
+
+
+## Geral
+
+**1.** Segundo a *Grammar of Graphics*, o que é um gráfico estatístico? Responda de forma sucinta.
+
+**2.** Qual operador é usado para acrescentar *camadas* em um gráfico no ggplot?
 
 ### geom_point
 
+**3.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_point()`?
+
+Dica: utilizar a função `help()`.
+
+**4.** Faça um gráfico de dispersão do preço (*price*) pela variável quilates (*carat*). Utilize as funções `xlab()` e `ylab()` para trocar os *labels* dos eixos x e y, respectivamente.
+
+**5.** Utilize a função `facet_grid()` ou `facet_wrap()` para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (*clarity*).
+
 ### geom_line
+
+**6.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_line()`?
+
+Dica: visitar a seguinte [página](http://docs.ggplot2.org/current/) e consultar o tópico `geom_line`.
+
+**7.** Utilizando o argumento `stat = summary` e `fun.y = mean`, calcule a média do preço para cada corte, faça um gráfico desses pontos utilizando a função `geom_point()`e trace uma reta sobre esses pontos utilizando a função `geom_line()`. 
+
+Dicas: não se esqueça de especificar o *aesthetic* `group =` dentro do `geom_line()`. Veja mais exemplos de como usar o `stat = summary` [aqui](http://docs.ggplot2.org/current/stat_summary.html).
 
 ### geom_histogram
 
+**8.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_histogram()`?
+
+**9.** Faça um histograma da variável preço. 
+
+**10.** Utilize a função `geom_density()` para **adicionar** ao gráfico anterior uma estimativa suavizada da densidade. Por que, neste caso, é preciso especificar o argumento `y = ` como `..density..`?
+
+
 ### geom_boxplot
+
+**11.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_boxplot()`?
+
+**12.** Faça boxplots da variável preço pela variável corte (*cut*).
 
 ### geom_bar
 
-### facet_wrap
+**13.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_bar()`?
 
-### facet_grid
+**14.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
 
-### desafios (opcional)
 
+### desafio (opcional)
+
+Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
+
+
+- Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por `2.61*price*2.2`, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.
+
+- Considere agora que, para importar um diamante diretamente dos EUA, uma transportadora cobre (em reais) `(carat*price*0.70)*2.61 + price*2.68`, já considerando o preço de compra do diamante. Adicione ao banco de dados uma coluna referente ao preço de cada diamante se importado diretamente.
+
+- Faça um gráfico de dispersão do preço de venda no Brasil pelo preço de importação. Adicione a esse gráfico uma reta x=y para avaliar quais diamantes compensam ser importados diretamente.
+
+- Mapeie a variável *clarity* ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável *color*.
+
+
+Dica: para fazer a reta x=y, utilize a função `geom_abline()`.
 ---
 
 # Desafios com bases de dados reais
