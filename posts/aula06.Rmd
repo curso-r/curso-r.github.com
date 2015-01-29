@@ -32,36 +32,74 @@ Com o comando `?flights` você pode ver o que significa cada uma das variáveis 
 
 1. Atribua a uma tabela apenas os voos de janeiro de 2013.
 2. Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.
+3. Atribua a uma tabela apenas os vôos com distância maior do que 1000 milhas.
 
 ### select
 
 1. Atribua a uma tabela apenas as colunas `month` e `dep_delay`.
 2. Atribua a uma tabela apenas as colunas `month` e `dep_delay`, os nomes dessas colunas devem ser `mes`e `atraso`.
+3. Retire da tabela as colunas `tailnum`, `origin` e `dest`
 
 ### mutate
 
 1. Calcule as colunas `ganho_de_tempo` que é dado por `dep_delay - arr_delay` e `velocidade` dada por `distance / air_time * 60`.
+2. Calcule o horário de chegada considerando as colunas `hour`, `minute` e `air_time`. A tabela deve conter duas colunas novas: `hour2` com a hora de chegada e `minute2` com o minuto de chegada.
 
 ### summarise
 
 1. Calcule a média da distância de todos os vôos.
-2. Calcule a média da distância dos vôos por mês.
+2. Calcule a média da distância dos vôos por mês
+3. Calcule a média, mediana, primeiro quartil e terceiro quartil do tempo de viagem por mês.
 
 ### arrange
 
 1. Ordene a base de dados pelo atraso na partida em ordem crescente.
-2. Repita a questão anterior, poém na ordem decrescente.
+2. Repita a questão anterior, porém na ordem decrescente.
+
+### spread
+
+1. Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.
+
+```{r, echo = F}
+library(tidyr)
+flights %>% 
+  group_by(day, month) %>% 
+  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  spread(month, delay) %>% head
+```
+
+Dica: você precisará usar `group_by`, `summarise`e `spread`. Lembre-se também do argumento `na.rm`.
+
+2. Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.
+
+```{r, echo = F}
+flights %>% 
+  group_by(day, hour) %>% 
+  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  spread(day, delay) %>% tbl_df() %>% head
+```
 
 ### gather
 
-### spread
+Considerando as tabelas criadas nas perguntas sobre o `spread`:
+
+1. Transforme-as em um formato tidy.
+
+```{r, echo = F}
+flights %>% 
+  group_by(day, month) %>% 
+  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  spread(month, delay) %>% 
+  gather(mes, delay, -day) %>% head
+```
+
 
 ### desafios (opcional)
 
 1. Sumarise em uma tabela qual foi a média de atraso total (`dep_delay + arr_delay`) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
 Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\frac{var(x)}{n}}$
 
-2. Summarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.
+2. Summarise em uma tabela quais foram os 10 destinos com mais viagens com atraso superior a 60 minutos. Considere o atraso total definido na pergunta anterior.
 
 ---
 
