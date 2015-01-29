@@ -103,5 +103,16 @@ quakes
 
 # 1) Fazer um histograma da magnitude
 
+quakes %>%
+  ggplot() +
+  geom_histogram(aes(x=mag), binwidth=.1, fill='white', colour='black') +
+  theme_bw()
+
 # 2) Fazer um mapa das ocorrências
 
+mapa <- map_data("world")
+
+quakes %>%
+  ggplot(aes(x=long, y=lat)) +
+  geom_density2d(aes(size=stations)) +
+  geom_map(aes(map_id=region), map=mapa, data=mapa)
