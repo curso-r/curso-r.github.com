@@ -35,6 +35,15 @@ if(x = 4) {
   'isso aqui apareceu'
 }
 x
+
+
+require(abjutils)
+data(pnud_muni, package='abjutils')
+require(dplyr)
+
+dados2010 <- pnud_muni[ pnud_muni$ano==2010,  c('uf', 'ufn')]
+dados2010$uf2 <- paste(dados2010$uf, dados2010$ufn)
+unique(dados2010$uf2)
 ```
 
 Você notou alguma coisa estranha? Como o R se comporta nesse caso?

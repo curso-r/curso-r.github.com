@@ -239,7 +239,6 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
 
 ![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
 
-
 Para trocar a posição da legenda:
 
 

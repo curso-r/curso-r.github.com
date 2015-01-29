@@ -175,7 +175,6 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
   labs(fill = "cyl")
 ```
 
-
 Para trocar a posição da legenda:
 
 ```{r, fig.height=3, fig.width=5}
