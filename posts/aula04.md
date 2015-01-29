@@ -9,19 +9,16 @@ date : 2015-01-26
 
 
 
-
 ## Manipulação de dados com dplyr
 
 A manipulação de dados é uma tarefa usualmente bastante
 dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
 como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.
 
-
 O `dplyr` é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
 simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que fazem uso 
 inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.
-
 
 Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
@@ -106,7 +103,6 @@ pnud_muni
 ##   pia18m (dbl), pop (dbl), popt (dbl), i_escolaridade (dbl), i_freq_prop
 ##   (dbl), idhm (dbl), idhm_e (dbl), idhm_l (dbl), idhm_r (dbl), ufn (chr)
 ```
-
 
 ### Filosofia do Hadley para análise de dados
 
@@ -446,7 +442,20 @@ pnud_muni %>%
 ```
 
 ```
-## Error in n(): This function should not be called directly
+## Source: local data frame [27 x 4]
+## 
+##                   ufn   n idhm_medio populacao_total
+## 1    Distrito Federal   1  0.8240000         2541714
+## 2           São Paulo 645  0.7395271        40915379
+## 3      Santa Catarina 293  0.7316485         6199947
+## 4   Rio Grande do Sul 496  0.7135302        10593371
+## 5      Rio de Janeiro  92  0.7089130        15871447
+## 6              Paraná 399  0.7019599        10348247
+## 7               Goiás 246  0.6949837         5934769
+## 8      Espírito Santo  78  0.6921923         3477471
+## 9         Mato Grosso 141  0.6842908         2961982
+## 10 Mato Grosso do Sul  78  0.6797051         2404631
+## ..                ... ...        ...             ...
 ```
 
 
@@ -457,7 +466,20 @@ pnud_muni %>%
 ```
 
 ```
-## Error in count(., ufn): object 'ufn' not found
+## Source: local data frame [27 x 2]
+## 
+##                 ufn   n
+## 1              Acre  22
+## 2           Alagoas 102
+## 3             Amapá  16
+## 4          Amazonas  62
+## 5             Bahia 417
+## 6             Ceará 184
+## 7  Distrito Federal   1
+## 8    Espírito Santo  78
+## 9             Goiás 246
+## 10         Maranhão 217
+## ..              ... ...
 ```
 
 
@@ -503,7 +525,20 @@ pnud_muni %>%
 ```
 
 ```
-## Error in `[.data.frame`(data, key_col): undefined columns selected
+## Source: local data frame [27 x 4]
+## 
+##                 ufn     1991     2000     2010
+## 1              Acre   414609   519639   690774
+## 2           Alagoas  2448544  2611271  3045853
+## 3             Amapá   280599   453547   652768
+## 4          Amazonas  1977073  2543710  3301220
+## 5             Bahia 11522516 12286822 13755196
+## 6             Ceará  6255097  6995427  8317603
+## 7  Distrito Federal  1551869  2001728  2541714
+## 8    Espírito Santo  2562362  3048681  3477471
+## 9             Goiás  3931474  4887131  5934769
+## 10         Maranhão  4803825  5258529  6317986
+## ..              ...      ...      ...      ...
 ```
 
 ### gather

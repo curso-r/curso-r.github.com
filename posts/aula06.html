@@ -76,7 +76,206 @@
               </h3>
               <span>2015-01-30</span><br/>
                <a class='label label-success' href='posts/aula06.Rmd'>Source</a>
-              
+              <h1>Questões iniciais</h1>
+<h2>Sobre dplyr e tidyr</h2>
+
+<p>Para estas questões usaremos a base de dados flights, ela está inserida no pacote <code>nycflights13</code> por isso é necessário utilizar o comando:</p>
+
+<pre><code class="r">library(nycflights13)
+</code></pre>
+
+<pre><code>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
+</code></pre>
+
+<p>Se você não tiver o pacote instalado use o comando:</p>
+
+<pre><code class="r">install.packages(&quot;nycflighs13&quot;)
+</code></pre>
+
+<p>E em seguida use o <code>library(nycflights13)</code>.</p>
+
+<pre><code class="r">library(dplyr)
+flights %&gt;% tbl_df
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+</code></pre>
+
+<p>Com o comando <code>?flights</code> você pode ver o que significa cada uma das variáveis do banco de dados.</p>
+
+<h3>filter</h3>
+
+<ol>
+<li>Atribua a uma tabela apenas os voos de janeiro de 2013.</li>
+<li>Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.</li>
+</ol>
+
+<h3>select</h3>
+
+<ol>
+<li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>.</li>
+<li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>, os nomes dessas colunas devem ser <code>mes</code>e <code>atraso</code>.</li>
+</ol>
+
+<h3>mutate</h3>
+
+<ol>
+<li>Calcule as colunas <code>ganho_de_tempo</code> que é dado por <code>dep_delay - arr_delay</code> e <code>velocidade</code> dada por <code>distance / air_time * 60</code>.</li>
+</ol>
+
+<h3>summarise</h3>
+
+<ol>
+<li>Calcule a média da distância de todos os vôos.</li>
+<li>Calcule a média da distância dos vôos por mês.</li>
+</ol>
+
+<h3>arrange</h3>
+
+<ol>
+<li>Ordene a base de dados pelo atraso na partida em ordem crescente.</li>
+<li>Repita a questão anterior, poém na ordem decrescente.</li>
+</ol>
+
+<h3>gather</h3>
+
+<h3>spread</h3>
+
+<h3>desafios (opcional)</h3>
+
+<ol>
+<li><p>Sumarise em uma tabela qual foi a média de atraso total (<code>dep_delay + arr_delay</code>) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+Dica: o intervalo de confiança pode ser calculado por \(média \pm 1,96*\sqrt{\frac{var(x)}{n}}\)</p></li>
+<li><p>Summarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.</p></li>
+</ol>
+
+<h2>Sobre ggplot2</h2>
+<p>Nestes exercícios você utilizará a base de dados <code>diamonds</code></p>
+
+<pre><code class="r">data(diamonds)
+</code></pre>
+
+<h3>geom_point</h3>
+
+<h3>geom_line</h3>
+
+<h3>geom_histogram</h3>
+
+<h3>geom_boxplot</h3>
+
+<h3>geom_bar</h3>
+
+<h3>facet_wrap</h3>
+
+<h3>facet_grid</h3>
+
+<h3>desafios (opcional)</h3>
+
+<h1>Desafios com bases de dados reais</h1>
+<p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code>.</p>
+
+<pre><code class="r"># verifica se o pacote devtools já está instalado e instala se não estiver
+if(!require(devtools)) install.packages(&#39;devtools&#39;)
+
+# verifica se o pacote abjutils já está instalado e instala se não estiver
+# Como o pacote não está no CRAN, instalamos via github usando o comando do pacote devtools
+if(!require(abjutils)) devtools::install_github(&#39;abjur/abjutils&#39;)
+
+# OBS: O pacote abjutils já vai carregar as bibliotecas dplyr, stringr e lubridate
+</code></pre>
+
+<h2>PNUD</h2>
+
+<p>Vamos começar com a base de dados do PNUD do lab 1, para aquecer :)</p>
+
+<p>Você pode carregar o banco de dados do PNUD rodando</p>
+
+<pre><code class="r">data(pnud_muni , package=&#39;abjutils&#39;)
+</code></pre>
+
+<p><strong>1</strong> Refaça todas as análises do laboratório 1 usando <code>dplyr</code> e <code>ggplot2</code>.</p>
+
+<h2>Coalitions</h2>
+
+<p>Essa base de dados contém informações de países que fazem parte da Organização Mundial do Comércio (OMC, em inglês World Trade Organization - WTO). Para melhorar e facilitar o comércio internacional, muitas vezes os países que fazem parte da OMC realizam acordos, que chamamos de <em>coalizões</em>. Geralmente uma coalizão
+envolve muitos países ao mesmo tempo.</p>
+
+<pre><code class="r">data(wto_data , package=&#39;abjutils&#39;)
+data(wto_dyad_sample, package=&#39;abjutils&#39;)
+</code></pre>
+
+<p>A base de dados <code>wto_data</code> contém informações básicas de cada país, como PIB, PIB <em>per capita</em>, latitude, longitude, hemisfério, identificador de regime político, etc. O código do país é dado na variável <code>ccode</code></p>
+
+<p>A base de dados <code>wto_dyad_sample</code> contém, em cada linha, uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países (uma &quot;díade&quot; ou, em inglês, <em>dyad</em>). </p>
+
+<p>Os países estão identificados pelas colunas <code>ccode1</code> e <code>ccode2</code> (analogamente à base <code>wto_data</code>). A coalizão é identificada <code>coalition</code>, que vale <code>1</code> se houve coalizão e <code>0</code> caso contrário. A coluna <code>ccoalition</code> é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).</p>
+
+<p><strong>1</strong> Faça um mapa com as posições geográficas dos países, com um mapa múndi no fundo.</p>
+
+<p>Dica: Leia o script da aula 05.</p>
+
+<p><strong>2</strong>. Qual é a unidade observacional (o que identifica uma observação) na base <code>wto_data</code>?</p>
+
+<p><strong>3</strong>. Quantas coalizões tivemos em cada ano?</p>
+
+<p><strong>4</strong>. Qual é o código do país que entrou mais vezes em alguma coalizão?</p>
+
+<p><strong>5</strong>. Construa uma matriz de adjacências usando <code>dplyr</code> e <code>tidyr</code>. Queremos um <code>data.frame</code> <code>wto_adj</code> com número de linhas igual ao número de colunas, e o conteúdo da célula <code>wto_adj[i, j]</code> é <code>1</code> se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e <code>0</code> caso contrário. Utilize a função <code>row.names()</code> para atribuir os nomes às linhas.</p>
+
+<h2>CARF</h2>
+
+<p>A base de dados do Conselho Administrativo de Recursos Fiscais (CARF) é uma das muitas bases que geralmente temos de lidar na área de jurimetria (estatística aplicada ao direito). Trata-se de uma base de dados sobre processos tributários.</p>
+
+<p>Montamos uma base de dados com todas as decisões encontradas no conselho. Nosso banco de dados tem, inicialmente, 264594 linhas e somente 9 colunas. As variáveis estão descritas abaixo:</p>
+
+<ul>
+<li><code>id</code>: número sequencial único para identificar cada acórdão.</li>
+<li><code>n_processo</code>: número do processo. </li>
+<li><code>n_decisao</code>: número da decisão.</li>
+<li><code>ano</code>: ano em que o acórdão foi proferido (de acordo com o site do CARF).</li>
+<li><code>tipo_recurso</code>: identifica se a decisão é sobre um recurso voluntário, recurso de ofício, recurso especial, etc.</li>
+<li><code>contribuinte</code>: identifica o nome do contribuinte, em texto livre.</li>
+<li><code>relator</code>: identifica o nome do relator, em texto livre.</li>
+<li><code>txt_ementa</code>: texto completo da ementa, em texto livre. Geralmente esse texto contém informações do tributo discutido, fundamentação da decisão e decisão.</li>
+<li><code>txt_decisao</code>: texto completo da decisão, em texto livre. Geralmente é uma parte da ementa, contendo apenas a parte relacionada à decisão, mas não é uma regra.</li>
+</ul>
+
+<p><strong>1</strong> Quantos processos temos na base de dados?</p>
+
+<p><strong>2</strong> Construa um gráfico contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?</p>
+
+<p><strong>3</strong> Agora retire da base os acórdãos que contêm texto da decisão e texto da ementa vazios. Refaça o gráfico e interprete.</p>
+
+<p><strong>4</strong> Utilizando a função <code>str_detect()</code>, crie colunas (que valem <code>TRUE</code> ou <code>FALSE</code>) na base de dados de acordo com as expressões regulares abaixo.</p>
+
+<pre><code class="r">negar_provimento &lt;- &#39;negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido&#39;
+dar_provimento &lt;- &#39;dar?(do)? (o )?provimento|deu se (o )?provimento|recurso provido&#39;
+em_parte &lt;- &#39;em parte|parcial&#39;
+diligencia &lt;- &#39;diligencia&#39;
+nao_conhecer &lt;- &#39;conhec&#39;
+anular &lt;- &#39;nul(a|o|i)&#39;
+</code></pre>
+
+<p><strong>5</strong> Faça um gráfico de barras mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que <code>tipo_recurso</code> é recurso voluntário.</p>
+
+<h2>SABESP</h2>
+
+<p>Usando um <em>web crawler</em> desenvolvido em R, fizemos o download da base de dados da SABESP. Quem tiver interesse nesses dados, acesse <a href="https://github.com/jtrecenti/sabesp">aqui</a>.</p>
+
+<pre><code class="r">data(sabesp, package=&#39;abjutils&#39;)
+</code></pre>
+
+<p><strong>1</strong> Descreva a base de dados.</p>
+
+<p><strong>2</strong> Crie um boxplot por mês, mostrando os lugares separadamente.</p>
+
+<p><strong>3</strong> Tente montar um gráfico parecido com esse (inclusive as cores e as labels inclinadas do eixo x). Não vale olhar o código do repositório no github!</p>
+
+<p><img src="https://raw.githubusercontent.com/jtrecenti/sabesp/master/sabesp_files/figure-html/unnamed-chunk-2-2.png"> </img></p>
+
+<p><strong>4</strong> Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.</p>
+
+<p><strong>5</strong> Comente sobre a crise hídrica em São Paulo com base em conhecimentos próprios e usando os dados da sabesp.</p>
 
               <div id="disqus_thread"></div>
             </li>
