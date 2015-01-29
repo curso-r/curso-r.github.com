@@ -61,11 +61,12 @@ Com o comando `?flights` você pode ver o que significa cada uma das variáveis 
 
 1. Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.
 
+Resultado esperado:
 ```{r, echo = F}
 library(tidyr)
 flights %>% 
   group_by(day, month) %>% 
-  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  dplyr::summarise(delay = mean(dep_delay, na.rm = T)) %>% 
   spread(month, delay) %>% head
 ```
 
@@ -73,10 +74,12 @@ Dica: você precisará usar `group_by`, `summarise`e `spread`. Lembre-se também
 
 2. Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.
 
+
+Resultado esperado:
 ```{r, echo = F}
 flights %>% 
   group_by(day, hour) %>% 
-  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  dplyr::summarise(delay = mean(dep_delay, na.rm = T)) %>% 
   spread(day, delay) %>% tbl_df() %>% head
 ```
 
@@ -86,10 +89,11 @@ Considerando as tabelas criadas nas perguntas sobre o `spread`:
 
 1. Transforme-as em um formato tidy.
 
+Resultado esperado:
 ```{r, echo = F}
 flights %>% 
   group_by(day, month) %>% 
-  summarise(delay = mean(dep_delay, na.rm = T)) %>% 
+  dplyr::summarise(delay = mean(dep_delay, na.rm = T)) %>% 
   spread(month, delay) %>% 
   gather(mes, delay, -day) %>% head
 ```
