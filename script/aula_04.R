@@ -26,6 +26,9 @@ pnud_muni %>%
 pnud_muni %>%
   select(ano:municipio, ufn, starts_with('idhm'))
 
+pnud_muni %>%
+  select(municipio, ufn, ano, gini, starts_with('idhm'))
+
 # FILTER____________________________________________________________________________________________
 
 # somente estado de SP, com IDH municipal maior que 80% no ano 2010
@@ -64,7 +67,7 @@ pnud_muni %>%
 
 ## errado
 pnud_muni %>%
-  select(ano, ufn, municipio, starts_with('idhm')) %>%
+  select(ano, starts_with('idhm')) %>%
   filter(ano==2010) %>%
   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
 
@@ -74,6 +77,12 @@ pnud_muni %>%
   filter(ano == 2010) %>%
   rowwise() %>%
   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
+
+pnud_muni %>%
+  select(ano,starts_with('idhm')) %>%
+  filter(ano == 2010) %>%
+  mutate(idh_porc=paste(idhm*100, '%'))
+
 
 # ARRANGE___________________________________________________________________________________________
 
@@ -95,7 +104,7 @@ pnud_muni %>%
 
 pnud_muni %>%
   filter(ano==2010) %>%
-  group_by(uf) %>%
+  group_by(ufn) %>%
   summarise(n=n(),
             idhm_medio=mean(idhm),
             populacao_total=sum(popt)) %>%
@@ -103,17 +112,17 @@ pnud_muni %>%
 
 pnud_muni %>%
   filter(ano==2010) %>%
-  count(uf)
+  count(ufn)
 
 pnud_muni %>%
-  group_by(ano, uf) %>%
+  group_by(ano, ufn) %>%
   tally() %>%
   head # nao precisa de parenteses!
 
 # SPREAD____________________________________________________________________________________________
 
 pnud_muni %>%
-  group_by(ano, uf) %>%
+  group_by(ano, ufn) %>%
   summarise(populacao=sum(popt)) %>%
   ungroup() %>%
   spread(ano, populacao)
@@ -140,9 +149,11 @@ pnud_muni %>%
   separate(tipo_idh, c('nada', 'tipo_idh'), sep='_') %>%
   select(-nada)
 
+natalia.de.siqueira@hotmail.com
+
 # JOIN______________________________________________________________________________________________
 
-pnud_muni %>%
+dados <- pnud_muni %>%
   distinct(ufn, ano) %>%
   select(ufn, ano, municipio, starts_with('idhm')) %>%
   inner_join(pnud_uf, c('ufn', 'ano')) %>%
