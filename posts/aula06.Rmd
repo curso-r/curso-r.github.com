@@ -3,3 +3,68 @@ title: Aula 06 - Laboratório II
 date : 2015-01-30
 --- 
 
+# Questões iniciais (flights)
+
+## Sobre dplyr e tidyr
+
+### filter
+
+### select
+
+### mutate
+
+### summarise
+
+### arrange
+
+### gather
+
+### spread
+
+### desafios (opcional)
+
+---
+
+## Sobre ggplot2
+
+Nestes exercícios você utilizará a base de dados `diamonds`
+
+```{r}
+data(diamonds)
+```
+
+### geom_point
+
+### geom_line
+
+### geom_histogram
+
+### geom_boxplot
+
+### geom_bar
+
+### facet_wrap
+
+### facet_grid
+
+### desafios (opcional)
+
+---
+
+# Desafios com bases de dados reais
+
+1. PNUD
+
+2. Coalitions
+
+3. CARF (stringr)
+
+4. Twitter (stringr + lubridate)
+
+5. SABESP
+
+
+
+
+
+
