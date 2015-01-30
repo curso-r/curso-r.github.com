@@ -88,14 +88,15 @@ Resultado esperado:
 ```
 ## Source: local data frame [6 x 13]
 ## 
-##   day      1      2      3      4      5      6      7      8       9
-## 1   1 11.549 10.853 11.016 12.421  2.903  2.778 56.234 34.574  4.2329
-## 2   2 13.859  5.422  8.027  8.260  6.389 34.013 19.285 13.254 53.0296
-## 3   3 10.988  7.019  6.066  3.453 14.182 25.310 24.296 12.146  6.9799
-## 4   4  8.952 10.924  4.754  6.963  8.820  4.112  4.341  9.390  0.6023
-## 5   5  5.732  5.323  5.018  5.905  4.577  4.879  4.858  6.715 -0.3878
-## 6   6  7.148  5.622 21.013  4.951  7.596  5.057  7.025  7.415 -0.3979
-## Variables not shown: 10 (dbl), 11 (dbl), 12 (dbl)
+##   day         1         2         3         4         5         6
+## 1   1 11.548926 10.852909 11.015890 12.421436  2.903427  2.778220
+## 2   2 13.858824  5.422059  8.026525  8.260204  6.388548 34.013366
+## 3   3 10.987832  7.018868  6.065934  3.452525 14.181535 25.309698
+## 4   4  8.951595 10.924078  4.753910  6.963265  8.820270  4.111925
+## 5   5  5.732218  5.322727  5.018162  5.905102  4.577387  4.878756
+## 6   6  7.148014  5.621501 21.012626  4.950521  7.595701  5.056760
+## Variables not shown: 7 (dbl), 8 (dbl), 9 (dbl), 10 (dbl), 11 (dbl), 12
+##   (dbl)
 ```
 
 Dica: você precisará usar `group_by`, `summarise`e `spread`. Lembre-se também do argumento `na.rm`.
@@ -108,17 +109,17 @@ Resultado esperado:
 ```
 ## Source: local data frame [6 x 32]
 ## 
-##   hour       1       2       3      4       5       6       7       8
-## 1    0 120.143 127.387  91.600  34.50 102.882  39.556 168.977 159.240
-## 2    1 150.875 185.714 202.000 218.50 159.333 257.000 174.000 166.053
-## 3    2      NA 324.000 156.000     NA      NA      NA 216.500 220.500
-## 4    3      NA 348.000      NA     NA      NA      NA      NA 273.000
-## 5    4  -6.100  -6.500  -4.571  -6.00  -7.300  -6.182  -5.909  -6.000
-## 6    5  -4.565  -4.621  -4.427  -4.68  -4.734  -4.593  -4.705  -3.537
-## Variables not shown: 9 (dbl), 10 (dbl), 11 (dbl), 12 (dbl), 13 (dbl), 14
-##   (dbl), 15 (dbl), 16 (dbl), 17 (dbl), 18 (dbl), 19 (dbl), 20 (dbl), 21
-##   (dbl), 22 (dbl), 23 (dbl), 24 (dbl), 25 (dbl), 26 (dbl), 27 (dbl), 28
-##   (dbl), 29 (dbl), 30 (dbl), 31 (dbl)
+##   hour          1          2          3      4          5          6
+## 1    0 120.142857 127.387097  91.600000  34.50 102.882353  39.555556
+## 2    1 150.875000 185.714286 202.000000 218.50 159.333333 257.000000
+## 3    2         NA 324.000000 156.000000     NA         NA         NA
+## 4    3         NA 348.000000         NA     NA         NA         NA
+## 5    4  -6.100000  -6.500000  -4.571429  -6.00  -7.300000  -6.181818
+## 6    5  -4.564854  -4.620553  -4.427273  -4.68  -4.734375  -4.592885
+## Variables not shown: 7 (dbl), 8 (dbl), 9 (dbl), 10 (dbl), 11 (dbl), 12
+##   (dbl), 13 (dbl), 14 (dbl), 15 (dbl), 16 (dbl), 17 (dbl), 18 (dbl), 19
+##   (dbl), 20 (dbl), 21 (dbl), 22 (dbl), 23 (dbl), 24 (dbl), 25 (dbl), 26
+##   (dbl), 27 (dbl), 28 (dbl), 29 (dbl), 30 (dbl), 31 (dbl)
 ```
 
 ### gather
@@ -132,13 +133,13 @@ Resultado esperado:
 ```
 ## Source: local data frame [6 x 3]
 ## 
-##   day mes  delay
-## 1   1   1 11.549
-## 2   2   1 13.859
-## 3   3   1 10.988
-## 4   4   1  8.952
-## 5   5   1  5.732
-## 6   6   1  7.148
+##   day mes     delay
+## 1   1   1 11.548926
+## 2   2   1 13.858824
+## 3   3   1 10.987832
+## 4   4   1  8.951595
+## 5   5   1  5.732218
+## 6   6   1  7.148014
 ```
 
 
@@ -246,7 +247,7 @@ Dicas: não se esqueça de especificar o *aesthetic* `group =` dentro do `geom_l
 **14.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
 
 
-### desafio (opcional)
+### Desafio (opcional)
 
 Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
 
@@ -259,9 +260,7 @@ Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
 
 - Mapeie a variável *clarity* ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável *color*.
 
-
-Dica: para fazer a reta x=y, utilize a função `geom_abline()`.
----
+*Dica*: para fazer a reta x=y, utilize a função `geom_abline()`.
 
 # Desafios com bases de dados reais
 

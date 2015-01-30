@@ -77,13 +77,288 @@
               <span>2015-02-02</span><br/>
                <a class='label label-success' href='posts/aula07.Rmd'>Source</a>
               <h1>Regressão Linear e ANOVA</h1>
+<p>O R tem todo o ferramental necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.</p>
+
+<p>Para ilustrar, vamos utilizar a base de dados <code>mtcars</code> que vem no R.</p>
+
+<p>Cada uma das 32 linhas da base <code>mtcars</code> representa um carro. A variável <code>mpg</code> é o consumo de combustível em milhas por galão (~3.76 Litros) e iremos tentar explicá-la pelas demais características dos veículos. </p>
+
+<h2>Um pouco de descritiva</h2>
+
+<h3>Univariada</h3>
+
+<pre><code class="r"># os dados
+head(mtcars)
+</code></pre>
+
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+</code></pre>
+
+<pre><code class="r"># banco de dados das variáveis contínuas no formato &quot;longo&quot;
+mtcars_long &lt;- mtcars %&gt;%  
+  select(mpg, disp:qsec) %&gt;%
+  gather(var_continuas) 
+
+# medidas resumo para variáveis contínuas
+mtcars_long %&gt;%
+  group_by(var_continuas) %&gt;%
+  summarise(&quot;N&quot; = n(),
+            &quot;Missing&quot; = sum(is.na(value)),
+            &quot;Media&quot; = mean(value),
+            &quot;DesvPad&quot; = sd(value),
+            &quot;Minimo&quot; = min(value),
+            &quot;Q1&quot; = quantile(value, 0.25),
+            &quot;Mediana&quot; = quantile(value, 0.50),
+            &quot;Q3&quot; = quantile(value, 0.75),
+            &quot;Maximo&quot; = max(value)) %&gt;%
+  mutate_each(funs(round(.,1)), -var_continuas)
+</code></pre>
+
+<pre><code>## Source: local data frame [6 x 10]
+## 
+##   var_continuas  N Missing Media DesvPad Minimo    Q1 Mediana    Q3 Maximo
+## 1           mpg 32       0  20.1     6.0   10.4  15.4    19.2  22.8   33.9
+## 2          disp 32       0 230.7   123.9   71.1 120.8   196.3 326.0  472.0
+## 3            hp 32       0 146.7    68.6   52.0  96.5   123.0 180.0  335.0
+## 4          drat 32       0   3.6     0.5    2.8   3.1     3.7   3.9    4.9
+## 5            wt 32       0   3.2     1.0    1.5   2.6     3.3   3.6    5.4
+## 6          qsec 32       0  17.8     1.8   14.5  16.9    17.7  18.9   22.9
+</code></pre>
+
+<pre><code class="r"># boxplots
+mtcars_long %&gt;%
+  ggplot() +
+  geom_boxplot(aes(x=1, y = value)) +
+  facet_wrap(~var_continuas, scales = &quot;free&quot;) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+<pre><code class="r"># frequencias de variáveis categóricas
+mtcars_freq &lt;- mtcars %&gt;%
+  select(cyl, vs:carb) %&gt;%
+  gather(vars_categoricas) %&gt;%
+  rename(categoria = value) %&gt;%
+  group_by(vars_categoricas, categoria) %&gt;%
+  summarise(freq = n()) %&gt;%
+  group_by(vars_categoricas) %&gt;%
+  mutate(prop = freq/sum(freq),
+         prop_txt = (prop*100) %&gt;% round(0) %&gt;% paste0(&quot;%&quot;))
+
+mtcars_freq
+</code></pre>
+
+<pre><code>## Source: local data frame [16 x 5]
+## Groups: vars_categoricas
+## 
+##    vars_categoricas categoria freq    prop prop_txt
+## 1               cyl         4   11 0.34375      34%
+## 2               cyl         6    7 0.21875      22%
+## 3               cyl         8   14 0.43750      44%
+## 4                vs         0   18 0.56250      56%
+## 5                vs         1   14 0.43750      44%
+## 6                am         0   19 0.59375      59%
+## 7                am         1   13 0.40625      41%
+## 8              gear         3   15 0.46875      47%
+## 9              gear         4   12 0.37500      38%
+## 10             gear         5    5 0.15625      16%
+## 11             carb         1    7 0.21875      22%
+## 12             carb         2   10 0.31250      31%
+## 13             carb         3    3 0.09375       9%
+## 14             carb         4   10 0.31250      31%
+## 15             carb         6    1 0.03125       3%
+## 16             carb         8    1 0.03125       3%
+</code></pre>
+
+<pre><code class="r"># Gráfico de barras
+mtcars_freq %&gt;%
+  ggplot() +
+  geom_bar(aes(x=categoria, y = freq), position = &quot;dodge&quot;, stat = &quot;identity&quot;) +
+  facet_wrap(~vars_categoricas, scales=&quot;free&quot;)  
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+<h3>Versus <code>mpg</code></h3>
+
+<pre><code class="r"># Matriz de correlação linear
+mtcars %&gt;%  
+  select(mpg, disp:qsec) %&gt;%
+  cor %&gt;%
+  round(2) 
+</code></pre>
+
+<pre><code>##        mpg  disp    hp  drat    wt  qsec
+## mpg   1.00 -0.85 -0.78  0.68 -0.87  0.42
+## disp -0.85  1.00  0.79 -0.71  0.89 -0.43
+## hp   -0.78  0.79  1.00 -0.45  0.66 -0.71
+## drat  0.68 -0.71 -0.45  1.00 -0.71  0.09
+## wt   -0.87  0.89  0.66 -0.71  1.00 -0.17
+## qsec  0.42 -0.43 -0.71  0.09 -0.17  1.00
+</code></pre>
+
+<pre><code class="r"># Matriz de dispersão
+pairs(mtcars %&gt;%  
+  select(mpg, disp:qsec))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<h2>Regressão linear</h2>
+
+<p>A função que ajusta modelo linear normal no R é <code>lm()</code>. Você especifica o banco de dados e a fórmula com as variáveis que você deseja associar.</p>
+
+<pre><code class="r">ajuste &lt;- lm(resposta ~ explicativas, data = meus_dados)
+</code></pre>
+
+<p>O objeto <code>ajuste</code> contém todos os resultados e com a ajuda de alguns comandos, você extrai tudo o que é interessante.</p>
+
+<p>Exemplo:</p>
+
+<pre><code class="r">ajuste_lm &lt;- lm(mpg ~ wt, data = mtcars)
+
+ajuste_lm
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt, data = mtcars)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      37.285       -5.344
+</code></pre>
+
+<p>No código acima temos <code>mpg</code> explicado por <code>wt</code>. A saída do <code>lm()</code> mostra qual foi a chamada do modelo e os coeficientes ajustados. Como visto na análise descritiva, há uma clara associação linear e negativa entre as variáveis, justificando o parâmetro negativo <code>wt = -5.344</code>. A função <code>coeficients()</code> ou <code>coef()</code> nos fornece os coeficientes ajustados.</p>
+
+<p>Gráfico da reta ajustada:</p>
+
+<pre><code class="r"># extrai os coeficientes ajustados
+coeficientes &lt;- coef(ajuste_lm)
+
+ggplot(mtcars) +
+  geom_point(aes(x = wt, y = mpg)) +
+  geom_abline(intercept = coeficientes[1], slope = coeficientes[2])
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+<p><strong>summary()</strong></p>
+
+<p>A função <code>summary()</code> é uma função genérica que geralmente devolve um resumo de informações úteis de praticamente qualquer classe de objetos. Para objetos <code>lm()</code> ela devolve:</p>
+
+<ol>
+<li>Chamada do modelo</li>
+<li>Medidas resumo dos resíduos</li>
+<li>Tabela de coeficientes, desvios padrão e testes T para hipótese nula de parâmetros iguais a zero.</li>
+<li>Média dos quadrados do resíduo e os respectivos graus de liberdade; \(R^2\) e \(R^2\) ajustado da regressão; Estatística F para qualidade do ajuste (comparação com o modelo com apenas o intercepto).</li>
+</ol>
+
+<pre><code class="r">summary(ajuste_lm)
+</code></pre>
+
+<p><img src="summary_lm.png" alt="summary lm"></p>
+
+<p><strong>plot()</strong></p>
+
+<p>A função <code>plot()</code> constrói gráficos úteis para diagnóstico do modelo.</p>
+
+<pre><code class="r"># opção para mostrar 4 gráficos em uma mesma figura
+par(mfrow = c(2,2))
+
+# gráficos de diagnóstico do modelo ajuste_lm
+plot(ajuste_lm)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<pre><code class="r"># retorna ao normal
+par(mfrow = c(1,1))
+</code></pre>
+
+<p><strong>anova()</strong></p>
+
+<p>Uma parte importante da modelagem é a redução de modelos. A função <code>anova()</code> compara dois (ou mais) modelos encaixados por meio da estatística F (por padrão), especialmente indicadas para modelos lineares normais. Caso seja passada apenas um ajuste à função, ela devolve a tabela de ANOVA (termos testados sequencialmente).</p>
+
+<pre><code class="r"># modelo nulo, com apenas o intercepto
+ajuste_lm_nulo &lt;- lm(mpg ~ 1, data = mtcars)
+
+# modelo com wt e cyl
+ajuste_lm2 &lt;- lm(mpg ~ wt + cyl, data = mtcars)
+
+# compara o modelo com wt com o modelo nulo
+anova(ajuste_lm_nulo, ajuste_lm)
+</code></pre>
+
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ 1
+## Model 2: mpg ~ wt
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1     31 1126.05                                  
+## 2     30  278.32  1    847.73 91.375 1.294e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</code></pre>
+
+<pre><code class="r"># Tabela de ANOVA, testa os termos sequencialmente
+anova(ajuste_lm2)
+</code></pre>
+
+<pre><code>## Analysis of Variance Table
+## 
+## Response: mpg
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## wt         1 847.73  847.73  128.60 3.535e-12 ***
+## cyl        1  87.15   87.15   13.22  0.001064 ** 
+## Residuals 29 191.17    6.59                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</code></pre>
+
+<p>A o valor-p = 0.001064 indica que o modelo com <code>wt + cyl</code> trás melhorias significantes no poder explicativo do modelo quando comparado ao modelo com apenas <code>wt</code>. </p>
+
+<p><strong>demais comandos</strong></p>
+
+<p>Outros comandos úteis são:</p>
+
+<table><thead>
+<tr>
+<th align="center">Função</th>
+<th align="center">Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">confint()</td>
+<td align="center">Intervalo de confiança para os parâmetros</td>
+</tr>
+<tr>
+<td align="center">resid()</td>
+<td align="center">Resíduos do modelo</td>
+</tr>
+<tr>
+<td align="center">fitted()</td>
+<td align="center">Valores ajustados</td>
+</tr>
+<tr>
+<td align="center">AIC()</td>
+<td align="center">Critério de informação de Akaike</td>
+</tr>
+<tr>
+<td align="center">model.matrix()</td>
+<td align="center">Matriz de planejamento (matriz X) do modelo</td>
+</tr>
+</tbody></table>
+
 <h2>Fórmulas</h2>
 
-<h2>Parametrização</h2>
-
-<h2>Análise de resíduos</h2>
-
-<h2>Testes de hipóteses</h2>
+<h2>Seleção de variáveis</h2>
 
 <h1>Regressão Linear Generalizada</h1>
 

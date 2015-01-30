@@ -180,7 +180,7 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram
 ## Warning: position_stack requires constant width: output may be incorrect
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
 
 2. Para que servem os operadores:
 
@@ -200,7 +200,7 @@ y <- 1/x
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
 
 
 a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.

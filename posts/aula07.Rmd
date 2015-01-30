@@ -1,18 +1,196 @@
 ---
-title: Aula 07 - Modelando
+title: "Aula 07 - Modelando"
+output:
+  html_document:
+    number_sections: yes
+    toc_depth: 2
+    toc: yes
 date : 2015-02-02
-# output: ioslides_presentation
 ---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(pander)
+library(ggplot2)
+library(magrittr)
+library(tidyr)
+library(dplyr)
+panderOptions("table.style", "rmarkdown")
+```
 
 # Regressão Linear e ANOVA
 
+O R tem todo o ferramental necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
+
+Para ilustrar, vamos utilizar a base de dados `mtcars` que vem no R.
+
+Cada uma das 32 linhas da base `mtcars` representa um carro. A variável `mpg` é o consumo de combustível em milhas por galão (~3.76 Litros) e iremos tentar explicá-la pelas demais características dos veículos. 
+
+## Um pouco de descritiva
+
+### Univariada
+```{r}
+# os dados
+head(mtcars)
+
+# banco de dados das variáveis contínuas no formato "longo"
+mtcars_long <- mtcars %>%  
+  select(mpg, disp:qsec) %>%
+  gather(var_continuas) 
+
+# medidas resumo para variáveis contínuas
+mtcars_long %>%
+  group_by(var_continuas) %>%
+  summarise("N" = n(),
+            "Missing" = sum(is.na(value)),
+            "Media" = mean(value),
+            "DesvPad" = sd(value),
+            "Minimo" = min(value),
+            "Q1" = quantile(value, 0.25),
+            "Mediana" = quantile(value, 0.50),
+            "Q3" = quantile(value, 0.75),
+            "Maximo" = max(value)) %>%
+  mutate_each(funs(round(.,1)), -var_continuas)
+
+# boxplots
+mtcars_long %>%
+  ggplot() +
+  geom_boxplot(aes(x=1, y = value)) +
+  facet_wrap(~var_continuas, scales = "free") 
+
+# frequencias de variáveis categóricas
+mtcars_freq <- mtcars %>%
+  select(cyl, vs:carb) %>%
+  gather(vars_categoricas) %>%
+  rename(categoria = value) %>%
+  group_by(vars_categoricas, categoria) %>%
+  summarise(freq = n()) %>%
+  group_by(vars_categoricas) %>%
+  mutate(prop = freq/sum(freq),
+         prop_txt = (prop*100) %>% round(0) %>% paste0("%"))
+
+mtcars_freq
+
+# Gráfico de barras
+mtcars_freq %>%
+  ggplot() +
+  geom_bar(aes(x=categoria, y = freq), position = "dodge", stat = "identity") +
+  facet_wrap(~vars_categoricas, scales="free")  
+```
+
+### Versus `mpg`
+
+```{r}
+# Matriz de correlação linear
+mtcars %>%  
+  select(mpg, disp:qsec) %>%
+  cor %>%
+  round(2) 
+
+# Matriz de dispersão
+pairs(mtcars %>%  
+  select(mpg, disp:qsec))
+```
+
+
+## Regressão linear
+A função que ajusta modelo linear normal no R é `lm()`. Você especifica o banco de dados e a fórmula com as variáveis que você deseja associar.
+
+```{r, eval=FALSE}
+ajuste <- lm(resposta ~ explicativas, data = meus_dados)
+```
+
+O objeto `ajuste` contém todos os resultados e com a ajuda de alguns comandos, você extrai tudo o que é interessante.
+
+Exemplo:
+```{r}
+ajuste_lm <- lm(mpg ~ wt, data = mtcars)
+
+ajuste_lm
+```
+
+No código acima temos `mpg` explicado por `wt`. A saída do `lm()` mostra qual foi a chamada do modelo e os coeficientes ajustados. Como visto na análise descritiva, há uma clara associação linear e negativa entre as variáveis, justificando o parâmetro negativo `wt = -5.344`. A função `coeficients()` ou `coef()` nos fornece os coeficientes ajustados.
+
+Gráfico da reta ajustada:
+```{r}
+# extrai os coeficientes ajustados
+coeficientes <- coef(ajuste_lm)
+
+ggplot(mtcars) +
+  geom_point(aes(x = wt, y = mpg)) +
+  geom_abline(intercept = coeficientes[1], slope = coeficientes[2])
+```
+
+**summary()**
+
+A função `summary()` é uma função genérica que geralmente devolve um resumo de informações úteis de praticamente qualquer classe de objetos. Para objetos `lm()` ela devolve:
+
+1. Chamada do modelo
+2. Medidas resumo dos resíduos
+3. Tabela de coeficientes, desvios padrão e testes T para hipótese nula de parâmetros iguais a zero.
+4. Média dos quadrados do resíduo e os respectivos graus de liberdade; $R^2$ e $R^2$ ajustado da regressão; Estatística F para qualidade do ajuste (comparação com o modelo com apenas o intercepto).
+
+```{r, eval=FALSE}
+summary(ajuste_lm)
+```
+
+![summary lm](summary_lm.png)
+
+**plot()**
+
+A função `plot()` constrói gráficos úteis para diagnóstico do modelo.
+
+```{r}
+# opção para mostrar 4 gráficos em uma mesma figura
+par(mfrow = c(2,2))
+
+# gráficos de diagnóstico do modelo ajuste_lm
+plot(ajuste_lm)
+
+# retorna ao normal
+par(mfrow = c(1,1))
+```
+
+**anova()**
+
+Uma parte importante da modelagem é a redução de modelos. A função `anova()` compara dois (ou mais) modelos encaixados por meio da estatística F (por padrão), especialmente indicadas para modelos lineares normais. Caso seja passada apenas um ajuste à função, ela devolve a tabela de ANOVA (termos testados sequencialmente).
+
+```{r}
+# modelo nulo, com apenas o intercepto
+ajuste_lm_nulo <- lm(mpg ~ 1, data = mtcars)
+
+# modelo com wt e cyl
+ajuste_lm2 <- lm(mpg ~ wt + cyl, data = mtcars)
+
+# compara o modelo com wt com o modelo nulo
+anova(ajuste_lm_nulo, ajuste_lm)
+
+# Tabela de ANOVA, testa os termos sequencialmente
+anova(ajuste_lm2)
+```
+
+A o valor-p = 0.001064 indica que o modelo com `wt + cyl` trás melhorias significantes no poder explicativo do modelo quando comparado ao modelo com apenas `wt`. 
+
+**demais comandos**
+
+Outros comandos úteis são:
+
+```{r, eval=TRUE, echo=FALSE, results='asis'}
+comandos_uteis_lm <- data.frame("Função" = c("confint()",
+                                             "resid()",
+                                             "fitted()",
+                                             "AIC()",
+                                             "model.matrix()"),
+                                "Descrição" = c("Intervalo de confiança para os parâmetros",
+                                                "Resíduos do modelo",
+                                                "Valores ajustados",
+                                                "Critério de informação de Akaike",
+                                                "Matriz de planejamento (matriz X) do modelo"))
+comandos_uteis_lm %>% pander
+```
+
 ## Fórmulas
 
-## Parametrização
-
-## Análise de resíduos
-
-## Testes de hipóteses
+## Seleção de variáveis
 
 # Regressão Linear Generalizada
 
