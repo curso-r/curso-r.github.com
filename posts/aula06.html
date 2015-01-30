@@ -226,28 +226,102 @@ Dica: o intervalo de confiança pode ser calculado por \(média \pm 1,96*\sqrt{\
 </ol>
 
 <h2>Sobre ggplot2</h2>
-<p>Nestes exercícios você utilizará a base de dados <code>diamonds</code></p>
+<p>Nestes exercícios você utilizará a base de dados <code>diamonds</code>, do pacote <code>ggplot2</code>.</p>
 
-<pre><code class="r">data(diamonds)
+<p>Instalação do pacote <code>ggplot2</code>:</p>
+
+<pre><code class="r">install.packages(&quot;ggplot2&quot;)
 </code></pre>
+
+<p>Para carregar o pacote <code>ggplot2</code>:</p>
+
+<pre><code class="r">library(ggplot2)
+</code></pre>
+
+<p>Enfim, os dados:</p>
+
+<pre><code class="r">head(diamonds, 10)
+</code></pre>
+
+<pre><code>##    carat       cut color clarity depth table price    x    y    z
+## 1   0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+## 2   0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+## 3   0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4   0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5   0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+## 6   0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+## 7   0.24 Very Good     I    VVS1  62.3    57   336 3.95 3.98 2.47
+## 8   0.26 Very Good     H     SI1  61.9    55   337 4.07 4.11 2.53
+## 9   0.22      Fair     E     VS2  65.1    61   337 3.87 3.78 2.49
+## 10  0.23 Very Good     H     VS1  59.4    61   338 4.00 4.05 2.39
+</code></pre>
+
+<p>Para ver uma descrição das variáveis deste banco de dados, utilize a função <code>help()</code>:</p>
+
+<pre><code class="r">help(diamonds)
+</code></pre>
+
+<h2>Geral</h2>
+
+<p><strong>1.</strong> Segundo a <em>Grammar of Graphics</em>, o que é um gráfico estatístico? Responda de forma sucinta.</p>
+
+<p><strong>2.</strong> Qual operador é usado para acrescentar <em>camadas</em> em um gráfico no ggplot?</p>
 
 <h3>geom_point</h3>
 
+<p><strong>3.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_point()</code>?</p>
+
+<p>Dica: utilizar a função <code>help()</code>.</p>
+
+<p><strong>4.</strong> Faça um gráfico de dispersão do preço (<em>price</em>) pela variável quilates (<em>carat</em>). Utilize as funções <code>xlab()</code> e <code>ylab()</code> para trocar os <em>labels</em> dos eixos x e y, respectivamente.</p>
+
+<p><strong>5.</strong> Utilize a função <code>facet_grid()</code> ou <code>facet_wrap()</code> para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (<em>clarity</em>).</p>
+
 <h3>geom_line</h3>
+
+<p><strong>6.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_line()</code>?</p>
+
+<p>Dica: visitar a seguinte <a href="http://docs.ggplot2.org/current/">página</a> e consultar o tópico <code>geom_line</code>.</p>
+
+<p><strong>7.</strong> Utilizando o argumento <code>stat = summary</code> e <code>fun.y = mean</code>, calcule a média do preço para cada corte, faça um gráfico desses pontos utilizando a função <code>geom_point()</code>e trace uma reta sobre esses pontos utilizando a função <code>geom_line()</code>. </p>
+
+<p>Dicas: não se esqueça de especificar o <em>aesthetic</em> <code>group =</code> dentro do <code>geom_line()</code>. Veja mais exemplos de como usar o <code>stat = summary</code> <a href="http://docs.ggplot2.org/current/stat_summary.html">aqui</a>.</p>
 
 <h3>geom_histogram</h3>
 
+<p><strong>8.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_histogram()</code>?</p>
+
+<p><strong>9.</strong> Faça um histograma da variável preço. </p>
+
+<p><strong>10.</strong> Utilize a função <code>geom_density()</code> para <strong>adicionar</strong> ao gráfico anterior uma estimativa suavizada da densidade. Por que, neste caso, é preciso especificar o argumento <code>y =</code> como <code>..density..</code>?</p>
+
 <h3>geom_boxplot</h3>
+
+<p><strong>11.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_boxplot()</code>?</p>
+
+<p><strong>12.</strong> Faça boxplots da variável preço pela variável corte (<em>cut</em>).</p>
 
 <h3>geom_bar</h3>
 
-<h3>facet_wrap</h3>
+<p><strong>13.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_bar()</code>?</p>
 
-<h3>facet_grid</h3>
+<p><strong>14.</strong> Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (<em>color</em>).</p>
 
-<h3>desafios (opcional)</h3>
+<h3>desafio (opcional)</h3>
+
+<p>Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:</p>
+
+<ul>
+<li><p>Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por <code>2.61*price*2.2</code>, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.</p></li>
+<li><p>Considere agora que, para importar um diamante diretamente dos EUA, uma transportadora cobre (em reais) <code>(carat*price*0.70)*2.61 + price*2.68</code>, já considerando o preço de compra do diamante. Adicione ao banco de dados uma coluna referente ao preço de cada diamante se importado diretamente.</p></li>
+<li><p>Faça um gráfico de dispersão do preço de venda no Brasil pelo preço de importação. Adicione a esse gráfico uma reta x=y para avaliar quais diamantes compensam ser importados diretamente.</p></li>
+<li><p>Mapeie a variável <em>clarity</em> ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável <em>color</em>.</p></li>
+</ul>
+
+<h2>Dica: para fazer a reta x=y, utilize a função <code>geom_abline()</code>.</h2>
 
 <h1>Desafios com bases de dados reais</h1>
+
 <p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code>.</p>
 
 <pre><code class="r"># verifica se o pacote devtools já está instalado e instala se não estiver
