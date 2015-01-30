@@ -180,7 +180,7 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom="histogram
 ## Warning: position_stack requires constant width: output may be incorrect
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8.png) 
 
 2. Para que servem os operadores:
 
@@ -200,7 +200,7 @@ y <- 1/x
 plot(x, y, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9.png) 
 
 
 a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.
@@ -212,8 +212,6 @@ C) Acrescente uma reta vertical pontilhada no ponto x = 0.
 d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
 
 **2**. Como construir dois gráficos na mesma janela?
-
-## Aula 03
 
 ## Aula 04
 
@@ -236,6 +234,26 @@ As outras medidas da base são basicamente medidas de distância entre caracteí
 **5**. Construa uma matriz de adjacências usando `dplyr`. Queremos um `data.frame` com número de linhas igual ao número de colunas, e o conteúdo da tabela é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. 
 
 ## Aula 05
+
+### ggplot2
+
+**1** Como adicionar um título a um gráfico?
+
+**2** Como alterar a posição da legenda de um gráfico? Como removê-la?
+
+**3** Como personalizar os eixos de um gráfico?
+
+**Dica**: consulte esse [site](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/).
+
+Para fazer os exercícios abaixo, utilize o banco de dados `movies` do pacote `ggplot2`.
+
+**4** Faça um gráfico de barras mostrando o número de filmes por ano de 1990 para cá.
+
+**5** Faça boxplots da classificação (rating) para cada classificação da MPAA. Adicione ao gráfico uma linha vermelha pontilhada horizontal que cruze o eixo y no valor 5.
+
+**6** Faça histogramas da classificação (rating) para cada gênero de filme.
+
+**Dica**: para plotar uma reta horizontal, utilize a função `geom_hline()`.
 
 ## Aula 06
 

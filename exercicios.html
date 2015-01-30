@@ -237,7 +237,7 @@ qplot(x=sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T), geom=&quot;hist
 <pre><code>## Warning: position_stack requires constant width: output may be incorrect
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+<p><img src="assets/fig/unnamed-chunk-8.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
 <ol>
 <li>Para que servem os operadores:</li>
@@ -257,7 +257,7 @@ y &lt;- 1/x
 plot(x, y, type = &quot;l&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+<p><img src="assets/fig/unnamed-chunk-9.png" alt="plot of chunk unnamed-chunk-9"> </p>
 
 <p>a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.</p>
 
@@ -268,8 +268,6 @@ plot(x, y, type = &quot;l&quot;)
 <p>d) Acrescente uma legenda ao gráfico no &quot;terceiro quadrante&quot;.</p>
 
 <p><strong>2</strong>. Como construir dois gráficos na mesma janela?</p>
-
-<h2>Aula 03</h2>
 
 <h2>Aula 04</h2>
 
@@ -292,6 +290,26 @@ plot(x, y, type = &quot;l&quot;)
 <p><strong>5</strong>. Construa uma matriz de adjacências usando <code>dplyr</code>. Queremos um <code>data.frame</code> com número de linhas igual ao número de colunas, e o conteúdo da tabela é <code>1</code> se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e <code>0</code> caso contrário. </p>
 
 <h2>Aula 05</h2>
+
+<h3>ggplot2</h3>
+
+<p><strong>1</strong> Como adicionar um título a um gráfico?</p>
+
+<p><strong>2</strong> Como alterar a posição da legenda de um gráfico? Como removê-la?</p>
+
+<p><strong>3</strong> Como personalizar os eixos de um gráfico?</p>
+
+<p><strong>Dica</strong>: consulte esse <a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2">site</a>/).</p>
+
+<p>Para fazer os exercícios abaixo, utilize o banco de dados <code>movies</code> do pacote <code>ggplot2</code>.</p>
+
+<p><strong>4</strong> Faça um gráfico de barras mostrando o número de filmes por ano de 1990 para cá.</p>
+
+<p><strong>5</strong> Faça boxplots da classificação (rating) para cada classificação da MPAA. Adicione ao gráfico uma linha vermelha pontilhada horizontal que cruze o eixo y no valor 5.</p>
+
+<p><strong>6</strong> Faça histogramas da classificação (rating) para cada gênero de filme.</p>
+
+<p><strong>Dica</strong>: para plotar uma reta horizontal, utilize a função <code>geom_hline()</code>.</p>
 
 <h2>Aula 06</h2>
 
