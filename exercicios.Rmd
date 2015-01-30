@@ -209,8 +209,6 @@ d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
 
 **2**. Como construir dois gráficos na mesma janela?
 
-## Aula 03
-
 ## Aula 04
 
 A base de dados `bd_dyad_sample` (leia executando `data(bd_dyad_sample, package='abjutils')`) contém em cada linha uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países. Os países estão identificados pelas colunas `ccode1` e `ccode2`. A coalizão é identificada pela variável `Freq` ou a variável `coalition`, que são iguais e valem `1` se houve coalizão e `0` caso contrário. A coluna `ccoalition` é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).
@@ -232,6 +230,26 @@ As outras medidas da base são basicamente medidas de distância entre caracteí
 **5**. Construa uma matriz de adjacências usando `dplyr`. Queremos um `data.frame` com número de linhas igual ao número de colunas, e o conteúdo da tabela é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. 
 
 ## Aula 05
+
+### ggplot2
+
+**1** Como adicionar um título a um gráfico?
+
+**2** Como alterar a posição da legenda de um gráfico? Como removê-la?
+
+**3** Como personalizar os eixos de um gráfico?
+
+**Dica**: consulte esse [site](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/).
+
+Para fazer os exercícios abaixo, utilize o banco de dados `movies` do pacote `ggplot2`.
+
+**4** Faça um gráfico de barras mostrando o número de filmes por ano de 1990 para cá.
+
+**5** Faça boxplots da classificação (rating) para cada classificação da MPAA. Adicione ao gráfico uma linha vermelha pontilhada horizontal que cruze o eixo y no valor 5.
+
+**6** Faça histogramas da classificação (rating) para cada gênero de filme.
+
+**Dica**: para plotar uma reta horizontal, utilize a função `geom_hline()`.
 
 ## Aula 06
 
