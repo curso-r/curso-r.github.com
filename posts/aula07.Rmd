@@ -192,15 +192,95 @@ comandos_uteis_lm %>% pander
 
 ## Seleção de variáveis
 
-# Regressão Linear Generalizada
+# Modelos Lineares Generalizados
+
+A regressão linear normal pode ser inadequada quando a distribuição de $Y_i$ é assimétrica, representa
+dados de contagens ou então dados binários. Para lidar com esse problema, McCulagh e Nelder estenderam
+a família de distribuições para ajuste da regressão para distribuições da _família exponencial_. Tal
+família inclui as distribuições `normal`, `poisson`, `gama`, `normal inversa` e `binomial` (incluindo
+`bernoulli`), entre outras. Também existe uma forma de adaptar os MLG para a distribuição `binomial negativa`.
+
+A definição dos MLG é dada por
+
+$$
+Y_i \sim F(\mu_i, \phi)
+$$
+
+$$
+\mu_i = g^{-1}(\alpha + \beta_1 x_{i1} + \beta_p x_{ip})
+$$
+
+O parâmetro $\phi$ é o parâmetro de precisão (inverso do parâmetro de dispersão) e $g$ é a _função de ligação_, que geralmente tem o papel de jogar o intervalo de vação de $\mu_i$ (espaço paramétrico) no intervalo $(-\inf, \inf)$.
+
+## Como ajustar um modelo de regressão
+
+Para ajustar um modelo linear generalizado, basta utilizar a função `glm` e informar, além da fórmula, a família de distribuições da resposta.
 
 ## Famílias de distribuição
 
+```{r, echo=FALSE}
+x <- data_frame(Family=c('gaussian', 'binomial', 'poisson', 'Gamma', 'inverse.gaussian', 'quasi'),
+                Link=c('identity', 'logit, probit, cloglog', 'log, identity, sqrt', 'inverse, identity, log', '1/mu^2', 'definido pelo usuário'))
+x %>% pander
+```
+
+Os resultados dos modelos `glm` estão praticamente no mesmo formato que os resultados da função `lm`,
+a diferença é que o valor-p é assintótico nesse caso.
+
 ## Análise de resíduos
 
-## Testes de hipóteses
+Na página [do professor Gilberto](http://www.ime.usp.br/~giapaula/textoregressao.htm) pode-se obter o livro dele sobre GLM e também vários comandos para realizar análises de diagnóstico dos modelos ajustados.
 
-## Regressão logística
+## Exemplo: Regressão logística
+
+**Dados**: Coalitions (ver lab 02)
+
+```{r}
+data(wto_data, package='abjutils')
+data(wto_dyad_sample, package='abjutils')
+
+aux <- wto_dyad_sample %>%
+  select(ccode1, ccode2, year) %>%
+  gather(lab_ccode, ccode, -year) %>%
+  distinct(year, ccode) %>%
+  mutate_each(funs(as.character))
+
+##
+load('~/Projects/wto_redes/data/dados_gerais_imput.RData')
+d <- read.csv2('~/Projects/wto_redes/data/banco_v16.csv', as.is=T)
+d %>%
+  mutate(lpib=log(pwt_rgdp), entar=ifelse(entar>0, 1, 0)) %>%
+  filter(year >= 1982, year <= 2006) %>%
+  ggplot() + 
+  geom_boxplot(aes(x=factor(entar), y=lpib))
+wto_data$year <- as.character(dados_gerais_imput$year)
+
+# atualizar dados gerais imput nos dois projetos
+# adicionar year no wto_data
+
+##
+
+d_reg <- wto_data %>%
+  mutate(year_num=as.numeric(as.character(year))) %>%
+  filter(year_num >= 1982, year_num <= 2006) %>%
+  mutate(pib=abs(pib)) %>%
+  mutate(ccode=as.character(ccode)) %>%
+  left_join(aux, c('ccode', 'year')) %>%
+  mutate(resp=ifelse(is.na(lab_ccode), 0, 1)) %>%
+  select(-lab_ccode) %>%
+  mutate(lpib=log10(pib))
+```
+
+```{r}
+fit_model <- glm(formula = resp ~ leste_oeste + norte_sul + lpib + pib_per_capita + democracia, 
+                 family = binomial, 
+                 data = d_reg)
+
+fit_model
+
+summary(fit_model)
+```
+
 
 # Modelos de Sobrevivência
 
