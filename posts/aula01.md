@@ -505,7 +505,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.448   0.000   1.441
+##   1.457   0.000   1.456
 ```
 
 ```r

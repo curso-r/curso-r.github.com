@@ -1476,7 +1476,7 @@ __OBS:__ Baseado no excelente post de [Gaston Sanchez](http://gastonsanchez.com/
 - Inferência Bayesiana
 - Processos estocásticos
 - Reamostragem
-- ...
+- Muito mais!
 
 # Referências
 
