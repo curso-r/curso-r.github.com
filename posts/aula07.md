@@ -221,7 +221,7 @@ A função `summary()` é uma função genérica que geralmente devolve um resum
 summary(ajuste_lm)
 ```
 
-![summary lm](summary_lm.png)
+![summary lm](assets/fig/summary_lm.png)
 
 **plot()**
 
@@ -762,7 +762,7 @@ O parâmetro $\phi$ é o parâmetro de precisão (inverso do parâmetro de dispe
 
 Para ajustar um modelo linear generalizado, basta utilizar a função `glm` e informar, além da fórmula, a família de distribuições da resposta.
 
-### Famílias de distribuição
+### Famílias de distribuições
 
 
 |      Family      |          Link          |
