@@ -8,6 +8,11 @@ output:
 date : 2015-02-02
 ---
 
+<a href="http://curso-r.github.io/slides/aula_07_apresentacao.html" target="_blank">Slides dessa aula</a>
+
+<a href="http://curso-r.github.io/script/aula_07.R" target="_blank">Script dessa aula</a>
+
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(pander)
 library(ggplot2)
@@ -21,6 +26,8 @@ panderOptions("table.style", "rmarkdown")
 
 O R tem todo o ferramental necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
 
+O R tem todo o ferramentário necessário para fazer modelos lineares, a começar pelo modelo de regressão linear norma.
+
 Para ilustrar, vamos utilizar a base de dados `mtcars` que vem no R.
 
 Cada uma das 32 linhas da base `mtcars` representa um carro. A variável `mpg` é o consumo de combustível em milhas por galão (~3.76 Litros) e iremos tentar explicá-la pelas demais características dos veículos. 
@@ -28,6 +35,7 @@ Cada uma das 32 linhas da base `mtcars` representa um carro. A variável `mpg` �
 ## Um pouco de descritiva
 
 ### Univariada
+
 ```{r}
 # os dados
 head(mtcars)
@@ -159,7 +167,7 @@ Uma parte importante da modelagem é a redução de modelos. A função `anova()
 ajuste_lm_nulo <- lm(mpg ~ 1, data = mtcars)
 
 # modelo com wt e cyl
-ajuste_lm2 <- lm(mpg ~ wt + cyl, data = mtcars)
+ajuste_lm2 <- lm(mpg ~ wt + factor(cyl), data = mtcars)
 
 # compara o modelo com wt com o modelo nulo
 anova(ajuste_lm_nulo, ajuste_lm)
@@ -179,20 +187,148 @@ comandos_uteis_lm <- data.frame("Função" = c("confint()",
                                              "resid()",
                                              "fitted()",
                                              "AIC()",
-                                             "model.matrix()"),
+                                             "model.matrix()",
+                                             "linearHypotesis()",
+                                             "vcov()"),
                                 "Descrição" = c("Intervalo de confiança para os parâmetros",
                                                 "Resíduos do modelo",
                                                 "Valores ajustados",
                                                 "Critério de informação de Akaike",
-                                                "Matriz de planejamento (matriz X) do modelo"))
+                                                "Matriz de planejamento (matriz X) do modelo",
+                                                "Teste de combinações lineares de parâmetros",
+                                                "Matriz de variância-covariância dos parâmetros"))
 comandos_uteis_lm %>% pander
 ```
 
 ## Fórmulas
 
+Objetos de classe `formula` possuem sintaxe muito conveniente para especificar o modelo estatístico que desejamos ajustar. O símbolo que define esses objetos é o `~`.
+
+Estrutura:
+```{r, eval=FALSE}
+ajuste <- lm(resposta ~ explicativas)
+```
+
+Então se o objetivo fosse ajustar o modelo
+
+$$
+Y_i = \beta_0 + \beta_1X_i + \epsilon_i,
+$$
+
+passaríamos ao R a seguinte fórmula
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ X)
+```
+
+Para incorporar mais variáveis usamos o símbolo `+`. O modelo
+
+$$
+Y_i = \beta_0 + \beta_1X_i + \beta_2Z_i + \epsilon_i,
+$$
+
+ficaria traduzido como
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ X + Z)
+```
+
+Utilizamos o símbolo `*` para introduzir os componentes de interação, além dos componentes aditivos.
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ X * Z)
+```
+
+Teoricamente teríamos, para Z **contínua**, o modelo de regressão
+
+$$
+Y_i = \beta_0 + \beta_1X_i + \beta_2Z_i + \beta_3X_i*Z_i + \epsilon_i,
+$$
+
+Ou, para Z **categórica**, o modelo de ANCOVA
+
+$$
+Y_{ij} = \alpha_j + \beta_jX_{ij} + \epsilon_{ij},
+$$
+
+O operador `:` faz com que apenas o componente de interação seja incluído no modelo. Para ilustrar, observe que o modelo
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ X * Z)
+```
+
+é a mesma coisa que
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ X + Z + X:Z)
+```
+
+Os operadores aritméticos exercem função diferente em fórmulas. O sinal de `+` no exemplo induziu em um modelo aditivo em vez de somar X com Z. Para fazer com que eles assumam seus significados aritméticos temos que utilizar a função `I()`. Exemplo:
+
+```{r, eval=FALSE}
+ajuste <- lm(Y ~ I(X + Z))
+```
+
+Agora sim o componente `I(X + Z)` representa a soma de X com Z. Outros exemplos: `I(X^2)`, `I(log(X + 1))`, `I(sqrt(X+Z*5))`.
+
+**Tabela de simbolos para utilizar em fórmulas**
+
+```{r, echo=FALSE, results='asis'}
+formula_simbolos <- data.frame("Símbolo" = c("+ X",
+                                             "- X",
+                                             "X * Z",
+                                             "X : Z",
+                                             "(X + Z + W)^2",
+                                             "I(X + Z)",
+                                             "X - 1",
+                                             "."),
+                               "Descrição" = c("inclui a variável X",
+                                               "retira a variável X",
+                                               "inclui X, Z e a interação entre elas",
+                                               "inclui apenas o componente de interação entre X e Z",
+                                               "inclui X, Z, W e as interações 2 a 2",
+                                               "Função identidade. Inclui uma variável construída pela soma de X com Z",
+                                               "Remove o intercepto (regressão passando pela origem)",
+                                               "O ponto representa 'todas as demais variáveis'"))
+formula_simbolos %>% pander
+```
+
 ## Seleção de variáveis
 
-# Modelos Lineares Generalizados
+### linearHypothesis
+
+Frequentemente temos interesse em saber se parâmetros são diferentes de zero ou se são diferentes entre si. Para isto, costumamos efetuar testes do tipo Wald para combinações lineares dos parâmetros.
+
+Para este fim, a função `linearHypothesis()` do pacote `car` faz o trabalho.
+
+```{r}
+library(car)
+
+linearHypothesis(ajuste_lm, c(0,1))
+```
+
+### stepwise
+
+Stepwise no R se faz com as funções `step()` do pacote `stats` ou `stepAIC()` do pacote `MASS`. Escolher entre `forward`, `backward` ou `both` (ambos) basta passar um desses nomes ao parâmetro `direction` da função.
+
+```{r, message=FALSE, warning=FALSE}
+# modelo aditivo completo
+ajuste_lm_completo <- lm(mpg ~ ., data = mtcars)
+
+# modelo forward
+step(ajuste_lm_completo, direction = "forward")
+
+# modelo backward
+step(ajuste_lm_completo, direction = "backward")
+
+# modelo both
+step(ajuste_lm_completo, direction = "both")
+
+```
+
+
+---
+## Regressão Linear Generalizada
 
 A regressão linear normal pode ser inadequada quando a distribuição de $Y_i$ é assimétrica, representa
 dados de contagens ou então dados binários. Para lidar com esse problema, McCulagh e Nelder estenderam
@@ -212,11 +348,9 @@ $$
 
 O parâmetro $\phi$ é o parâmetro de precisão (inverso do parâmetro de dispersão) e $g$ é a _função de ligação_, que geralmente tem o papel de jogar o intervalo de vação de $\mu_i$ (espaço paramétrico) no intervalo $(-\inf, \inf)$.
 
-## Como ajustar um modelo de regressão
-
 Para ajustar um modelo linear generalizado, basta utilizar a função `glm` e informar, além da fórmula, a família de distribuições da resposta.
 
-## Famílias de distribuição
+### Famílias de distribuição
 
 ```{r, echo=FALSE}
 x <- data_frame(Family=c('gaussian', 'binomial', 'poisson', 'Gamma', 'inverse.gaussian', 'quasi'),
@@ -224,87 +358,355 @@ x <- data_frame(Family=c('gaussian', 'binomial', 'poisson', 'Gamma', 'inverse.ga
 x %>% pander
 ```
 
-Os resultados dos modelos `glm` estão praticamente no mesmo formato que os resultados da função `lm`,
-a diferença é que o valor-p é assintótico nesse caso.
+### Ajuste do modelo
 
-## Análise de resíduos
+```{r, eval=FALSE}
+ajuste_glm <- glm(resposta ~ explicativas, data = dados, family = distribuicao)
+```
+
+Para ver a lista de distribuições que podem ser passadas ao parâmetro `family`, rode `?family` no R.
+
+Outro componente importante em modelos lineares generalizados é a função de ligação. De modo mais geral, o código para ajsutar um MLG fica assim:
+
+```{r, eval=FALSE}
+ajuste_glm <- glm(resposta ~ explicativas, data = dados, family = distribuicao(link = funcao_de_ligacao))
+```
+
+Repare que agora existe a parte `(link = funcao_de_ligacao)` depois do nome da distribuição escolhida. É comum trocar a ligação `inversa` de uma regressão Gama para uma ligação `log`, por exemplo. Em R, ficaria:
+
+```{r, eval=FALSE}
+ajuste_gama <- glm(Y ~ X + I(X^2) + Z, data = dados, family = Gamma(link = "log"))
+```
+
+Todas as funções úteis para `lm()` continuam sendo úteis para `glm()`.
+
+### Exemplo: Regressão logística
+
+A regressão logística se caracteriza por assumir distribuição binomial à variável resposta. Para exemplificar um ajuste de regressão logística, vamos aproveitar o mesmo banco `mtcars`, mas agora vamos modelar `am` em vez de `mpg`.
+
+#### Breve descritiva
+
+```{r}
+mtcars %>%
+  group_by(am) %>%
+  summarise("N" = n(),
+            "Missing" = sum(is.na(wt)),
+            "Media" = mean(wt),
+            "DesvPad" = sd(wt),
+            "Minimo" = min(wt),
+            "Q1" = quantile(wt, 0.25),
+            "Mediana" = quantile(wt, 0.50),
+            "Q3" = quantile(wt, 0.75),
+            "Maximo" = max(wt)) %>%
+  mutate_each(funs(round(.,1)), -am)
+
+ggplot(mtcars) +
+  geom_boxplot(aes(x = factor(am), y = wt))
+```
+
+#### Ajuste
+
+```{r}
+# Ligação logit
+ajuste_glm <- glm(am ~ wt, data = mtcars, family = binomial)
+summary(ajuste_glm)
+table(mtcars$am, predict(ajuste_glm) > 0.5)
+```
+
+Por padrão, a função de ligação da distribuição `binomial` é a `logit`. Se quisermos usar a função `probit`, precisamos especificar isto no parâmetro `family`.
+
+```{r}
+# Ligaçao probit
+ajuste_glm_probit <- glm(am ~ wt, data = mtcars, family = binomial(link = "probit"))
+summary(ajuste_glm_probit)
+```
+
+Gráfico das curvas ajustadas:
+```{r}
+ggplot(mtcars, aes(x=wt, y=am)) + 
+  geom_point() + 
+  stat_smooth(aes(colour = "Logit"), method="glm", family=binomial, se=FALSE) +
+  stat_smooth(aes(colour = "Probit"), method="glm", family=binomial(link = "probit"), se=FALSE) +
+  stat_smooth(aes(colour = "Complementar Log-Log"), method="glm", family=binomial(link = "cloglog"), se=FALSE) +
+  labs(colour = "Função de ligação")
+```
+
+O teste Chi quadrado pode ser mais indicado para regressão logística.
+
+```{r}
+anova(ajuste_glm, test="Chisq")
+```
+
+### Análise de diagnóstico
 
 Na página [do professor Gilberto](http://www.ime.usp.br/~giapaula/textoregressao.htm) pode-se obter o livro dele sobre GLM e também vários comandos para realizar análises de diagnóstico dos modelos ajustados.
 
-## Exemplo: Regressão logística
+## Modelos mistos
 
-**Dados**: Coalitions (ver lab 02)
+Quando uma mesma unidade observacional é medida várias vezes em diferentes contextos, temos em mãos um problema de medidas repetidas. Em particular, quando essas medidas são realizadas ao longo do tempo, temos um problema de dados longitudinais.
 
-```{r}
-data(wto_data, package='abjutils')
-data(wto_dyad_sample, package='abjutils')
+A dificuldade desses tipos de estudo está no fato de que, como o mesmo indivíduo é observado em vários momentos, nem sempre é razoável considerar essas medidas como independentes. Por exemplo, se estou acompanhando o crescimento da massa de ovelhas ao longo do tempo, esperamos que a ovelha mais "gordinha" tende a ser sempre a mais gordinha.
 
-aux <- wto_dyad_sample %>%
-  select(ccode1, ccode2, year) %>%
-  gather(lab_ccode, ccode, -year) %>%
-  distinct(year, ccode) %>%
-  mutate_each(funs(as.character))
+Para resolver isso, geralmente impomos uma _estrutura de correlação_ para observações de um mesmo indivíduo, e uma maneira de impor essa estrutura de correlação é realizar uma análise com efeitos mistos.
 
-##
-load('~/Projects/wto_redes/data/dados_gerais_imput.RData')
-d <- read.csv2('~/Projects/wto_redes/data/banco_v16.csv', as.is=T)
-d %>%
-  mutate(lpib=log(pwt_rgdp), entar=ifelse(entar>0, 1, 0)) %>%
-  filter(year >= 1982, year <= 2006) %>%
-  ggplot() + 
-  geom_boxplot(aes(x=factor(entar), y=lpib))
-wto_data$year <- as.character(dados_gerais_imput$year)
+A grande diferença de um modelo de regressão comum e um modelo misto é que parte dos parâmetros são na verdade variáveis aleatórias. Não vamos entrar em detalhe na parte teórica, mas se quiser, dê uma lida no [livro do professor Singer](http://www.ime.usp.br/~jmsinger/Textos/Singer&Nobre&Rocha2012mar.pdf), que está em andamento.
 
-# atualizar dados gerais imput nos dois projetos
-# adicionar year no wto_data
+Para ajustar modelos mistos geralmente utilizamos os pacotes `nlme` e `lme4`. O pacote `nlme` faz algumas coisas a mais na parte de modelos não lineares, mas o pacote `lme4` é muito melhor desenvolvido atualmente e recomendamos seu uso.
 
-##
+### Exemplo: Teste t pareado
 
-d_reg <- wto_data %>%
-  mutate(year_num=as.numeric(as.character(year))) %>%
-  filter(year_num >= 1982, year_num <= 2006) %>%
-  mutate(pib=abs(pib)) %>%
-  mutate(ccode=as.character(ccode)) %>%
-  left_join(aux, c('ccode', 'year')) %>%
-  mutate(resp=ifelse(is.na(lab_ccode), 0, 1)) %>%
-  select(-lab_ccode) %>%
-  mutate(lpib=log10(pib))
-```
+Geralmente utilizamos o teste t pareado quando queremos comparar médias, mas os indivíduos foram medidos em diferentes situações ou momentos.
+
+Vamos ilustrar com os seguintes dados. Na base de dados `sleep`, temos medido o efeito de duas diferentes drogas aplicadas a 10 indivíduos (as duas drogas foram aplicadas nos 10 indivíduos) no tempo de sono. Queremos verificar se as drogas tiveram efeitos distintos.
 
 ```{r}
-fit_model <- glm(formula = resp ~ leste_oeste + norte_sul + lpib + pib_per_capita + democracia, 
-                 family = binomial, 
-                 data = d_reg)
+sleep %>%
+  mutate(group=paste0('droga_', group)) %>%
+  spread(group, extra)
 
-fit_model
-
-summary(fit_model)
+sleep %>%
+  ggplot() +
+  geom_line(aes(x=group, y=extra, group=ID)) +
+  geom_text(aes(x=group, y=extra, label=ID)) +
+  theme_bw()
 ```
 
+Teste t pareado
+```{r}
+aux <- sleep %>%
+  mutate(group=paste0('droga_', group)) %>%
+  spread(group, extra)
 
-# Modelos de Sobrevivência
+t.test(aux$droga_1, aux$droga_2, paired=TRUE)
+```
 
-## Kaplan-Meier
+Paralelo do modelo misto
 
-## Análise de resíduos
+```{r}
+library(lme4)
+modelo <- lmer(extra ~ group + 1|ID, data=sleep)
+summary(modelo)
+```
 
-## Testes de hipóteses
+A parte `1|ID` indica que o indivíduo é ID e que estamos incluindo um efeito aleatório para ele.
+
 
 # Árvore de Decisão
 
-# Análise de Agrupamento
+Outra tipo de modelo muito utilizado que também une simplicidade com eficiência é o de árvore de decisão. No R, seu ajuste é tão simples quanto ajustar um modelo de regressão e possui um conjunto de funções igualmente convenientes para extrair resultados.
 
-# Análise de Componentes Principais
+Vamos apresentar como ajustar árvore de decisão usando o pacote `tree`, mas, como tudo no R, existem inúmeros pacotes e jeitos de ajustar uma árvore de decisão (ver este [link](http://statistical-research.com/a-brief-tour-of-the-trees-and-forests/?utm_source=rss&utm_medium=rss&utm_campaign=a-brief-tour-of-the-trees-and-forests) para uma lista interessante de alternativas).
+
+## Ajuste
+
+```{r}
+library(tree)
+ajuste_tree <- tree(factor(am) ~ wt, data = mtcars)
+summary(ajuste_tree)
+plot(ajuste_tree)
+text(ajuste_tree, pretty = 0)
+```
+
+Tabelas de observado versus predito: comparação entre os modelos logístico e árvore.
+```{r, eval=FALSE}
+# Logistico
+table(mtcars$am, predict(ajuste_glm) > 0.5)
+
+# Árvore
+table(mtcars$am, predict(ajuste_tree)[,"1"] > 0.5)
+```
+
+## Cross-validation
+
+Árvores tendem a "super-ajustar" (*overfit*) o modelo. Para este problema, *cross-validation* é uma boa prática. Essa técnica consiste em reservar parte da base separada para depois ser usada como régua para o poder preditivo do modelo.
+
+Para fazer isso é muito fácil com a função `cv.tree()`. Basta passar seu modelo ajustado para ela:
+
+```{r}
+set.seed(123)
+cv_tree <- cv.tree(ajuste_tree)
+plot(cv_tree)
+```
+
+O gráfico mostra qual tamanho da árvore que apresentou o menor erro de predição. No nosso caso foi tamanho `2`.
+
+Para recuperar esse ajuste de tamanho `2`, chamamos a função `prune.tree()` da seguinte forma:
+
+```{r}
+# seleciona a árvoore com 2 nós
+melhor_tree <- prune.tree(ajuste_tree, best = 2)
+# Gráfico que representa a árvore `melhor_tree`
+plot(melhor_tree)
+text(melhor_tree, pretty = 0)
+# oservado versus predito
+table(mtcars$am, predict(melhor_tree)[,"1"] > 0.5)
+```
+
+O modelo `melhor_tree` coincidiu com o `ajuste_tree` (que tinha tamanho `5`) quanto ao seu desempenho em prever, porém é muito mais simples. De fato ele é mais simples do que qualquer modelo feito até aqui.
+
+## Parâmetros de controle
+
+Árvores de decisão são ajustadas sob alguns critérios que às vezes precisamos reconfigurar. Por exemplo, no `ajuste_tree` vimos que havia muito mais galhos do que o necessário. Isso se deveu a critérios de divisão/parada desregulado. 
+
+No caso dos objetos `tree`, temos dois parâmetros importantes: `split` e `control`.
+
+**split**
+
+O parâmetro `split` define qual o critério para decidir se divide o "galho" ou não. Por padrão, a função utiliza o critério "deviance", que tem a mesma definição do MLG. Uma segunda opção seria **Gini**.
+
+**control**
+
+O parâmetro `control` recebe um objeto retornado pela função `tree.control()`.
+
+Esta função permite você configurar:
+
+- `nobs` Número de observações na base de treino. Isso será efetivo no `cv.tree()`, quando uma base de treino e outra de teste é utilizada para calcular o erro de predição por meio de *cross-validation*.
+- `mincut` Número mínimo de observações a serem incluídas em cada nó.
+- `minsize` O menor tamanho de nó permitido.
+- `mindev` Fração mínima do deviance do nó raiz.
+
+Como passar à função:
+```{r}
+controles <- tree.control(nobs = 32, mincut = 10)
+ajuste_tree <- ajuste_tree <- tree(factor(am) ~ wt, data = mtcars, control = controles)
+plot(ajuste_tree);text(ajuste_tree, pretty = 0)
+```
+
+# Análise multivariada
+
+## Análise de Agrupamento
+
+Análise de agrupamento geralmente é uma ótima maneira de realizar estudos preliminares em uma base de dados, e algumas vezes pode trazer resultados muito úteis.
+
+Como o próprio nome diz, geralmente a análise de agrupamento serve para formar grupos de indivíduos a partir da comparação das suas medidas em relação à diversas variáveis. Não confunda aqui com árvores de decisão, pois nesse caso não há uma variável "resposta".
+
+Existem dois tipos principais de análise de agrupamento: _hierárquico_ e _k-means_. 
+
+### K-means
+No modelo k-means, selecionamos previamente o número de grupos e o modelo calcula, com base em algum critério, qual a melhor forma de alocar os indivíduos nesses grupos. 
+
+Para ajustar essa análise utilizaremos a função `kmeans` do pacote `stats`. Existem mais pacotes que fazem essa análise no R.
+
+```{r}
+kms <- kmeans(mtcars, centers=2)
+kms
+```
+
+### Hierárquico
+
+No modelo hierárquico, contudo, não selecionamos previamente o número de grupos, e o resultado da análise é um gráfico chamado _dendrograma_, que cria uma ordem de agrupamento dos indivíduos, desde o nível mais fragmentado (número de grupos igual ao número de indivíduos) até um agrupamento único.
+
+Para ajustar o modelo hierárquico, utilizaremos a função `hclust`, do pacote `stats`. Existem vários métodos para ordenação dos ordenamentos. Utilizaremos aqui o método `ward.D`.
+
+Diferentemente do método K-means, os métodos hierárquicos partem de uma matriz de distâncias ou, mais genericamente, matriz de dissimilaridades. A matrix de distâncias é uma matriz `d` com `dim(d) = c(n, n)`, onde `n` é o número de indivíduos. Geralmente é uma matriz simétrica, e na diagonal vale zero. 
+
+```{r}
+d <- dist(mtcars) # calcula matriz de distâncias euclidianas.
+str(d)
+hc <- hclust(d, method='ward.D')
+hc
+plot(hc)
+```
+
+No método hierárquico, portanto, geralmente precisamos tomar 2 decisões para rodar a análise e construir o dendrograma: i) o método para obtenção da matriz de distâncias e o método para ordenação das aglomerações.
+
+__OBS:__ Na análise de agrupamento, muitas vezes a escala das variáveis faz diferença, e variáveis que assumem valores muito altos podem ter uma influência maior do que outras no resultado da análise. Por isso, muitas vezes temos interesse em re-escalar as variáveis, geralmente subtraindo a média e dividindo pelo desvio padrão (normalização). Para isso, veja `?scale`.
+
+## Análise Fatorial
+
+Outra análise multivariada muito comum é a _análise fatorial_. Nesse tipo de estudo, geralmente estamos interessados em obter combinações de variáveis que estejam associadas a alguma variável latente não observável. Em palavras mais simples, estamos interessados em obter alguns _fatores_ que expliquem a variabilidade dos nossos dados, e depois interpretar esses fatores de alguma forma.
+
+Para realizar análise fatorial, vamos utilizar a função `factanal` do pacote `stats`. Essa função realiza análise fatorial usando método de máxima verossimilhança. Podemos utilizar outros métodos, como decomposição espectral (autovalor e autovetor), geralmente utilizada em _análise de componentes principais_.
+
+```{r}
+fa <- factanal(mtcars, factors=3, rotation='none')
+fa
+
+pesos <- fa$loadings[,1:3] %>% data.frame %>% mutate(nomes=rownames(.))
+ggplot(pesos, aes(x=Factor1, y=Factor2)) +
+  geom_text(aes(label=nomes)) +
+  geom_vline(xintercept=0) +
+  geom_hline(yintercept=0) +
+  coord_equal()
+```
+
+Na análise fatorial, podemos realizar também a _rotação_ dos fatores obtidos, para tentar isolar os componentes de cada fator, facilitando a interpretação dos fatores. O método mais comum para realizar a rotação é pelo método `varimax`.
+
+```{r}
+fa <- factanal(mtcars, factors=3, rotation='varimax')
+
+pesos <- fa$loadings[,1:3] %>% data.frame %>% mutate(nomes=rownames(.))
+ggplot(pesos, aes(x=Factor1, y=Factor2)) +
+  geom_text(aes(label=nomes)) +
+  geom_vline(xintercept=0) +
+  geom_hline(yintercept=0) +
+  coord_equal()
+```
+
+A análise fatorial tem muito mais detalhes que foram omitidos. Para um tutorial rápido, ver no [Quick-R](http://www.statmethods.net/advstats/factor.html).
+
+## Análise de correspondência múltipla
+
+Quando temos uma base de dados com muitas variáveis categóticas, geralmente é difícil analisá-las em conjunto, e muitas vezes ficamos fazendo um monte de tabelas de contingência, o que pode ser doloroso.
+
+A análise de correspondência múltipla pode ser considerada como uma espécie de _análise de componentes principais_ para dados categóricos. Ela serve para dar uma "visão geral" da base de dados, reduzindo a dimensionalidade da base e visualizando as associações das variáveis em apenas um gráfico.
+
+Para realizar a análise, vamos utilizar a função `MCA` do pacote `FactoMineR`. Esse pacote, aliás, contém diversos métodos para realização de análises multivariadas.
+
+Como base de dados, utilizaremos `tea` do pacote `FactoMiner`, que é basicamente um questionário aplicado a 300 pessoas sobre como elas tomam chá.
+
+```{r}
+library(FactoMiner)
+data(tea)
+
+# Vamos trabalhas só com essas colunas
+newtea <- tea %>% select(Tea, How, how, sugar, where, always) %>% tbl_df
+newtea
+
+# numero de niveis de cada variavel
+cats <- newtea %>% summarise_each(funs(length(unique(.))))
+cats
+```
+
+```{r}
+# MCA
+mca <- MCA(newtea, graph = FALSE)
+
+# Coordenadas das variaveis
+mca1_vars_df <- data.frame(mca$var$coord, variavel=rep(names(cats), cats), stringsAsFactors=F) %>%
+  mutate(rnames=row.names(.))
+
+# Coordenadas das observacoes
+mca1_obs_df <- data.frame(mca$ind$coord)
+
+# Um gráfico bonito
+ggplot() +
+  geom_hline(yintercept = 0, colour = "gray70") +
+  geom_vline(xintercept = 0, colour = "gray70") +
+  geom_text(aes(x=Dim.1, y=Dim.2, colour=variavel, label=rnames), data=mca1_vars_df) +
+  geom_point(aes(x=Dim.1, y=Dim.2), colour = "gray50", alpha = 0.7, data=mca1_obs_df) +
+  geom_density2d(aes(x=Dim.1, y=Dim.2), colour = "gray80", data=mca1_obs_df)
+```
+
+O gráfico mostra várias coisas de uma vez só. 
+
+- A dispersão mostra as dimensões calculadas pelo método de análise de correspondência múltipla. 
+- As curvas de nível mostram a concentração dos dados.
+- Os textos são os níveis das variáveis, identificados pela cor.
+
+Nesse caso, verificamos, por exemplo, que pode existir uma associação entre `how` e `where`, pois "tea bag" está muito próximo de "chain store".
+
+__OBS:__ Baseado no excelente post de [Gaston Sanchez](http://gastonsanchez.com/blog/how-to/2012/10/13/MCA-in-R.html).
 
 # Demais tópicos
 
-- Dados longitudinais
 - Séries temporais
 - Dados categorizados
 - GAM/GAMLSS
 - Inferência Bayesiana
 - Processos estocásticos
 - Reamostragem
+- ...
 
 # Referências
 
@@ -314,7 +716,7 @@ http://web.stanford.edu/~hastie/local.ftp/Springer/OLD/ESLII_print4.pdf
 
 http://www.ime.usp.br/~giapaula/texto_2013.pdf
 
-Colosimo, E.A. e Giolo, S.R. (2006) Análise de sobrevivência aplicada. ABE - Projeto Fisher, Edgard Blücher.
+Colosimo, E.A. e Giolo, S.R. (2006) Análise de sobrevivência aplicada. ABE - Projeto Fisher, Blucher.
 
 http://adv-r.had.co.nz/Functions.html
 
