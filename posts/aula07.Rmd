@@ -24,9 +24,7 @@ panderOptions("table.style", "rmarkdown")
 
 # Regressão Linear e ANOVA
 
-O R tem todo o ferramental necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
-
-O R tem todo o ferramentário necessário para fazer modelos lineares, a começar pelo modelo de regressão linear norma.
+O R tem todo o ferramentário necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
 
 Para ilustrar, vamos utilizar a base de dados `mtcars` que vem no R.
 
