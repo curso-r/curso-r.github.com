@@ -4,3 +4,100 @@ date : 2015-02-04
 # output: ioslides_presentation
 ---
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+library(survival)
+library(ggplot2)
+```
+
+
+# Modelos de sobrevivência
+
+A Análise de Sobrevivência compreende os estudos em que o interesse principal é avaliar o tempo até a ocorrência de um evento pré-determinado. Esses tempos, chamados de *tempos de falha*, podem, então, ser explicados por outras variáveis a partir de modelos de regressão paramétricos ou semi-paramétricos. Uma característica fundamental desse tipo de estudo é a presença de censura, definida como a observação parcial do tempo de falha.
+
+Para ilustrar as funções discutidas aqui, utilizaremos o banco de dados `ovarian`, do pacote `survival`. Este banco traz o tempo de sobrevivência (ou censura) de 26 mulheres com câncer de ovário e o objetivo do estudo foi comparar dois tratamentos distintos para essa doença. 
+
+Nesse exemplo, o tempo de falha é o intervalo entre a entrada no estudo e a ocorrência do evento de interesse que, aqui, é a morte da paciente. A censura neste caso é causada pelo abandono do estudo ou pela não ocorrência do evento até o fim do acompanhamento, ou seja, os casos em que a paciente estava viva no fim do estudo.
+
+Para mais informações sobre o banco de dados, consulte o `help(ovarian)`.
+
+Para mais informações sobre Análise de Sobrevivência, consultar as seguintes referências:
+
+- Colosimo, E.A. e Giolo, S.R.. (2005) Análise de Sobrevivência Aplicada. ABE --- Projeto fisher. Editora Edgard Blucher
+
+- Kalbfleisch, J. D.; Prentice, Ross L. (2002). The statistical analysis of failure time data. New York: John Wiley & Sons.
+
+- Lawless, Jerald F. (2003). Statistical Models and Methods for Lifetime Data (2nd ed.). Hoboken: John Wiley and Sons.
+
+## Kaplan-Meier e Log-rank
+
+O Kaplan-Meier é a principal ferramenta para visualizar dados de sobrevivência. Esses gráficos ajustam curvas tipo-escada da proporção de indivíduos *em risco* --- que ainda não falharam e não foram censurados --- ao longo do tempo. Para plotar um Kaplan-Meier no R, utilizamos a função `survfit()` e a função `plot()`.
+
+```{r}
+
+fit <- survfit(Surv(futime, fustat) ~ rx, data = ovarian)
+
+plot(fit)
+
+```
+
+Também podemos construir um Kaplan-Meier com o `ggplot2`, mas observe que é necessário fazer algums modificações no objeto `fit`:
+
+```{r}
+
+m <- length(fit$strata)
+
+df <- data.frame(time = c(rep(0, m), fit$time),
+                 surv = c(rep(1, m), fit$surv),
+                 group = c(names(fit$strata), 
+                          rep(names(fit$strata), fit$strata)))
+
+ggplot(data = df) +  
+        geom_step(aes(x = time, y = surv, colour = as.factor(group))) +
+        ylim(0, 1) +
+        labs(colour = "Curvas", y = "Proporção de sobreviventes",
+             x = "Tempo") 
+
+```
+
+
+O teste de log-rank para comparação de grupos é realizado pela função `survdiff()`:
+
+```{r}
+
+survdiff(Surv(futime, fustat) ~ rx, data = ovarian)
+
+```
+
+
+## Modelos paramétricos
+
+Para ajustar modelos paramétricos, podemos utilizar a função `survreg()`.
+
+```{r}
+
+fit <- survreg(Surv(futime, fustat) ~ rx + age, data = ovarian, 
+               dist = "exponential")
+
+summary(fit)
+
+```
+
+Observe que no exemplo acima utilizamos a distribuição Exponencial. O argumento `dist = ` pode ser modificado para ajustarmos modelos com outras distribuições:
+
+- `dist = "weibull"` --- distribuição Weibull (default)
+- `dist = "gaussian"` --- distribuição Normal
+- `dist = "logistic"` --- distribuição Logística
+- `dist = "lognormal"` --- distribuição Log-normal
+- `dist = "loglogistic"` --- distribuição Log-logística
+
+
+## Modelo semi-paramétrico de Cox
+
+No R, a função mais utilizada para ajustar modelos de Cox é a `coxph()`.
+
+```{r}
+fit <- coxph(Surv(futime, fustat) ~ age + rx, data = ovarian)
+
+summary(fit)
+```
+
