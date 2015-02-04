@@ -706,13 +706,13 @@ str(dados)
 <pre><code class="r">summary(dados)
 </code></pre>
 
-<pre><code>##    Aleatorio         aleatorio2           cor           
-##  Min.   :-1.5865   Min.   :0.009945   Length:100        
-##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
-##  Median : 0.5795   Median :0.577933   Mode  :character  
-##  Mean   : 0.3675   Mean   :0.540947                     
-##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
-##  Max.   : 1.9053   Max.   :0.990911
+<pre><code>##    Aleatorio            aleatorio2              cor           
+##  Min.   :-1.5865145   Min.   :0.009945137   Length:100        
+##  1st Qu.:-0.7130548   1st Qu.:0.292951908   Class :character  
+##  Median : 0.5794603   Median :0.577933484   Mode  :character  
+##  Mean   : 0.3675465   Mean   :0.540947443                     
+##  3rd Qu.: 1.1027177   3rd Qu.:0.823797523                     
+##  Max.   : 1.9053111   Max.   :0.990911536
 </code></pre>
 
 <p>Também pode ser aplicada em apenas uma variável da base:</p>
@@ -720,8 +720,8 @@ str(dados)
 <pre><code class="r">summary(dados$aleatorio2)
 </code></pre>
 
-<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
+<pre><code>##        Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+## 0.009945137 0.292951900 0.577933500 0.540947400 0.823797500 0.990911500
 </code></pre>
 
 <p>A função <code>summary</code> calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: <code>mean</code>, <code>median</code>, <code>quantile</code> e <code>sd</code>. A seguir alguns exemplos de uso:</p>
@@ -729,26 +729,26 @@ str(dados)
 <pre><code class="r">mean(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.5409474
+<pre><code>## [1] 0.5409474427
 </code></pre>
 
 <pre><code class="r">median(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.5779335
+<pre><code>## [1] 0.5779334836
 </code></pre>
 
 <pre><code class="r">sd(dados$aleatorio2)
 </code></pre>
 
-<pre><code>## [1] 0.2999107
+<pre><code>## [1] 0.2999107016
 </code></pre>
 
 <pre><code class="r">quantile(dados$aleatorio2, probs = c(0.25,0.75))
 </code></pre>
 
-<pre><code>##       25%       75% 
-## 0.2929519 0.8237975
+<pre><code>##          25%          75% 
+## 0.2929519078 0.8237975225
 </code></pre>
 
 <p>Essas funções só podem ser aplciadas em vetores, diferente da <code>summary</code>que pode ser aplciada à um vetor.</p>
@@ -795,7 +795,7 @@ str(dados)
 x %&gt;% sum %&gt;% sqrt
 </code></pre>
 
-<pre><code>## [1] 3.162278
+<pre><code>## [1] 3.16227766
 </code></pre>
 
 <p>O caminho que o código acima seguiu foi enviar o objeto <code>x</code> como argumento da função <code>sum()</code> e, em seguida, enviar a saida da expressão <code>sum(x)</code> como argumento da função <code>sqrt()</code>. Observe que não é necessario colocar os parênteses após o nome das funções.</p>
@@ -805,7 +805,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">sqrt(sum(x))
 </code></pre>
 
-<pre><code>## [1] 3.162278
+<pre><code>## [1] 3.16227766
 </code></pre>
 
 <p>A princípio, a utilização do <code>%&gt;%</code> não parece trazer grandes vantagens, pois a expressão <code>sqrt(sum(x))</code> facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do <code>pipe</code> transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:</p>
@@ -830,7 +830,7 @@ x %&gt;% sum %&gt;% sqrt
 <pre><code class="r">T %&gt;% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esquerdo
 </code></pre>
 
-<pre><code>## [1] -0.1577354
+<pre><code>## [1] -0.1577354299
 </code></pre>
 
 <pre><code class="r">F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)

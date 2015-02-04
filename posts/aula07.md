@@ -17,9 +17,7 @@ date : 2015-02-02
 
 # Regressão Linear e ANOVA
 
-O R tem todo o ferramental necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
-
-O R tem todo o ferramentário necessário para fazer modelos lineares, a começar pelo modelo de regressão linear norma.
+O R tem todo o ferramentário necessário para fazer modelos lineares, a começar pelo modelo de regressão linear normal.
 
 Para ilustrar, vamos utilizar a base de dados `mtcars` que vem no R.
 
@@ -50,7 +48,13 @@ head(mtcars)
 mtcars_long <- mtcars %>%  
   select(mpg, disp:qsec) %>%
   gather(var_continuas) 
+```
 
+```
+## Error in select(., mpg, disp:qsec): unused arguments (mpg, disp:qsec)
+```
+
+```r
 # medidas resumo para variáveis contínuas
 mtcars_long %>%
   group_by(var_continuas) %>%
@@ -67,7 +71,7 @@ mtcars_long %>%
 ```
 
 ```
-## Error in n(): This function should not be called directly
+## Error in eval(expr, envir, enclos): object 'mtcars_long' not found
 ```
 
 ```r
@@ -78,7 +82,9 @@ mtcars_long %>%
   facet_wrap(~var_continuas, scales = "free") 
 ```
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png) 
+```
+## Error in eval(expr, envir, enclos): object 'mtcars_long' not found
+```
 
 ```r
 # frequencias de variáveis categóricas
@@ -94,7 +100,7 @@ mtcars_freq <- mtcars %>%
 ```
 
 ```
-## Error in rename(., categoria = value): unused argument (categoria = value)
+## Error in select(., cyl, vs:carb): unused arguments (cyl, vs:carb)
 ```
 
 ```r
@@ -102,26 +108,7 @@ mtcars_freq
 ```
 
 ```
-## Source: local data frame [16 x 5]
-## Groups: vars_categoricas
-## 
-##    vars_categoricas categoria freq    prop prop_txt
-## 1               cyl         4   11 0.34375      34%
-## 2               cyl         6    7 0.21875      22%
-## 3               cyl         8   14 0.43750      44%
-## 4                vs         0   18 0.56250      56%
-## 5                vs         1   14 0.43750      44%
-## 6                am         0   19 0.59375      59%
-## 7                am         1   13 0.40625      41%
-## 8              gear         3   15 0.46875      47%
-## 9              gear         4   12 0.37500      38%
-## 10             gear         5    5 0.15625      16%
-## 11             carb         1    7 0.21875      22%
-## 12             carb         2   10 0.31250      31%
-## 13             carb         3    3 0.09375       9%
-## 14             carb         4   10 0.31250      31%
-## 15             carb         6    1 0.03125       3%
-## 16             carb         8    1 0.03125       3%
+## Error in eval(expr, envir, enclos): object 'mtcars_freq' not found
 ```
 
 ```r
@@ -132,7 +119,9 @@ mtcars_freq %>%
   facet_wrap(~vars_categoricas, scales="free")  
 ```
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-2.png) 
+```
+## Error in eval(expr, envir, enclos): object 'mtcars_freq' not found
+```
 
 ### Versus `mpg`
 
@@ -146,13 +135,7 @@ mtcars %>%
 ```
 
 ```
-##        mpg  disp    hp  drat    wt  qsec
-## mpg   1.00 -0.85 -0.78  0.68 -0.87  0.42
-## disp -0.85  1.00  0.79 -0.71  0.89 -0.43
-## hp   -0.78  0.79  1.00 -0.45  0.66 -0.71
-## drat  0.68 -0.71 -0.45  1.00 -0.71  0.09
-## wt   -0.87  0.89  0.66 -0.71  1.00 -0.17
-## qsec  0.42 -0.43 -0.71  0.09 -0.17  1.00
+## Error in select(., mpg, disp:qsec): unused arguments (mpg, disp:qsec)
 ```
 
 ```r
@@ -161,7 +144,9 @@ pairs(mtcars %>%
   select(mpg, disp:qsec))
 ```
 
-![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
+```
+## Error in select(., mpg, disp:qsec): unused arguments (mpg, disp:qsec)
+```
 
 
 ## Regressão linear
@@ -189,7 +174,7 @@ ajuste_lm
 ## 
 ## Coefficients:
 ## (Intercept)           wt  
-##      37.285       -5.344
+##   37.285126    -5.344472
 ```
 
 No código acima temos `mpg` explicado por `wt`. A saída do `lm()` mostra qual foi a chamada do modelo e os coeficientes ajustados. Como visto na análise descritiva, há uma clara associação linear e negativa entre as variáveis, justificando o parâmetro negativo `wt = -5.344`. A função `coeficients()` ou `coef()` nos fornece os coeficientes ajustados.
@@ -264,9 +249,9 @@ anova(ajuste_lm_nulo, ajuste_lm)
 ## 
 ## Model 1: mpg ~ 1
 ## Model 2: mpg ~ wt
-##   Res.Df     RSS Df Sum of Sq      F    Pr(>F)    
-## 1     31 1126.05                                  
-## 2     30  278.32  1    847.73 91.375 1.294e-10 ***
+##   Res.Df        RSS Df Sum of Sq        F          Pr(>F)    
+## 1     31 1126.04719                                          
+## 2     30  278.32194  1 847.72525 91.37533 0.0000000001294 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -280,10 +265,10 @@ anova(ajuste_lm2)
 ## Analysis of Variance Table
 ## 
 ## Response: mpg
-##             Df Sum Sq Mean Sq  F value    Pr(>F)    
-## wt           1 847.73  847.73 129.6650 5.079e-12 ***
-## factor(cyl)  2  95.26   47.63   7.2856  0.002835 ** 
-## Residuals   28 183.06    6.54                       
+##             Df    Sum Sq   Mean Sq   F value            Pr(>F)    
+## wt           1 847.72525 847.72525 129.66504 0.000000000005079 ***
+## factor(cyl)  2  95.26329  47.63164   7.28557         0.0028353 ** 
+## Residuals   28 183.05865   6.53781                                
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -436,9 +421,9 @@ linearHypothesis(ajuste_lm, c(0,1))
 ## Model 1: restricted model
 ## Model 2: mpg ~ wt
 ## 
-##   Res.Df     RSS Df Sum of Sq      F    Pr(>F)    
-## 1     31 1126.05                                  
-## 2     30  278.32  1    847.73 91.375 1.294e-10 ***
+##   Res.Df        RSS Df Sum of Sq        F          Pr(>F)    
+## 1     31 1126.04719                                          
+## 2     30  278.32194  1 847.72525 91.37533 0.0000000001294 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -468,12 +453,8 @@ step(ajuste_lm_completo, direction = "forward")
 ##     am + gear + carb, data = mtcars)
 ## 
 ## Coefficients:
-## (Intercept)          cyl         disp           hp         drat  
-##    12.30337     -0.11144      0.01334     -0.02148      0.78711  
-##          wt         qsec           vs           am         gear  
-##    -3.71530      0.82104      0.31776      2.52023      0.65541  
-##        carb  
-##    -0.19942
+## (Intercept)          cyl         disp           hp         drat           wt         qsec           vs           am         gear         carb  
+## 12.30337416  -0.11144048   0.01333524  -0.02148212   0.78711097  -3.71530393   0.82104075   0.31776281   2.52022689   0.65541302  -0.19941925
 ```
 
 ```r
@@ -485,102 +466,102 @@ step(ajuste_lm_completo, direction = "backward")
 ## Start:  AIC=70.9
 ## mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - cyl   1    0.0799 147.57 68.915
-## - vs    1    0.1601 147.66 68.932
-## - carb  1    0.4067 147.90 68.986
-## - gear  1    1.3531 148.85 69.190
-## - drat  1    1.6270 149.12 69.249
-## - disp  1    3.9167 151.41 69.736
-## - hp    1    6.8399 154.33 70.348
-## - qsec  1    8.8641 156.36 70.765
-## <none>              147.49 70.898
-## - am    1   10.5467 158.04 71.108
-## - wt    1   27.0144 174.51 74.280
+##        Df  Sum of Sq       RSS       AIC
+## - cyl   1  0.0798712 147.57430 68.915068
+## - vs    1  0.1601257 147.65456 68.932466
+## - carb  1  0.4066688 147.90110 68.985853
+## - gear  1  1.3530555 148.84749 69.189961
+## - drat  1  1.6270263 149.12146 69.248807
+## - disp  1  3.9166671 151.41110 69.736407
+## - hp    1  6.8399100 154.33434 70.348332
+## - qsec  1  8.8641160 156.35855 70.765307
+## <none>               147.49443 70.897744
+## - am    1 10.5466514 158.04108 71.107811
+## - wt    1 27.0143855 174.50881 74.279659
 ## 
 ## Step:  AIC=68.92
 ## mpg ~ disp + hp + drat + wt + qsec + vs + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - vs    1    0.2685 147.84 66.973
-## - carb  1    0.5201 148.09 67.028
-## - gear  1    1.8211 149.40 67.308
-## - drat  1    1.9826 149.56 67.342
-## - disp  1    3.9009 151.47 67.750
-## - hp    1    7.3632 154.94 68.473
-## <none>              147.57 68.915
-## - qsec  1   10.0933 157.67 69.032
-## - am    1   11.8359 159.41 69.384
-## - wt    1   27.0280 174.60 72.297
+##        Df  Sum of Sq       RSS       AIC
+## - vs    1  0.2685228 147.84282 66.973242
+## - carb  1  0.5201418 148.09444 67.027657
+## - gear  1  1.8211468 149.39545 67.307549
+## - drat  1  1.9826232 149.55692 67.342118
+## - disp  1  3.9009393 151.47524 67.749961
+## - hp    1  7.3631648 154.93747 68.473142
+## <none>               147.57430 68.915068
+## - qsec  1 10.0932561 157.66756 69.032091
+## - am    1 11.8359442 159.41025 69.383844
+## - wt    1 27.0280449 174.60235 72.296806
 ## 
 ## Step:  AIC=66.97
 ## mpg ~ disp + hp + drat + wt + qsec + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - carb  1    0.6855 148.53 65.121
-## - gear  1    2.1437 149.99 65.434
-## - drat  1    2.2139 150.06 65.449
-## - disp  1    3.6467 151.49 65.753
-## - hp    1    7.1060 154.95 66.475
-## <none>              147.84 66.973
-## - am    1   11.5694 159.41 67.384
-## - qsec  1   15.6830 163.53 68.200
-## - wt    1   27.3799 175.22 70.410
+##        Df  Sum of Sq       RSS       AIC
+## - carb  1  0.6854608 148.52829 65.121264
+## - gear  1  2.1436837 149.98651 65.433902
+## - drat  1  2.2138988 150.05672 65.448879
+## - disp  1  3.6466512 151.48947 65.752968
+## - hp    1  7.1059603 154.94878 66.475480
+## <none>               147.84282 66.973242
+## - am    1 11.5693808 159.41221 67.384238
+## - qsec  1 15.6830478 163.52587 68.199530
+## - wt    1 27.3799421 175.22277 70.410311
 ## 
 ## Step:  AIC=65.12
 ## mpg ~ disp + hp + drat + wt + qsec + am + gear
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - gear  1     1.565 150.09 63.457
-## - drat  1     1.932 150.46 63.535
-## <none>              148.53 65.121
-## - disp  1    10.110 158.64 65.229
-## - am    1    12.323 160.85 65.672
-## - hp    1    14.826 163.35 66.166
-## - qsec  1    26.408 174.94 68.358
-## - wt    1    69.127 217.66 75.350
+##        Df Sum of Sq       RSS       AIC
+## - gear  1  1.564971 150.09325 63.456669
+## - drat  1  1.932127 150.46041 63.534851
+## <none>              148.52829 65.121264
+## - disp  1 10.110262 158.63855 65.228558
+## - am    1 12.323215 160.85150 65.671862
+## - hp    1 14.825636 163.35392 66.165864
+## - qsec  1 26.408059 174.93634 68.357960
+## - wt    1 69.126924 217.65521 75.349641
 ## 
 ## Step:  AIC=63.46
 ## mpg ~ disp + hp + drat + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - drat  1     3.345 153.44 62.162
-## - disp  1     8.545 158.64 63.229
-## <none>              150.09 63.457
-## - hp    1    13.285 163.38 64.171
-## - am    1    20.036 170.13 65.466
-## - qsec  1    25.574 175.67 66.491
-## - wt    1    67.572 217.66 73.351
+##        Df Sum of Sq       RSS       AIC
+## - drat  1  3.344551 153.43781 62.161901
+## - disp  1  8.545358 158.63861 63.228571
+## <none>              150.09325 63.456669
+## - hp    1 13.284651 163.37791 64.170562
+## - am    1 20.035878 170.12913 65.466299
+## - qsec  1 25.574406 175.66766 66.491457
+## - wt    1 67.571960 217.66522 73.351113
 ## 
 ## Step:  AIC=62.16
 ## mpg ~ disp + hp + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - disp  1     6.629 160.07 61.515
-## <none>              153.44 62.162
-## - hp    1    12.572 166.01 62.682
-## - qsec  1    26.470 179.91 65.255
-## - am    1    32.198 185.63 66.258
-## - wt    1    69.043 222.48 72.051
+##        Df Sum of Sq       RSS       AIC
+## - disp  1  6.628654 160.06646 61.515302
+## <none>              153.43781 62.161901
+## - hp    1 12.572053 166.00986 62.681961
+## - qsec  1 26.469795 179.90760 65.254640
+## - am    1 32.197518 185.63532 66.257543
+## - wt    1 69.043043 222.48085 72.051364
 ## 
 ## Step:  AIC=61.52
 ## mpg ~ hp + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - hp    1     9.219 169.29 61.307
-## <none>              160.07 61.515
-## - qsec  1    20.225 180.29 63.323
-## - am    1    25.993 186.06 64.331
-## - wt    1    78.494 238.56 72.284
+##        Df Sum of Sq       RSS       AIC
+## - hp    1  9.219469 169.28593 61.307305
+## <none>              160.06646 61.515302
+## - qsec  1 20.224611 180.29107 63.322775
+## - am    1 25.992837 186.05930 64.330545
+## - wt    1 78.493773 238.56023 72.284350
 ## 
 ## Step:  AIC=61.31
 ## mpg ~ wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## <none>              169.29 61.307
-## - am    1    26.178 195.46 63.908
-## - qsec  1   109.034 278.32 75.217
-## - wt    1   183.347 352.63 82.790
+##        Df  Sum of Sq       RSS       AIC
+## <none>               169.28593 61.307305
+## - am    1  26.177702 195.46363 63.908430
+## - qsec  1 109.033768 278.31970 75.217105
+## - wt    1 183.347261 352.63319 82.790160
 ```
 
 ```
@@ -590,7 +571,7 @@ step(ajuste_lm_completo, direction = "backward")
 ## 
 ## Coefficients:
 ## (Intercept)           wt         qsec           am  
-##       9.618       -3.917        1.226        2.936
+##    9.617781    -3.916504     1.225886     2.935837
 ```
 
 ```r
@@ -602,130 +583,130 @@ step(ajuste_lm_completo, direction = "both")
 ## Start:  AIC=70.9
 ## mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - cyl   1    0.0799 147.57 68.915
-## - vs    1    0.1601 147.66 68.932
-## - carb  1    0.4067 147.90 68.986
-## - gear  1    1.3531 148.85 69.190
-## - drat  1    1.6270 149.12 69.249
-## - disp  1    3.9167 151.41 69.736
-## - hp    1    6.8399 154.33 70.348
-## - qsec  1    8.8641 156.36 70.765
-## <none>              147.49 70.898
-## - am    1   10.5467 158.04 71.108
-## - wt    1   27.0144 174.51 74.280
+##        Df  Sum of Sq       RSS       AIC
+## - cyl   1  0.0798712 147.57430 68.915068
+## - vs    1  0.1601257 147.65456 68.932466
+## - carb  1  0.4066688 147.90110 68.985853
+## - gear  1  1.3530555 148.84749 69.189961
+## - drat  1  1.6270263 149.12146 69.248807
+## - disp  1  3.9166671 151.41110 69.736407
+## - hp    1  6.8399100 154.33434 70.348332
+## - qsec  1  8.8641160 156.35855 70.765307
+## <none>               147.49443 70.897744
+## - am    1 10.5466514 158.04108 71.107811
+## - wt    1 27.0143855 174.50881 74.279659
 ## 
 ## Step:  AIC=68.92
 ## mpg ~ disp + hp + drat + wt + qsec + vs + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - vs    1    0.2685 147.84 66.973
-## - carb  1    0.5201 148.09 67.028
-## - gear  1    1.8211 149.40 67.308
-## - drat  1    1.9826 149.56 67.342
-## - disp  1    3.9009 151.47 67.750
-## - hp    1    7.3632 154.94 68.473
-## <none>              147.57 68.915
-## - qsec  1   10.0933 157.67 69.032
-## - am    1   11.8359 159.41 69.384
-## + cyl   1    0.0799 147.49 70.898
-## - wt    1   27.0280 174.60 72.297
+##        Df  Sum of Sq       RSS       AIC
+## - vs    1  0.2685228 147.84282 66.973242
+## - carb  1  0.5201418 148.09444 67.027657
+## - gear  1  1.8211468 149.39545 67.307549
+## - drat  1  1.9826232 149.55692 67.342118
+## - disp  1  3.9009393 151.47524 67.749961
+## - hp    1  7.3631648 154.93747 68.473142
+## <none>               147.57430 68.915068
+## - qsec  1 10.0932561 157.66756 69.032091
+## - am    1 11.8359442 159.41025 69.383844
+## + cyl   1  0.0798712 147.49443 70.897744
+## - wt    1 27.0280449 174.60235 72.296806
 ## 
 ## Step:  AIC=66.97
 ## mpg ~ disp + hp + drat + wt + qsec + am + gear + carb
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - carb  1    0.6855 148.53 65.121
-## - gear  1    2.1437 149.99 65.434
-## - drat  1    2.2139 150.06 65.449
-## - disp  1    3.6467 151.49 65.753
-## - hp    1    7.1060 154.95 66.475
-## <none>              147.84 66.973
-## - am    1   11.5694 159.41 67.384
-## - qsec  1   15.6830 163.53 68.200
-## + vs    1    0.2685 147.57 68.915
-## + cyl   1    0.1883 147.66 68.932
-## - wt    1   27.3799 175.22 70.410
+##        Df  Sum of Sq       RSS       AIC
+## - carb  1  0.6854608 148.52829 65.121264
+## - gear  1  2.1436837 149.98651 65.433902
+## - drat  1  2.2138988 150.05672 65.448879
+## - disp  1  3.6466512 151.48947 65.752968
+## - hp    1  7.1059603 154.94878 66.475480
+## <none>               147.84282 66.973242
+## - am    1 11.5693808 159.41221 67.384238
+## - qsec  1 15.6830478 163.52587 68.199530
+## + vs    1  0.2685228 147.57430 68.915068
+## + cyl   1  0.1882683 147.65456 68.932466
+## - wt    1 27.3799421 175.22277 70.410311
 ## 
 ## Step:  AIC=65.12
 ## mpg ~ disp + hp + drat + wt + qsec + am + gear
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - gear  1     1.565 150.09 63.457
-## - drat  1     1.932 150.46 63.535
-## <none>              148.53 65.121
-## - disp  1    10.110 158.64 65.229
-## - am    1    12.323 160.85 65.672
-## - hp    1    14.826 163.35 66.166
-## + carb  1     0.685 147.84 66.973
-## + vs    1     0.434 148.09 67.028
-## + cyl   1     0.414 148.11 67.032
-## - qsec  1    26.408 174.94 68.358
-## - wt    1    69.127 217.66 75.350
+##        Df Sum of Sq       RSS       AIC
+## - gear  1  1.564971 150.09325 63.456669
+## - drat  1  1.932127 150.46041 63.534851
+## <none>              148.52829 65.121264
+## - disp  1 10.110262 158.63855 65.228558
+## - am    1 12.323215 160.85150 65.671862
+## - hp    1 14.825636 163.35392 66.165864
+## + carb  1  0.685461 147.84282 66.973242
+## + vs    1  0.433842 148.09444 67.027657
+## + cyl   1  0.414429 148.11386 67.031852
+## - qsec  1 26.408059 174.93634 68.357960
+## - wt    1 69.126924 217.65521 75.349641
 ## 
 ## Step:  AIC=63.46
 ## mpg ~ disp + hp + drat + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - drat  1     3.345 153.44 62.162
-## - disp  1     8.545 158.64 63.229
-## <none>              150.09 63.457
-## - hp    1    13.285 163.38 64.171
-## + gear  1     1.565 148.53 65.121
-## + cyl   1     1.003 149.09 65.242
-## + vs    1     0.645 149.45 65.319
-## + carb  1     0.107 149.99 65.434
-## - am    1    20.036 170.13 65.466
-## - qsec  1    25.574 175.67 66.491
-## - wt    1    67.572 217.66 73.351
+##        Df Sum of Sq       RSS       AIC
+## - drat  1  3.344551 153.43781 62.161901
+## - disp  1  8.545358 158.63861 63.228571
+## <none>              150.09325 63.456669
+## - hp    1 13.284651 163.37791 64.170562
+## + gear  1  1.564971 148.52829 65.121264
+## + cyl   1  1.003399 149.08986 65.242025
+## + vs    1  0.645486 149.44777 65.318754
+## + carb  1  0.106748 149.98651 65.433902
+## - am    1 20.035878 170.12913 65.466299
+## - qsec  1 25.574406 175.66766 66.491457
+## - wt    1 67.571960 217.66522 73.351113
 ## 
 ## Step:  AIC=62.16
 ## mpg ~ disp + hp + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - disp  1     6.629 160.07 61.515
-## <none>              153.44 62.162
-## - hp    1    12.572 166.01 62.682
-## + drat  1     3.345 150.09 63.457
-## + gear  1     2.977 150.46 63.535
-## + cyl   1     2.447 150.99 63.648
-## + vs    1     1.121 152.32 63.927
-## + carb  1     0.011 153.43 64.160
-## - qsec  1    26.470 179.91 65.255
-## - am    1    32.198 185.63 66.258
-## - wt    1    69.043 222.48 72.051
+##        Df Sum of Sq       RSS       AIC
+## - disp  1  6.628654 160.06646 61.515302
+## <none>              153.43781 62.161901
+## - hp    1 12.572053 166.00986 62.681961
+## + drat  1  3.344551 150.09325 63.456669
+## + gear  1  2.977394 150.46041 63.534851
+## + cyl   1  2.446693 150.99111 63.647523
+## + vs    1  1.120807 152.31700 63.927295
+## + carb  1  0.011427 153.42638 64.159518
+## - qsec  1 26.469795 179.90760 65.254640
+## - am    1 32.197518 185.63532 66.257543
+## - wt    1 69.043043 222.48085 72.051364
 ## 
 ## Step:  AIC=61.52
 ## mpg ~ hp + wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## - hp    1     9.219 169.29 61.307
-## <none>              160.07 61.515
-## + disp  1     6.629 153.44 62.162
-## + carb  1     3.227 156.84 62.864
-## + drat  1     1.428 158.64 63.229
-## - qsec  1    20.225 180.29 63.323
-## + cyl   1     0.249 159.82 63.465
-## + vs    1     0.249 159.82 63.466
-## + gear  1     0.171 159.90 63.481
-## - am    1    25.993 186.06 64.331
-## - wt    1    78.494 238.56 72.284
+##        Df Sum of Sq       RSS       AIC
+## - hp    1  9.219469 169.28593 61.307305
+## <none>              160.06646 61.515302
+## + disp  1  6.628654 153.43781 62.161901
+## + carb  1  3.227190 156.83927 62.863540
+## + drat  1  1.427847 158.63861 63.228571
+## - qsec  1 20.224611 180.29107 63.322775
+## + cyl   1  0.248979 159.81748 63.465489
+## + vs    1  0.248550 159.81791 63.465574
+## + gear  1  0.171123 159.89534 63.481074
+## - am    1 25.992837 186.05930 64.330545
+## - wt    1 78.493773 238.56023 72.284350
 ## 
 ## Step:  AIC=61.31
 ## mpg ~ wt + qsec + am
 ## 
-##        Df Sum of Sq    RSS    AIC
-## <none>              169.29 61.307
-## + hp    1     9.219 160.07 61.515
-## + carb  1     8.036 161.25 61.751
-## + disp  1     3.276 166.01 62.682
-## + cyl   1     1.501 167.78 63.022
-## + drat  1     1.400 167.89 63.042
-## + gear  1     0.123 169.16 63.284
-## + vs    1     0.000 169.29 63.307
-## - am    1    26.178 195.46 63.908
-## - qsec  1   109.034 278.32 75.217
-## - wt    1   183.347 352.63 82.790
+##        Df  Sum of Sq       RSS       AIC
+## <none>               169.28593 61.307305
+## + hp    1   9.219469 160.06646 61.515302
+## + carb  1   8.035944 161.24999 61.751039
+## + disp  1   3.276070 166.00986 62.681961
+## + cyl   1   1.501058 167.78487 63.022295
+## + drat  1   1.399618 167.88631 63.041636
+## + gear  1   0.122716 169.16321 63.284099
+## + vs    1   0.000466 169.28546 63.307217
+## - am    1  26.177702 195.46363 63.908430
+## - qsec  1 109.033768 278.31970 75.217105
+## - wt    1 183.347261 352.63319 82.790160
 ```
 
 ```
@@ -735,7 +716,7 @@ step(ajuste_lm_completo, direction = "both")
 ## 
 ## Coefficients:
 ## (Intercept)           wt         qsec           am  
-##       9.618       -3.917        1.226        2.936
+##    9.617781    -3.916504     1.225886     2.935837
 ```
 
 
@@ -847,21 +828,21 @@ summary(ajuste_glm)
 ## glm(formula = am ~ wt, family = binomial, data = mtcars)
 ## 
 ## Deviance Residuals: 
-##      Min        1Q    Median        3Q       Max  
-## -2.11400  -0.53738  -0.08811   0.26055   2.19931  
+##         Min           1Q       Median           3Q          Max  
+## -2.11400245  -0.53737523  -0.08811338   0.26054663   2.19930809  
 ## 
 ## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)   
-## (Intercept)   12.040      4.510   2.670  0.00759 **
-## wt            -4.024      1.436  -2.801  0.00509 **
+##              Estimate Std. Error  z value  Pr(>|z|)   
+## (Intercept) 12.040370   4.509706  2.66988 0.0075879 **
+## wt          -4.023970   1.436416 -2.80140 0.0050882 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 43.230  on 31  degrees of freedom
-## Residual deviance: 19.176  on 30  degrees of freedom
-## AIC: 23.176
+##     Null deviance: 43.229733  on 31  degrees of freedom
+## Residual deviance: 19.176085  on 30  degrees of freedom
+## AIC: 23.176085
 ## 
 ## Number of Fisher Scoring iterations: 6
 ```
@@ -892,21 +873,21 @@ summary(ajuste_glm_probit)
 ## glm(formula = am ~ wt, family = binomial(link = "probit"), data = mtcars)
 ## 
 ## Deviance Residuals: 
-##      Min        1Q    Median        3Q       Max  
-## -2.04796  -0.55217  -0.05909   0.25290   2.18880  
+##         Min           1Q       Median           3Q          Max  
+## -2.04795707  -0.55217121  -0.05908839   0.25290155   2.18880234  
 ## 
 ## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)   
-## (Intercept)   6.7264     2.2684   2.965  0.00302 **
-## wt           -2.2578     0.7197  -3.137  0.00171 **
+##               Estimate Std. Error  z value  Pr(>|z|)   
+## (Intercept)  6.7264081  2.2684171  2.96524 0.0030244 **
+## wt          -2.2577631  0.7197233 -3.13699 0.0017069 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 43.230  on 31  degrees of freedom
-## Residual deviance: 19.199  on 30  degrees of freedom
-## AIC: 23.199
+##     Null deviance: 43.229733  on 31  degrees of freedom
+## Residual deviance: 19.198730  on 30  degrees of freedom
+## AIC: 23.19873
 ## 
 ## Number of Fisher Scoring iterations: 7
 ```
@@ -941,9 +922,9 @@ anova(ajuste_glm, test="Chisq")
 ## Terms added sequentially (first to last)
 ## 
 ## 
-##      Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
-## NULL                    31     43.230              
-## wt    1   24.054        30     19.176 9.369e-07 ***
+##      Df  Deviance Resid. Df Resid. Dev      Pr(>Chi)    
+## NULL                     31  43.229733                  
+## wt    1 24.053649        30  19.176085 0.00000093689 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -1019,7 +1000,7 @@ t.test(aux$droga_1, aux$droga_2, paired=TRUE)
 ## t = -4.0621, df = 9, p-value = 0.002833
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -2.4598858 -0.7001142
+##  -2.4598857633 -0.7001142367
 ## sample estimates:
 ## mean of the differences 
 ##                   -1.58
@@ -1042,30 +1023,7 @@ summary(modelo)
 ```
 
 ```
-## Linear mixed model fit by REML ['lmerMod']
-## Formula: extra ~ group + (1 | ID)
-##    Data: sleep
-## 
-## REML criterion at convergence: 70
-## 
-## Scaled residuals: 
-##      Min       1Q   Median       3Q      Max 
-## -1.63372 -0.34157  0.03346  0.31511  1.83859 
-## 
-## Random effects:
-##  Groups   Name        Variance Std.Dev.
-##  ID       (Intercept) 2.8483   1.6877  
-##  Residual             0.7564   0.8697  
-## Number of obs: 20, groups:  ID, 10
-## 
-## Fixed effects:
-##             Estimate Std. Error t value
-## (Intercept)   0.7500     0.6004   1.249
-## group2        1.5800     0.3890   4.062
-## 
-## Correlation of Fixed Effects:
-##        (Intr)
-## group2 -0.324
+## Error in summary(modelo): object 'modelo' not found
 ```
 
 A parte `1|ID` indica que o indivíduo é ID e que estamos incluindo um efeito aleatório para ele.
@@ -1091,7 +1049,7 @@ summary(ajuste_tree)
 ## Classification tree:
 ## tree(formula = factor(am) ~ wt, data = mtcars)
 ## Number of terminal nodes:  5 
-## Residual mean deviance:  0.4955 = 13.38 / 27 
+## Residual mean deviance:  0.4955481 = 13.3798 / 27 
 ## Misclassification error rate: 0.09375 = 3 / 32
 ```
 
@@ -1148,10 +1106,7 @@ table(mtcars$am, predict(melhor_tree)[,"1"] > 0.5)
 ```
 
 ```
-##    
-##     FALSE TRUE
-##   0    17    2
-##   1     1   12
+## Error in eval(expr, envir, enclos): object 'ajuste_tree' not found
 ```
 
 O modelo `melhor_tree` coincidiu com o `ajuste_tree` (que tinha tamanho `5`) quanto ao seu desempenho em prever, porém é muito mais simples. De fato ele é mais simples do que qualquer modelo feito até aqui.
@@ -1212,46 +1167,29 @@ kms
 ## K-means clustering with 2 clusters of sizes 18, 14
 ## 
 ## Cluster means:
-##        mpg      cyl     disp        hp     drat       wt     qsec
-## 1 23.97222 4.777778 135.5389  98.05556 3.882222 2.609056 18.68611
-## 2 15.10000 8.000000 353.1000 209.21429 3.229286 3.999214 16.77214
-##          vs        am     gear     carb
-## 1 0.7777778 0.6111111 4.000000 2.277778
-## 2 0.0000000 0.1428571 3.285714 3.500000
+##           mpg         cyl        disp           hp        drat          wt        qsec           vs           am        gear        carb
+## 1 23.97222222 4.777777778 135.5388889  98.05555556 3.882222222 2.609055556 18.68611111 0.7777777778 0.6111111111 4.000000000 2.277777778
+## 2 15.10000000 8.000000000 353.1000000 209.21428571 3.229285714 3.999214286 16.77214286 0.0000000000 0.1428571429 3.285714286 3.500000000
 ## 
 ## Clustering vector:
-##           Mazda RX4       Mazda RX4 Wag          Datsun 710 
-##                   1                   1                   1 
-##      Hornet 4 Drive   Hornet Sportabout             Valiant 
-##                   1                   2                   1 
-##          Duster 360           Merc 240D            Merc 230 
-##                   2                   1                   1 
-##            Merc 280           Merc 280C          Merc 450SE 
-##                   1                   1                   2 
-##          Merc 450SL         Merc 450SLC  Cadillac Fleetwood 
-##                   2                   2                   2 
-## Lincoln Continental   Chrysler Imperial            Fiat 128 
-##                   2                   2                   1 
-##         Honda Civic      Toyota Corolla       Toyota Corona 
-##                   1                   1                   1 
-##    Dodge Challenger         AMC Javelin          Camaro Z28 
-##                   2                   2                   2 
-##    Pontiac Firebird           Fiat X1-9       Porsche 914-2 
-##                   2                   1                   1 
-##        Lotus Europa      Ford Pantera L        Ferrari Dino 
-##                   1                   2                   1 
-##       Maserati Bora          Volvo 142E 
-##                   2                   1 
+##           Mazda RX4       Mazda RX4 Wag          Datsun 710      Hornet 4 Drive   Hornet Sportabout             Valiant          Duster 360 
+##                   1                   1                   1                   1                   2                   1                   2 
+##           Merc 240D            Merc 230            Merc 280           Merc 280C          Merc 450SE          Merc 450SL         Merc 450SLC 
+##                   1                   1                   1                   1                   2                   2                   2 
+##  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial            Fiat 128         Honda Civic      Toyota Corolla       Toyota Corona 
+##                   2                   2                   2                   1                   1                   1                   1 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird           Fiat X1-9       Porsche 914-2        Lotus Europa 
+##                   2                   2                   2                   2                   1                   1                   1 
+##      Ford Pantera L        Ferrari Dino       Maserati Bora          Volvo 142E 
+##                   2                   1                   2                   1 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 58920.54 93643.90
+## [1] 58920.54393 93643.90394
 ##  (between_SS / total_SS =  75.5 %)
 ## 
 ## Available components:
 ## 
-## [1] "cluster"      "centers"      "totss"        "withinss"    
-## [5] "tot.withinss" "betweenss"    "size"         "iter"        
-## [9] "ifault"
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"         "ifault"
 ```
 
 ### Hierárquico
@@ -1401,52 +1339,211 @@ data(tea)
 
 # Vamos trabalhas só com essas colunas
 newtea <- tea %>% select(Tea, How, how, sugar, where, always) %>% tbl_df
+```
+
+```
+## Error in select(., Tea, How, how, sugar, where, always): unused arguments (Tea, How, how, sugar, where, always)
+```
+
+```r
 newtea
 ```
 
 ```
-## Source: local data frame [300 x 6]
-## 
-##          Tea   How                how    sugar                where
-## 1      black alone            tea bag    sugar          chain store
-## 2      black  milk            tea bag No.sugar          chain store
-## 3  Earl Grey alone            tea bag No.sugar          chain store
-## 4  Earl Grey alone            tea bag    sugar          chain store
-## 5  Earl Grey alone            tea bag No.sugar          chain store
-## 6  Earl Grey alone            tea bag No.sugar          chain store
-## 7  Earl Grey alone            tea bag No.sugar          chain store
-## 8      black  milk            tea bag No.sugar          chain store
-## 9  Earl Grey  milk tea bag+unpackaged No.sugar chain store+tea shop
-## 10     black alone tea bag+unpackaged No.sugar chain store+tea shop
-## ..       ...   ...                ...      ...                  ...
-## Variables not shown: always (fctr)
+## Error in eval(expr, envir, enclos): object 'newtea' not found
 ```
 
 ```r
 # numero de niveis de cada variavel
 cats <- newtea %>% summarise_each(funs(length(unique(.))))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'newtea' not found
+```
+
+```r
 cats
 ```
 
 ```
-## Source: local data frame [1 x 6]
-## 
-##   Tea How how sugar where always
-## 1   3   4   3     2     3      2
+##     Sex Bwt  Hwt
+## 1     F 2.0  7.0
+## 2     F 2.0  7.4
+## 3     F 2.0  9.5
+## 4     F 2.1  7.2
+## 5     F 2.1  7.3
+## 6     F 2.1  7.6
+## 7     F 2.1  8.1
+## 8     F 2.1  8.2
+## 9     F 2.1  8.3
+## 10    F 2.1  8.5
+## 11    F 2.1  8.7
+## 12    F 2.1  9.8
+## 13    F 2.2  7.1
+## 14    F 2.2  8.7
+## 15    F 2.2  9.1
+## 16    F 2.2  9.7
+## 17    F 2.2 10.9
+## 18    F 2.2 11.0
+## 19    F 2.3  7.3
+## 20    F 2.3  7.9
+## 21    F 2.3  8.4
+## 22    F 2.3  9.0
+## 23    F 2.3  9.0
+## 24    F 2.3  9.5
+## 25    F 2.3  9.6
+## 26    F 2.3  9.7
+## 27    F 2.3 10.1
+## 28    F 2.3 10.1
+## 29    F 2.3 10.6
+## 30    F 2.3 11.2
+## 31    F 2.4  6.3
+## 32    F 2.4  8.7
+## 33    F 2.4  8.8
+## 34    F 2.4 10.2
+## 35    F 2.5  9.0
+## 36    F 2.5 10.9
+## 37    F 2.6  8.7
+## 38    F 2.6 10.1
+## 39    F 2.6 10.1
+## 40    F 2.7  8.5
+## 41    F 2.7 10.2
+## 42    F 2.7 10.8
+## 43    F 2.9  9.9
+## 44    F 2.9 10.1
+## 45    F 2.9 10.1
+## 46    F 3.0 10.6
+## 47    F 3.0 13.0
+## 48    M 2.0  6.5
+## 49    M 2.0  6.5
+## 50    M 2.1 10.1
+## 51    M 2.2  7.2
+## 52    M 2.2  7.6
+## 53    M 2.2  7.9
+## 54    M 2.2  8.5
+## 55    M 2.2  9.1
+## 56    M 2.2  9.6
+## 57    M 2.2  9.6
+## 58    M 2.2 10.7
+## 59    M 2.3  9.6
+## 60    M 2.4  7.3
+## 61    M 2.4  7.9
+## 62    M 2.4  7.9
+## 63    M 2.4  9.1
+## 64    M 2.4  9.3
+## 65    M 2.5  7.9
+## 66    M 2.5  8.6
+## 67    M 2.5  8.8
+## 68    M 2.5  8.8
+## 69    M 2.5  9.3
+## 70    M 2.5 11.0
+## 71    M 2.5 12.7
+## 72    M 2.5 12.7
+## 73    M 2.6  7.7
+## 74    M 2.6  8.3
+## 75    M 2.6  9.4
+## 76    M 2.6  9.4
+## 77    M 2.6 10.5
+## 78    M 2.6 11.5
+## 79    M 2.7  8.0
+## 80    M 2.7  9.0
+## 81    M 2.7  9.6
+## 82    M 2.7  9.6
+## 83    M 2.7  9.8
+## 84    M 2.7 10.4
+## 85    M 2.7 11.1
+## 86    M 2.7 12.0
+## 87    M 2.7 12.5
+## 88    M 2.8  9.1
+## 89    M 2.8 10.0
+## 90    M 2.8 10.2
+## 91    M 2.8 11.4
+## 92    M 2.8 12.0
+## 93    M 2.8 13.3
+## 94    M 2.8 13.5
+## 95    M 2.9  9.4
+## 96    M 2.9 10.1
+## 97    M 2.9 10.6
+## 98    M 2.9 11.3
+## 99    M 2.9 11.8
+## 100   M 3.0 10.0
+## 101   M 3.0 10.4
+## 102   M 3.0 10.6
+## 103   M 3.0 11.6
+## 104   M 3.0 12.2
+## 105   M 3.0 12.4
+## 106   M 3.0 12.7
+## 107   M 3.0 13.3
+## 108   M 3.0 13.8
+## 109   M 3.1  9.9
+## 110   M 3.1 11.5
+## 111   M 3.1 12.1
+## 112   M 3.1 12.5
+## 113   M 3.1 13.0
+## 114   M 3.1 14.3
+## 115   M 3.2 11.6
+## 116   M 3.2 11.9
+## 117   M 3.2 12.3
+## 118   M 3.2 13.0
+## 119   M 3.2 13.5
+## 120   M 3.2 13.6
+## 121   M 3.3 11.5
+## 122   M 3.3 12.0
+## 123   M 3.3 14.1
+## 124   M 3.3 14.9
+## 125   M 3.3 15.4
+## 126   M 3.4 11.2
+## 127   M 3.4 12.2
+## 128   M 3.4 12.4
+## 129   M 3.4 12.8
+## 130   M 3.4 14.4
+## 131   M 3.5 11.7
+## 132   M 3.5 12.9
+## 133   M 3.5 15.6
+## 134   M 3.5 15.7
+## 135   M 3.5 17.2
+## 136   M 3.6 11.8
+## 137   M 3.6 13.3
+## 138   M 3.6 14.8
+## 139   M 3.6 15.0
+## 140   M 3.7 11.0
+## 141   M 3.8 14.8
+## 142   M 3.8 16.8
+## 143   M 3.9 14.4
+## 144   M 3.9 20.5
 ```
 
 
 ```r
 # MCA
 mca <- MCA(newtea, graph = FALSE)
+```
 
+```
+## Error in as.data.frame(X): object 'newtea' not found
+```
+
+```r
 # Coordenadas das variaveis
 mca1_vars_df <- data.frame(mca$var$coord, variavel=rep(names(cats), cats), stringsAsFactors=F) %>%
   mutate(rnames=row.names(.))
+```
 
+```
+## Error in mca$var: object of type 'closure' is not subsettable
+```
+
+```r
 # Coordenadas das observacoes
 mca1_obs_df <- data.frame(mca$ind$coord)
+```
 
+```
+## Error in mca$ind: object of type 'closure' is not subsettable
+```
+
+```r
 # Um gráfico bonito
 ggplot() +
   geom_hline(yintercept = 0, colour = "gray70") +
@@ -1456,7 +1553,9 @@ ggplot() +
   geom_density2d(aes(x=Dim.1, y=Dim.2), colour = "gray80", data=mca1_obs_df)
 ```
 
-![plot of chunk unnamed-chunk-43](assets/fig/unnamed-chunk-43-1.png) 
+```
+## Error in do.call("layer", list(mapping = mapping, data = data, stat = stat, : object 'mca1_vars_df' not found
+```
 
 O gráfico mostra várias coisas de uma vez só. 
 
