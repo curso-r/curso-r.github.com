@@ -9,6 +9,7 @@ library(survival)
 library(ggplot2)
 ```
 
+<a href="http://curso-r.github.io/slides/aula_08_apresentacao.html" target="_blank">Slides dessa aula</a>
 
 # Parte 1: Um pouco mais de modelos
 
