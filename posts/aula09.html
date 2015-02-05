@@ -202,6 +202,20 @@ ggplot(data = img_df_parte2, aes(x = x, y = y)) +
 <li>A matriz de gráficos de dispersão (use a função <code>pairs()</code>).</li>
 </ul>
 
+<p><strong>DICA:</strong> faça esse exercício com uma amostra de 500 linhas do <code>img_df</code>, pois é muito pesado com o banco inteiro.</p>
+
+<pre><code class="r"># uma amostra de 500 pontos para a análise descritiva (usar o banco inteiro é desnecessário e demorado)
+img_df_amostra &lt;- img_df %&gt;% 
+  sample_n(500,replace = FALSE)
+</code></pre>
+
+<h3>Exercício 2: Modelo de Regressão Linear</h3>
+
+<ul>
+<li>Com base na análise descritiva do exercício anterior, proponha um preditor para <code>b</code> e traduza para o R como uma fórmula;</li>
+<li>Ajuste uma <strong>regressão linear</strong> utilizando a fórmula proposta e a função <code>lm()</code>;</li>
+</ul>
+
               <div id="disqus_thread"></div>
             </li>
           </ol>

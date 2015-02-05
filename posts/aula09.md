@@ -132,7 +132,7 @@ Construa para `x`, `y`, `r`, `g`, `b`:
 - A matriz de correlação linar e arredonde os resultados para duas casas decimais (utilize a função `cor()`);
 - A matriz de gráficos de dispersão (use a função `pairs()`).
 
-***DICA:** faça esse exercício com uma amostra de 500 linhas do `img_df`, pois é muito pesado com o banco inteiro.
+**DICA:** faça esse exercício com uma amostra de 500 linhas do `img_df`, pois é muito pesado com o banco inteiro.
 
 
 ```r
