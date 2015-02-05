@@ -216,6 +216,40 @@ img_df_amostra &lt;- img_df %&gt;%
 <li>Ajuste uma <strong>regressão linear</strong> utilizando a fórmula proposta e a função <code>lm()</code>;</li>
 </ul>
 
+<p><strong>LEMBRETE:</strong>* fórmulas de modelos deixam a resposta à esquerda do <code>~</code> e as preditivas/explicativas à direita.</p>
+
+<h3>Exercício 3: Modelo de Árvore de Decisão</h3>
+
+<ul>
+<li>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função;</li>
+<li>Ajuste uma <strong>árvore de decisão</strong> por meio da função <code>tree()</code> do pacote <code>tree</code>, passando a fórmula com as variáveis escolhidas;</li>
+</ul>
+
+<h3>Exercício 4: Comparação</h3>
+
+<ul>
+<li>calcule o erro de predição</li>
+<li>desenhe o original e o predito.</li>
+<li>qual ficou melhor?</li>
+<li>Você acha que o padrão da imagem (transições suaves de cor) influenciou neste resultado? Por quê?</li>
+</ul>
+
+<h3>Exercício 5: Outra Imagem</h3>
+
+<ul>
+<li>Repita os exercícios de 1 a 4, mas agora para a imagem <em>xadrez_colorido.jpg</em>. </li>
+<li>Quanto ao desempenho para recuperar o azul de imagens, teve uma técnica melhor?</li>
+</ul>
+
+<h2>Exercício Extra (opcional): Imagens da Internet</h2>
+
+<p>Crie duas <em>strings</em> no R, <code>link_lm</code> e <code>link_tree</code>, cada uma contendo, respectivamente: </p>
+
+<ul>
+<li>um link para uma imagem que seria bem recuperada pelo modelo de <strong>regressão linear</strong>;</li>
+<li>um link para uma imagem que seria bem recuperada pelo modelo de <strong>árvore de decisão</strong>.</li>
+</ul>
+
               <div id="disqus_thread"></div>
             </li>
           </ol>

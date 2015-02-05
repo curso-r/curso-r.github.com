@@ -146,7 +146,7 @@ img_df_amostra <- img_df %>%
 - Com base na análise descritiva do exercício anterior, proponha um preditor para `b` e traduza para o R como uma fórmula;
 - Ajuste uma **regressão linear** utilizando a fórmula proposta e a função `lm()`;
 
-***LEMBRETE:*** fórmulas de modelos deixam a resposta à esquerda do `~` e as preditivas/explicativas à direita.
+**LEMBRETE:*** fórmulas de modelos deixam a resposta à esquerda do `~` e as preditivas/explicativas à direita.
 
 ### Exercício 3: Modelo de Árvore de Decisão
 
