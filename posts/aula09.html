@@ -181,14 +181,13 @@ ggplot(data = img_df_parte1, aes(x = x, y = y)) +
 
 <pre><code class="r"># apenas o azul da imagem
 ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
-  geom_point(colour = img_df_parte1$cor) +
+  geom_point(colour = img_df_parte2$cor) +
   labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
   coord_fixed(ratio = 1) +
   theme_bw()
 </code></pre>
 
-<pre><code>## Error: Incompatible lengths for set aesthetics: colour
-</code></pre>
+<p><img src="assets/fig/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
 <p>A sua tarefa é recuperar o azul (<code>b</code>) da <strong>Parte 1</strong> que apagamos utilizando modelos preditivos construídos com a <strong>Parte 2</strong> (que ainda tem o azul!). Vamos aos exercícios.</p>
 

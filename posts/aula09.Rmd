@@ -107,7 +107,7 @@ ggplot(data = img_df_parte1, aes(x = x, y = y)) +
 
 # apenas o azul da imagem
 ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
-  geom_point(colour = img_df_parte1$cor) +
+  geom_point(colour = img_df_parte2$cor) +
   labs(x = "x", y = "y", title = "Imagem sem B (azul)") +
   coord_fixed(ratio = 1) +
   theme_bw()
