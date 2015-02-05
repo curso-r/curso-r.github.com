@@ -112,13 +112,13 @@ library(tree)
 <h2>Preparação do Banco de dados</h2>
 
 <ol>
-<li>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):
+<li><p>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):</p>
 
 <ul>
 <li><a href="http://curso-r.github.io/posts/assets/fig/purple_wave.jpg">purple_wave.jpg</a></li>
 <li><a href="http://curso-r.github.io/posts/assets/fig/xadrez_colorido.jpg">xadrez_colorido.jpg</a></li>
 </ul></li>
-<li>Com auxílio da função <code>readJPEG()</code> do pacote <code>jpeg</code>, carregue uma das imagens no R e transforme para <code>data.frame</code> (primeiro a <em>purple_wave.jpg</em>).</li>
+<li><p>Com auxílio da função <code>readJPEG()</code> do pacote <code>jpeg</code>, carregue uma das imagens no R e transforme para <code>data.frame</code> (primeiro a <em>purple_wave.jpg</em>).</p></li>
 </ol>
 
 <pre><code class="r"># a) carrega uma imagem jpeg no R 
@@ -169,7 +169,7 @@ img_df_parte2 &lt;- img_df %&gt;% filter(!id%in%img_df_parte1$id) # filtra as li
 
 <p>Veja como fica a <strong>imagem original sem o azul</strong> e como é o <strong>azul original isolado</strong>.</p>
 
-<pre><code class="r"># imagem sem o azul
+<pre><code class="r"># Imagem sem o azul
 ggplot(data = img_df_parte1, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte1$cor) +
   labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
@@ -179,7 +179,7 @@ ggplot(data = img_df_parte1, aes(x = x, y = y)) +
 
 <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
-<pre><code class="r"># apenas o azul da imagem
+<pre><code class="r"># Apenas o azul da imagem
 ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte2$cor) +
   labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
@@ -221,8 +221,8 @@ img_df_amostra &lt;- img_df %&gt;%
 <h3>Exercício 3: Modelo de Árvore de Decisão</h3>
 
 <ul>
-<li>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função.</li>
-<li>Ajuste uma <strong>árvore de decisão</strong> por meio da função <code>tree()</code> do pacote <code>tree</code>, passando a fórmula com as variáveis escolhidas.</li>
+<li><p>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função.</p></li>
+<li><p>Ajuste uma <strong>árvore de decisão</strong> por meio da função <code>tree()</code> do pacote <code>tree</code>, passando a fórmula com as variáveis escolhidas.</p></li>
 </ul>
 
 <h3>Exercício 4: Comparação</h3>
@@ -243,7 +243,7 @@ img_df_amostra &lt;- img_df %&gt;%
 
 <h2>Exercício Extra (opcional): Imagens da Internet</h2>
 
-<p>Crie duas <em>strings</em> no R, <code>link_lm</code> e <code>link_tree</code>, cada uma contendo, respectivamente: </p>
+<p>Crie duas <em>strings</em> no R, <code>link_lm</code> e <code>link_tree</code>, cada uma contendo, respectivamente:</p>
 
 <ul>
 <li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>regressão linear</strong>.</li>

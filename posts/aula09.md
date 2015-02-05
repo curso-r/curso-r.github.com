@@ -49,6 +49,7 @@ Para cada ponto no plano (x,y) existe uma cor associada. Assim, uma imagem pode 
 1. Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):
     - [purple_wave.jpg](http://curso-r.github.io/posts/assets/fig/purple_wave.jpg)
     - [xadrez_colorido.jpg](http://curso-r.github.io/posts/assets/fig/xadrez_colorido.jpg)
+
 2. Com auxílio da função `readJPEG()` do pacote `jpeg`, carregue uma das imagens no R e transforme para `data.frame` (primeiro a *purple_wave.jpg*).
 
 
@@ -99,7 +100,7 @@ Veja como fica a **imagem original sem o azul** e como é o **azul original isol
 
 
 ```r
-# imagem sem o azul
+# Imagem sem o azul
 ggplot(data = img_df_parte1, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte1$cor) +
   labs(x = "x", y = "y", title = "Imagem sem B (azul)") +
@@ -110,7 +111,7 @@ ggplot(data = img_df_parte1, aes(x = x, y = y)) +
 ![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
 
 ```r
-# apenas o azul da imagem
+# Apenas o azul da imagem
 ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte2$cor) +
   labs(x = "x", y = "y", title = "Imagem sem B (azul)") +
@@ -119,7 +120,6 @@ ggplot(data = img_df_parte2, aes(x = x, y = y)) +
 ```
 
 ![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-2.png) 
-
 
 A sua tarefa é recuperar o azul (`b`) da **Parte 1** que apagamos utilizando modelos preditivos construídos com a **Parte 2** (que ainda tem o azul!). Vamos aos exercícios.
 
@@ -151,6 +151,7 @@ img_df_amostra <- img_df %>%
 ### Exercício 3: Modelo de Árvore de Decisão
 
 - Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer `b` e passe como uma fórmula à função.
+
 - Ajuste uma **árvore de decisão** por meio da função `tree()` do pacote `tree`, passando a fórmula com as variáveis escolhidas.
 
 ### Exercício 4: Comparação
@@ -167,7 +168,9 @@ img_df_amostra <- img_df %>%
 
 ## Exercício Extra (opcional): Imagens da Internet
 
-Crie duas *strings* no R, `link_lm` e `link_tree`, cada uma contendo, respectivamente: 
+Crie duas *strings* no R, `link_lm` e `link_tree`, cada uma contendo, respectivamente:
+
 - Um link para uma imagem que seria bem recuperada pelo modelo de **regressão linear**.
 - Um link para uma imagem que seria bem recuperada pelo modelo de **árvore de decisão**.
+
 
