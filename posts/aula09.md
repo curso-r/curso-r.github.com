@@ -146,18 +146,18 @@ img_df_amostra <- img_df %>%
 - Com base na análise descritiva do exercício anterior, proponha um preditor para `b` e traduza para o R como uma fórmula;
 - Ajuste uma **regressão linear** utilizando a fórmula proposta e a função `lm()`;
 
-**LEMBRETE:*** fórmulas de modelos deixam a resposta à esquerda do `~` e as preditivas/explicativas à direita.
+**LEMBRETE:** fórmulas de modelos deixam a resposta à esquerda do `~` e as preditivas/explicativas à direita.
 
 ### Exercício 3: Modelo de Árvore de Decisão
 
-- Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer `b` e passe como uma fórmula à função;
-- Ajuste uma **árvore de decisão** por meio da função `tree()` do pacote `tree`, passando a fórmula com as variáveis escolhidas;
+- Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer `b` e passe como uma fórmula à função.
+- Ajuste uma **árvore de decisão** por meio da função `tree()` do pacote `tree`, passando a fórmula com as variáveis escolhidas.
 
 ### Exercício 4: Comparação
 
-- calcule o erro de predição
-- desenhe o original e o predito.
-- qual ficou melhor?
+- Calcule o erro de predição.
+- Desenhe o original e o predito.
+- Qual ficou melhor?
 - Você acha que o padrão da imagem (transições suaves de cor) influenciou neste resultado? Por quê?
 
 ### Exercício 5: Outra Imagem
@@ -168,5 +168,6 @@ img_df_amostra <- img_df %>%
 ## Exercício Extra (opcional): Imagens da Internet
 
 Crie duas *strings* no R, `link_lm` e `link_tree`, cada uma contendo, respectivamente: 
-- um link para uma imagem que seria bem recuperada pelo modelo de **regressão linear**;
-- um link para uma imagem que seria bem recuperada pelo modelo de **árvore de decisão**.
+- Um link para uma imagem que seria bem recuperada pelo modelo de **regressão linear**.
+- Um link para uma imagem que seria bem recuperada pelo modelo de **árvore de decisão**.
+
