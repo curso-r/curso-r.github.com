@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="">
   <link rel="alternate" type="application/rss+xml" href="">
   <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -52,18 +52,12 @@
         src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
     </a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
-				    <h3><a href="/">Curso R </a></h3>
-					  <p class="description">Do casual ao avançado</p>
+				    <p id="avatar"><a href="#"><img alt="Title" src=" " /></a></p>
+				    <h3><a href="/"> </a></h3>
+					  <p class="description"></p>
 					</div>
 					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
-        <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
-        <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
-        <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
-      
-        <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
-                      
+			      
 			    </ul>
 				</div>
 			</div>
@@ -75,15 +69,146 @@
                 <a href="#">Aula 09 - Laboratório III</a>
               </h3>
               <span>2015-02-06</span><br/>
-               <a class='label label-success' href='posts/aula09.Rmd'>Source</a>
+               <a class='label label-success' href='aula09.Rmd'>Source</a>
               
+<p>Pacotes necessários para o Lab. III</p>
+
+<pre><code class="r">library(ggplot2)
+library(magrittr)
+library(tidyr)
+library(dplyr)
+library(jpeg)
+library(tree)
+</code></pre>
+
+<h1>Laboratório III - Recuperação de imagem</h1>
+
+<p>Neste laboratório iremos comparar visualmente o desempenho de modelos de <strong>regressão linear</strong> e de <strong>árvores de decisão</strong> em duas diferentes situações.</p>
+
+<p>Para isso, iremos mexer com imagens <strong>.jpg</strong>.</p>
+
+<h2>Imagens <strong>.jpg</strong></h2>
+
+<p>Antes de iniciarmos a brincadeira, vale uma breve introdução às imagens <strong>.jpg</strong>, pois elas formarão os <code>data.frame</code>&#39;s do laboratório.</p>
+
+<p>Arquivos com extenção <em>.jpg</em> guardam 5 coordenadas que são suficientes para serem entendidas e desenhadas pelo computador:</p>
+
+<ul>
+<li><code>x</code> e <code>y</code> são as coordenadas cartesianas da imagem; e</li>
+<li><code>r</code>, <code>g</code> e <code>b</code> <em>red</em>, <em>green</em> e <em>blue</em>, respectivamente, que juntas formam cores.</li>
+</ul>
+
+<p>Todas as cores que conhecemos podem ser compostas pela combinação dessas três cores. A intensidade de cada cor varia de 0 a 1.</p>
+
+<p>Para cada ponto no plano (x,y) existe uma cor associada. Assim, uma imagem pode ser representada por um banco de dados com 5 colunas: <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code> e <code>b</code>.</p>
+
+<h2>Objetivo</h2>
+
+<ul>
+<li><p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>purple_wave.jpg</strong>.</p></li>
+<li><p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>xadrez_colorido.jpg</strong>.</p></li>
+</ul>
+
+<h2>Preparação do Banco de dados</h2>
+
+<ol>
+<li>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):
+
+<ul>
+<li><a href="http://curso-r.github.io/posts/assets/fig/purple_wave.jpg">purple_wave.jpg</a></li>
+<li><a href="http://curso-r.github.io/posts/assets/fig/xadrez_colorido.jpg">xadrez_colorido.jpg</a></li>
+</ul></li>
+<li>Com auxílio da função <code>readJPEG()</code> do pacote <code>jpeg</code>, carregue uma das imagens no R e transforme para <code>data.frame</code> (primeiro a <em>purple_wave.jpg</em>).</li>
+</ol>
+
+<pre><code class="r"># a) carrega uma imagem jpeg no R 
+img &lt;- readJPEG(&quot;assets/fig/purple_wave.jpg&quot;)
+
+# b) transforma o array da imagem em data.frame com infos de posicao (x,y) e cor (r,g,b)
+# dimensões da imagem
+img_dim &lt;- dim(img)
+
+# RGB para data.frame
+img_df &lt;- data.frame(
+  x = rep(1:img_dim[2], each = img_dim[1]),
+  y = rep(img_dim[1]:1, img_dim[2]),
+  r = as.vector(img[,,1]),
+  g = as.vector(img[,,2]),
+  b = as.vector(img[,,3])
+) %&gt;%
+  mutate(cor = rgb(r, g, b),
+         id = 1:n())
+</code></pre>
+
+<ol>
+<li>Divida o data.frame em duas partes: uma com o azul (coluna <code>b</code>) e outra sem.</li>
+</ol>
+
+<ul>
+<li>Parte 1) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code></li>
+<li>Parte 2) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code></li>
+</ul>
+
+<pre><code class="r"># para reprodução
+set.seed(1) 
+
+# Parte 1) x, y, r, g
+img_df_parte1 &lt;- img_df %&gt;% 
+  sample_frac(3/5) %&gt;% # separando 3/5 do banco
+  mutate(b_backup = b, # backup do azul original
+         b = 0, # retirando o azul da imagem
+         cor = rgb(r, g, b)) # cor da imagem sem o azul
+
+# Parte 2) x, y, r, g, b
+img_df_parte2 &lt;- img_df %&gt;% filter(!id%in%img_df_parte1$id) # filtra as linhas que estão na Parte 1
+</code></pre>
+
+<ol>
+<li>Visualize.</li>
+</ol>
+
+<p>Veja como fica a <strong>imagem original sem o azul</strong> e como é o <strong>azul original isolado</strong>.</p>
+
+<pre><code class="r"># imagem sem o azul
+ggplot(data = img_df_parte1, aes(x = x, y = y)) + 
+  geom_point(colour = img_df_parte1$cor) +
+  labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
+  coord_fixed(ratio = 1) +
+  theme_bw()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+<pre><code class="r"># apenas o azul da imagem
+ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
+  geom_point(colour = img_df_parte1$cor) +
+  labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
+  coord_fixed(ratio = 1) +
+  theme_bw()
+</code></pre>
+
+<pre><code>## Error: Incompatible lengths for set aesthetics: colour
+</code></pre>
+
+<p>A sua tarefa é recuperar o azul (<code>b</code>) da <strong>Parte 1</strong> que apagamos utilizando modelos preditivos construídos com a <strong>Parte 2</strong> (que ainda tem o azul!). Vamos aos exercícios.</p>
+
+<h2>Exercícios</h2>
+
+<h3>Exercício 1: Descritiva</h3>
+
+<p>Construa para <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code>:</p>
+
+<ul>
+<li>A matriz de correlação linar e arredonde os resultados para duas casas decimais (utilize a função <code>cor()</code>);</li>
+<li>A matriz de gráficos de dispersão (use a função <code>pairs()</code>).</li>
+</ul>
 
               <div id="disqus_thread"></div>
             </li>
           </ol>
           <div class="pagination">
             <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
+              <li><a href="">&#171; Back Home</a></li>
             </ul>
           </div> 
         </div>
