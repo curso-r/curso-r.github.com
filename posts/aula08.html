@@ -76,7 +76,11 @@
               </h3>
               <span>2015-02-04</span><br/>
                <a class='label label-success' href='posts/aula08.Rmd'>Source</a>
-              <h1>Parte 1: Um pouco mais de modelos</h1>
+              
+<p><a href="http://curso-r.github.io/slides/aula_08_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<h1>Parte 1: Um pouco mais de modelos</h1>
+
 <h2>Modelos de sobrevivência</h2>
 
 <p>A Análise de Sobrevivência compreende os estudos em que o interesse principal é avaliar o tempo até a ocorrência de um evento pré-determinado. Esses tempos, chamados de <em>tempos de falha</em>, podem, então, ser explicados por outras variáveis a partir de modelos de regressão paramétricos ou semi-paramétricos. Uma característica fundamental desse tipo de estudo é a presença de censura, definida como a observação parcial do tempo de falha.</p>
@@ -133,10 +137,10 @@ ggplot(data = df) +
 ## survdiff(formula = Surv(futime, fustat) ~ rx, data = ovarian)
 ## 
 ##       N Observed Expected (O-E)^2/E (O-E)^2/V
-## rx=1 13        7  5.23353  0.596235   1.06274
-## rx=2 13        5  6.76647  0.461158   1.06274
+## rx=1 13        7     5.23     0.596      1.06
+## rx=2 13        5     6.77     0.461      1.06
 ## 
-##  Chisq= 1.1  on 1 degrees of freedom, p= 0.302591
+##  Chisq= 1.1  on 1 degrees of freedom, p= 0.303
 </code></pre>
 
 <h3>Modelos paramétricos</h3>
@@ -153,10 +157,10 @@ summary(fit)
 ## Call:
 ## survreg(formula = Surv(futime, fustat) ~ rx + age, data = ovarian, 
 ##     dist = &quot;exponential&quot;)
-##                 Value Std. Error        z              p
-## (Intercept) 12.122526   2.396639  5.05814 0.000000423376
-## rx           0.661063   0.615868  1.07338 0.283099011003
-## age         -0.105064   0.031877 -3.29592 0.000981014261
+##              Value Std. Error     z        p
+## (Intercept) 12.123     2.3966  5.06 4.23e-07
+## rx           0.661     0.6159  1.07 2.83e-01
+## age         -0.105     0.0319 -3.30 9.81e-04
 ## 
 ## Scale fixed at 1 
 ## 
@@ -191,21 +195,21 @@ summary(fit)
 ## 
 ##   n= 26, number of events= 12 
 ## 
-##            coef   exp(coef)    se(coef)        z  Pr(&gt;|z|)   
-## age  0.14732660  1.15873234  0.04614705  3.19255 0.0014102 **
-## rx  -0.80397301  0.44754732  0.63204937 -1.27201 0.2033696   
+##         coef exp(coef) se(coef)      z Pr(&gt;|z|)   
+## age  0.14733   1.15873  0.04615  3.193  0.00141 **
+## rx  -0.80397   0.44755  0.63205 -1.272  0.20337   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ##     exp(coef) exp(-coef) lower .95 upper .95
-## age 1.1587323  0.8630121 1.0585288  1.268421
-## rx  0.4475473  2.2344006 0.1296694  1.544687
+## age    1.1587      0.863    1.0585     1.268
+## rx     0.4475      2.234    0.1297     1.545
 ## 
 ## Concordance= 0.798  (se = 0.091 )
 ## Rsquare= 0.457   (max possible= 0.932 )
-## Likelihood ratio test= 15.89  on 2 df,   p=0.0003551247
-## Wald test            = 13.47  on 2 df,   p=0.001190058
-## Score (logrank) test = 18.56  on 2 df,   p=0.00009340537
+## Likelihood ratio test= 15.89  on 2 df,   p=0.0003551
+## Wald test            = 13.47  on 2 df,   p=0.00119
+## Score (logrank) test = 18.56  on 2 df,   p=9.341e-05
 </code></pre>
 
 <h2>Generalized Additive Model (GAM)</h2>
@@ -246,19 +250,19 @@ summary(fit_model)
 ## 
 ## Formula:
 ## espvida ~ ano + s(rdpc) + s(i_escolaridade)
-## &lt;environment: 0x1ddfb530&gt;
+## &lt;environment: 0xcd88d10&gt;
 ## 
 ## Parametric coefficients:
-##                     Estimate       Std. Error   t value               Pr(&gt;|t|)    
-## (Intercept)  0.1234120149150  0.0015442297459  79.91817 &lt; 0.000000000000000222 ***
-## ano         -0.0000543481714  0.0000007719114 -70.40727 &lt; 0.000000000000000222 ***
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.234e-01  1.544e-03   79.92   &lt;2e-16 ***
+## ano         -5.435e-05  7.719e-07  -70.41   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Approximate significance of smooth terms:
-##                        edf   Ref.df          F                p-value    
-## s(rdpc)           8.857389 8.992600 1202.66462 &lt; 0.000000000000000222 ***
-## s(i_escolaridade) 5.644352 6.785546   22.31121 &lt; 0.000000000000000222 ***
+##                     edf Ref.df       F p-value    
+## s(rdpc)           8.857  8.993 1202.66  &lt;2e-16 ***
+## s(i_escolaridade) 5.644  6.786   22.31  &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -305,14 +309,14 @@ fit_model &lt;- gamlss(formula=espvida ~ cs(rdpc) + cs(i_escolaridade),
                     family=NET())
 </code></pre>
 
-<pre><code>## GAMLSS-RS iteration 1: Global Deviance = 78553.6182 
-## GAMLSS-RS iteration 2: Global Deviance = 77935.3547 
-## GAMLSS-RS iteration 3: Global Deviance = 77903.3693 
-## GAMLSS-RS iteration 4: Global Deviance = 77900.7576 
-## GAMLSS-RS iteration 5: Global Deviance = 77900.3875 
-## GAMLSS-RS iteration 6: Global Deviance = 77900.3261 
-## GAMLSS-RS iteration 7: Global Deviance = 77900.3136 
-## GAMLSS-RS iteration 8: Global Deviance = 77900.3134
+<pre><code>## GAMLSS-RS iteration 1: Global Deviance = 78553.62 
+## GAMLSS-RS iteration 2: Global Deviance = 77935.35 
+## GAMLSS-RS iteration 3: Global Deviance = 77903.37 
+## GAMLSS-RS iteration 4: Global Deviance = 77900.76 
+## GAMLSS-RS iteration 5: Global Deviance = 77900.39 
+## GAMLSS-RS iteration 6: Global Deviance = 77900.33 
+## GAMLSS-RS iteration 7: Global Deviance = 77900.31 
+## GAMLSS-RS iteration 8: Global Deviance = 77900.31
 </code></pre>
 
 <pre><code class="r">summary(fit_model)
@@ -324,27 +328,29 @@ fit_model &lt;- gamlss(formula=espvida ~ cs(rdpc) + cs(i_escolaridade),
 <pre><code>## *******************************************************************
 ## Family:  c(&quot;NET&quot;, &quot;Normal Exponential t&quot;) 
 ## 
-## Call:  gamlss(formula = espvida ~ cs(rdpc) + cs(i_escolaridade), sigma.formula = ~ano,      family = NET(), data = dados) 
+## Call:  
+## gamlss(formula = espvida ~ cs(rdpc) + cs(i_escolaridade), sigma.formula = ~ano,  
+##     family = NET(), data = dados) 
 ## 
 ## Fitting method: RS() 
 ## 
 ## -------------------------------------------------------------------
 ## Mu link function:  identity
 ## Mu Coefficients:
-##                         Estimate    Std. Error    t value               Pr(&gt;|t|)    
-## (Intercept)        60.7199234089  0.0423952812 1432.23306 &lt; 0.000000000000000222 ***
-## cs(rdpc)            0.0115013723  0.0001146893  100.28290 &lt; 0.000000000000000222 ***
-## cs(i_escolaridade) 15.5575011935  0.1961636683   79.30878 &lt; 0.000000000000000222 ***
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        6.072e+01  4.240e-02 1432.23   &lt;2e-16 ***
+## cs(rdpc)           1.150e-02  1.147e-04  100.28   &lt;2e-16 ***
+## cs(i_escolaridade) 1.556e+01  1.962e-01   79.31   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## -------------------------------------------------------------------
 ## Sigma link function:  log
 ## Sigma Coefficients:
-##                Estimate  Std. Error   t value               Pr(&gt;|t|)    
-## (Intercept)  1.11222576  0.01276632  87.12189 &lt; 0.000000000000000222 ***
-## ano2000     -0.34428712  0.01805430 -19.06954 &lt; 0.000000000000000222 ***
-## ano2010     -0.76936261  0.01805430 -42.61381 &lt; 0.000000000000000222 ***
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.11223    0.01277   87.12   &lt;2e-16 ***
+## ano2000     -0.34429    0.01805  -19.07   &lt;2e-16 ***
+## ano2010     -0.76936    0.01805  -42.61   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </code></pre>
@@ -359,11 +365,11 @@ fit_model &lt;- gamlss(formula=espvida ~ cs(rdpc) + cs(i_escolaridade),
 
 <pre><code>## *******************************************************************
 ##        Summary of the Quantile Residuals
-##                            mean   =  -0.08630655801 
-##                        variance   =  0.8372181591 
-##                coef. of skewness  =  0.06545049006 
-##                coef. of kurtosis  =  2.174944632 
-## Filliben correlation coefficient  =  0.9919130479 
+##                            mean   =  -0.08630656 
+##                        variance   =  0.8372182 
+##                coef. of skewness  =  0.06545049 
+##                coef. of kurtosis  =  2.174945 
+## Filliben correlation coefficient  =  0.991913 
 ## *******************************************************************
 </code></pre>
 
@@ -526,12 +532,30 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 </code></pre>
 
 <pre><code>## 
-## Laplace&#39;s Demon was called on Wed Feb  4 13:36:09 2015
+## Laplace&#39;s Demon was called on Thu Feb  5 20:14:45 2015
 ## 
 ## Performing initial checks...
-</code></pre>
-
-<pre><code>## Error in as.POSIXct.numeric(start): &#39;origin&#39; must be supplied
+## Algorithm: Hit-And-Run Metropolis 
+## 
+## Laplace&#39;s Demon is beginning to update...
+## Iteration: 100000Iteration: 100000,   Proposal: Multivariate,   LP:54.4
+## Iteration: 200000Iteration: 200000,   Proposal: Multivariate,   LP:57.1
+## Iteration: 300000Iteration: 300000,   Proposal: Multivariate,   LP:53.5
+## Iteration: 400000Iteration: 400000,   Proposal: Multivariate,   LP:52.7
+## Iteration: 500000Iteration: 500000,   Proposal: Multivariate,   LP:53.6
+## Iteration: 600000Iteration: 600000,   Proposal: Multivariate,   LP:57.3
+## Iteration: 700000Iteration: 700000,   Proposal: Multivariate,   LP:56.8
+## Iteration: 800000Iteration: 800000,   Proposal: Multivariate,   LP:54.4
+## Iteration: 900000Iteration: 900000,   Proposal: Multivariate,   LP:55.9
+## Iteration: 1000000Iteration: 1000000,   Proposal: Multivariate,   LP:56.4
+## 
+## Assessing Stationarity
+## Assessing Thinning and ESS
+## Creating Summaries
+## Estimating Log of the Marginal Likelihood
+## Creating Output
+## 
+## Laplace&#39;s Demon has finished.
 </code></pre>
 
 <pre><code class="r">print(Fit)
@@ -539,26 +563,26 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 
 <pre><code>## Call:
 ## LaplacesDemon(Model = Model, Data = MyData, Initial.Values = Initial.Values, 
-##     Iterations = 1000000, Status = 100000, Thinning = 1000, Algorithm = &quot;HARM&quot;)
+##     Iterations = 1e+06, Status = 1e+05, Thinning = 1000, Algorithm = &quot;HARM&quot;)
 ## 
-## Acceptance Rate: 0.00822
+## Acceptance Rate: 0.0082
 ## Algorithm: Hit-And-Run Metropolis
 ## Covariance Matrix: (NOT SHOWN HERE; diagonal shown instead)
-##            alpha          beta[1]          beta[2]            sigma            theta 
-## 0.00017846759300 0.00023904855481 0.00092129520517 0.00001965478094 0.00202151844820 
+##        alpha      beta[1]      beta[2]        sigma        theta 
+## 1.448847e-04 1.929463e-04 3.485938e-04 1.059322e-05 9.739800e-04 
 ## 
 ## Covariance (Diagonal) History: (NOT SHOWN HERE)
 ## Deviance Information Criterion (DIC):
 ##           All Stationary
-## Dbar -144.762   -144.762
-## pD     17.436     17.436
-## DIC  -127.326   -127.326
+## Dbar -144.857   -144.857
+## pD      7.759      7.759
+## DIC  -137.098   -137.098
 ## Initial Values:
-## [1]  0.50 -0.42 -0.60  0.02  0.04
+## [1]  0.50 -0.40 -0.60  0.02  0.04
 ## 
-## Iterations: 1000000
-## Log(Marginal Likelihood): 59.15351173
-## Minutes of run-time: 1.32
+## Iterations: 1e+06
+## Log(Marginal Likelihood): 54.9368
+## Minutes of run-time: 1.44
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 5
@@ -568,7 +592,7 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## Recommended Burn-In of Un-thinned Samples: 0
 ## Recommended Thinning: 1000
 ## Specs: (NOT SHOWN HERE)
-## Status is displayed every 100000 iterations
+## Status is displayed every 1e+05 iterations
 ## Summary1: (SHOWN BELOW)
 ## Summary2: (SHOWN BELOW)
 ## Thinned Samples: 1000
@@ -576,25 +600,41 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## 
 ## 
 ## Summary of All Samples
-##                      Mean             SD            MCSE         ESS               LB           Median               UB
-## alpha       0.54526562453 0.013288990196 0.0015833044919 116.5528465    0.52262723574    0.54552680233    0.56861104586
-## beta[1]    -0.42165852324 0.015468842618 0.0017942448593 130.4745050   -0.44874582123   -0.42062323145   -0.39426411505
-## beta[2]    -0.59436154533 0.030367509453 0.0030553745405 169.0003240   -0.62880894560   -0.59351525465   -0.55432734108
-## sigma       0.02076096743 0.004435524357 0.0003928491358 221.2492251    0.01541324994    0.02020658722    0.02835665402
-## theta       0.03314941534 0.044983275332 0.0054191864761 125.2107140   -0.02633832307    0.03391677532    0.08192771406
-## Deviance -144.76196225954 5.905176741106 0.6397488906157 139.0183565 -149.67884690644 -145.87432422642 -136.02441587226
-## LP         54.71618976665 2.952602238890 0.3198758620203 139.0182395   50.34739619268   55.27237085808   57.17463991752
+##                   Mean         SD         MCSE      ESS            LB
+## alpha       0.54889694 0.01194315 0.0015452157 114.3381    0.52377374
+## beta[1]    -0.41730669 0.01388668 0.0016728669 123.9302   -0.44591849
+## beta[2]    -0.59685355 0.01867974 0.0016911970 222.8594   -0.63515809
+## sigma       0.02045297 0.00325632 0.0001355205 721.8425    0.01547604
+## theta       0.02569232 0.03122099 0.0041876935  99.2858   -0.03372459
+## Deviance -144.85680240 3.93933232 0.2831589212 295.1679 -149.65800475
+## LP         54.76360855 1.96966838 0.1415797495 295.1676   50.10425149
+##                 Median            UB
+## alpha       0.54865238    0.57262482
+## beta[1]    -0.41681401   -0.39137913
+## beta[2]    -0.59634087   -0.56248702
+## sigma       0.02004073    0.02739518
+## theta       0.02565389    0.09230082
+## Deviance -145.70783309 -135.53811529
+## LP         55.18911932   57.16421682
 ## 
 ## 
 ## Summary of Stationary Samples
-##                      Mean             SD            MCSE         ESS               LB           Median               UB
-## alpha       0.54526562453 0.013288990196 0.0015833044919 116.5528465    0.52262723574    0.54552680233    0.56861104586
-## beta[1]    -0.42165852324 0.015468842618 0.0017942448593 130.4745050   -0.44874582123   -0.42062323145   -0.39426411505
-## beta[2]    -0.59436154533 0.030367509453 0.0030553745405 169.0003240   -0.62880894560   -0.59351525465   -0.55432734108
-## sigma       0.02076096743 0.004435524357 0.0003928491358 221.2492251    0.01541324994    0.02020658722    0.02835665402
-## theta       0.03314941534 0.044983275332 0.0054191864761 125.2107140   -0.02633832307    0.03391677532    0.08192771406
-## Deviance -144.76196225954 5.905176741106 0.6397488906157 139.0183565 -149.67884690644 -145.87432422642 -136.02441587226
-## LP         54.71618976665 2.952602238890 0.3198758620203 139.0182395   50.34739619268   55.27237085808   57.17463991752
+##                   Mean         SD         MCSE      ESS            LB
+## alpha       0.54889694 0.01194315 0.0015452157 114.3381    0.52377374
+## beta[1]    -0.41730669 0.01388668 0.0016728669 123.9302   -0.44591849
+## beta[2]    -0.59685355 0.01867974 0.0016911970 222.8594   -0.63515809
+## sigma       0.02045297 0.00325632 0.0001355205 721.8425    0.01547604
+## theta       0.02569232 0.03122099 0.0041876935  99.2858   -0.03372459
+## Deviance -144.85680240 3.93933232 0.2831589212 295.1679 -149.65800475
+## LP         54.76360855 1.96966838 0.1415797495 295.1676   50.10425149
+##                 Median            UB
+## alpha       0.54865238    0.57262482
+## beta[1]    -0.41681401   -0.39137913
+## beta[2]    -0.59634087   -0.56248702
+## sigma       0.02004073    0.02739518
+## theta       0.02565389    0.09230082
+## Deviance -145.70783309 -135.53811529
+## LP         55.18911932   57.16421682
 </code></pre>
 
 <pre><code class="r">Consort(Fit)
@@ -606,26 +646,26 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## #############################################################
 ## Call:
 ## LaplacesDemon(Model = Model, Data = MyData, Initial.Values = Initial.Values, 
-##     Iterations = 1000000, Status = 100000, Thinning = 1000, Algorithm = &quot;HARM&quot;)
+##     Iterations = 1e+06, Status = 1e+05, Thinning = 1000, Algorithm = &quot;HARM&quot;)
 ## 
-## Acceptance Rate: 0.00822
+## Acceptance Rate: 0.0082
 ## Algorithm: Hit-And-Run Metropolis
 ## Covariance Matrix: (NOT SHOWN HERE; diagonal shown instead)
-##            alpha          beta[1]          beta[2]            sigma            theta 
-## 0.00017846759300 0.00023904855481 0.00092129520517 0.00001965478094 0.00202151844820 
+##        alpha      beta[1]      beta[2]        sigma        theta 
+## 1.448847e-04 1.929463e-04 3.485938e-04 1.059322e-05 9.739800e-04 
 ## 
 ## Covariance (Diagonal) History: (NOT SHOWN HERE)
 ## Deviance Information Criterion (DIC):
 ##           All Stationary
-## Dbar -144.762   -144.762
-## pD     17.436     17.436
-## DIC  -127.326   -127.326
+## Dbar -144.857   -144.857
+## pD      7.759      7.759
+## DIC  -137.098   -137.098
 ## Initial Values:
-## [1]  0.50 -0.42 -0.60  0.02  0.04
+## [1]  0.50 -0.40 -0.60  0.02  0.04
 ## 
-## Iterations: 1000000
-## Log(Marginal Likelihood): 59.15351173
-## Minutes of run-time: 1.32
+## Iterations: 1e+06
+## Log(Marginal Likelihood): 54.9368
+## Minutes of run-time: 1.44
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 5
@@ -635,7 +675,7 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## Recommended Burn-In of Un-thinned Samples: 0
 ## Recommended Thinning: 1000
 ## Specs: (NOT SHOWN HERE)
-## Status is displayed every 100000 iterations
+## Status is displayed every 1e+05 iterations
 ## Summary1: (SHOWN BELOW)
 ## Summary2: (SHOWN BELOW)
 ## Thinned Samples: 1000
@@ -643,36 +683,52 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## 
 ## 
 ## Summary of All Samples
-##                      Mean             SD            MCSE         ESS               LB           Median               UB
-## alpha       0.54526562453 0.013288990196 0.0015833044919 116.5528465    0.52262723574    0.54552680233    0.56861104586
-## beta[1]    -0.42165852324 0.015468842618 0.0017942448593 130.4745050   -0.44874582123   -0.42062323145   -0.39426411505
-## beta[2]    -0.59436154533 0.030367509453 0.0030553745405 169.0003240   -0.62880894560   -0.59351525465   -0.55432734108
-## sigma       0.02076096743 0.004435524357 0.0003928491358 221.2492251    0.01541324994    0.02020658722    0.02835665402
-## theta       0.03314941534 0.044983275332 0.0054191864761 125.2107140   -0.02633832307    0.03391677532    0.08192771406
-## Deviance -144.76196225954 5.905176741106 0.6397488906157 139.0183565 -149.67884690644 -145.87432422642 -136.02441587226
-## LP         54.71618976665 2.952602238890 0.3198758620203 139.0182395   50.34739619268   55.27237085808   57.17463991752
+##                   Mean         SD         MCSE      ESS            LB
+## alpha       0.54889694 0.01194315 0.0015452157 114.3381    0.52377374
+## beta[1]    -0.41730669 0.01388668 0.0016728669 123.9302   -0.44591849
+## beta[2]    -0.59685355 0.01867974 0.0016911970 222.8594   -0.63515809
+## sigma       0.02045297 0.00325632 0.0001355205 721.8425    0.01547604
+## theta       0.02569232 0.03122099 0.0041876935  99.2858   -0.03372459
+## Deviance -144.85680240 3.93933232 0.2831589212 295.1679 -149.65800475
+## LP         54.76360855 1.96966838 0.1415797495 295.1676   50.10425149
+##                 Median            UB
+## alpha       0.54865238    0.57262482
+## beta[1]    -0.41681401   -0.39137913
+## beta[2]    -0.59634087   -0.56248702
+## sigma       0.02004073    0.02739518
+## theta       0.02565389    0.09230082
+## Deviance -145.70783309 -135.53811529
+## LP         55.18911932   57.16421682
 ## 
 ## 
 ## Summary of Stationary Samples
-##                      Mean             SD            MCSE         ESS               LB           Median               UB
-## alpha       0.54526562453 0.013288990196 0.0015833044919 116.5528465    0.52262723574    0.54552680233    0.56861104586
-## beta[1]    -0.42165852324 0.015468842618 0.0017942448593 130.4745050   -0.44874582123   -0.42062323145   -0.39426411505
-## beta[2]    -0.59436154533 0.030367509453 0.0030553745405 169.0003240   -0.62880894560   -0.59351525465   -0.55432734108
-## sigma       0.02076096743 0.004435524357 0.0003928491358 221.2492251    0.01541324994    0.02020658722    0.02835665402
-## theta       0.03314941534 0.044983275332 0.0054191864761 125.2107140   -0.02633832307    0.03391677532    0.08192771406
-## Deviance -144.76196225954 5.905176741106 0.6397488906157 139.0183565 -149.67884690644 -145.87432422642 -136.02441587226
-## LP         54.71618976665 2.952602238890 0.3198758620203 139.0182395   50.34739619268   55.27237085808   57.17463991752
+##                   Mean         SD         MCSE      ESS            LB
+## alpha       0.54889694 0.01194315 0.0015452157 114.3381    0.52377374
+## beta[1]    -0.41730669 0.01388668 0.0016728669 123.9302   -0.44591849
+## beta[2]    -0.59685355 0.01867974 0.0016911970 222.8594   -0.63515809
+## sigma       0.02045297 0.00325632 0.0001355205 721.8425    0.01547604
+## theta       0.02569232 0.03122099 0.0041876935  99.2858   -0.03372459
+## Deviance -144.85680240 3.93933232 0.2831589212 295.1679 -149.65800475
+## LP         54.76360855 1.96966838 0.1415797495 295.1676   50.10425149
+##                 Median            UB
+## alpha       0.54865238    0.57262482
+## beta[1]    -0.41681401   -0.39137913
+## beta[2]    -0.59634087   -0.56248702
+## sigma       0.02004073    0.02739518
+## theta       0.02565389    0.09230082
+## Deviance -145.70783309 -135.53811529
+## LP         55.18911932   57.16421682
 ## 
 ## Demonic Suggestion
 ## 
 ## Due to the combination of the following conditions,
 ## 
 ## 1. Hit-And-Run Metropolis
-## 2. The acceptance rate (0.008216) is below 0.15.
+## 2. The acceptance rate (0.008196) is below 0.15.
 ## 3. At least one target MCSE is &gt;= 6.27% of its marginal posterior
 ##    standard deviation.
-## 4. Each target distribution has an effective sample size (ESS)
-##    of at least 100.
+## 4. At least one target distribution has an effective sample size
+##    (ESS) less than 100. The worst mixing chain is: theta (ESS=99.2858).
 ## 5. Each target distribution became stationary by
 ##    1 iteration.
 ## 
@@ -682,7 +738,7 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 ## 
 ## Initial.Values &lt;- as.initial.values(Fit)
 ## Fit &lt;- LaplacesDemon(Model, Data=MyData, Initial.Values,
-##      Covar=NULL, Iterations=1000000, Status=757575, Thinning=1000,
+##      Covar=NULL, Iterations=1e+06, Status=694444, Thinning=1000,
 ##      Algorithm=&quot;HARM&quot;, Specs=list(alpha.star=NA, B=NULL)
 ## 
 ## Laplace&#39;s Demon is finished consorting.
@@ -707,12 +763,7 @@ Fit &lt;- LaplacesDemon(Model, MyData, Initial.Values,
 <p>Valores preditos</p>
 
 <pre><code class="r">Pred &lt;- predict(Fit, Model, MyData)
-</code></pre>
-
-<pre><code>## Error in as.POSIXct.numeric(start): &#39;origin&#39; must be supplied
-</code></pre>
-
-<pre><code class="r">plot(Pred, Style=&quot;Fitted&quot;)
+plot(Pred, Style=&quot;Fitted&quot;)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
@@ -749,9 +800,6 @@ data_frame(x, y) %&gt;%
   scale_y_continuous(limits=c(.25,.75))
 </code></pre>
 
-<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_density2d).
-</code></pre>
-
 <pre><code>## Warning: Removed 19 rows containing missing values (geom_point).
 </code></pre>
 
@@ -771,41 +819,42 @@ trainningdata &lt;- data_frame(Input=runif(50, min=0, max=100), Output=sqrt(Inpu
 # derivatives of the error function as stopping criteria.
 
 net.sqrt &lt;- neuralnet(Output ~ Input, data = trainingdata, hidden=10, threshold=0.01)
-print(net.sqrt) 
 </code></pre>
 
-<pre><code>## Call: neuralnet(formula = Output ~ Input, data = trainingdata, hidden = 10,     threshold = 0.01)
-## 
-## 1 repetition was calculated.
-## 
-##             Error Reached Threshold Steps
-## 1 0.0008571966368    0.009543017754  6565
+<pre><code>## Error in varify.variables(data, formula, startweights, learningrate.limit, : object &#39;trainingdata&#39; not found
+</code></pre>
+
+<pre><code class="r">print(net.sqrt) 
+</code></pre>
+
+<pre><code>## Error in print(net.sqrt): object &#39;net.sqrt&#39; not found
 </code></pre>
 
 <pre><code class="r">plot(net.sqrt)
-
-testdata &lt;- data.frame(test=(1:10)^2)
-net.results &lt;- compute(net.sqrt, testdata)
-
-cleanoutput &lt;- data_frame(value=testdata$test, 
-                          real_resp=sqrt(value), 
-                          estimate=as.vector(net.results$net.result))
-print(cleanoutput)
 </code></pre>
 
-<pre><code>## Source: local data frame [10 x 3]
-## 
-##    value real_resp    estimate
-## 1      1         1 1.002569947
-## 2      4         2 2.005363082
-## 3      9         3 2.999098702
-## 4     16         4 3.996560210
-## 5     25         5 5.001611042
-## 6     36         6 6.004731986
-## 7     49         7 6.996546221
-## 8     64         8 7.996725005
-## 9     81         9 9.010632630
-## 10   100        10 9.984002016
+<pre><code>## Error in plot(net.sqrt): object &#39;net.sqrt&#39; not found
+</code></pre>
+
+<pre><code class="r">testdata &lt;- data.frame(test=(1:10)^2)
+net.results &lt;- compute(net.sqrt, testdata)
+</code></pre>
+
+<pre><code>## Error in compute(net.sqrt, testdata): object &#39;net.sqrt&#39; not found
+</code></pre>
+
+<pre><code class="r">cleanoutput &lt;- data_frame(value=testdata$test, 
+                          real_resp=sqrt(value), 
+                          estimate=as.vector(net.results$net.result))
+</code></pre>
+
+<pre><code>## Error in as.vector(net.results$net.result): object &#39;net.results&#39; not found
+</code></pre>
+
+<pre><code class="r">print(cleanoutput)
+</code></pre>
+
+<pre><code>## Error in print(cleanoutput): object &#39;cleanoutput&#39; not found
 </code></pre>
 
 <h1>Parte 2: &quot;Big data&quot;</h1>

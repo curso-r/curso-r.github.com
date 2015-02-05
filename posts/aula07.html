@@ -528,10 +528,8 @@ step(ajuste_lm_completo, direction = &quot;forward&quot;)
 ##     am + gear + carb, data = mtcars)
 ## 
 ## Coefficients:
-## (Intercept)          cyl         disp           hp         drat  
-##    12.30337     -0.11144      0.01334     -0.02148      0.78711  
-##          wt         qsec           vs           am         gear  
-##    -3.71530      0.82104      0.31776      2.52023      0.65541  
+## (Intercept)          cyl         disp           hp         drat           wt         qsec           vs           am         gear  
+##    12.30337     -0.11144      0.01334     -0.02148      0.78711     -3.71530      0.82104      0.31776      2.52023      0.65541  
 ##        carb  
 ##    -0.19942
 </code></pre>
@@ -1217,34 +1215,21 @@ kms
 <pre><code>## K-means clustering with 2 clusters of sizes 18, 14
 ## 
 ## Cluster means:
-##        mpg      cyl     disp        hp     drat       wt     qsec
-## 1 23.97222 4.777778 135.5389  98.05556 3.882222 2.609056 18.68611
-## 2 15.10000 8.000000 353.1000 209.21429 3.229286 3.999214 16.77214
-##          vs        am     gear     carb
-## 1 0.7777778 0.6111111 4.000000 2.277778
-## 2 0.0000000 0.1428571 3.285714 3.500000
+##        mpg      cyl     disp        hp     drat       wt     qsec        vs        am     gear     carb
+## 1 23.97222 4.777778 135.5389  98.05556 3.882222 2.609056 18.68611 0.7777778 0.6111111 4.000000 2.277778
+## 2 15.10000 8.000000 353.1000 209.21429 3.229286 3.999214 16.77214 0.0000000 0.1428571 3.285714 3.500000
 ## 
 ## Clustering vector:
-##           Mazda RX4       Mazda RX4 Wag          Datsun 710 
-##                   1                   1                   1 
-##      Hornet 4 Drive   Hornet Sportabout             Valiant 
-##                   1                   2                   1 
-##          Duster 360           Merc 240D            Merc 230 
-##                   2                   1                   1 
-##            Merc 280           Merc 280C          Merc 450SE 
-##                   1                   1                   2 
-##          Merc 450SL         Merc 450SLC  Cadillac Fleetwood 
-##                   2                   2                   2 
-## Lincoln Continental   Chrysler Imperial            Fiat 128 
-##                   2                   2                   1 
-##         Honda Civic      Toyota Corolla       Toyota Corona 
-##                   1                   1                   1 
-##    Dodge Challenger         AMC Javelin          Camaro Z28 
-##                   2                   2                   2 
-##    Pontiac Firebird           Fiat X1-9       Porsche 914-2 
-##                   2                   1                   1 
-##        Lotus Europa      Ford Pantera L        Ferrari Dino 
-##                   1                   2                   1 
+##           Mazda RX4       Mazda RX4 Wag          Datsun 710      Hornet 4 Drive   Hornet Sportabout             Valiant 
+##                   1                   1                   1                   1                   2                   1 
+##          Duster 360           Merc 240D            Merc 230            Merc 280           Merc 280C          Merc 450SE 
+##                   2                   1                   1                   1                   1                   2 
+##          Merc 450SL         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial            Fiat 128 
+##                   2                   2                   2                   2                   2                   1 
+##         Honda Civic      Toyota Corolla       Toyota Corona    Dodge Challenger         AMC Javelin          Camaro Z28 
+##                   1                   1                   1                   2                   2                   2 
+##    Pontiac Firebird           Fiat X1-9       Porsche 914-2        Lotus Europa      Ford Pantera L        Ferrari Dino 
+##                   2                   1                   1                   1                   2                   1 
 ##       Maserati Bora          Volvo 142E 
 ##                   2                   1 
 ## 
@@ -1254,8 +1239,7 @@ kms
 ## 
 ## Available components:
 ## 
-## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
-## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
 ## [9] &quot;ifault&quot;
 </code></pre>
 
