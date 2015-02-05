@@ -4,3 +4,430 @@ date : 2015-02-04
 # output: ioslides_presentation
 ---
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+library(survival)
+library(ggplot2)
+```
+
+
+# Parte 1: Um pouco mais de modelos
+
+## Modelos de sobrevivência
+
+A Análise de Sobrevivência compreende os estudos em que o interesse principal é avaliar o tempo até a ocorrência de um evento pré-determinado. Esses tempos, chamados de *tempos de falha*, podem, então, ser explicados por outras variáveis a partir de modelos de regressão paramétricos ou semi-paramétricos. Uma característica fundamental desse tipo de estudo é a presença de censura, definida como a observação parcial do tempo de falha.
+
+Para ilustrar as funções discutidas aqui, utilizaremos o banco de dados `ovarian`, do pacote `survival`. Este banco traz o tempo de sobrevivência (ou censura) de 26 mulheres com câncer de ovário e o objetivo do estudo foi comparar dois tratamentos distintos para essa doença. 
+
+Nesse exemplo, o tempo de falha é o intervalo entre a entrada no estudo e a ocorrência do evento de interesse que, aqui, é a morte da paciente. A censura neste caso é causada pelo abandono do estudo ou pela não ocorrência do evento até o fim do acompanhamento, ou seja, os casos em que a paciente estava viva no fim do estudo.
+
+Para mais informações sobre o banco de dados, consulte o `help(ovarian)`.
+
+Para mais informações sobre Análise de Sobrevivência, consultar as seguintes referências:
+
+- Colosimo, E.A. e Giolo, S.R.. (2005) Análise de Sobrevivência Aplicada. ABE --- Projeto fisher. Editora Edgard Blucher
+
+- Kalbfleisch, J. D.; Prentice, Ross L. (2002). The statistical analysis of failure time data. New York: John Wiley & Sons.
+
+- Lawless, Jerald F. (2003). Statistical Models and Methods for Lifetime Data (2nd ed.). Hoboken: John Wiley and Sons.
+
+### Kaplan-Meier e Log-rank
+
+O Kaplan-Meier é a principal ferramenta para visualizar dados de sobrevivência. Esses gráficos ajustam curvas tipo-escada da proporção de indivíduos *em risco* --- que ainda não falharam e não foram censurados --- ao longo do tempo. Para plotar um Kaplan-Meier no R, utilizamos a função `survfit()` e a função `plot()`.
+
+```{r}
+
+fit <- survfit(Surv(futime, fustat) ~ rx, data = ovarian)
+
+plot(fit)
+
+```
+
+Também podemos construir um Kaplan-Meier com o `ggplot2`, mas observe que é necessário fazer algums modificações no objeto `fit`:
+
+```{r}
+
+m <- length(fit$strata)
+
+df <- data.frame(time = c(rep(0, m), fit$time),
+                 surv = c(rep(1, m), fit$surv),
+                 group = c(names(fit$strata), 
+                          rep(names(fit$strata), fit$strata)))
+
+ggplot(data = df) +  
+        geom_step(aes(x = time, y = surv, colour = as.factor(group))) +
+        ylim(0, 1) +
+        labs(colour = "Curvas", y = "Proporção de sobreviventes",
+             x = "Tempo") 
+
+```
+
+
+O teste de log-rank para comparação de grupos é realizado pela função `survdiff()`:
+
+```{r}
+
+survdiff(Surv(futime, fustat) ~ rx, data = ovarian)
+
+```
+
+
+### Modelos paramétricos
+
+Para ajustar modelos paramétricos, podemos utilizar a função `survreg()`.
+
+```{r}
+
+fit <- survreg(Surv(futime, fustat) ~ rx + age, data = ovarian, 
+               dist = "exponential")
+
+summary(fit)
+
+```
+
+Observe que no exemplo acima utilizamos a distribuição Exponencial. O argumento `dist = ` pode ser modificado para ajustarmos modelos com outras distribuições:
+
+- `dist = "weibull"` --- distribuição Weibull (default)
+- `dist = "gaussian"` --- distribuição Normal
+- `dist = "logistic"` --- distribuição Logística
+- `dist = "lognormal"` --- distribuição Log-normal
+- `dist = "loglogistic"` --- distribuição Log-logística
+
+
+### Modelo semi-paramétrico de Cox
+
+No R, a função mais utilizada para ajustar modelos de Cox é a `coxph()`.
+
+```{r}
+fit <- coxph(Surv(futime, fustat) ~ age + rx, data = ovarian)
+
+summary(fit)
+```
+
+## Generalized Additive Model (GAM)
+
+Os modelos aditivos generalizados ou GAM são modelos baseados na teoria desenvolvida por Trevor
+Hastie e Robert Tibshirani, e podem ser vistos como uma generalização de GLM, no sentido de que todos os
+GLM sãoo casos particulares de GAM.
+
+Na regressão normal e em GLM assumimos, em geral, que as variáveis aleatórias correspondentes aos indivíduos são independentes, e que existe uma função, denominada função de ligação, que une as médias destas variáveis aleatórias a um certo preditor linear.
+
+A grande mudança nos modelos aditivos generalizados está na forma do preditor. Para cada variável explicativa, temos associada uma função a ser estimada (ou suavizada), sendo que o preditor fica definido como a soma dessas funções
+
+$$
+g(\mu_i) = f_0 + \sum f(x_{ij})
+$$
+
+Para evitar o desconforto da interpretação das contribuições marginais (funções), uma alternativa é utilizar as funções de suavização para ajustar variáveis de controle em que não há interesse direto, e manter a parte principal com termos paramétricos. Geralmente isso facilita a interpretação e melhora o ajuste do modelo em relação ao GLM.
+
+### Pacote mgcv
+
+O pacote `mgcv` é um dos pacotes mais completos do R e permite simulação, ajuste, visualização e análise de resíduos para `gam`. O pacote gerou até [um livro](http://books.google.co.uk/books?id=hr17lZC-3jQC).
+
+Na prática, a utilização do GAM não difere muito de modelos GLM. Uma das únicas diferenças na especificação do modelo é que podemos utilizar a função `s` para determinar quais termos queremos que sejam ajustados com funções aditivas.
+
+#### Exemplo: PNUD
+
+```{r}
+data(pnud_muni, package='abjutils')
+
+library(mgcv)
+fit_model <- gam(espvida ~ ano + s(rdpc) + s(i_escolaridade), data=pnud_muni, family=Gamma)
+
+summary(fit_model)
+
+par(mfrow=c(1, 2))
+plot(fit_model, scheme=1)
+```
+
+### Pacote gamlss
+
+Se por algum motivo existir algum problema na análise em relação à distribuição, heterocedasticidade, e utilização de preditores lineares, uma possível alternativa é o GAMLSS.
+
+GAMLSS significa Generalized Additive Models for Location, Scale and Shape. Com GAMLSS é possível modelar não só a média da distribuição $\mu_i$ (primeiro momento), mas também a variância $\sigma_i$ (segundo momento), a assimetria $\phi_i$ (terceiro momento) e a curtose $\rho_i$ (quarto momento), usando preditores.
+
+Por ser um modelo aditivo, o GAMLSS permite que sejam adicionados termos de suavização na fórmula do modelo, o que o torna uma generalização natural do GAM (em relação à modelagem, não ao método de ajuste).
+
+Por fim, o modelo GAMLSS possui __mais de 50__ famílias de distribuições implementadas, o que nos dá uma enorme gama de opções para criação de modelos.
+
+Também é possível adicionar efeitos aleatórios utilizando o GAMLSS, mas essa parte ainda é experimental.
+
+Mas tudo vem com um preço. Por ser um grande canhão, o método de ajuste de modelos GAMLSS geralmente são baseados técnicas de otimização aproximadas. Além disso, o ajuste de modelos pode ser mais lento que os concorrentes. Por fim, a análise de resíduos para GAMLSS é bastante limitada (e provavelmente continuará sendo).
+
+Recomendamos a utilização do `gamlss` com muito cuidado, e sempre acompanhando outras modelagens, usando `glm` ou `gam`, por exemplo.
+
+#### Exemplo: PNUD
+
+```{r}
+library(gamlss)
+
+# Cuidado! O pacote gamlss carrega MASS, que por sua vez mascara a função select do dplyr.
+
+dados <- pnud_muni %>% 
+  dplyr::select(rdpc, i_escolaridade, espvida, ano) %>% 
+  na.omit %>% 
+  mutate(ano=factor(ano))
+
+fit_model <- gamlss(formula=espvida ~ cs(rdpc) + cs(i_escolaridade),
+                    sigma.formula = ~ ano,
+                    data=dados, 
+                    family=NET())
+
+summary(fit_model)
+
+plot(fit_model)
+```
+
+**Leitura:** Iniciação científica: [De GLM a GAMLSS](https://www.dropbox.com/s/du1h5kmunmwjl65/iniciacao.pdf?dl=0)
+
+## Modelos Bayesianos
+
+A comunidade bayesiana do `R` é cada vez maior, e muitas técnicas estão surgindo com o passar dos anos. A cada dia temos novas contribuições, e pode-se dizer que hoje o `R` é uma das melhores plataformas para utilização de modelos bayesianos no mundo.
+
+### Um pouco (muito pouco) de teoria
+
+A diferença primordial dos modelos bayesianos para os modelos clássicos / frequentistas nasce da interpretação da probabilidade. Segundo a teoria bayesiana, a probabilidade é subjetiva e está associada com a opinião de um indivíduo acerca de um evento, que é incerto.
+
+Traduzindo para modelos, os parâmetros de um modelo (que são nossas quantidades de interesse) não são mais tratados como pontos a serem estimados, mas sim como variâveis aleatórias a serem estudadas. 
+
+A ideia é que, em cada estudo, o pesquisador tenha uma ideia de como se comporta o seu parâmetro de interesse, e possa traduzir essa ideia na forma de uma distribuição de probabilidades (_priori_). Depois, os dados são observados e, com isso, a opinião inicial é atualizada (_posteriori_). A estatística bayesiana utiliza um brilhante algoritmo para realizar essa atualização, que é o Teorema de Bayes.
+
+A grande dificuldade em modelos bayesianos ocorre porque o algoritmo de atualização da distribuição de probabilidades muitas vezes necessita que calculemos algumas integrais extremamente difíceis (impossíveis analiticamente, e muito difíceis computacionalmente).
+
+Tenha em mente que os pacotes de análise bayesiana geralmente focam nesse problema: como simular dados da distribuição _a posteriori_. A maioria dos algoritmos que tentam resolver essa tarefa são baseados em técnicas MCMC (Markov Chains Monte Carlo), que basicamente são meios de simular dados nas regiões de maior massa da posteriori.
+
+Estatística bayesiana é muito simples na teoria, mas os modelos podem ser bem demorados para serem ajustados, e existe um espaço amplo para subjetividades na hora de escolher a melhor metodologia para simular da posteriori.
+
+### Pacotes que fazem análise bayesiana
+
+- `rjags`: Forma de utilizar o software JAGS no R (geralmente para fazer MCMC).
+- `R2WinBUGS` e `rbugs`: Forma de utilizar o WinBugs e o OpenBugs no R.
+- `LaplacesDemon`: Pacote completamente implementado em R para inferência bayesiana.
+
+Acesse [aqui](http://cran.r-project.org/web/views/Bayesian.html) para uma lista completa de pacotes.
+
+### LaplacesDemon
+
+O pacote `LaplacesDemon`, ou simplesmente LD, é um gigantesco framework do R para realização de análise bayesiana de dados. É interessante notar que houve uma preocupação grande em tornar o código todo disponível em `R`, tanto que, por conta dos problemas de performance, foi criado também o pacote `LaplacesDemonCpp`, que tem suas funções implementadas em `C++`.
+
+Para mais informações sobre o pacote LD, ver [aqui]().
+
+Para realizar uma análise bayesiana, geralmente o que sabemos é a nossa _priori_, a função de verossimilhança (ambas determinadas de pelo estatístico ou pesquisador) e os dados colhidos em uma amostra. Nosso objetivo é obter a posteriori
+
+$$
+f(\theta|x) = \frac{l(x | \theta)f(\theta)}{\int_{\theta} l(x|\theta)f(\theta)}
+$$
+
+Para exemplos de uso do LD, ver
+
+```{r eval=FALSE}
+vignette('Examples', package = 'LaplacesDemon')
+```
+
+Algumas categorias de técnicas para realizar a aproximação bayesiana são
+
+- ABC (Aproximate Bayesian Computation)
+- Importance Sampling
+- Iterative Quadrature
+- Laplace Aproximation
+- MCMC (Markov Chains Monte Carlo)
+- VB (Variational Bayes)
+
+
+### Exemplo: Análise de ponto de mudança
+
+Temos um banco de dados assim
+
+```{r}
+N <- 29
+
+y <- c(1.12, 1.12, 0.99, 1.03, 0.92, 0.90, 0.81, 0.83, 0.65, 0.67, 0.60,
+       0.59, 0.51, 0.44, 0.43, 0.43, 0.33, 0.30, 0.25, 0.24, 0.13, -0.01,
+      -0.13, -0.14, -0.30, -0.33, -0.46, -0.43, -0.65)
+
+x <- c(-1.39, -1.39, -1.08, -1.08, -0.94, -0.80, -0.63, -0.63, -0.25, -0.25,
+       -0.12, -0.12, 0.01, 0.11, 0.11, 0.11, 0.25, 0.25, 0.34, 0.34, 0.44,
+        0.59, 0.70, 0.70, 0.85, 0.85, 0.99, 0.99, 1.19)
+
+data_frame(x, y) %>% ggplot() + geom_point(aes(x=x, y=y))
+```
+
+Queremos ajustar no gráfico um modelo linear de ponto de mudança, que vai ajustar duas retas, uma antes e outra depois de certo ponto. O ponto de mudança é determinado pelo modelo.
+
+#### Dados
+
+No LD, dados não são especificados em um `data.frame`. Ao invés disso, temos de criar uma lista contendo, além dos dados, algumas informações iniciais, como
+
+```{r}
+mon.names <- "LP" # variáveis para monitoramento. No caso, Log Posterior
+parm.names <- as.parm.names(list(alpha=0, beta=rep(0,2), sigma=0, theta=0)) # nomes dos parâmetros
+
+pos.alpha <- grep("alpha", parm.names) # posição do parâmetro alpha
+pos.beta <- grep("beta", parm.names)   # posição dos parâmetros beta
+pos.sigma <- grep("sigma", parm.names) # posição do parâmetro sigma
+pos.theta <- grep("theta", parm.names) # posição do parâmetro theta
+
+# Função que gera valores iniciais para os parâmetros. No caso, sem muito critério.
+PGF <- function(Data) return(c(rnorm(1), rnorm(2), runif(1), runif(1)))
+
+MyData <- list(N=N, 
+               PGF=PGF, 
+               mon.names=mon.names, 
+               parm.names=parm.names,
+               pos.alpha=pos.alpha, 
+               pos.beta=pos.beta, 
+               pos.sigma=pos.sigma,
+               pos.theta=pos.theta, 
+               x=x, 
+               y=y)
+```
+
+
+#### Modelo
+
+No LD precisamos espeficiar uma função `Model` que será responsável por calcular as informações necessárias para atualização do modelo.
+
+A função recebe um vetor numérico de parâmetros, e a lista com os dados, e retorna uma lista contendo a `LP` (log posteriori sem normalização) calculada, o `Dev` (deviance), as informações monitoradas (no caso, LP), um `yhat` (chute para o valor de y, de acordo com os parâmetros calculados), e `parm` o vetor de parâmetros (usualmente ajustado para ficar dentro do espaço paramétrico).
+
+```{r}
+Model <- function(parm, Data) {
+  
+  ### Parameters
+  alpha <- parm[Data$pos.alpha]
+  beta <- parm[Data$pos.beta]
+  sigma <- interval(parm[Data$pos.sigma], 1e-100, Inf)
+  parm[Data$pos.sigma] <- sigma # atualiza o valor para retornar depois
+  theta <- interval(parm[Data$pos.theta], -1.3, 1.1)
+  parm[Data$pos.theta] <- theta # atualiza o valor para retornar depois
+  
+  ### Log-Prior (calcula com base nas funções das prioris predefinidas)
+  alpha.prior <- dnormv(alpha, 0, 1000, log=TRUE)
+  beta.prior <- sum(dnormv(beta, 0, 1000, log=TRUE))
+  sigma.prior <- dhalfcauchy(sigma, 25, log=TRUE)
+  theta.prior <- dunif(theta, -1.3, 1.1, log=TRUE)
+  
+  ### Log-Likelihood (calcula a log-verossimilhança com base no modelo concebido)
+  mu <- alpha + beta[1]*x + beta[2]*(x - theta)*((x - theta) > 0)
+  LL <- sum(dnorm(Data$y, mu, sigma, log=TRUE))
+  
+  ### Log-Posterior (calcula a log posteriori)
+  LP <- LL + alpha.prior + beta.prior + sigma.prior + theta.prior
+  
+  Modelout <- list(LP=LP, 
+                   Dev=-2*LL, 
+                   Monitor=LP, 
+                   yhat=rnorm(length(mu), mu, sigma), 
+                   parm=parm)
+  
+  return(Modelout)
+}
+```
+
+#### Atualização ("ajuste")
+
+```{r}
+set.seed(666) # reprodutibilidade
+
+Initial.Values <- c(0.5, -0.4, -0.6, 0.02, 0.04) # valores iniciais da cadeia
+
+Fit <- LaplacesDemon(Model, MyData, Initial.Values, 
+                     Iterations = 1000000, 
+                     Status = 100000,
+                     Thinning = 1000,
+                     Algorithm="HARM")
+```
+
+```{r}
+print(Fit)
+Consort(Fit)
+```
+
+#### Plotando resultado
+
+Diagnóstico
+
+```{r}
+plot(Fit, BurnIn=100000, MyData, PDF=FALSE, Parms=NULL)
+```
+
+Resultados
+
+```{r}
+caterpillar.plot(Fit, Parms=c("beta", 'theta'))
+```
+
+Valores preditos
+
+```{r}
+Pred <- predict(Fit, Model, MyData)
+plot(Pred, Style="Fitted")
+```
+
+Um gráfico muito difícil para frequentistas
+
+```{r}
+m <- Fit$Posterior2 %>% data.frame %>% summarise_each(funs(median))
+
+data_frame(x, y) %>% 
+  ggplot() + 
+  geom_point(aes(x=x, y=y)) +
+  geom_segment(x=-1.5, xend=m$theta, y=m$alpha + m$beta.1. * (-1.5), 
+               yend=m$alpha + m$beta.1. * (m$theta)) +
+  geom_segment(x=m$theta, xend=1.2, y=m$alpha + m$beta.1. * (m$theta), 
+               yend=m$alpha + m$beta.1. * (1.2) + m$beta.2.*(1.2-m$theta)) +
+  geom_point(aes(x=theta, y=alpha + beta.1. * theta), 
+             data=data.frame(Fit$Posterior2), alpha=.05,
+             colour='red')
+
+data_frame(x, y) %>% 
+  ggplot() + 
+  geom_point(aes(x=x, y=y)) +
+  geom_segment(x=-1.5, xend=m$theta, y=m$alpha + m$beta.1. * (-1.5), 
+               yend=m$alpha + m$beta.1. * (m$theta)) +
+  geom_segment(x=m$theta, xend=1.2, y=m$alpha + m$beta.1. * (m$theta), 
+               yend=m$alpha + m$beta.1. * (1.2) + m$beta.2.*(1.2-m$theta)) +
+  geom_density2d(aes(x=theta, y=alpha + beta.1. * theta), 
+             data=data.frame(Fit$Posterior2), 
+             colour='red') +
+  scale_x_continuous(limits=c(-.25,.25)) +
+  scale_y_continuous(limits=c(.25,.75))
+```
+
+## Sobre redes neurais
+
+Exemplo retirado [deste site](http://gekkoquant.com/2012/05/26/neural-networks-with-r-simple-example/) e levemente modificado.
+
+```{r}
+library(neuralnet)
+  
+trainningdata <- data_frame(Input=runif(50, min=0, max=100), Output=sqrt(Input))
+ 
+# Train the neural network
+# Going to have 10 hidden layers
+# Threshold is a numeric value specifying the threshold for the partial
+# derivatives of the error function as stopping criteria.
+
+net.sqrt <- neuralnet(Output ~ Input, data = trainingdata, hidden=10, threshold=0.01)
+print(net.sqrt) 
+plot(net.sqrt)
+ 
+testdata <- data.frame(test=(1:10)^2)
+net.results <- compute(net.sqrt, testdata)
+ 
+cleanoutput <- data_frame(value=testdata$test, 
+                          real_resp=sqrt(value), 
+                          estimate=as.vector(net.results$net.result))
+print(cleanoutput)
+```
+
+# Parte 2: "Big data"
+
+(nos slides)
+
+# Parte 3: htmlwidgets
+
+(nos slides)
+
+# Extra: web crawling
+
+Ver [este repositório](https://github.com/jtrecenti/sabesp) que baixa os dados da sabesp. Estudar pacotes `RCurl` (Duncan), XML (Duncan), `httr` (Hadley) e `rvest` (Hadley).
+

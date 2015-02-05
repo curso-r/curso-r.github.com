@@ -92,7 +92,7 @@
 <pre><code class="r">pi
 </code></pre>
 
-<pre><code>## [1] 3.141593
+<pre><code>## [1] 3.141592654
 </code></pre>
 
 <pre><code class="r">sin(pi/2) + 2*3
@@ -662,14 +662,14 @@ system.time(x2a &lt;- meu_sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.622   0.000   1.618
+##   1.541   0.000   1.543
 </code></pre>
 
 <pre><code class="r">system.time(x2b &lt;- sqrt(x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.009   0.000   0.010
+##    0.01    0.00    0.01
 </code></pre>
 
 <pre><code class="r"># Verifica que os dois vetores são iguais
@@ -847,7 +847,7 @@ eh_par &lt;- sapply(nums, testa_se_eh_par)
 <pre><code class="r">(x &lt;- exp(1))
 </code></pre>
 
-<pre><code>## [1] 2.718282
+<pre><code>## [1] 2.718281828
 </code></pre>
 
 <pre><code class="r">f &lt;- function(x) print(x)
@@ -861,7 +861,7 @@ f(2)
 g(2)
 </code></pre>
 
-<pre><code>## [1] 2.718282
+<pre><code>## [1] 2.718281828
 </code></pre>
 
 <p>No exemplo acima, o objeto <code>x</code> existe tanto fora, quanto dentro da função <code>f()</code>. Ao ser chamado para ser usado na função <code>print(x)</code>, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor <code>2</code>.</p>

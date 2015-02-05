@@ -185,7 +185,7 @@ Dicas: não se esqueça de especificar o *aesthetic* `group =` dentro do `geom_l
 **14.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
 
 
-### desafio (opcional)
+### Desafio (opcional)
 
 Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
 
@@ -198,9 +198,7 @@ Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
 
 - Mapeie a variável *clarity* ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável *color*.
 
-
-Dica: para fazer a reta x=y, utilize a função `geom_abline()`.
----
+*Dica*: para fazer a reta x=y, utilize a função `geom_abline()`.
 
 # Desafios com bases de dados reais
 

@@ -140,21 +140,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [16,695 x 10]
-## 
-##    uf  ano codmun6 codmun7             municipio espvida fectot mort1
-## 1  11 1991  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
-## 2  11 1991  110002 1100023             ARIQUEMES   66.02   3.72 32.39
-## 3  11 1991  110003 1100031                CABIXI   63.16   3.89 41.52
-## 4  11 1991  110004 1100049                CACOAL   65.03   3.81 35.37
-## 5  11 1991  110005 1100056            CEREJEIRAS   62.73   3.55 43.00
-## 6  11 1991  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
-## 7  11 1991  110007 1100072            CORUMBIARA   59.32   3.95 56.02
-## 8  11 1991  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  11 1991  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
-## 10 11 1991  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
-## .. ..  ...     ...     ...                   ...     ...    ...   ...
-## Variables not shown: mort5 (dbl), razdep (dbl)
+## Error in select(., 1:10): unused argument (1:10)
 ```
 
 
@@ -165,20 +151,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [16,695 x 4]
-## 
-##     ano      ufn             municipio  idhm
-## 1  1991 Rondônia ALTA FLORESTA D'OESTE 0.329
-## 2  1991 Rondônia             ARIQUEMES 0.432
-## 3  1991 Rondônia                CABIXI 0.309
-## 4  1991 Rondônia                CACOAL 0.407
-## 5  1991 Rondônia            CEREJEIRAS 0.386
-## 6  1991 Rondônia     COLORADO DO OESTE 0.376
-## 7  1991 Rondônia            CORUMBIARA 0.203
-## 8  1991 Rondônia         COSTA MARQUES 0.425
-## 9  1991 Rondônia       ESPIGÃO D'OESTE 0.388
-## 10 1991 Rondônia         GUAJARÁ-MIRIM 0.468
-## ..  ...      ...                   ...   ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 
@@ -189,20 +162,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [16,695 x 8]
-## 
-##     ano codmun6 codmun7             municipio  idhm idhm_e idhm_l idhm_r
-## 1  1991  110001 1100015 ALTA FLORESTA D'OESTE 0.329  0.112  0.617  0.516
-## 2  1991  110002 1100023             ARIQUEMES 0.432  0.199  0.684  0.593
-## 3  1991  110003 1100031                CABIXI 0.309  0.108  0.636  0.430
-## 4  1991  110004 1100049                CACOAL 0.407  0.171  0.667  0.593
-## 5  1991  110005 1100056            CEREJEIRAS 0.386  0.167  0.629  0.547
-## 6  1991  110006 1100064     COLORADO DO OESTE 0.376  0.151  0.658  0.536
-## 7  1991  110007 1100072            CORUMBIARA 0.203  0.039  0.572  0.373
-## 8  1991  110008 1100080         COSTA MARQUES 0.425  0.220  0.629  0.553
-## 9  1991  110009 1100098       ESPIGÃO D'OESTE 0.388  0.159  0.653  0.561
-## 10 1991  110010 1100106         GUAJARÁ-MIRIM 0.468  0.247  0.662  0.625
-## ..  ...     ...     ...                   ...   ...    ...    ...    ...
+## Error in select(., ano:municipio, starts_with("idhm")): unused arguments (ano:municipio, starts_with("idhm"))
 ```
 
 ## filter
@@ -219,20 +179,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [21 x 4]
-## 
-##     ano       ufn           municipio  idhm
-## 1  2010 São Paulo  ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 São Paulo           AMERICANA 0.811
-## 3  2010 São Paulo          ARARAQUARA 0.815
-## 4  2010 São Paulo               ASSIS 0.805
-## 5  2010 São Paulo               BAURU 0.801
-## 6  2010 São Paulo            CAMPINAS 0.805
-## 7  2010 São Paulo       ILHA SOLTEIRA 0.812
-## 8  2010 São Paulo             JUNDIAÍ 0.822
-## 9  2010 São Paulo        PIRASSUNUNGA 0.801
-## 10 2010 São Paulo PRESIDENTE PRUDENTE 0.806
-## ..  ...       ...                 ...   ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 
@@ -244,20 +191,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [21 x 4]
-## 
-##     ano       ufn           municipio  idhm
-## 1  2010 São Paulo  ÁGUAS DE SÃO PEDRO 0.854
-## 2  2010 São Paulo           AMERICANA 0.811
-## 3  2010 São Paulo          ARARAQUARA 0.815
-## 4  2010 São Paulo               ASSIS 0.805
-## 5  2010 São Paulo               BAURU 0.801
-## 6  2010 São Paulo            CAMPINAS 0.805
-## 7  2010 São Paulo       ILHA SOLTEIRA 0.812
-## 8  2010 São Paulo             JUNDIAÍ 0.822
-## 9  2010 São Paulo        PIRASSUNUNGA 0.801
-## 10 2010 São Paulo PRESIDENTE PRUDENTE 0.806
-## ..  ...       ...                 ...   ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 
@@ -269,7 +203,7 @@ pnud_muni %>%
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'PEA' not found
+## Error in select(., ano, ufn, municipio, idhm, PEA): unused arguments (ano, ufn, municipio, idhm, PEA)
 ```
 
 
@@ -281,15 +215,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
-##    ano       ufn municipio  idhm
-## 1 1991 São Paulo  CAMPINAS 0.618
-## 2 1991 São Paulo SÃO PAULO 0.626
-## 3 2000 São Paulo  CAMPINAS 0.735
-## 4 2000 São Paulo SÃO PAULO 0.733
-## 5 2010 São Paulo  CAMPINAS 0.805
-## 6 2010 São Paulo SÃO PAULO 0.805
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 ## mutate
@@ -307,20 +233,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [5,565 x 6]
-## 
-##     ano      ufn             municipio  idhm idhm_porc idhm_porc_txt
-## 1  2010 Rondônia ALTA FLORESTA D'OESTE 0.641      64.1        64.1 %
-## 2  2010 Rondônia             ARIQUEMES 0.702      70.2        70.2 %
-## 3  2010 Rondônia                CABIXI 0.650      65.0          65 %
-## 4  2010 Rondônia                CACOAL 0.718      71.8        71.8 %
-## 5  2010 Rondônia            CEREJEIRAS 0.692      69.2        69.2 %
-## 6  2010 Rondônia     COLORADO DO OESTE 0.685      68.5        68.5 %
-## 7  2010 Rondônia            CORUMBIARA 0.613      61.3        61.3 %
-## 8  2010 Rondônia         COSTA MARQUES 0.611      61.1        61.1 %
-## 9  2010 Rondônia       ESPIGÃO D'OESTE 0.672      67.2        67.2 %
-## 10 2010 Rondônia         GUAJARÁ-MIRIM 0.657      65.7        65.7 %
-## ..  ...      ...                   ...   ...       ...           ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 
@@ -333,20 +246,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [5,565 x 8]
-## 
-##     ano      ufn             municipio  idhm idhm_e idhm_l idhm_r  idhm2
-## 1  2010 Rondônia ALTA FLORESTA D'OESTE 0.641  0.526  0.763  0.657 0.6445
-## 2  2010 Rondônia             ARIQUEMES 0.702  0.600  0.806  0.716 0.7030
-## 3  2010 Rondônia                CABIXI 0.650  0.559  0.757  0.650 0.6580
-## 4  2010 Rondônia                CACOAL 0.718  0.620  0.821  0.727 0.7205
-## 5  2010 Rondônia            CEREJEIRAS 0.692  0.602  0.799  0.688 0.7005
-## 6  2010 Rondônia     COLORADO DO OESTE 0.685  0.584  0.814  0.676 0.6990
-## 7  2010 Rondônia            CORUMBIARA 0.613  0.473  0.774  0.630 0.6235
-## 8  2010 Rondônia         COSTA MARQUES 0.611  0.493  0.751  0.616 0.6220
-## 9  2010 Rondônia       ESPIGÃO D'OESTE 0.672  0.536  0.819  0.691 0.6775
-## 10 2010 Rondônia         GUAJARÁ-MIRIM 0.657  0.519  0.823  0.663 0.6710
-## ..  ...      ...                   ...   ...    ...    ...    ...    ...
+## Error in select(., ano, ufn, municipio, starts_with("idhm")): unused arguments (ano, ufn, municipio, starts_with("idhm"))
 ```
 
 
@@ -381,20 +281,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [5,565 x 6]
-## 
-##     ano      ufn          municipio  idhm idhm_porc idhm_porc_txt
-## 1  2010     Pará            MELGAÇO 0.418      41.8        41.8 %
-## 2  2010 Maranhão    FERNANDO FALCÃO 0.443      44.3        44.3 %
-## 3  2010 Amazonas   ATALAIA DO NORTE 0.450      45.0          45 %
-## 4  2010 Maranhão     MARAJÁ DO SENA 0.452      45.2        45.2 %
-## 5  2010  Roraima           UIRAMUTÃ 0.453      45.3        45.3 %
-## 6  2010     Pará             CHAVES 0.453      45.3        45.3 %
-## 7  2010     Acre             JORDÃO 0.469      46.9        46.9 %
-## 8  2010     Pará              BAGRE 0.471      47.1        47.1 %
-## 9  2010     Pará CACHOEIRA DO PIRIÁ 0.473      47.3        47.3 %
-## 10 2010 Amazonas          ITAMARATI 0.477      47.7        47.7 %
-## ..  ...      ...                ...   ...       ...           ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 
@@ -408,20 +295,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [5,565 x 6]
-## 
-##     ano              ufn          municipio  idhm idhm_porc idhm_porc_txt
-## 1  2010        São Paulo SÃO CAETANO DO SUL 0.862      86.2        86.2 %
-## 2  2010        São Paulo ÁGUAS DE SÃO PEDRO 0.854      85.4        85.4 %
-## 3  2010   Santa Catarina      FLORIANÓPOLIS 0.847      84.7        84.7 %
-## 4  2010   Espírito Santo            VITÓRIA 0.845      84.5        84.5 %
-## 5  2010   Santa Catarina BALNEÁRIO CAMBORIÚ 0.845      84.5        84.5 %
-## 6  2010        São Paulo             SANTOS 0.840      84.0          84 %
-## 7  2010   Rio de Janeiro            NITERÓI 0.837      83.7        83.7 %
-## 8  2010   Santa Catarina            JOAÇABA 0.827      82.7        82.7 %
-## 9  2010 Distrito Federal           BRASÍLIA 0.824      82.4        82.4 %
-## 10 2010           Paraná           CURITIBA 0.823      82.3        82.3 %
-## ..  ...              ...                ...   ...       ...           ...
+## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
 ```
 
 ## summarise
@@ -442,20 +316,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [27 x 4]
-## 
-##                   ufn   n idhm_medio populacao_total
-## 1    Distrito Federal   1  0.8240000         2541714
-## 2           São Paulo 645  0.7395271        40915379
-## 3      Santa Catarina 293  0.7316485         6199947
-## 4   Rio Grande do Sul 496  0.7135302        10593371
-## 5      Rio de Janeiro  92  0.7089130        15871447
-## 6              Paraná 399  0.7019599        10348247
-## 7               Goiás 246  0.6949837         5934769
-## 8      Espírito Santo  78  0.6921923         3477471
-## 9         Mato Grosso 141  0.6842908         2961982
-## 10 Mato Grosso do Sul  78  0.6797051         2404631
-## ..                ... ...        ...             ...
+## Error in n(): This function should not be called directly
 ```
 
 
@@ -466,20 +327,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [27 x 2]
-## 
-##                 ufn   n
-## 1              Acre  22
-## 2           Alagoas 102
-## 3             Amapá  16
-## 4          Amazonas  62
-## 5             Bahia 417
-## 6             Ceará 184
-## 7  Distrito Federal   1
-## 8    Espírito Santo  78
-## 9             Goiás 246
-## 10         Maranhão 217
-## ..              ... ...
+## Error in count(., ufn): object 'ufn' not found
 ```
 
 
@@ -525,20 +373,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [27 x 4]
-## 
-##                 ufn     1991     2000     2010
-## 1              Acre   414609   519639   690774
-## 2           Alagoas  2448544  2611271  3045853
-## 3             Amapá   280599   453547   652768
-## 4          Amazonas  1977073  2543710  3301220
-## 5             Bahia 11522516 12286822 13755196
-## 6             Ceará  6255097  6995427  8317603
-## 7  Distrito Federal  1551869  2001728  2541714
-## 8    Espírito Santo  2562362  3048681  3477471
-## 9             Goiás  3931474  4887131  5934769
-## 10         Maranhão  4803825  5258529  6317986
-## ..              ...      ...      ...      ...
+## Error in `[.data.frame`(data, key_col): undefined columns selected
 ```
 
 ### gather
@@ -554,20 +389,7 @@ pnud_muni %>%
 ```
 
 ```
-## Source: local data frame [16,695 x 4]
-## 
-##         ufn             municipio tipo_idh   idh
-## 1  Rondônia ALTA FLORESTA D'OESTE   idhm_e 0.526
-## 2  Rondônia             ARIQUEMES   idhm_e 0.600
-## 3  Rondônia                CABIXI   idhm_e 0.559
-## 4  Rondônia                CACOAL   idhm_e 0.620
-## 5  Rondônia            CEREJEIRAS   idhm_e 0.602
-## 6  Rondônia     COLORADO DO OESTE   idhm_e 0.584
-## 7  Rondônia            CORUMBIARA   idhm_e 0.473
-## 8  Rondônia         COSTA MARQUES   idhm_e 0.493
-## 9  Rondônia       ESPIGÃO D'OESTE   idhm_e 0.536
-## 10 Rondônia         GUAJARÁ-MIRIM   idhm_e 0.519
-## ..      ...                   ...      ...   ...
+## Error in select(., ufn, municipio, starts_with("idhm_")): unused arguments (ufn, municipio, starts_with("idhm_"))
 ```
 
 ### Funções auxiliares
