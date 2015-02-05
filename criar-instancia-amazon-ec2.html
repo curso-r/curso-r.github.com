@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Como criar uma instância com Rstudio instalado na Amazon EC2</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="" />
+  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
+  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
+  <link rel="alternate" type="application/rss+xml" href="">
+  <link href="libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
+  <link href="libraries/frameworks/purus/css/main.css" rel="stylesheet" />
+  <link href="libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-58167912-1', 'auto');
+    ga('send', 'pageview');
+  
+  </script>
+    <style>
+	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
+	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
+	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
+    p {text-align: justify;}
+  </style>
+  <link rel="stylesheet" href = "assets/css/custom.css">
+<link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="sidebar" class="span2">
+			  <div class="sidebar-nav sidebar-nav-fixed">
+			    <a href="https://github.com/ramnathv/poirot">
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
+        alt="Fork me on GitHub" 
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
+    </a>
+	  <div class="info">
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <h3><a href="/">Curso R </a></h3>
+					  <p class="description">Do casual ao avançado</p>
+					</div>
+					<ul id="links">
+			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+        <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
+        <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
+        <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
+      
+        <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
+                      
+			    </ul>
+				</div>
+			</div>
+						<div id="content" class='span10'>
+				<div id="post-wrapper">
+          <ol id="posts">
+            <li class="post">
+              <h3>
+                <a href="#">Como criar uma instância com Rstudio instalado na Amazon EC2</a>
+              </h3>
+              <span>2015-02-05</span><br/>
+               <a class='label label-success' href='criar-instancia-amazon-ec2.Rmd'>Source</a>
+              <h2>1. Criar uma conta na Amazon</h2>
+<p>Entre no site da (Amazon Aws)[<a href="http://aws.amazon.com/pt/">http://aws.amazon.com/pt/</a>] e crie uma conta.</p>
+
+<h2>2. Fazer login e ir para o AWS Management Console</h2>
+
+<p><img src="aws-instancia-imagens/passo1.PNG" alt="imagem1" title="Title"></p>
+
+<p>Clique em EC2 (Elastic Compute Cloud), este é o serviço que usamos quando queremos criar um computador na nuvem.</p>
+
+<h2>3. No Dashboard do EC2 clique em Launch Instance</h2>
+
+<p><img src="aws-instancia-imagens/passo2.PNG" alt="imagem2" title="Title"></p>
+
+<h2>4. Clique em Community AMI&#39;s e procure por RStudio</h2>
+
+<p><img src="aws-instancia-imagens/passo3.PNG" alt="imagem3" title="Title"></p>
+
+<p>Selecione a primeira, que é a mias atualizada, e clique em Select</p>
+
+<h2>5. Selecione o tamanho da sua instância</h2>
+
+<p><img src="aws-instancia-imagens/passo4.PNG" alt="imagem4" title="Title"></p>
+
+<p>Clique em Next: Configure Instance Details no canto direito inferior para continuar.</p>
+
+<h2>6. Aqui são opções mais avançadas...</h2>
+
+<p><img src="aws-instancia-imagens/passo5.PNG" alt="imagem5" title="Title"></p>
+
+<p>Apenas clique em Next: Add Storage para continuar.</p>
+
+<h2>7. Coloque a quantidade de espaço de HD que você precisa na sua instância</h2>
+
+<p><img src="aws-instancia-imagens/passo6.PNG" alt="imagem6" title="Title"></p>
+
+<p>Esse é o tamanho do disco rígido da sua máquina, ele precisa comportar a sua base e todos os arquivos que você precisar salvar.</p>
+
+<p>Clique em Next: Tag Instance</p>
+
+<h2>8. Aqui você só precisa dar um nome para a sua instância</h2>
+
+<p><img src="aws-instancia-imagens/passo7.PNG" alt="imagem7" title="Title"> </p>
+
+<p>Clique em Next: Configure Security Group</p>
+
+<h2>9. Configurações de segurança da instância</h2>
+
+<p><img src="aws-instancia-imagens/passo8.PNG" alt="imagem8" title="Title"></p>
+
+<p>Clique em Add Rule, em seguida &quot;http&quot;. Assim você está liberando o acesso à sua instância pela porta Http. 
+É recomendável trocar a opção &quot;Anywhere&quot;  por &quot;My Ip&quot;.</p>
+
+<p>Clique em Review and Launch.</p>
+
+<h2>10. Verifique suas configurações e clique em Launch</h2>
+
+<p><img src="aws-instancia-imagens/passo9.PNG" alt="imagem9" title="Title"></p>
+
+<h2>11. A página a seguir aparecerá:</h2>
+
+<p><img src="aws-instancia-imagens/passo10.PNG" alt="imagem10" title="Title"></p>
+
+<p>Clique em View Instances</p>
+
+<h2>12. Acessar a sua instância</h2>
+
+<p>Quando o estado da sua instância for &quot;running&quot; ela estará pronta, e terá um Public DNS.</p>
+
+<p><img src="aws-instancia-imagens/passo11.PNG" alt="imagem11" title="Title"></p>
+
+<p>Copie e cole o Public DNS no seu navegador, como se fosse um site que você deseja acessar.</p>
+
+<h2>13. Se tudo estiver correto...</h2>
+
+<p><img src="aws-instancia-imagens/passo12.PNG" alt="imagem12" title="Title"></p>
+
+<p>O Rstudio aparecerá. O login é rstudio e a senha também.</p>
+
+<h2>14. Para parar de pagar pela instância:</h2>
+
+<p>Selecione a instância, clique em actions, Instance State, Terminate.
+Isso desligará o servidor e você perderá tudo que tem nele. 
+Se você clicar em stop, você não perderá o que está armazenado na instância e poderá ligá-la a qualquer momento. No entanto estará pagando pelo armazenamento.</p>
+
+<p><img src="aws-instancia-imagens/passo13.PNG" alt="imagem13" title="Title"></p>
+
+              <div id="disqus_thread"></div>
+            </li>
+          </ol>
+          <div class="pagination">
+            <ul>
+              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
+            </ul>
+          </div> 
+        </div>
+			</div>
+		</div>
+  </div>
+</body>
+  <script src='libraries/frameworks/purus/js/bootstrap.min.js'></script>
+  <script>
+      var disqus_developer = 1;
+      var disqus_shortname = 'curso-r'; 
+      // required: replace example with your forum shortname
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); 
+          dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || 
+           document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- Google Prettify -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+  <script src='libraries/highlighters/prettify/js/lang-r.js'></script>
+  <script>
+    var pres = document.getElementsByTagName("pre");
+    for (var i=0; i < pres.length; ++i) {
+      pres[i].className = "prettyprint linenums";
+    }
+    prettyPrint();
+  </script>
+  <!-- End Google Prettify --> 
+  </html>

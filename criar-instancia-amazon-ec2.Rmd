@@ -1,13 +1,8 @@
 ---
 title: "Como criar uma instância com Rstudio instalado na Amazon EC2"
 date: 2015-02-05
-highlighter: prettify
-hitheme: twitter-bootstrap
-framework: purus
-mode: selfcontained
---- &lead
-
-# Como ter um Rstudio numa máquina com muita memória na Amazom
+output: html_output
+--- 
 
 ## 1. Criar uma conta na Amazon
 
