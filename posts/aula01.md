@@ -28,7 +28,7 @@ pi
 ```
 
 ```
-## [1] 3.141592654
+## [1] 3.141593
 ```
 
 ```r
@@ -505,7 +505,7 @@ system.time(x2a <- meu_sqrt(x))
 
 ```
 ##    user  system elapsed 
-##   1.541   0.000   1.543
+##   1.495   0.000   1.491
 ```
 
 ```r
@@ -713,7 +713,7 @@ Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o pr
 ```
 
 ```
-## [1] 2.718281828
+## [1] 2.718282
 ```
 
 ```r
@@ -731,7 +731,7 @@ g(2)
 ```
 
 ```
-## [1] 2.718281828
+## [1] 2.718282
 ```
 
 No exemplo acima, o objeto `x` existe tanto fora, quanto dentro da função `f()`. Ao ser chamado para ser usado na função `print(x)`, o objeto utilizado foi aquele que estava dentro do ambiente da função, que no caso foi atribuído com o valor `2`.

@@ -787,13 +787,13 @@ summary(dados)
 ```
 
 ```
-##    Aleatorio            aleatorio2              cor           
-##  Min.   :-1.5865145   Min.   :0.009945137   Length:100        
-##  1st Qu.:-0.7130548   1st Qu.:0.292951908   Class :character  
-##  Median : 0.5794603   Median :0.577933484   Mode  :character  
-##  Mean   : 0.3675465   Mean   :0.540947443                     
-##  3rd Qu.: 1.1027177   3rd Qu.:0.823797523                     
-##  Max.   : 1.9053111   Max.   :0.990911536
+##    Aleatorio         aleatorio2           cor           
+##  Min.   :-1.5865   Min.   :0.009945   Length:100        
+##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
+##  Median : 0.5795   Median :0.577933   Mode  :character  
+##  Mean   : 0.3675   Mean   :0.540947                     
+##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
+##  Max.   : 1.9053   Max.   :0.990911
 ```
 
 Também pode ser aplicada em apenas uma variável da base:
@@ -804,8 +804,8 @@ summary(dados$aleatorio2)
 ```
 
 ```
-##        Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
-## 0.009945137 0.292951900 0.577933500 0.540947400 0.823797500 0.990911500
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900
 ```
 
 A função `summary` calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: `mean`, `median`, `quantile` e `sd`. A seguir alguns exemplos de uso:
@@ -816,7 +816,7 @@ mean(dados$aleatorio2)
 ```
 
 ```
-## [1] 0.5409474427
+## [1] 0.5409474
 ```
 
 ```r
@@ -824,7 +824,7 @@ median(dados$aleatorio2)
 ```
 
 ```
-## [1] 0.5779334836
+## [1] 0.5779335
 ```
 
 ```r
@@ -832,7 +832,7 @@ sd(dados$aleatorio2)
 ```
 
 ```
-## [1] 0.2999107016
+## [1] 0.2999107
 ```
 
 ```r
@@ -840,8 +840,8 @@ quantile(dados$aleatorio2, probs = c(0.25,0.75))
 ```
 
 ```
-##          25%          75% 
-## 0.2929519078 0.8237975225
+##       25%       75% 
+## 0.2929519 0.8237975
 ```
 
 Essas funções só podem ser aplciadas em vetores, diferente da `summary`que pode ser aplciada à um vetor.
@@ -899,7 +899,7 @@ x %>% sum %>% sqrt
 ```
 
 ```
-## [1] 3.16227766
+## [1] 3.162278
 ```
 
 
@@ -913,7 +913,7 @@ sqrt(sum(x))
 ```
 
 ```
-## [1] 3.16227766
+## [1] 3.162278
 ```
 
 A princípio, a utilização do `%>%` não parece trazer grandes vantagens, pois a expressão `sqrt(sum(x))` facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do `pipe` transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:
@@ -945,7 +945,7 @@ T %>% mean(c(NA, rnorm(100)), na.rm = .) # o ponto é substituido pelo lado esqu
 ```
 
 ```
-## [1] -0.1577354299
+## [1] -0.1577354
 ```
 
 ```r
