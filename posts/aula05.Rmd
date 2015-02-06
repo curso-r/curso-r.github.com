@@ -28,7 +28,7 @@ install.packages("ggplot2")
 ```
 Não se esqueça de carregar o pacote antes de utilizá-lo:
 
-```{r}
+```{r aula05chunk01}
 library(ggplot2)
 ```
 
@@ -36,7 +36,7 @@ library(ggplot2)
 
 A seguir, vamos discutir os aspcetos básicos para a construção de gráficos com o pacote `gglplot2`. Para isso, utilizaremos o banco de dados contido no objeto `mtcars`. Para visualizar as primeiras linhas deste banco, utilize o comando:
 
-```{r}
+```{r aula05chunk02}
 head(mtcars)
 ```
 
@@ -45,7 +45,7 @@ head(mtcars)
 No `ggplot2`, os gráficos são construídos camada por camada (ou, *layers*, em inglês), sendo que a primeira delas é dada pela função `ggplot` (não tem o "2"). Cada camada representa um tipo de mapeamento ou personalização do gráfico. O código abaixo é um exemplo de um gráfico bem simples, construído a partir das duas principais camadas. 
 
 
-```{r}
+```{r aula05chunk03}
 ggplot(data = mtcars, aes(x = disp, y = mpg)) + 
   geom_point()
 ```
@@ -59,14 +59,14 @@ A primeira camada de um gráfico deve indicar a relação entre os dados e cada 
 No exemplo acima, atribuímos aspectos de posição: ao eixo y mapeamos a variável `mpg` (milhas por galão) e ao eixo x a variável `disp` (cilindradas). Outro aspecto que pode ser mapeado nesse gráfico é a cor dos pontos
 
 
-```{r}
+```{r aula05chunk04}
 ggplot(data = mtcars, aes(x = disp, y = mpg, colour = as.factor(am))) + 
   geom_point()
 ```
 
 Agora, a variável `am` (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável `am` como um fator, pois temos interesse apenas nos valores "0" e "1". No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:
 
-```{r}
+```{r aula05chunk05}
 ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl)) + 
   geom_point()
 ```
@@ -77,7 +77,7 @@ Aqui, o número de cilindros, `cyl`, é representado pela tonalidade da cor azul
 
 Também podemos mapear o tamanho dos pontos à uma variável de interesse:
 
-```{r}
+```{r aula05chunk06}
 ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
   geom_point()
 ```
@@ -99,17 +99,17 @@ Os *geoms* definem qual forma geométrica será utilizada para a visualização 
 
 Veja a seguir como é fácil gerar diversos gráficos diferentes utilizando a mesma estrutura do gráfico de dispersão acima:
 
-```{r}
+```{r aula05chunk07}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
   geom_boxplot()
 ```
 
-```{r}
+```{r aula05chunk08}
 ggplot(mtcars, aes(x = mpg)) + 
   geom_histogram()
 ```
 
-```{r}
+```{r aula05chunk09}
 ggplot(mtcars, aes(x = as.factor(cyl))) + 
   geom_bar()
 ```
@@ -122,19 +122,19 @@ Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gr�
 
 O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk10, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + 
   geom_boxplot()
 ```
 
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk11, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
 Você pode também mudar a cor dos objetos sem mapeá-la a uma variável. Para isso, observe que os aspectos `colour` e `fill` são especificados fora do `aes()`.
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk12, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
   geom_boxplot(color = "red", fill = "pink")
 ```
@@ -143,7 +143,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) +
 
 Para alterar os labels dos eixos acrescentamos as funções `xlab()` ou `ylab()`.
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk13, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = mpg)) + 
   geom_histogram() +
   xlab("Milhas por galão") +
@@ -153,7 +153,7 @@ ggplot(mtcars, aes(x = mpg)) +
 
 Para alterar os limites dos gráficos usamos as funções `xlim()` e `ylim()`.
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk14, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = mpg)) + 
   geom_histogram() +
   xlab("Milhas por galão") +
@@ -169,7 +169,7 @@ A legenda de um gráfico pode ser facilmente personalizada.
 
 Para trocar o *label* da leganda:
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk15, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
   geom_bar() +
   labs(fill = "cyl")
@@ -177,7 +177,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
 
 Para trocar a posição da legenda:
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk16, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
   geom_bar() +
   labs(fill = "cyl") +
@@ -186,7 +186,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
 
 Para retirar a legenda:
 
-```{r, fig.height=3, fig.width=5}
+```{r aula05chunk17, fig.height=3, fig.width=5}
 ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
   geom_bar() +
   guides(fill=FALSE)
@@ -199,7 +199,7 @@ Veja mais opções de personalização [aqui!](http://www.cookbook-r.com/Graphs/
 
 Outra funcionalidade muito importante do ggplot é o uso de *facets*.
 
-```{r}
+```{r aula05chunk18}
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + 
   geom_point() + 
   facet_grid(am~.)
@@ -207,7 +207,7 @@ ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
 
 Podemos colocar os graficos lado a lado também:
 
-```{r}
+```{r aula05chunk19}
 ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
   geom_point() + 
   facet_grid(.~am)

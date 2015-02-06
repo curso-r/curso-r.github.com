@@ -64,7 +64,7 @@ ggplot(data = mtcars, aes(x = disp, y = mpg)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png) 
+![plot of chunk aula05chunk03](assets/fig/aula05chunk03.png) 
 
 Observe que o primeiro argumento da função `ggplot` é um data frame. A função `aes()` descreve como as variáveis são mapeadas em aspectos visuais de formas geométricas definidas pelos *geoms*. Aqui, essas formas geométricas são pontos, selecionados pela função `geom_point()`, gerando, assim, um gráfico de dispersão. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.
 
@@ -81,7 +81,7 @@ ggplot(data = mtcars, aes(x = disp, y = mpg, colour = as.factor(am))) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
+![plot of chunk aula05chunk04](assets/fig/aula05chunk04.png) 
 
 Agora, a variável `am` (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável `am` como um fator, pois temos interesse apenas nos valores "0" e "1". No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:
 
@@ -91,7 +91,7 @@ ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png) 
+![plot of chunk aula05chunk05](assets/fig/aula05chunk05.png) 
 
 Aqui, o número de cilindros, `cyl`, é representado pela tonalidade da cor azul.
 
@@ -105,7 +105,7 @@ ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
+![plot of chunk aula05chunk06](assets/fig/aula05chunk06.png) 
 
 **Exercício**: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
 
@@ -130,7 +130,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) +
   geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
+![plot of chunk aula05chunk07](assets/fig/aula05chunk07.png) 
 
 
 ```r
@@ -142,7 +142,7 @@ ggplot(mtcars, aes(x = mpg)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png) 
+![plot of chunk aula05chunk08](assets/fig/aula05chunk08.png) 
 
 
 ```r
@@ -150,7 +150,7 @@ ggplot(mtcars, aes(x = as.factor(cyl))) +
   geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
+![plot of chunk aula05chunk09](assets/fig/aula05chunk09.png) 
 
 Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
 
@@ -166,7 +166,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) +
   geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
+![plot of chunk aula05chunk10](assets/fig/aula05chunk10.png) 
 
 
 
@@ -174,7 +174,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) +
 ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png) 
+![plot of chunk aula05chunk11](assets/fig/aula05chunk11.png) 
 
 Você pode também mudar a cor dos objetos sem mapeá-la a uma variável. Para isso, observe que os aspectos `colour` e `fill` são especificados fora do `aes()`.
 
@@ -184,7 +184,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) +
   geom_boxplot(color = "red", fill = "pink")
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
+![plot of chunk aula05chunk12](assets/fig/aula05chunk12.png) 
 
 ### Eixos
 
@@ -202,7 +202,7 @@ ggplot(mtcars, aes(x = mpg)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
+![plot of chunk aula05chunk13](assets/fig/aula05chunk13.png) 
 
 
 Para alterar os limites dos gráficos usamos as funções `xlim()` e `ylim()`.
@@ -221,7 +221,7 @@ ggplot(mtcars, aes(x = mpg)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png) 
+![plot of chunk aula05chunk14](assets/fig/aula05chunk14.png) 
 
 
 ### Legendas
@@ -237,7 +237,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
   labs(fill = "cyl")
 ```
 
-![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
+![plot of chunk aula05chunk15](assets/fig/aula05chunk15.png) 
 
 Para trocar a posição da legenda:
 
@@ -249,7 +249,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
   theme(legend.position="top")
 ```
 
-![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
+![plot of chunk aula05chunk16](assets/fig/aula05chunk16.png) 
 
 Para retirar a legenda:
 
@@ -260,7 +260,7 @@ ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) +
   guides(fill=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-18](assets/fig/unnamed-chunk-18-1.png) 
+![plot of chunk aula05chunk17](assets/fig/aula05chunk17.png) 
 
 
 Veja mais opções de personalização [aqui!](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
@@ -276,7 +276,7 @@ ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
   facet_grid(am~.)
 ```
 
-![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png) 
+![plot of chunk aula05chunk18](assets/fig/aula05chunk18.png) 
 
 Podemos colocar os graficos lado a lado também:
 
@@ -287,5 +287,5 @@ ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
   facet_grid(.~am)
 ```
 
-![plot of chunk unnamed-chunk-20](assets/fig/unnamed-chunk-20-1.png) 
+![plot of chunk aula05chunk19](assets/fig/aula05chunk19.png) 
 
