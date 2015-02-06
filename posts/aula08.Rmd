@@ -422,11 +422,13 @@ print(cleanoutput)
 
 # Parte 2: "Big data"
 
-(nos slides)
+[nos slides](http://curso-r.github.io/slides/aula_08_apresentacao.html)
+
+[um tutorial](http://curso-r.github.io/criar-instancia-amazon-ec2.html) para criar uma instância com RStudio instalado na Amazon AWS.
 
 # Parte 3: htmlwidgets
 
-(nos slides)
+Acesse o [site](http://www.htmlwidgets.org/)
 
 # Extra: web crawling
 
