@@ -71,7 +71,7 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 
 ### Construindo uma interface no user side
 
-- Shiny utiliza como padrão o [bootstrap css]() do [Twitter](), que é bonito e responsivo.
+- Shiny utiliza como padrão o [bootstrap css](http://getbootstrap.com/css/) do [Twitter](https://twitter.com), que é bonito e responsivo (lida bem com várias plataformas).
 - Criar páginas básicas com `pageWithSidebar`.
 - Páginas mais trabalhadas com `fluidPage`, `fluidRow`, `column`.
 - Pesquisar outros tipos de layouts no shiny.
@@ -80,8 +80,6 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 --- 
 
 ### Adicionando widgets!
-
-TODO
 
 Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
 
@@ -93,6 +91,9 @@ shiny::runGitHub('garrettgman/shinyWidgets')
 ---
 
 #### Exercício
+
+- Criar um `pageWithSideBar` com dois `wellPanel`, um `dateInput`, um `checkboxGroup` e um `textInput`. 
+- Aprender `fluidRow` e `column`.
 
 ---
 
@@ -108,11 +109,13 @@ shiny::runGitHub('garrettgman/shinyWidgets')
 
 #### Exercício
 
+- Criar um output de gráfico contento `pairs(mtcars[1:3])` e um output de dados contendo `cor(mtcars[1:3])`.
+
 ---
 
 ### Escopo
-- server.R, dentro e fora
-- global.R
+- `server.R`, dentro e fora
+- `global.R`
 - Sessões
 
 ### Modelo de Reatividade
@@ -131,13 +134,17 @@ shiny::runGitHub('garrettgman/shinyWidgets')
 `observers`.
 - Condutores: geralmente implementado através da função `reactive`.
 
-### Construindo grafo de invalidação
+## Construindo grafo de invalidação
 
-- TODO
+![Invalidacao1](assets/fig/faithful.png)
+
+![Invalidacao2](assets/fig/conductor.png)
 
 ---
 
 #### Exercício
+
+Construa o grafo de invalidação do aplicativo construído nos exercícios anteriores.
 
 ---
 
