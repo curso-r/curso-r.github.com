@@ -1,12 +1,10 @@
----
-title: "Aula 10 - Shiny"
-date : 2015-02-09
-# output: ioslides_presentation
----
+# Aula 10 - Shiny
+Curso de R: Do casual ao avançado  
+2015-01-04  
 
-## Informações gerais
+## Informações gerais {.build}
 
-### O que é?
+### O que é 
 
 - Sistema para desenvolvimento de aplicações web usando o R
 - Um pacote do R (`shiny`)
@@ -64,7 +62,8 @@ aplicações simultaneamente.
 
 ### Começando com um exemplo
 
-```{r eval=FALSE}
+
+```r
 shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 ```
 
@@ -82,7 +81,8 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 
 Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
 
-```{r eval=FALSE}
+
+```r
 shiny::runGitHub('garrettgman/shinyWidgets')
 ```
 
@@ -146,7 +146,8 @@ para trabalhar com widgets personalizados.
 - `isolate`: Utilizar para cancelar a dependência de um valor reativo em um condutor ou ponto 
 final, para poupar computações ou executar lógicas mais complexas.
 
-```{r eval=FALSE}
+
+```r
 shiny::runGitHub('rstudio/shiny-examples', subdir='055-observer-demo')
 ```
 

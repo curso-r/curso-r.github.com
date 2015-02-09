@@ -1,12 +1,18 @@
 ---
-title: "Aula 10 - Shiny"
-date : 2015-02-09
-# output: ioslides_presentation
+title: Aula 10 - Shiny
+author: "Curso de R: Do casual ao avançado"
+date : 2015-01-04
+output: 
+  ioslides_presentation:
+    mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    logo: logo.png
+    keep_md: true
+    self_contained: true
 ---
 
-## Informações gerais
+## Informações gerais {.build}
 
-### O que é?
+### O que é 
 
 - Sistema para desenvolvimento de aplicações web usando o R
 - Um pacote do R (`shiny`)
@@ -70,7 +76,7 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 
 ### Construindo uma interface no user side
 
-- Shiny utiliza como padrão o [bootstrap css]() do [Twitter](), que é bonito e responsivo.
+- Shiny utiliza como padrão o [bootstrap css 4]() do [Twitter](), que é bonito e responsivo.
 - Criar páginas básicas com `pageWithSidebar`.
 - Páginas mais trabalhadas com `fluidPage`, `fluidRow`, `column`.
 - Pesquisar outros tipos de layouts no shiny.
@@ -80,10 +86,10 @@ shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
 
 ### Adicionando widgets!
 
-Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
+Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html "widgets") ou rode
 
 ```{r eval=FALSE}
-shiny::runGitHub('garrettgman/shinyWidgets')
+shiny::runGitHub('rstudio/shiny-examples', subdir='081-widgets-gallery')
 ```
 
 ---
