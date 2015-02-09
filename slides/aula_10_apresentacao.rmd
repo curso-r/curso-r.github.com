@@ -10,8 +10,6 @@ output:
     self_contained: true
 ---
 
-<a href="http://curso-r.github.io/slides/aula_10_apresentacao.html" target="_blank">Slides dessa aula</a>
-
 ## Informações gerais {.build}
 
 ### O que é

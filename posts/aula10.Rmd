@@ -4,6 +4,8 @@ date : 2015-02-09
 # output: ioslides_presentation
 ---
 
+<a href="http://curso-r.github.io/slides/aula_10_apresentacao.html" target="_blank">Slides dessa aula</a>
+
 ## Informações gerais
 
 ### O que é?
