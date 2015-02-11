@@ -49,28 +49,90 @@ sudo apt-get install r-base-dev
 
 <!-- ___________________________________________________________________________________________ -->
 
-## Estrutura
-
-- 
-- 
-
 ## Exemplo
+
+- Crie um projeto pelo RStudio e selecione "R project".
+
+## Estrutura {.build}
+
+Essa é a estrutura mínima para criar um pacote.
+
+- Tudo dentro de uma pasta
+- `DESCRIPTION`: Metadados do pacote.
+- `NAMESPACE`: ...
+- `R/`
+- `man/`
+- `xxx.Rproj`
+
+## Tipos / estados dos pacotes
+
+- Source (código fonte)
+- Bundled (`.tar.gz`)
+- Binary (binário, compactado)
+- Installed (binário, descompactado numa pasta)
+- In memory (depois de dar `library()` ou `require()`)
 
 <!-- ___________________________________________________________________________________________ -->
 
-## Código R
+## Código R {.build}
+
+- Todo o código em `R` fica aqui
+- Tudo é baseado em funções. Crie objetos, principalmente funções, e não use coisas como `View()`
+- Melhor _workflow_: Editar R -> Ctrl+Shift+L -> Teste no console -> Editar R -> ...
+- Organizando funções: dividir arquivos por temas, e manter um padrão de títulos e conteúdos
+- Não use `library()`, `require()` nem `source()`, `setwd()`, etc. Ao invés disso, coloque dependências na documentação.
 
 <!-- ___________________________________________________________________________________________ -->
 
 ## Documentação
 
+### Arquivo `DESCRIPTION`
+
+- Definir `Imports`, `Suggests`, e usar o `::`.
+- `devtools::use_package()`
+- Versões `(>= 0.3)`, `devtools::numeric_version()`
+- `Depends` (versões de R).
+- `Authors@R`
+- [Licensas](https://choosealicense.com)
+
+## Documentação
+
+### Documentação dos objetos
+
+- Ensina o usuário a usar o pacote
+- Facilmente construído, colocando headers nas funções do R e usando `devtools::document()`
+- Começar com `#'`
+- _workflow_: Adicionar documentação em `roxygen` -> chamar `devtools::document()` -> visualizar documentação com `?` -> Adicionar documentação em `roxygen` -> ...
+- Tags com `@tag` (ex: `@param`).
+- Primeira sentença é o título. Segundo parágrafo é uma descrição. Os outos parágrafos vão para _Details_.
+
 <!-- ___________________________________________________________________________________________ -->
 
 ## Vignettes
 
+- Útil para dar uma explicação geral de um pacote
+- Facilmente construído usando RMarkdown
+- Geralmente usado para pacotes mais complexos
+
 <!-- ___________________________________________________________________________________________ -->
 
 ## Testes
+
+- Pacote `testthat`, do Hadley.
+- `devtools::use_testthat()`
+- Defina o que você quer testar (função e parâmetros), e o que você espera de resultado
+- _workflow_: mude códigos -> `devtools::test()` -> repita. 
+
+
+```r
+library(stringr)
+context("String Length")
+test_that("str_length is a number of characters", {
+  expect_equal(str_length('a'), 1)
+  expect_equal(str_length('ab'), 2)
+  expect_equal(str_length('abc'), 3)
+})
+```
 
 <!-- ___________________________________________________________________________________________ -->
 

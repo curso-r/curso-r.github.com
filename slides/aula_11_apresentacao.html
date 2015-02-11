@@ -158,34 +158,107 @@
 <!-- ___________________________________________________________________________________________ -->
 
 
-</article></slide><slide class=''><hgroup><h2>Estrutura</h2></hgroup><article  id="estrutura">
+</article></slide><slide class=''><hgroup><h2>Exemplo</h2></hgroup><article  id="exemplo">
 
 <ul>
-<li></li>
-<li></li>
+<li>Crie um projeto pelo RStudio e selecione &quot;R project&quot;.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Exemplo</h2></hgroup><article  id="exemplo">
+</article></slide><slide class=''><hgroup><h2>Estrutura</h2></hgroup><article  id="estrutura" class="build">
+
+<p>Essa é a estrutura mínima para criar um pacote.</p>
+
+<ul>
+<li>Tudo dentro de uma pasta</li>
+<li><code>DESCRIPTION</code>: Metadados do pacote.</li>
+<li><code>NAMESPACE</code>: &#8230;</li>
+<li><code>R/</code></li>
+<li><code>man/</code></li>
+<li><code>xxx.Rproj</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Tipos / estados dos pacotes</h2></hgroup><article  id="tipos-estados-dos-pacotes">
+
+<ul>
+<li>Source (código fonte)</li>
+<li>Bundled (<code>.tar.gz</code>)</li>
+<li>Binary (binário, compactado)</li>
+<li>Installed (binário, descompactado numa pasta)</li>
+<li>In memory (depois de dar <code>library()</code> ou <code>require()</code>)</li>
+</ul>
 
 <!-- ___________________________________________________________________________________________ -->
 
 
-</article></slide><slide class=''><hgroup><h2>Código R</h2></hgroup><article  id="codigo-r">
+</article></slide><slide class=''><hgroup><h2>Código R</h2></hgroup><article  id="codigo-r" class="build">
+
+<ul>
+<li>Todo o código em <code>R</code> fica aqui</li>
+<li>Tudo é baseado em funções. Crie objetos, principalmente funções, e não use coisas como <code>View()</code></li>
+<li>Melhor <em>workflow</em>: Editar R -&gt; Ctrl+Shift+L -&gt; Teste no console -&gt; Editar R -&gt; &#8230;</li>
+<li>Organizando funções: dividir arquivos por temas, e manter um padrão de títulos e conteúdos</li>
+<li>Não use <code>library()</code>, <code>require()</code> nem <code>source()</code>, <code>setwd()</code>, etc. Ao invés disso, coloque dependências na documentação.</li>
+</ul>
 
 <!-- ___________________________________________________________________________________________ -->
 
 
 </article></slide><slide class=''><hgroup><h2>Documentação</h2></hgroup><article  id="documentacao">
 
+<h3>Arquivo <code>DESCRIPTION</code></h3>
+
+<ul>
+<li>Definir <code>Imports</code>, <code>Suggests</code>, e usar o <code>::</code>.</li>
+<li><code>devtools::use_package()</code></li>
+<li>Versões <code>(&gt;= 0.3)</code>, <code>devtools::numeric_version()</code></li>
+<li><code>Depends</code> (versões de R).</li>
+<li><code>Authors@R</code></li>
+<li><a href='https://choosealicense.com' title=''>Licensas</a></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Documentação</h2></hgroup><article  id="documentacao-1">
+
+<h3>Documentação dos objetos</h3>
+
+<ul>
+<li>Ensina o usuário a usar o pacote</li>
+<li>Facilmente construído, colocando headers nas funções do R e usando <code>devtools::document()</code></li>
+<li>Começar com <code>#&#39;</code></li>
+<li><em>workflow</em>: Adicionar documentação em <code>roxygen</code> -&gt; chamar <code>devtools::document()</code> -&gt; visualizar documentação com <code>?</code> -&gt; Adicionar documentação em <code>roxygen</code> -&gt; &#8230;</li>
+<li>Tags com <code>@tag</code> (ex: <code>@param</code>).</li>
+<li>Primeira sentença é o título. Segundo parágrafo é uma descrição. Os outos parágrafos vão para <em>Details</em>.</li>
+</ul>
+
 <!-- ___________________________________________________________________________________________ -->
 
 
 </article></slide><slide class=''><hgroup><h2>Vignettes</h2></hgroup><article  id="vignettes">
 
+<ul>
+<li>Útil para dar uma explicação geral de um pacote</li>
+<li>Facilmente construído usando RMarkdown</li>
+<li>Geralmente usado para pacotes mais complexos</li>
+</ul>
+
 <!-- ___________________________________________________________________________________________ -->
 
 
 </article></slide><slide class=''><hgroup><h2>Testes</h2></hgroup><article  id="testes">
+
+<ul>
+<li>Pacote <code>testthat</code>, do Hadley.</li>
+<li><code>devtools::use_testthat()</code></li>
+<li>Defina o que você quer testar (função e parâmetros), e o que você espera de resultado</li>
+<li><em>workflow</em>: mude códigos -&gt; <code>devtools::test()</code> -&gt; repita.</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library(stringr)
+context(&quot;String Length&quot;)
+test_that(&quot;str_length is a number of characters&quot;, {
+  expect_equal(str_length(&#39;a&#39;), 1)
+  expect_equal(str_length(&#39;ab&#39;), 2)
+  expect_equal(str_length(&#39;abc&#39;), 3)
+})</pre>
 
 <!-- ___________________________________________________________________________________________ -->
 
