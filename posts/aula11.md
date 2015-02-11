@@ -12,15 +12,13 @@ date : 2015-02-11
 
 Baseado no livro [r-pkgs](http://r-pkgs.had.co.nz/description.html) do Hadley
 
-<!-- ___________________________________________________________________________________________ -->
-
-## Vantagens {.build}
+## Vantagens 
 
 - Economia de tempo para tarefas futuras
 - Forma de organização pré-estabelecida
 - Contribuir e aproveitar contribuições da comunidade
 
-## Filosofia {.build}
+## Filosofia 
 
 - Tudo que pode ser automatizado, deve ser automatizado
 - Utilização do pacote `devtools` como base para criação de pacotes
@@ -51,22 +49,20 @@ sudo apt-get install r-base-dev
 
 - Verifique se está tudo certo digitando `devtools::has_devel()`.
 
-<!-- ___________________________________________________________________________________________ -->
-
 ## Exemplo
 
 - Crie um projeto pelo RStudio e selecione "R project".
 
-## Estrutura {.build}
+## Estrutura 
 
 Essa é a estrutura mínima para criar um pacote.
 
 - Tudo dentro de uma pasta
 - `DESCRIPTION`: Metadados do pacote.
-- `NAMESPACE`: ...
-- `R/`
-- `man/`
-- `xxx.Rproj`
+- `NAMESPACE`: Importante para jogar pacote no CRAN.
+- `R/`: Pasta onde fica o código R
+- `man/`: Pasta onde fica a documentação
+- `xxx.Rproj`: Seu projeto (não é necessário).
 
 ## Tipos / estados dos pacotes
 
@@ -76,17 +72,13 @@ Essa é a estrutura mínima para criar um pacote.
 - Installed (binário, descompactado numa pasta)
 - In memory (depois de dar `library()` ou `require()`)
 
-<!-- ___________________________________________________________________________________________ -->
-
-## Código R {.build}
+## Código R 
 
 - Todo o código em `R` fica aqui
 - Tudo é baseado em funções. Crie objetos, principalmente funções, e não use coisas como `View()`
 - Melhor _workflow_: Editar R -> Ctrl+Shift+L -> Teste no console -> Editar R -> ...
 - Organizando funções: dividir arquivos por temas, e manter um padrão de títulos e conteúdos
 - Não use `library()`, `require()` nem `source()`, `setwd()`, etc. Ao invés disso, coloque dependências na documentação.
-
-<!-- ___________________________________________________________________________________________ -->
 
 ## Documentação
 
@@ -110,15 +102,11 @@ Essa é a estrutura mínima para criar um pacote.
 - Tags com `@tag` (ex: `@param`).
 - Primeira sentença é o título. Segundo parágrafo é uma descrição. Os outos parágrafos vão para _Details_.
 
-<!-- ___________________________________________________________________________________________ -->
-
 ## Vignettes
 
 - Útil para dar uma explicação geral de um pacote
 - Facilmente construído usando RMarkdown
 - Geralmente usado para pacotes mais complexos
-
-<!-- ___________________________________________________________________________________________ -->
 
 ## Testes
 
@@ -138,42 +126,132 @@ test_that("str_length is a number of characters", {
 })
 ```
 
-<!-- ___________________________________________________________________________________________ -->
-
 ## Namespace
 
-<!-- ___________________________________________________________________________________________ -->
+- Só é necessário se preocupar com isso se você quiser colocar seu pacote no CRAN.
+- `imports` e `exports`.
+- Search path, load e attach
+- `requireNamespace()` dá load e não attach.
+- Geralmente também é criado usando `devtools::document()` e `roxygen2`.
+- Use `@export` para fazer sua função ficar disponível para o usuário via `::`
+- Use `@importFrom pkg fun` para importar funções no NAMESPACE (não recomendável)
+- Use Depends se você quiser dar attach de um pacote e usar suas funções (no DESCRIPTION).
 
-## Dados externos
+## Dados externos 
 
-<!-- ___________________________________________________________________________________________ -->
+- Três maneiras de incluir dados no pacote.
+- Arquivos binários (`.RData`) na pasta `data/`. Utilizar `devtools::usedata()`
+- Dados utilizados internamente pelas funções em `R/sysdata.rda`
+- Dados em texto (csv, excel, etc), na pasta `inst/extdata`
+- Documentar dados é semelhante a documentar funções, adicionando `@format` e `@source`
+- Não é necessário usar `@export`
 
 ## Código compulado (C, C++, etc)
 
-<!-- ___________________________________________________________________________________________ -->
+- Usar o pacote `RCpp`
+- Programar em `C` e `C++` foge do escopo do curso
+- Usando o RStudio e abrindo um novo arquivo, é possível visualizar um template.
+- Usar Ctrl+Shift+B ao invés de `devtools::load_all()`
 
-## Melhores práticas
-
-<!-- ___________________________________________________________________________________________ -->
+# Melhores práticas
 
 ## Git e GitHub
 
-## Checagem automática
-
-## CRAN vs GitHub
+- Versionamento
+- Colaboração
+- Funciona como um website para seu pacote
 
 <!-- ___________________________________________________________________________________________ -->
+
 
 # Tópico extra: web crawling
 
 ## Filosofia
 
-<!-- ___________________________________________________________________________________________ -->
+- Se não tem dados, faça o download dos dados
+- Automatizar acessos a websites
+- É necessário aprender a passear pelos sites (_crawling_) e trabalhar com os arquivos HTML (_scraping_)
+- Podemos ter uma lista do que queremos inicialmente ou não
 
-## Pré-requisitos
+## Pacotes
+
+- Pacotes `RCurl` e `XML` do Duncan.
+- Pacotes `httr` e `rvest` do Hadley.
+- Pacote `RSelenium` (não funciona muito bem ainda)
 
 ## Requisições GET e POST
 
+- `GET`: Pede por informação do servidor
+- `POST`: Envia infomações para o servidor
+- Para mais detalhes, ver [aqui](http://www.w3schools.com/tags/ref_httpmethods.asp)
+
 ## Cookies, viewstate, etc.
 
+- É bem comum que os sites não queiram que um computador acesse facilmente seus documentos
+- Muitas vezes é preciso mostrar que o usuário "clicou" nos campos necessários para acessar um documento
+- `ASP`, `ASPX`, `JSP` entre outros imprimem valores em `tags` na própria página acessada para minimizar acesso automatizado
+
+## Captcha
+
+- Atrapalha a vida dos web crawlers
+- Muitas vezes é difícil de ser quebrado
+- Geralmente são utilizados métodos de machine learning para extrair palavras de imagens
+- Exemplo, serviço [deathbycaptcha](http://www.deathbycaptcha.com/user/login)
+
+
 ## Exemplo: Sabesp
+
+- Exemplo no R
+
+
+```r
+rm_accent <- function (x) gsub("`|\\'", "", iconv(x, to = "ASCII//TRANSLIT"))
+renomear <- function(x, ...) {
+  names(x) <- eval(substitute(c(...)))
+  x
+}
+
+baixa_sabesp <- function(x) {
+  link <- 'http://www2.sabesp.com.br/mananciais/DivulgacaoSiteSabesp.aspx'
+  txt <- GET(link)
+  viewstate <- txt %>% content('text') %>% html %>% html_node('#__VIEWSTATE') %>% html_attr('value')
+  eventval <- txt %>% content('text') %>% html %>% html_node('#__EVENTVALIDATION') %>% html_attr('value')
+  data <- as.Date(x)
+  dados <- list(cmbDia=day(data),
+                cmbMes=month(data),
+                cmbAno=year(data),
+                Imagebutton1.x='0',
+                Imagebutton1.y='0',
+                '__VIEWSTATE'=viewstate,
+                '__EVENTVALIDATION'=eventval)
+  r <- POST(link, body=dados, cookies=unlist(txt$cookies))
+  try({
+    nomes <- r %>% content('text') %>% html(encoding='UTF-8') %>% html_nodes('img') %>% html_attr('src')
+    nomes <- nomes %>% `[`(!str_detect(nomes, 'jpg')) %>% str_match('/(.+)\\.gif') %>% `[`(,2)
+    d <- r %>%
+      content('text') %>%
+      html(encoding='UTF-8') %>%
+      html_node('#tabDados') %>%
+      html_table(fill=TRUE) %>%
+      renomear('titulo', 'info') %>%
+      select(1:2) %>%
+      filter(titulo!='') %>%
+      mutate(titulo=rm_accent(gsub(' +', '_', titulo)),
+             lugar=rep(nomes, each=4),
+             info=gsub('[^0-9.]', '', gsub(',', '.', info))) %>%
+      spread(titulo, info, convert=TRUE) %>%
+      mutate(volume_armazenado=volume_armazenado/100)
+    return(d)
+  })
+  return(data.frame())
+}
+
+datas <- today() - days(0:3650)
+d_sabesp <- datas %>%
+  as.character %>%
+  data.frame(data=., stringsAsFactors=F) %>%
+  group_by(data) %>%
+  do(baixa_sabesp(as.character(.))) %>%
+  ungroup
+```
+

@@ -111,9 +111,6 @@
 
 <p>Baseado no livro <a href='http://r-pkgs.had.co.nz/description.html' title=''>r-pkgs</a> do Hadley</p>
 
-<!-- ___________________________________________________________________________________________ -->
-
-
 </article></slide><slide class=''><hgroup><h2>Vantagens</h2></hgroup><article  id="vantagens" class="build">
 
 <ul>
@@ -155,9 +152,6 @@
 <li>Verifique se está tudo certo digitando <code>devtools::has_devel()</code>.</li>
 </ul>
 
-<!-- ___________________________________________________________________________________________ -->
-
-
 </article></slide><slide class=''><hgroup><h2>Exemplo</h2></hgroup><article  id="exemplo">
 
 <ul>
@@ -171,10 +165,10 @@
 <ul>
 <li>Tudo dentro de uma pasta</li>
 <li><code>DESCRIPTION</code>: Metadados do pacote.</li>
-<li><code>NAMESPACE</code>: &#8230;</li>
-<li><code>R/</code></li>
-<li><code>man/</code></li>
-<li><code>xxx.Rproj</code></li>
+<li><code>NAMESPACE</code>: Importante para jogar pacote no CRAN.</li>
+<li><code>R/</code>: Pasta onde fica o código R</li>
+<li><code>man/</code>: Pasta onde fica a documentação</li>
+<li><code>xxx.Rproj</code>: Seu projeto (não é necessário).</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Tipos / estados dos pacotes</h2></hgroup><article  id="tipos-estados-dos-pacotes">
@@ -187,9 +181,6 @@
 <li>In memory (depois de dar <code>library()</code> ou <code>require()</code>)</li>
 </ul>
 
-<!-- ___________________________________________________________________________________________ -->
-
-
 </article></slide><slide class=''><hgroup><h2>Código R</h2></hgroup><article  id="codigo-r" class="build">
 
 <ul>
@@ -199,9 +190,6 @@
 <li>Organizando funções: dividir arquivos por temas, e manter um padrão de títulos e conteúdos</li>
 <li>Não use <code>library()</code>, <code>require()</code> nem <code>source()</code>, <code>setwd()</code>, etc. Ao invés disso, coloque dependências na documentação.</li>
 </ul>
-
-<!-- ___________________________________________________________________________________________ -->
-
 
 </article></slide><slide class=''><hgroup><h2>Documentação</h2></hgroup><article  id="documentacao">
 
@@ -229,9 +217,6 @@
 <li>Primeira sentença é o título. Segundo parágrafo é uma descrição. Os outos parágrafos vão para <em>Details</em>.</li>
 </ul>
 
-<!-- ___________________________________________________________________________________________ -->
-
-
 </article></slide><slide class=''><hgroup><h2>Vignettes</h2></hgroup><article  id="vignettes">
 
 <ul>
@@ -239,9 +224,6 @@
 <li>Facilmente construído usando RMarkdown</li>
 <li>Geralmente usado para pacotes mais complexos</li>
 </ul>
-
-<!-- ___________________________________________________________________________________________ -->
-
 
 </article></slide><slide class=''><hgroup><h2>Testes</h2></hgroup><article  id="testes">
 
@@ -260,52 +242,102 @@ test_that(&quot;str_length is a number of characters&quot;, {
   expect_equal(str_length(&#39;abc&#39;), 3)
 })</pre>
 
-<!-- ___________________________________________________________________________________________ -->
-
-
 </article></slide><slide class=''><hgroup><h2>Namespace</h2></hgroup><article  id="namespace">
 
-<!-- ___________________________________________________________________________________________ -->
+<ul>
+<li>Só é necessário se preocupar com isso se você quiser colocar seu pacote no CRAN.</li>
+<li><code>imports</code> e <code>exports</code>.</li>
+<li>Search path, load e attach</li>
+<li><code>requireNamespace()</code> dá load e não attach.</li>
+<li>Geralmente também é criado usando <code>devtools::document()</code> e <code>roxygen2</code>.</li>
+<li>Use <code>@export</code> para fazer sua função ficar disponível para o usuário via <code>::</code></li>
+<li>Use <code>@importFrom pkg fun</code> para importar funções no NAMESPACE (não recomendável)</li>
+<li>Use Depends se você quiser dar attach de um pacote e usar suas funções (no DESCRIPTION).</li>
+</ul>
 
+</article></slide><slide class=''><hgroup><h2>Dados externos</h2></hgroup><article  id="dados-externos" class="build">
 
-</article></slide><slide class=''><hgroup><h2>Dados externos</h2></hgroup><article  id="dados-externos">
-
-<!-- ___________________________________________________________________________________________ -->
-
+<ul>
+<li>Três maneiras de incluir dados no pacote.</li>
+<li>Arquivos binários (<code>.RData</code>) na pasta <code>data/</code>. Utilizar <code>devtools::usedata()</code></li>
+<li>Dados utilizados internamente pelas funções em <code>R/sysdata.rda</code></li>
+<li>Dados em texto (csv, excel, etc), na pasta <code>inst/extdata</code></li>
+<li>Documentar dados é semelhante a documentar funções, adicionando <code>@format</code> e <code>@source</code></li>
+<li>Não é necessário usar <code>@export</code></li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Código compulado (C, C++, etc)</h2></hgroup><article  id="codigo-compulado-c-c-etc">
 
-<!-- ___________________________________________________________________________________________ -->
+<ul>
+<li>Usar o pacote <code>RCpp</code></li>
+<li>Programar em <code>C</code> e <code>C++</code> foge do escopo do curso</li>
+<li>Usando o RStudio e abrindo um novo arquivo, é possível visualizar um template.</li>
+<li>Usar Ctrl+Shift+B ao invés de <code>devtools::load_all()</code></li>
+</ul>
 
-
-</article></slide><slide class=''><hgroup><h2>Melhores práticas</h2></hgroup><article  id="melhores-praticas">
-
-<!-- ___________________________________________________________________________________________ -->
-
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Melhores práticas</h2></hgroup><article  id="melhores-praticas">
 
 </article></slide><slide class=''><hgroup><h2>Git e GitHub</h2></hgroup><article  id="git-e-github">
 
-</article></slide><slide class=''><hgroup><h2>Checagem automática</h2></hgroup><article  id="checagem-automatica">
-
-</article></slide><slide class=''><hgroup><h2>CRAN vs GitHub</h2></hgroup><article  id="cran-vs-github">
+<ul>
+<li>Versionamento</li>
+<li>Colaboração</li>
+<li>Funciona como um website para seu pacote</li>
+</ul>
 
 <!-- ___________________________________________________________________________________________ -->
+
 
 
 </article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Tópico extra: web crawling</h2></hgroup><article  id="topico-extra-web-crawling">
 
 </article></slide><slide class=''><hgroup><h2>Filosofia</h2></hgroup><article  id="filosofia-1">
 
-<!-- ___________________________________________________________________________________________ -->
+<ul>
+<li>Se não tem dados, faça o download dos dados</li>
+<li>Automatizar acessos a websites</li>
+<li>É necessário aprender a passear pelos sites (<em>crawling</em>) e trabalhar com os arquivos HTML (<em>scraping</em>)</li>
+<li>Podemos ter uma lista do que queremos inicialmente ou não</li>
+</ul>
 
+</article></slide><slide class=''><hgroup><h2>Pacotes</h2></hgroup><article  id="pacotes">
 
-</article></slide><slide class=''><hgroup><h2>Pré-requisitos</h2></hgroup><article  id="pre-requisitos-2">
+<ul>
+<li>Pacotes <code>RCurl</code> e <code>XML</code> do Duncan.</li>
+<li>Pacotes <code>httr</code> e <code>rvest</code> do Hadley.</li>
+<li>Pacote <code>RSelenium</code> (não funciona muito bem ainda)</li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Requisições GET e POST</h2></hgroup><article  id="requisicoes-get-e-post">
 
+<ul>
+<li><code>GET</code>: Pede por informação do servidor</li>
+<li><code>POST</code>: Envia infomações para o servidor</li>
+<li>Para mais detalhes, ver <a href='http://www.w3schools.com/tags/ref_httpmethods.asp' title=''>aqui</a></li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Cookies, viewstate, etc.</h2></hgroup><article  id="cookies-viewstate-etc.">
 
-</article></slide><slide class=''><hgroup><h2>Exemplo: Sabesp</h2></hgroup><article  id="exemplo-sabesp"></article></slide>
+<ul>
+<li>É bem comum que os sites não queiram que um computador acesse facilmente seus documentos</li>
+<li>Muitas vezes é preciso mostrar que o usuário &quot;clicou&quot; nos campos necessários para acessar um documento</li>
+<li><code>ASP</code>, <code>ASPX</code>, <code>JSP</code> entre outros imprimem valores em <code>tags</code> na própria página acessada para minimizar acesso automatizado</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Captcha</h2></hgroup><article  id="captcha">
+
+<ul>
+<li>Atrapalha a vida dos web crawlers</li>
+<li>Muitas vezes é difícil de ser quebrado</li>
+<li>Geralmente são utilizados métodos de machine learning para extrair palavras de imagens</li>
+<li>Exemplo, serviço <a href='http://www.deathbycaptcha.com/user/login' title=''>deathbycaptcha</a></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Exemplo: Sabesp</h2></hgroup><article  id="exemplo-sabesp">
+
+<ul>
+<li>Exemplo no R</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
