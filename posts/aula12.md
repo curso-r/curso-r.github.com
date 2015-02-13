@@ -28,12 +28,9 @@ Digite `?diamonds` para entender o que cada variável significa.
 O aplicativo deverá conter:
 
 * Um seletor da variável resposta que será considerada pelo modelo.
-* Um seletor de todas as covariáveis do modelo
-* Um gráfico da variável resposta (eixo y) por uma das variáveis utilizadas no modelo
+* Um seletor de uma covariável para o modelo
+* Um gráfico da variável resposta (eixo y) pela variável utilizadas no modelo,
 incluindo a reta ajustada.
-
-Para a reta ajustada, o usuário fornecerá valores fixos para as demais variáveis que estão no modelo, usando
-inputs do tipo slider.
 
 Utilize o [repositório do lab04 no github](https://github.com/curso-r/lab04) como template para o seu trabalho. 
 
