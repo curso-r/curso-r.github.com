@@ -77,6 +77,292 @@
               <span>2015-02-11</span><br/>
                <a class='label label-success' href='posts/aula11.Rmd'>Source</a>
               
+<p><a href="http://curso-r.github.io/slides/aula_11_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<h1>Criação de pacotes</h1>
+
+<h2>Criação de pacotes</h2>
+
+<p>Baseado no livro <a href="http://r-pkgs.had.co.nz/description.html">r-pkgs</a> do Hadley</p>
+
+<h2>Vantagens</h2>
+
+<ul>
+<li>Economia de tempo para tarefas futuras</li>
+<li>Forma de organização pré-estabelecida</li>
+<li>Contribuir e aproveitar contribuições da comunidade</li>
+</ul>
+
+<h2>Filosofia</h2>
+
+<ul>
+<li>Tudo que pode ser automatizado, deve ser automatizado</li>
+<li>Utilização do pacote <code>devtools</code> como base para criação de pacotes</li>
+<li>Trabalhar menos com os detalhes (estrutura, etc.) e mais com funcionalidades (funções úteis, etc).</li>
+<li>Se for necessário trabalhar com coisas mais complexas, ler <a href="cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages">Writing R extensions</a></li>
+</ul>
+
+<h2>Pré-requisitos</h2>
+
+<ul>
+<li>Pacotes <code>devtools</code>, <code>roxygen2</code>, <code>testthat</code>, <code>knitr</code></li>
+<li><strong>R</strong> e <strong>RStudio</strong> atualizados (recomenda-se preview version do RStudio)</li>
+<li>Instalar versão <code>dev</code> do <code>devtools</code></li>
+</ul>
+
+<pre><code class="r">devtools::install_github(&#39;hadley/devtools&#39;)
+</code></pre>
+
+<h2>Pré-requisitos</h2>
+
+<ul>
+<li>No Windows, instalar o <a href="cran.r-project.org/bin/windows/Rtools">Rtools</a></li>
+<li>No Mac, instalar o <a href="developer.apple.com/downloads">XCode</a></li>
+<li>No linux, instalar o pacote de desenvolvimento <code>r-base-dev</code>. No Ubuntu, basta digitar</li>
+</ul>
+
+<pre><code class="r">sudo apt-get install r-base-dev
+</code></pre>
+
+<ul>
+<li>Verifique se está tudo certo digitando <code>devtools::has_devel()</code>.</li>
+</ul>
+
+<h2>Exemplo</h2>
+
+<ul>
+<li>Crie um projeto pelo RStudio e selecione &quot;R project&quot;.</li>
+</ul>
+
+<h2>Estrutura</h2>
+
+<p>Essa é a estrutura mínima para criar um pacote.</p>
+
+<ul>
+<li>Tudo dentro de uma pasta</li>
+<li><code>DESCRIPTION</code>: Metadados do pacote.</li>
+<li><code>NAMESPACE</code>: Importante para jogar pacote no CRAN.</li>
+<li><code>R/</code>: Pasta onde fica o código R</li>
+<li><code>man/</code>: Pasta onde fica a documentação</li>
+<li><code>xxx.Rproj</code>: Seu projeto (não é necessário).</li>
+</ul>
+
+<h2>Tipos / estados dos pacotes</h2>
+
+<ul>
+<li>Source (código fonte)</li>
+<li>Bundled (<code>.tar.gz</code>)</li>
+<li>Binary (binário, compactado)</li>
+<li>Installed (binário, descompactado numa pasta)</li>
+<li>In memory (depois de dar <code>library()</code> ou <code>require()</code>)</li>
+</ul>
+
+<h2>Código R</h2>
+
+<ul>
+<li>Todo o código em <code>R</code> fica aqui</li>
+<li>Tudo é baseado em funções. Crie objetos, principalmente funções, e não use coisas como <code>View()</code></li>
+<li>Melhor <em>workflow</em>: Editar R -&gt; Ctrl+Shift+L -&gt; Teste no console -&gt; Editar R -&gt; ...</li>
+<li>Organizando funções: dividir arquivos por temas, e manter um padrão de títulos e conteúdos</li>
+<li>Não use <code>library()</code>, <code>require()</code> nem <code>source()</code>, <code>setwd()</code>, etc. Ao invés disso, coloque dependências na documentação.</li>
+</ul>
+
+<h2>Documentação</h2>
+
+<h3>Arquivo <code>DESCRIPTION</code></h3>
+
+<ul>
+<li>Definir <code>Imports</code>, <code>Suggests</code>, e usar o <code>::</code>.</li>
+<li><code>devtools::use_package()</code></li>
+<li>Versões <code>(&gt;= 0.3)</code>, <code>devtools::numeric_version()</code></li>
+<li><code>Depends</code> (versões de R).</li>
+<li><code>Authors@R</code></li>
+<li><a href="https://choosealicense.com">Licensas</a></li>
+</ul>
+
+<h2>Documentação</h2>
+
+<h3>Documentação dos objetos</h3>
+
+<ul>
+<li>Ensina o usuário a usar o pacote</li>
+<li>Facilmente construído, colocando headers nas funções do R e usando <code>devtools::document()</code></li>
+<li>Começar com <code>#&#39;</code></li>
+<li><em>workflow</em>: Adicionar documentação em <code>roxygen</code> -&gt; chamar <code>devtools::document()</code> -&gt; visualizar documentação com <code>?</code> -&gt; Adicionar documentação em <code>roxygen</code> -&gt; ...</li>
+<li>Tags com <code>@tag</code> (ex: <code>@param</code>).</li>
+<li>Primeira sentença é o título. Segundo parágrafo é uma descrição. Os outos parágrafos vão para <em>Details</em>.</li>
+</ul>
+
+<h2>Vignettes</h2>
+
+<ul>
+<li>Útil para dar uma explicação geral de um pacote</li>
+<li>Facilmente construído usando RMarkdown</li>
+<li>Geralmente usado para pacotes mais complexos</li>
+</ul>
+
+<h2>Testes</h2>
+
+<ul>
+<li>Pacote <code>testthat</code>, do Hadley.</li>
+<li><code>devtools::use_testthat()</code></li>
+<li>Defina o que você quer testar (função e parâmetros), e o que você espera de resultado</li>
+<li><em>workflow</em>: mude códigos -&gt; <code>devtools::test()</code> -&gt; repita. </li>
+</ul>
+
+<pre><code class="r">library(stringr)
+context(&quot;String Length&quot;)
+test_that(&quot;str_length is a number of characters&quot;, {
+  expect_equal(str_length(&#39;a&#39;), 1)
+  expect_equal(str_length(&#39;ab&#39;), 2)
+  expect_equal(str_length(&#39;abc&#39;), 3)
+})
+</code></pre>
+
+<h2>Namespace</h2>
+
+<ul>
+<li>Só é necessário se preocupar com isso se você quiser colocar seu pacote no CRAN.</li>
+<li><code>imports</code> e <code>exports</code>.</li>
+<li>Search path, load e attach</li>
+<li><code>requireNamespace()</code> dá load e não attach.</li>
+<li>Geralmente também é criado usando <code>devtools::document()</code> e <code>roxygen2</code>.</li>
+<li>Use <code>@export</code> para fazer sua função ficar disponível para o usuário via <code>::</code></li>
+<li>Use <code>@importFrom pkg fun</code> para importar funções no NAMESPACE (não recomendável)</li>
+<li>Use Depends se você quiser dar attach de um pacote e usar suas funções (no DESCRIPTION).</li>
+</ul>
+
+<h2>Dados externos</h2>
+
+<ul>
+<li>Três maneiras de incluir dados no pacote.</li>
+<li>Arquivos binários (<code>.RData</code>) na pasta <code>data/</code>. Utilizar <code>devtools::usedata()</code></li>
+<li>Dados utilizados internamente pelas funções em <code>R/sysdata.rda</code></li>
+<li>Dados em texto (csv, excel, etc), na pasta <code>inst/extdata</code></li>
+<li>Documentar dados é semelhante a documentar funções, adicionando <code>@format</code> e <code>@source</code></li>
+<li>Não é necessário usar <code>@export</code></li>
+</ul>
+
+<h2>Código compulado (C, C++, etc)</h2>
+
+<ul>
+<li>Usar o pacote <code>RCpp</code></li>
+<li>Programar em <code>C</code> e <code>C++</code> foge do escopo do curso</li>
+<li>Usando o RStudio e abrindo um novo arquivo, é possível visualizar um template.</li>
+<li>Usar Ctrl+Shift+B ao invés de <code>devtools::load_all()</code></li>
+</ul>
+
+<h1>Melhores práticas</h1>
+
+<h2>Git e GitHub</h2>
+
+<ul>
+<li>Versionamento</li>
+<li>Colaboração</li>
+<li>Funciona como um website para seu pacote</li>
+</ul>
+
+<!-- ___________________________________________________________________________________________ -->
+
+<h1>Tópico extra: web crawling</h1>
+
+<h2>Filosofia</h2>
+
+<ul>
+<li>Se não tem dados, faça o download dos dados</li>
+<li>Automatizar acessos a websites</li>
+<li>É necessário aprender a passear pelos sites (<em>crawling</em>) e trabalhar com os arquivos HTML (<em>scraping</em>)</li>
+<li>Podemos ter uma lista do que queremos inicialmente ou não</li>
+</ul>
+
+<h2>Pacotes</h2>
+
+<ul>
+<li>Pacotes <code>RCurl</code> e <code>XML</code> do Duncan.</li>
+<li>Pacotes <code>httr</code> e <code>rvest</code> do Hadley.</li>
+<li>Pacote <code>RSelenium</code> (não funciona muito bem ainda)</li>
+</ul>
+
+<h2>Requisições GET e POST</h2>
+
+<ul>
+<li><code>GET</code>: Pede por informação do servidor</li>
+<li><code>POST</code>: Envia infomações para o servidor</li>
+<li>Para mais detalhes, ver <a href="http://www.w3schools.com/tags/ref_httpmethods.asp">aqui</a></li>
+</ul>
+
+<h2>Cookies, viewstate, etc.</h2>
+
+<ul>
+<li>É bem comum que os sites não queiram que um computador acesse facilmente seus documentos</li>
+<li>Muitas vezes é preciso mostrar que o usuário &quot;clicou&quot; nos campos necessários para acessar um documento</li>
+<li><code>ASP</code>, <code>ASPX</code>, <code>JSP</code> entre outros imprimem valores em <code>tags</code> na própria página acessada para minimizar acesso automatizado</li>
+</ul>
+
+<h2>Captcha</h2>
+
+<ul>
+<li>Atrapalha a vida dos web crawlers</li>
+<li>Muitas vezes é difícil de ser quebrado</li>
+<li>Geralmente são utilizados métodos de machine learning para extrair palavras de imagens</li>
+<li>Exemplo, serviço <a href="http://www.deathbycaptcha.com/user/login">deathbycaptcha</a></li>
+</ul>
+
+<h2>Exemplo: Sabesp</h2>
+
+<ul>
+<li>Exemplo no R</li>
+</ul>
+
+<pre><code class="r">rm_accent &lt;- function (x) gsub(&quot;`|\\&#39;&quot;, &quot;&quot;, iconv(x, to = &quot;ASCII//TRANSLIT&quot;))
+renomear &lt;- function(x, ...) {
+  names(x) &lt;- eval(substitute(c(...)))
+  x
+}
+
+baixa_sabesp &lt;- function(x) {
+  link &lt;- &#39;http://www2.sabesp.com.br/mananciais/DivulgacaoSiteSabesp.aspx&#39;
+  txt &lt;- GET(link)
+  viewstate &lt;- txt %&gt;% content(&#39;text&#39;) %&gt;% html %&gt;% html_node(&#39;#__VIEWSTATE&#39;) %&gt;% html_attr(&#39;value&#39;)
+  eventval &lt;- txt %&gt;% content(&#39;text&#39;) %&gt;% html %&gt;% html_node(&#39;#__EVENTVALIDATION&#39;) %&gt;% html_attr(&#39;value&#39;)
+  data &lt;- as.Date(x)
+  dados &lt;- list(cmbDia=day(data),
+                cmbMes=month(data),
+                cmbAno=year(data),
+                Imagebutton1.x=&#39;0&#39;,
+                Imagebutton1.y=&#39;0&#39;,
+                &#39;__VIEWSTATE&#39;=viewstate,
+                &#39;__EVENTVALIDATION&#39;=eventval)
+  r &lt;- POST(link, body=dados, cookies=unlist(txt$cookies))
+  try({
+    nomes &lt;- r %&gt;% content(&#39;text&#39;) %&gt;% html(encoding=&#39;UTF-8&#39;) %&gt;% html_nodes(&#39;img&#39;) %&gt;% html_attr(&#39;src&#39;)
+    nomes &lt;- nomes %&gt;% `[`(!str_detect(nomes, &#39;jpg&#39;)) %&gt;% str_match(&#39;/(.+)\\.gif&#39;) %&gt;% `[`(,2)
+    d &lt;- r %&gt;%
+      content(&#39;text&#39;) %&gt;%
+      html(encoding=&#39;UTF-8&#39;) %&gt;%
+      html_node(&#39;#tabDados&#39;) %&gt;%
+      html_table(fill=TRUE) %&gt;%
+      renomear(&#39;titulo&#39;, &#39;info&#39;) %&gt;%
+      select(1:2) %&gt;%
+      filter(titulo!=&#39;&#39;) %&gt;%
+      mutate(titulo=rm_accent(gsub(&#39; +&#39;, &#39;_&#39;, titulo)),
+             lugar=rep(nomes, each=4),
+             info=gsub(&#39;[^0-9.]&#39;, &#39;&#39;, gsub(&#39;,&#39;, &#39;.&#39;, info))) %&gt;%
+      spread(titulo, info, convert=TRUE) %&gt;%
+      mutate(volume_armazenado=volume_armazenado/100)
+    return(d)
+  })
+  return(data.frame())
+}
+
+datas &lt;- today() - days(0:3650)
+d_sabesp &lt;- datas %&gt;%
+  as.character %&gt;%
+  data.frame(data=., stringsAsFactors=F) %&gt;%
+  group_by(data) %&gt;%
+  do(baixa_sabesp(as.character(.))) %&gt;%
+  ungroup
+</code></pre>
 
               <div id="disqus_thread"></div>
             </li>

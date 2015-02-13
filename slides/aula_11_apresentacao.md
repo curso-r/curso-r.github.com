@@ -1,10 +1,6 @@
----
-title: "Aula 11 - Pacotes e tópicos extras"
-date : 2015-02-11
-# output: ioslides_presentation
----
-
-<a href="http://curso-r.github.io/slides/aula_11_apresentacao.html" target="_blank">Slides dessa aula</a>
+# Aula 10 - Pacotes e +
+Curso de R: Do casual ao avançado  
+2015-02-11  
 
 # Criação de pacotes
 
@@ -12,13 +8,13 @@ date : 2015-02-11
 
 Baseado no livro [r-pkgs](http://r-pkgs.had.co.nz/description.html) do Hadley
 
-## Vantagens 
+## Vantagens {.build}
 
 - Economia de tempo para tarefas futuras
 - Forma de organização pré-estabelecida
 - Contribuir e aproveitar contribuições da comunidade
 
-## Filosofia 
+## Filosofia {.build}
 
 - Tudo que pode ser automatizado, deve ser automatizado
 - Utilização do pacote `devtools` como base para criação de pacotes
@@ -53,7 +49,7 @@ sudo apt-get install r-base-dev
 
 - Crie um projeto pelo RStudio e selecione "R project".
 
-## Estrutura 
+## Estrutura {.build}
 
 Essa é a estrutura mínima para criar um pacote.
 
@@ -72,7 +68,7 @@ Essa é a estrutura mínima para criar um pacote.
 - Installed (binário, descompactado numa pasta)
 - In memory (depois de dar `library()` ou `require()`)
 
-## Código R 
+## Código R {.build}
 
 - Todo o código em `R` fica aqui
 - Tudo é baseado em funções. Crie objetos, principalmente funções, e não use coisas como `View()`
@@ -137,7 +133,7 @@ test_that("str_length is a number of characters", {
 - Use `@importFrom pkg fun` para importar funções no NAMESPACE (não recomendável)
 - Use Depends se você quiser dar attach de um pacote e usar suas funções (no DESCRIPTION).
 
-## Dados externos 
+## Dados externos {.build}
 
 - Três maneiras de incluir dados no pacote.
 - Arquivos binários (`.RData`) na pasta `data/`. Utilizar `devtools::usedata()`
@@ -202,56 +198,4 @@ test_that("str_length is a number of characters", {
 ## Exemplo: Sabesp
 
 - Exemplo no R
-
-
-```r
-rm_accent <- function (x) gsub("`|\\'", "", iconv(x, to = "ASCII//TRANSLIT"))
-renomear <- function(x, ...) {
-  names(x) <- eval(substitute(c(...)))
-  x
-}
-
-baixa_sabesp <- function(x) {
-  link <- 'http://www2.sabesp.com.br/mananciais/DivulgacaoSiteSabesp.aspx'
-  txt <- GET(link)
-  viewstate <- txt %>% content('text') %>% html %>% html_node('#__VIEWSTATE') %>% html_attr('value')
-  eventval <- txt %>% content('text') %>% html %>% html_node('#__EVENTVALIDATION') %>% html_attr('value')
-  data <- as.Date(x)
-  dados <- list(cmbDia=day(data),
-                cmbMes=month(data),
-                cmbAno=year(data),
-                Imagebutton1.x='0',
-                Imagebutton1.y='0',
-                '__VIEWSTATE'=viewstate,
-                '__EVENTVALIDATION'=eventval)
-  r <- POST(link, body=dados, cookies=unlist(txt$cookies))
-  try({
-    nomes <- r %>% content('text') %>% html(encoding='UTF-8') %>% html_nodes('img') %>% html_attr('src')
-    nomes <- nomes %>% `[`(!str_detect(nomes, 'jpg')) %>% str_match('/(.+)\\.gif') %>% `[`(,2)
-    d <- r %>%
-      content('text') %>%
-      html(encoding='UTF-8') %>%
-      html_node('#tabDados') %>%
-      html_table(fill=TRUE) %>%
-      renomear('titulo', 'info') %>%
-      select(1:2) %>%
-      filter(titulo!='') %>%
-      mutate(titulo=rm_accent(gsub(' +', '_', titulo)),
-             lugar=rep(nomes, each=4),
-             info=gsub('[^0-9.]', '', gsub(',', '.', info))) %>%
-      spread(titulo, info, convert=TRUE) %>%
-      mutate(volume_armazenado=volume_armazenado/100)
-    return(d)
-  })
-  return(data.frame())
-}
-
-datas <- today() - days(0:3650)
-d_sabesp <- datas %>%
-  as.character %>%
-  data.frame(data=., stringsAsFactors=F) %>%
-  group_by(data) %>%
-  do(baixa_sabesp(as.character(.))) %>%
-  ungroup
-```
 

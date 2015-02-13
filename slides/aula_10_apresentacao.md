@@ -1,14 +1,10 @@
----
-title: "Aula 10 - Shiny"
-date : 2015-02-09
-# output: ioslides_presentation
----
+# Aula 10 - Shiny
+Curso de R: Do casual ao avançado  
+2015-01-04  
 
-<a href="http://curso-r.github.io/slides/aula_10_apresentacao.html" target="_blank">Slides dessa aula</a>
+## Informações gerais {.build}
 
-## Informações gerais
-
-### O que é?
+### O que é
 
 - Sistema para desenvolvimento de aplicações web usando o R
 - Um pacote do R (`shiny`)
@@ -20,9 +16,8 @@ date : 2015-02-09
 - Um substituto para sistemas mais gerais, como Ruby on Rails e Django
 - Uma ferramenta gerencial, como o Tableau
 
-## Desenvolvimento web
+## Desenvolvimento web {.build}
 
-- [Server side _versus_ user side](http://programmers.stackexchange.com/a/171210 "diferencas").
 - Quando surfamos na web, nos _comunicamos_ com servidores do mundo inteiro, geralmente através
 do protocolo HTTP.
 
@@ -36,9 +31,7 @@ dados, etc.
 informações do servidor, etc.
 - "Linguagens" mais usuais: HTML, CSS e JavaScript.
 
----
-
-### Onde está o Shiny nisso tudo?
+## Onde está o Shiny nisso tudo?
 
 - O código de uma aplicação shiny fica no _server side_.
 - O shiny permite que um computador (servidor) envie páginas web, receba informações do usuário e 
@@ -51,9 +44,7 @@ análises no arquivo `server.R`.
 [aplicativos em um arquivo só](http://shiny.rstudio.com/articles/single-file.html), mas vamos manter 
 a estrutura de `ui.R` e `server.R`.
 
----
-
-#### E pra que serve o shiny server?
+## E pra que serve o shiny server?
 
 - O pacote `shiny` do R possui internamente um servidor web básico, geralmente utilizado para
 aplicações locais, permitindo somente uma aplicação por vez. 
@@ -66,38 +57,36 @@ aplicações simultaneamente.
 
 ### Começando com um exemplo
 
-```{r eval=FALSE}
-shiny::runGitHub('abjur/vistemplate', subdir='exemplo_01_helloworld')
+
+```r
+shiny::runGitHub('abjur/vistemplate', 
+                 subdir='exemplo_01_helloworld', 
+                 display.mode='showcase')
 ```
 
-### Construindo uma interface no user side
+## Construindo uma interface no user side
 
 - Shiny utiliza como padrão o [bootstrap css](http://getbootstrap.com/css/) do [Twitter](https://twitter.com), que é bonito e responsivo (lida bem com várias plataformas).
-- Criar páginas básicas com `pageWithSidebar`.
+- Criar páginas básicas com `sidebarLayout`.
 - Páginas mais trabalhadas com `fluidPage`, `fluidRow`, `column`.
 - Pesquisar outros tipos de layouts no shiny.
 - Criar páginas web customizadas direto no HTML.
 
---- 
-
-### Adicionando widgets!
+## Adicionando widgets!
 
 Acesse [neste link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
 
-```{r eval=FALSE}
+
+```r
 shiny::runGitHub('garrettgman/shinyWidgets')
 ```
 
----
+## Exercício
 
-#### Exercício
-
-- Criar um `pageWithSideBar` com dois `wellPanel`, um `dateInput`, um `checkboxGroup` e um `textInput`. 
+- Criar um `sidebarLayout` com dois `wellPanel`, um `dateInput`, um `checkboxGroup` e um `textInput`. 
 - Aprender `fluidRow` e `column`.
 
----
-
-### Criando outputs
+## Criando outputs
 
 - Imagine que para cada função `xxOutput('foo', ...)` do `ui.R` você pode colocar um código do tipo 
 `output$foo <- renderXX(...)` no `server.R`.
@@ -105,29 +94,23 @@ shiny::runGitHub('garrettgman/shinyWidgets')
 - Criando gráficos com `plotOutput` e `renderPlot`.
 - Exibindo dados com `dataTableOutput` e `renderDataTable`.
 
----
-
-#### Exercício
+## Exercício
 
 - Criar um output de gráfico contento `pairs(mtcars[1:3])` e um output de dados contendo `cor(mtcars[1:3])`.
 
----
-
-### Escopo
+## Escopo
 - `server.R`, dentro e fora
 - `global.R`
 - Sessões
 
-### Modelo de Reatividade
+## Modelo de Reatividade
 
 - Determina o quê vai rodar e em que ordem no arquivo `server.R`, dependendo das ações do usuário.
 - É uma tentativa de resolver a falta de tratamento de eventos no R.
 - É importante pois impede que cálculos desnecessários sejam repetidos.
 - Só funciona se for programado adequadamente.
 
----
-
-### Objetos reativos
+## Objetos reativos
 
 - Fonte (source): geralmente acessível no objeto `input`.
 - Ponto final (endpoint): geralmente acessível no objeto `output`. Implementado através de 
@@ -136,19 +119,17 @@ shiny::runGitHub('garrettgman/shinyWidgets')
 
 ## Construindo grafo de invalidação
 
-![Invalidacao1](assets/fig/faithful.png)
+![Invalidacao1](figure/faithful.png)
 
-![Invalidacao2](assets/fig/conductor.png)
+## Construindo grafo de invalidação
 
----
+![Invalidacao2](figure/conductor.png)
 
-#### Exercício
+## Exercício
 
 Construa o grafo de invalidação do aplicativo construído nos exercícios anteriores.
 
----
-
-#### Mais informações
+## Mais informações
 
 - `reactive`: Utilizar para realizar computações pesadas ou cálculos utilizados em várias partes da
 aplicação.
@@ -157,7 +138,9 @@ para trabalhar com widgets personalizados.
 - `isolate`: Utilizar para cancelar a dependência de um valor reativo em um condutor ou ponto 
 final, para poupar computações ou executar lógicas mais complexas.
 
-```{r eval=FALSE}
+
+```r
+setwd('script/')
 shiny::runGitHub('rstudio/shiny-examples', subdir='055-observer-demo')
 ```
 
@@ -172,14 +155,12 @@ JavaScript na página e a função `renderUI` (geralmente menos eficiente).
 [aqui](http://shiny.rstudio.com/articles/building-inputs.html) e 
 [aqui](http://shiny.rstudio.com/articles/building-outputs.html).
 
----
-
-### Shiny Server Pro
+## Shiny Server Pro
 
 - Licensa comercial do Shiny-server
 - Possui algumas características a mais, como autenticação e suporte.
 
-### shinyapps.io
+## shinyapps.io
 
 - Para compartilhar um aplicativo shiny, geralmente precisamos ter um servidor Linux (geralmente
 utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server instalado.
@@ -188,9 +169,7 @@ utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server 
 usuário coloque sua aplicação shiny na web sem muito esforço.
 - O serviço está sendo desenvolvido pela RStudio Inc. e terá contas grátis e pagas.
 
----
-
-### Ainda mais!
+## Ainda mais!
 
 - Ferramenta em amplo desenvolvimento.
 - Grande oportunidade na área acadêmica e profissional.
