@@ -3,3 +3,27 @@ title: "Aula 12 - Laboratório IV"
 date : 2015-02-13
 # output: ioslides_presentation
 ---
+
+O objetivo deste laboratório é criar um aplicativo no Shiny para ajuste de um 
+modelo de regressão linear ao banco de dados `diamonds` do R.
+
+```{r}
+library(ggplot2)
+head(diamonds)
+```
+
+Digite `?diamonds` para entender o que cada variável significa.
+
+O aplicativo deverá conter:
+
+* Um seletor da variável resposta que será considerada pelo modelo.
+* Um seletor de todas as covariáveis do modelo
+* Um gráfico da variável resposta (eixo y) por uma das variáveis utilizadas no modelo
+incluindo a reta ajustada.
+
+Para a reta ajustada, o usuário fornecerá valores fixos para as demais variáveis que estão no modelo, usando
+inputs do tipo slider.
+
+Utilize o [repositório do lab04 no github](https://github.com/curso-r/lab04) como template para o seu trabalho. 
+
+
