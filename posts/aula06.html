@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aula 06 - Laboratório II</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
-  <link rel="alternate" type="application/rss+xml" href="">
-  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
-  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
-  <!-- IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<html><head><title>Aula 06 - Laboratório II</title><meta http-equiv="refresh" content="0; URL=https://livro.curso-r.com"><link rel="canonical" href="https://livro.curso-r.com"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R"><link rel="shortcut icon" href="/assets/img/curso_r2.jpg"><link rel="alternate" type="application/rss+xml" href=""><link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet"><link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet"><!-- IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
-  <script>
+  <![endif]--><link href="http://fonts.googleapis.com/css?family=Raleway:400,600,200,800" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,52 +9,39 @@
     ga('create', 'UA-58167912-1', 'auto');
     ga('send', 'pageview');
   
-  </script>
-    <style>
+  </script><style>
 	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
 	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
 	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
     p {text-align: justify;}
-  </style>
-  <link rel="stylesheet" href = "../assets/css/custom.css">
-<link rel="stylesheet" href = "../assets/css/ribbons.css">
-
-</head>
-<body>
+  </style><link rel="stylesheet" href="../assets/css/custom.css"><link rel="stylesheet" href="../assets/css/ribbons.css"></head><body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="sidebar" class="span2">
 			  <div class="sidebar-nav sidebar-nav-fixed">
 			    <a href="https://github.com/ramnathv/poirot">
-      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
-        alt="Fork me on GitHub" 
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
-    </a>
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg%20"></a></p>
 				    <h3><a href="/">Curso R </a></h3>
 					  <p class="description">Do casual ao avançado</p>
 					</div>
-					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+					<ul id="links"><li><a href="http://curso-r.github.io/index.html">Home</a></li>
         <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
         <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
         <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
       
         <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
                       
-			    </ul>
-				</div>
+			    </ul></div>
 			</div>
-						<div id="content" class='span10'>
+						<div id="content" class="span10">
 				<div id="post-wrapper">
-          <ol id="posts">
-            <li class="post">
+          <ol id="posts"><li class="post">
               <h3>
                 <a href="#">Aula 06 - Laboratório II</a>
               </h3>
-              <span>2015-01-30</span><br/>
-               <a class='label label-success' href='posts/aula06.Rmd'>Source</a>
+              <span>2015-01-30</span><br><a class="label label-success" href="posts/aula06.Rmd">Source</a>
               <h1>Questões iniciais</h1>
 <h2>Sobre dplyr e tidyr</h2>
 
@@ -86,7 +52,7 @@
 
 <p>Se você não tiver o pacote instalado use o comando:</p>
 
-<pre><code class="r">install.packages(&quot;nycflighs13&quot;)
+<pre><code class="r">install.packages("nycflighs13")
 </code></pre>
 
 <p>E em seguida use o <code>library(nycflights13)</code>.</p>
@@ -117,49 +83,31 @@ flights %&gt;% tbl_df
 
 <h3>filter</h3>
 
-<ol>
-<li>Atribua a uma tabela apenas os voos de janeiro de 2013.</li>
+<ol><li>Atribua a uma tabela apenas os voos de janeiro de 2013.</li>
 <li>Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.</li>
 <li>Atribua a uma tabela apenas os vôos com distância maior do que 1000 milhas.</li>
-</ol>
+</ol><h3>select</h3>
 
-<h3>select</h3>
-
-<ol>
-<li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>.</li>
+<ol><li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>.</li>
 <li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>, os nomes dessas colunas devem ser <code>mes</code>e <code>atraso</code>.</li>
 <li>Retire da tabela as colunas <code>tailnum</code>, <code>origin</code> e <code>dest</code></li>
-</ol>
+</ol><h3>mutate</h3>
 
-<h3>mutate</h3>
-
-<ol>
-<li>Calcule as colunas <code>ganho_de_tempo</code> que é dado por <code>dep_delay - arr_delay</code> e <code>velocidade</code> dada por <code>distance / air_time * 60</code>.</li>
+<ol><li>Calcule as colunas <code>ganho_de_tempo</code> que é dado por <code>dep_delay - arr_delay</code> e <code>velocidade</code> dada por <code>distance / air_time * 60</code>.</li>
 <li>Calcule o horário de chegada considerando as colunas <code>hour</code>, <code>minute</code> e <code>air_time</code>. A tabela deve conter duas colunas novas: <code>hour2</code> com a hora de chegada e <code>minute2</code> com o minuto de chegada.</li>
-</ol>
+</ol><h3>summarise</h3>
 
-<h3>summarise</h3>
-
-<ol>
-<li>Calcule a média da distância de todos os vôos.</li>
+<ol><li>Calcule a média da distância de todos os vôos.</li>
 <li>Calcule a média da distância dos vôos por mês</li>
 <li>Calcule a média, mediana, primeiro quartil e terceiro quartil do tempo de viagem por mês.</li>
-</ol>
+</ol><h3>arrange</h3>
 
-<h3>arrange</h3>
-
-<ol>
-<li>Ordene a base de dados pelo atraso na partida em ordem crescente.</li>
+<ol><li>Ordene a base de dados pelo atraso na partida em ordem crescente.</li>
 <li>Repita a questão anterior, porém na ordem decrescente.</li>
-</ol>
+</ol><h3>spread</h3>
 
-<h3>spread</h3>
-
-<ol>
-<li>Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.</li>
-</ol>
-
-<p>Resultado esperado:</p>
+<ol><li>Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.</li>
+</ol><p>Resultado esperado:</p>
 
 <pre><code>## Source: local data frame [6 x 13]
 ## 
@@ -176,11 +124,8 @@ flights %&gt;% tbl_df
 
 <p>Dica: você precisará usar <code>group_by</code>, <code>summarise</code>e <code>spread</code>. Lembre-se também do argumento <code>na.rm</code>.</p>
 
-<ol>
-<li>Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.</li>
-</ol>
-
-<p>Resultado esperado:</p>
+<ol><li>Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.</li>
+</ol><p>Resultado esperado:</p>
 
 <pre><code>## Source: local data frame [6 x 32]
 ## 
@@ -201,11 +146,8 @@ flights %&gt;% tbl_df
 
 <p>Considerando as tabelas criadas nas perguntas sobre o <code>spread</code>:</p>
 
-<ol>
-<li>Transforme-as em um formato tidy.</li>
-</ol>
-
-<p>Resultado esperado:</p>
+<ol><li>Transforme-as em um formato tidy.</li>
+</ol><p>Resultado esperado:</p>
 
 <pre><code>## Source: local data frame [6 x 3]
 ## 
@@ -220,18 +162,15 @@ flights %&gt;% tbl_df
 
 <h3>desafios (opcional)</h3>
 
-<ol>
-<li><p>Sumarise em uma tabela qual foi a média de atraso total (<code>dep_delay + arr_delay</code>) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+<ol><li><p>Sumarise em uma tabela qual foi a média de atraso total (<code>dep_delay + arr_delay</code>) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
 Dica: o intervalo de confiança pode ser calculado por \(média \pm 1,96*\sqrt{\frac{var(x)}{n}}\)</p></li>
 <li><p>Summarise em uma tabela quais foram os 10 destinos com mais viagens com atraso superior a 60 minutos. Considere o atraso total definido na pergunta anterior.</p></li>
-</ol>
-
-<h2>Sobre ggplot2</h2>
+</ol><h2>Sobre ggplot2</h2>
 <p>Nestes exercícios você utilizará a base de dados <code>diamonds</code>, do pacote <code>ggplot2</code>.</p>
 
 <p>Instalação do pacote <code>ggplot2</code>:</p>
 
-<pre><code class="r">install.packages(&quot;ggplot2&quot;)
+<pre><code class="r">install.packages("ggplot2")
 </code></pre>
 
 <p>Para carregar o pacote <code>ggplot2</code>:</p>
@@ -312,25 +251,22 @@ Dica: o intervalo de confiança pode ser calculado por \(média \pm 1,96*\sqrt{\
 
 <p>Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:</p>
 
-<ul>
-<li><p>Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por <code>2.61*price*2.2</code>, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.</p></li>
+<ul><li><p>Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por <code>2.61*price*2.2</code>, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.</p></li>
 <li><p>Considere agora que, para importar um diamante diretamente dos EUA, uma transportadora cobre (em reais) <code>(carat*price*0.70)*2.61 + price*2.68</code>, já considerando o preço de compra do diamante. Adicione ao banco de dados uma coluna referente ao preço de cada diamante se importado diretamente.</p></li>
 <li><p>Faça um gráfico de dispersão do preço de venda no Brasil pelo preço de importação. Adicione a esse gráfico uma reta x=y para avaliar quais diamantes compensam ser importados diretamente.</p></li>
 <li><p>Mapeie a variável <em>clarity</em> ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável <em>color</em>.</p></li>
-</ul>
-
-<p><em>Dica</em>: para fazer a reta x=y, utilize a função <code>geom_abline()</code>.</p>
+</ul><p><em>Dica</em>: para fazer a reta x=y, utilize a função <code>geom_abline()</code>.</p>
 
 <h1>Desafios com bases de dados reais</h1>
 
 <p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code>.</p>
 
 <pre><code class="r"># verifica se o pacote devtools já está instalado e instala se não estiver
-if(!require(devtools)) install.packages(&#39;devtools&#39;)
+if(!require(devtools)) install.packages('devtools')
 
 # verifica se o pacote abjutils já está instalado e instala se não estiver
 # Como o pacote não está no CRAN, instalamos via github usando o comando do pacote devtools
-if(!require(abjutils)) devtools::install_github(&#39;abjur/abjutils&#39;)
+if(!require(abjutils)) devtools::install_github('abjur/abjutils')
 
 # OBS: O pacote abjutils já vai carregar as bibliotecas dplyr, stringr e lubridate
 </code></pre>
@@ -341,7 +277,7 @@ if(!require(abjutils)) devtools::install_github(&#39;abjur/abjutils&#39;)
 
 <p>Você pode carregar o banco de dados do PNUD rodando</p>
 
-<pre><code class="r">data(pnud_muni , package=&#39;abjutils&#39;)
+<pre><code class="r">data(pnud_muni , package='abjutils')
 </code></pre>
 
 <p><strong>1</strong> Refaça todas as análises do laboratório 1 usando <code>dplyr</code> e <code>ggplot2</code>.</p>
@@ -351,13 +287,13 @@ if(!require(abjutils)) devtools::install_github(&#39;abjur/abjutils&#39;)
 <p>Essa base de dados contém informações de países que fazem parte da Organização Mundial do Comércio (OMC, em inglês World Trade Organization - WTO). Para melhorar e facilitar o comércio internacional, muitas vezes os países que fazem parte da OMC realizam acordos, que chamamos de <em>coalizões</em>. Geralmente uma coalizão
 envolve muitos países ao mesmo tempo.</p>
 
-<pre><code class="r">data(wto_data , package=&#39;abjutils&#39;)
-data(wto_dyad_sample, package=&#39;abjutils&#39;)
+<pre><code class="r">data(wto_data , package='abjutils')
+data(wto_dyad_sample, package='abjutils')
 </code></pre>
 
 <p>A base de dados <code>wto_data</code> contém informações básicas de cada país, como PIB, PIB <em>per capita</em>, latitude, longitude, hemisfério, identificador de regime político, etc. O código do país é dado na variável <code>ccode</code></p>
 
-<p>A base de dados <code>wto_dyad_sample</code> contém, em cada linha, uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países (uma &quot;díade&quot; ou, em inglês, <em>dyad</em>). </p>
+<p>A base de dados <code>wto_dyad_sample</code> contém, em cada linha, uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países (uma "díade" ou, em inglês, <em>dyad</em>). </p>
 
 <p>Os países estão identificados pelas colunas <code>ccode1</code> e <code>ccode2</code> (analogamente à base <code>wto_data</code>). A coalizão é identificada <code>coalition</code>, que vale <code>1</code> se houve coalizão e <code>0</code> caso contrário. A coluna <code>ccoalition</code> é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).</p>
 
@@ -379,8 +315,7 @@ data(wto_dyad_sample, package=&#39;abjutils&#39;)
 
 <p>Montamos uma base de dados com todas as decisões encontradas no conselho. Nosso banco de dados tem, inicialmente, 264594 linhas e somente 9 colunas. As variáveis estão descritas abaixo:</p>
 
-<ul>
-<li><code>id</code>: número sequencial único para identificar cada acórdão.</li>
+<ul><li><code>id</code>: número sequencial único para identificar cada acórdão.</li>
 <li><code>n_processo</code>: número do processo. </li>
 <li><code>n_decisao</code>: número da decisão.</li>
 <li><code>ano</code>: ano em que o acórdão foi proferido (de acordo com o site do CARF).</li>
@@ -389,9 +324,7 @@ data(wto_dyad_sample, package=&#39;abjutils&#39;)
 <li><code>relator</code>: identifica o nome do relator, em texto livre.</li>
 <li><code>txt_ementa</code>: texto completo da ementa, em texto livre. Geralmente esse texto contém informações do tributo discutido, fundamentação da decisão e decisão.</li>
 <li><code>txt_decisao</code>: texto completo da decisão, em texto livre. Geralmente é uma parte da ementa, contendo apenas a parte relacionada à decisão, mas não é uma regra.</li>
-</ul>
-
-<p><strong>1</strong> Quantos processos temos na base de dados?</p>
+</ul><p><strong>1</strong> Quantos processos temos na base de dados?</p>
 
 <p><strong>2</strong> Construa um gráfico contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?</p>
 
@@ -399,12 +332,12 @@ data(wto_dyad_sample, package=&#39;abjutils&#39;)
 
 <p><strong>4</strong> Utilizando a função <code>str_detect()</code>, crie colunas (que valem <code>TRUE</code> ou <code>FALSE</code>) na base de dados de acordo com as expressões regulares abaixo.</p>
 
-<pre><code class="r">negar_provimento &lt;- &#39;negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido&#39;
-dar_provimento &lt;- &#39;dar?(do)? (o )?provimento|deu se (o )?provimento|recurso provido&#39;
-em_parte &lt;- &#39;em parte|parcial&#39;
-diligencia &lt;- &#39;diligencia&#39;
-nao_conhecer &lt;- &#39;conhec&#39;
-anular &lt;- &#39;nul(a|o|i)&#39;
+<pre><code class="r">negar_provimento &lt;- 'negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido'
+dar_provimento &lt;- 'dar?(do)? (o )?provimento|deu se (o )?provimento|recurso provido'
+em_parte &lt;- 'em parte|parcial'
+diligencia &lt;- 'diligencia'
+nao_conhecer &lt;- 'conhec'
+anular &lt;- 'nul(a|o|i)'
 </code></pre>
 
 <p><strong>5</strong> Faça um gráfico de barras mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que <code>tipo_recurso</code> é recurso voluntário.</p>
@@ -413,7 +346,7 @@ anular &lt;- &#39;nul(a|o|i)&#39;
 
 <p>Usando um <em>web crawler</em> desenvolvido em R, fizemos o download da base de dados da SABESP. Quem tiver interesse nesses dados, acesse <a href="https://github.com/jtrecenti/sabesp">aqui</a>.</p>
 
-<pre><code class="r">data(sabesp, package=&#39;abjutils&#39;)
+<pre><code class="r">data(sabesp, package='abjutils')
 </code></pre>
 
 <p><strong>1</strong> Descreva a base de dados.</p>
@@ -422,7 +355,7 @@ anular &lt;- &#39;nul(a|o|i)&#39;
 
 <p><strong>3</strong> Tente montar um gráfico parecido com esse (inclusive as cores e as labels inclinadas do eixo x). Não vale olhar o código do repositório no github!</p>
 
-<p><img src="https://raw.githubusercontent.com/jtrecenti/sabesp/master/sabesp_files/figure-html/unnamed-chunk-2-2.png"> </img></p>
+<p><img src="https://raw.githubusercontent.com/jtrecenti/sabesp/master/sabesp_files/figure-html/unnamed-chunk-2-2.png"></p>
 
 <p><strong>4</strong> Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.</p>
 
@@ -430,19 +363,14 @@ anular &lt;- &#39;nul(a|o|i)&#39;
 
               <div id="disqus_thread"></div>
             </li>
-          </ol>
-          <div class="pagination">
-            <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
-            </ul>
-          </div> 
+          </ol><div class="pagination">
+            <ul><li><a href="http://curso-r.github.io">« Back Home</a></li>
+            </ul></div> 
         </div>
 			</div>
 		</div>
   </div>
-</body>
-  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
+</body><script src="../libraries/frameworks/purus/js/bootstrap.min.js"></script><script>
       var disqus_developer = 1;
       var disqus_shortname = 'curso-r'; 
       // required: replace example with your forum shortname
@@ -454,31 +382,19 @@ anular &lt;- &#39;nul(a|o|i)&#39;
           (document.getElementsByTagName('head')[0] || 
            document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
-  <script type="text/x-mathjax-config">
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) --><script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         processEscapes: true
       }
     });
-  </script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script> -->
-  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
-</script>
-<!-- Google Prettify -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
-  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
-  <script>
+  </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> --><script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script><!-- Google Prettify --><script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script><script src="../libraries/highlighters/prettify/js/lang-r.js"></script><script>
     var pres = document.getElementsByTagName("pre");
     for (var i=0; i < pres.length; ++i) {
       pres[i].className = "prettyprint linenums";
     }
     prettyPrint();
-  </script>
-  <!-- End Google Prettify --> 
-  </html>
+  </script><!-- End Google Prettify --></html>

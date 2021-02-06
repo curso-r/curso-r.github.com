@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aula 04 - Manipulação de dados</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
-  <link rel="alternate" type="application/rss+xml" href="">
-  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
-  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
-  <!-- IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<html><head><title>Aula 04 - Manipulação de dados</title><meta http-equiv="refresh" content="0; URL=https://livro.curso-r.com"><link rel="canonical" href="https://livro.curso-r.com"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R"><link rel="shortcut icon" href="/assets/img/curso_r2.jpg"><link rel="alternate" type="application/rss+xml" href=""><link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet"><link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet"><!-- IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
-  <script>
+  <![endif]--><link href="http://fonts.googleapis.com/css?family=Raleway:400,600,200,800" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,52 +9,39 @@
     ga('create', 'UA-58167912-1', 'auto');
     ga('send', 'pageview');
   
-  </script>
-    <style>
+  </script><style>
 	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
 	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
 	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
     p {text-align: justify;}
-  </style>
-  <link rel="stylesheet" href = "../assets/css/custom.css">
-<link rel="stylesheet" href = "../assets/css/ribbons.css">
-
-</head>
-<body>
+  </style><link rel="stylesheet" href="../assets/css/custom.css"><link rel="stylesheet" href="../assets/css/ribbons.css"></head><body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="sidebar" class="span2">
 			  <div class="sidebar-nav sidebar-nav-fixed">
 			    <a href="https://github.com/ramnathv/poirot">
-      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
-        alt="Fork me on GitHub" 
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
-    </a>
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg%20"></a></p>
 				    <h3><a href="/">Curso R </a></h3>
 					  <p class="description">Do casual ao avançado</p>
 					</div>
-					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+					<ul id="links"><li><a href="http://curso-r.github.io/index.html">Home</a></li>
         <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
         <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
         <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
       
         <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
                       
-			    </ul>
-				</div>
+			    </ul></div>
 			</div>
-						<div id="content" class='span10'>
+						<div id="content" class="span10">
 				<div id="post-wrapper">
-          <ol id="posts">
-            <li class="post">
+          <ol id="posts"><li class="post">
               <h3>
                 <a href="#">Aula 04 - Manipulação de dados</a>
               </h3>
-              <span>2015-01-26</span><br/>
-               <a class='label label-success' href='posts/aula04.Rmd'>Source</a>
+              <span>2015-01-26</span><br><a class="label label-success" href="posts/aula04.Rmd">Source</a>
               
 <p><a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a></p>
 
@@ -105,7 +71,7 @@ pnud_muni
 <pre><code>## Source: local data frame [16,695 x 238]
 ## 
 ##    uf  ano codmun6 codmun7             municipio espvida fectot mort1
-## 1  11 1991  110001 1100015 ALTA FLORESTA D&#39;OESTE   62.01   4.08 45.58
+## 1  11 1991  110001 1100015 ALTA FLORESTA D'OESTE   62.01   4.08 45.58
 ## 2  11 1991  110002 1100023             ARIQUEMES   66.02   3.72 32.39
 ## 3  11 1991  110003 1100031                CABIXI   63.16   3.89 41.52
 ## 4  11 1991  110004 1100049                CACOAL   65.03   3.81 35.37
@@ -113,7 +79,7 @@ pnud_muni
 ## 6  11 1991  110006 1100064     COLORADO DO OESTE   64.46   3.38 37.19
 ## 7  11 1991  110007 1100072            CORUMBIARA   59.32   3.95 56.02
 ## 8  11 1991  110008 1100080         COSTA MARQUES   62.76   4.19 42.90
-## 9  11 1991  110009 1100098       ESPIGÃO D&#39;OESTE   64.18   3.84 38.09
+## 9  11 1991  110009 1100098       ESPIGÃO D'OESTE   64.18   3.84 38.09
 ## 10 11 1991  110010 1100106         GUAJARÁ-MIRIM   64.71   4.19 36.41
 ## .. ..  ...     ...     ...                   ...     ...    ...   ...
 ## Variables not shown: mort5 (dbl), razdep (dbl), sobre40 (dbl), sobre60
@@ -175,41 +141,29 @@ pnud_muni
 
 <h3>Filosofia do Hadley para análise de dados</h3>
 
-<p><img src="assets/fig/hadley_view.png" style="width: 800px;"/></p>
+<p><img src="assets/fig/hadley_view.png" style="width: 800px;"></p>
 
 <h3>As cinco funções principais do dplyr</h3>
 
-<ul>
-<li><code>filter</code></li>
+<ul><li><code>filter</code></li>
 <li><code>mutate</code></li>
 <li><code>select</code></li>
 <li><code>arrange</code></li>
 <li><code>summarise</code></li>
-</ul>
+</ul><h4>Características</h4>
 
-<h4>Características</h4>
-
-<ul>
-<li>O <em>input</em>  é sempre um <code>data.frame</code> (<code>tbl</code>), e o <em>output</em>  é sempre um <code>data.frame</code> (<code>tbl</code>).</li>
+<ul><li>O <em>input</em>  é sempre um <code>data.frame</code> (<code>tbl</code>), e o <em>output</em>  é sempre um <code>data.frame</code> (<code>tbl</code>).</li>
 <li>No primeiro argumento colocamos o <code>data.frame</code>, e nos outros argumentos colocamo o que queremos fazer.</li>
 <li>A utilização é facilitada com o emprego do operador <code>%&gt;%</code></li>
-</ul>
+</ul><h4>Vantagens</h4>
 
-<h4>Vantagens</h4>
-
-<ul>
-<li>Utiliza <code>C</code> e <code>C++</code> por trás da maioria das funções, o que geralmente torna o código mais eficiente.</li>
+<ul><li>Utiliza <code>C</code> e <code>C++</code> por trás da maioria das funções, o que geralmente torna o código mais eficiente.</li>
 <li>Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e <code>data.table</code>.</li>
-</ul>
+</ul><h2>select</h2>
 
-<h2>select</h2>
-
-<ul>
-<li>Utilizar <code>starts_with(x)</code>, <code>contains(x)</code>, <code>matches(x)</code>, <code>one_of(x)</code>, etc.</li>
+<ul><li>Utilizar <code>starts_with(x)</code>, <code>contains(x)</code>, <code>matches(x)</code>, <code>one_of(x)</code>, etc.</li>
 <li>Possível colocar nomes, índices, e intervalos de variáveis com <code>:</code>.</li>
-</ul>
-
-<pre><code class="r"># por indice (nao recomendavel!)
+</ul><pre><code class="r"># por indice (nao recomendavel!)
 pnud_muni %&gt;%
   select(1:10)
 </code></pre>
@@ -227,23 +181,20 @@ pnud_muni %&gt;%
 
 <pre><code class="r"># intervalos e funcoes auxiliares (para economizar trabalho)
 pnud_muni %&gt;%
-  select(ano:municipio, starts_with(&#39;idhm&#39;))
+  select(ano:municipio, starts_with('idhm'))
 </code></pre>
 
-<pre><code>## Error in select(., ano:municipio, starts_with(&quot;idhm&quot;)): unused arguments (ano:municipio, starts_with(&quot;idhm&quot;))
+<pre><code>## Error in select(., ano:municipio, starts_with("idhm")): unused arguments (ano:municipio, starts_with("idhm"))
 </code></pre>
 
 <h2>filter</h2>
 
-<ul>
-<li>Parecido com <code>subset</code>.</li>
+<ul><li>Parecido com <code>subset</code>.</li>
 <li>Condições separadas por vírgulas é o mesmo que separar por <code>&amp;</code>.</li>
-</ul>
-
-<pre><code class="r"># somente estado de SP, com IDH municipal maior que 80% no ano 2010
+</ul><pre><code class="r"># somente estado de SP, com IDH municipal maior que 80% no ano 2010
 pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
-  filter(ufn==&#39;São Paulo&#39;, idhm &gt; .8, ano==2010)
+  filter(ufn=='São Paulo', idhm &gt; .8, ano==2010)
 </code></pre>
 
 <pre><code>## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
@@ -252,7 +203,7 @@ pnud_muni %&gt;%
 <pre><code class="r"># mesma coisa que o anterior
 pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
-  filter(ufn==&#39;São Paulo&#39; &amp; idhm &gt; .8 &amp; ano==2010)
+  filter(ufn=='São Paulo' &amp; idhm &gt; .8 &amp; ano==2010)
 </code></pre>
 
 <pre><code>## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
@@ -270,7 +221,7 @@ pnud_muni %&gt;%
 <pre><code class="r"># %in%
 pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
-  filter(municipio %in% c(&#39;CAMPINAS&#39;, &#39;SÃO PAULO&#39;))
+  filter(municipio %in% c('CAMPINAS', 'SÃO PAULO'))
 </code></pre>
 
 <pre><code>## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
@@ -278,16 +229,13 @@ pnud_muni %&gt;%
 
 <h2>mutate</h2>
 
-<ul>
-<li>Parecido com <code>transform</code>, mas aceita várias novas colunas iterativamente.</li>
+<ul><li>Parecido com <code>transform</code>, mas aceita várias novas colunas iterativamente.</li>
 <li>Novas variáveis devem ter o mesmo <code>length</code> que o <code>nrow</code> do bd oridinal ou <code>1</code>.</li>
-</ul>
-
-<pre><code class="r">pnud_muni %&gt;%
+</ul><pre><code class="r">pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
   filter(ano==2010) %&gt;%
   mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, &#39;%&#39;))
+         idhm_porc_txt = paste(idhm_porc, '%'))
 </code></pre>
 
 <pre><code>## Error in select(., ano, ufn, municipio, idhm): unused arguments (ano, ufn, municipio, idhm)
@@ -295,23 +243,23 @@ pnud_muni %&gt;%
 
 <pre><code class="r"># media de idhm_l e idhm_e
 pnud_muni %&gt;%
-  select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+  select(ano, ufn, municipio, starts_with('idhm')) %&gt;%
   filter(ano==2010) %&gt;%
   mutate(idhm2 = (idhm_e + idhm_l)/2)
 </code></pre>
 
-<pre><code>## Error in select(., ano, ufn, municipio, starts_with(&quot;idhm&quot;)): unused arguments (ano, ufn, municipio, starts_with(&quot;idhm&quot;))
+<pre><code>## Error in select(., ano, ufn, municipio, starts_with("idhm")): unused arguments (ano, ufn, municipio, starts_with("idhm"))
 </code></pre>
 
 <pre><code class="r">## errado
 # pnud_muni %&gt;%
-#   select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+#   select(ano, ufn, municipio, starts_with('idhm')) %&gt;%
 #   filter(ano==2010) %&gt;%
 #   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
 
 ## uma alternativa (+ demorada)
 # pnud_muni %&gt;%
-#   select(ano, ufn, municipio, starts_with(&#39;idhm&#39;)) %&gt;%
+#   select(ano, ufn, municipio, starts_with('idhm')) %&gt;%
 #   filter(ano==2010) %&gt;%
 #   rowwise() %&gt;%
 #   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
@@ -319,16 +267,13 @@ pnud_muni %&gt;%
 
 <h2>arrange</h2>
 
-<ul>
-<li>Simplesmente ordena de acordo com as opções.</li>
+<ul><li>Simplesmente ordena de acordo com as opções.</li>
 <li>Utilizar <code>desc</code> para ordem decrescente.</li>
-</ul>
-
-<pre><code class="r">pnud_muni %&gt;%
+</ul><pre><code class="r">pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
   filter(ano==2010) %&gt;%
   mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, &#39;%&#39;)) %&gt;%
+         idhm_porc_txt = paste(idhm_porc, '%')) %&gt;%
   arrange(idhm)
 </code></pre>
 
@@ -339,7 +284,7 @@ pnud_muni %&gt;%
   select(ano, ufn, municipio, idhm) %&gt;%
   filter(ano==2010) %&gt;%
   mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, &#39;%&#39;)) %&gt;%
+         idhm_porc_txt = paste(idhm_porc, '%')) %&gt;%
   arrange(desc(idhm))
 </code></pre>
 
@@ -348,13 +293,10 @@ pnud_muni %&gt;%
 
 <h2>summarise</h2>
 
-<ul>
-<li>Retorna um vetor de tamanho <code>1</code> a partir de uma conta com as variáveis.</li>
+<ul><li>Retorna um vetor de tamanho <code>1</code> a partir de uma conta com as variáveis.</li>
 <li>Geralmente é utilizado em conjunto com <code>group_by</code>.</li>
 <li>Algumas funções importantes: <code>n()</code>, <code>n_distinct()</code>.</li>
-</ul>
-
-<pre><code class="r">pnud_muni %&gt;%
+</ul><pre><code class="r">pnud_muni %&gt;%
   filter(ano==2010) %&gt;%  
   group_by(ufn) %&gt;%
   summarise(n=n(), 
@@ -422,19 +364,13 @@ pnud_muni %&gt;%
 
 <h3>Sobre tidy data</h3>
 
-<ul>
-<li>Cada observação é uma linha do bd.</li>
+<ul><li>Cada observação é uma linha do bd.</li>
 <li>Cada variável é uma coluna do bd.</li>
 <li>Para cada unidade observacional temos um bd separado (possivelmente com chaves de associacao).</li>
-</ul>
+</ul><h3>spread</h3>
 
-<h3>spread</h3>
-
-<ul>
-<li>&quot;Joga&quot; uma variável nas colunas</li>
-</ul>
-
-<pre><code class="r">pnud_muni %&gt;%
+<ul><li>"Joga" uma variável nas colunas</li>
+</ul><pre><code class="r">pnud_muni %&gt;%
   group_by(ano, ufn) %&gt;%
   summarise(populacao=sum(popt)) %&gt;%
   ungroup() %&gt;%
@@ -459,59 +395,40 @@ pnud_muni %&gt;%
 
 <h3>gather</h3>
 
-<ul>
-<li>&quot;Empilha&quot; o banco de dados</li>
-</ul>
-
-<pre><code class="r">pnud_muni %&gt;%
+<ul><li>"Empilha" o banco de dados</li>
+</ul><pre><code class="r">pnud_muni %&gt;%
   filter(ano==2010) %&gt;%
-  select(ufn, municipio, starts_with(&#39;idhm_&#39;)) %&gt;%
-  gather(tipo_idh, idh, starts_with(&#39;idhm_&#39;))
+  select(ufn, municipio, starts_with('idhm_')) %&gt;%
+  gather(tipo_idh, idh, starts_with('idhm_'))
 </code></pre>
 
-<pre><code>## Error in select(., ufn, municipio, starts_with(&quot;idhm_&quot;)): unused arguments (ufn, municipio, starts_with(&quot;idhm_&quot;))
+<pre><code>## Error in select(., ufn, municipio, starts_with("idhm_")): unused arguments (ufn, municipio, starts_with("idhm_"))
 </code></pre>
 
 <h3>Funções auxiliares</h3>
 
-<ul>
-<li><code>unite</code> junta duas ou mais colunas usando algum separador (<code>_</code>, por exemplo).</li>
+<ul><li><code>unite</code> junta duas ou mais colunas usando algum separador (<code>_</code>, por exemplo).</li>
 <li><code>separate</code> faz o inverso de <code>unite</code>, e uma coluna em várias usando um separador.</li>
-</ul>
+</ul><h2>Um pouco mais de manipulação de dados</h2>
 
-<h2>Um pouco mais de manipulação de dados</h2>
-
-<ul>
-<li>Para juntar tabelas, usar <code>inner_join</code>, <code>left_join</code>, <code>anti_join</code>, etc.</li>
+<ul><li>Para juntar tabelas, usar <code>inner_join</code>, <code>left_join</code>, <code>anti_join</code>, etc.</li>
 <li>Para realizar operações mais gerais, usar <code>do</code>.</li>
 <li>Para retirar duplicatas, utilizar <code>distinct</code>.</li>
-</ul>
+</ul><h3>Outros pacotes úteis para limpar bases de dados</h3>
 
-<h3>Outros pacotes úteis para limpar bases de dados</h3>
-
-<ul>
-<li><code>stringr</code> para trabalhar com textos.</li>
+<ul><li><code>stringr</code> para trabalhar com textos.</li>
 <li><code>lubridate</code> para trabalhar com datas.</li>
 <li><code>rvest</code> para trabalhar com arquivos HTML.</li>
-</ul>
-
-<hr/ >
-
-              <div id="disqus_thread"></div>
+</ul><hr><div id="disqus_thread"></div>
             </li>
-          </ol>
-          <div class="pagination">
-            <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
-            </ul>
-          </div> 
+          </ol><div class="pagination">
+            <ul><li><a href="http://curso-r.github.io">« Back Home</a></li>
+            </ul></div> 
         </div>
 			</div>
 		</div>
   </div>
-</body>
-  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
+</body><script src="../libraries/frameworks/purus/js/bootstrap.min.js"></script><script>
       var disqus_developer = 1;
       var disqus_shortname = 'curso-r'; 
       // required: replace example with your forum shortname
@@ -523,31 +440,19 @@ pnud_muni %&gt;%
           (document.getElementsByTagName('head')[0] || 
            document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
-  <script type="text/x-mathjax-config">
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) --><script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         processEscapes: true
       }
     });
-  </script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script> -->
-  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
-</script>
-<!-- Google Prettify -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
-  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
-  <script>
+  </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> --><script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script><!-- Google Prettify --><script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script><script src="../libraries/highlighters/prettify/js/lang-r.js"></script><script>
     var pres = document.getElementsByTagName("pre");
     for (var i=0; i < pres.length; ++i) {
       pres[i].className = "prettyprint linenums";
     }
     prettyPrint();
-  </script>
-  <!-- End Google Prettify --> 
-  </html>
+  </script><!-- End Google Prettify --></html>

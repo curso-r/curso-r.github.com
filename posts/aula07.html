@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aula 07 - Modelando</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
-  <link rel="alternate" type="application/rss+xml" href="">
-  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
-  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
-  <!-- IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<html><head><title>Aula 07 - Modelando</title><meta http-equiv="refresh" content="0; URL=https://livro.curso-r.com"><link rel="canonical" href="https://livro.curso-r.com"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R"><link rel="shortcut icon" href="/assets/img/curso_r2.jpg"><link rel="alternate" type="application/rss+xml" href=""><link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet"><link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet"><!-- IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
-  <script>
+  <![endif]--><link href="http://fonts.googleapis.com/css?family=Raleway:400,600,200,800" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,52 +9,39 @@
     ga('create', 'UA-58167912-1', 'auto');
     ga('send', 'pageview');
   
-  </script>
-    <style>
+  </script><style>
 	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
 	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
 	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
     p {text-align: justify;}
-  </style>
-  <link rel="stylesheet" href = "../assets/css/custom.css">
-<link rel="stylesheet" href = "../assets/css/ribbons.css">
-
-</head>
-<body>
+  </style><link rel="stylesheet" href="../assets/css/custom.css"><link rel="stylesheet" href="../assets/css/ribbons.css"></head><body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="sidebar" class="span2">
 			  <div class="sidebar-nav sidebar-nav-fixed">
 			    <a href="https://github.com/ramnathv/poirot">
-      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
-        alt="Fork me on GitHub" 
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
-    </a>
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg%20"></a></p>
 				    <h3><a href="/">Curso R </a></h3>
 					  <p class="description">Do casual ao avançado</p>
 					</div>
-					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+					<ul id="links"><li><a href="http://curso-r.github.io/index.html">Home</a></li>
         <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
         <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
         <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
       
         <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
                       
-			    </ul>
-				</div>
+			    </ul></div>
 			</div>
-						<div id="content" class='span10'>
+						<div id="content" class="span10">
 				<div id="post-wrapper">
-          <ol id="posts">
-            <li class="post">
+          <ol id="posts"><li class="post">
               <h3>
                 <a href="#">Aula 07 - Modelando</a>
               </h3>
-              <span>2015-02-02</span><br/>
-               <a class='label label-success' href='posts/aula07.Rmd'>Source</a>
+              <span>2015-02-02</span><br><a class="label label-success" href="posts/aula07.Rmd">Source</a>
               
 <p><a href="http://curso-r.github.io/slides/aula_07_apresentacao.html" target="_blank">Slides dessa aula</a></p>
 
@@ -106,7 +72,7 @@ head(mtcars)
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 </code></pre>
 
-<pre><code class="r"># banco de dados das variáveis contínuas no formato &quot;longo&quot;
+<pre><code class="r"># banco de dados das variáveis contínuas no formato "longo"
 mtcars_long &lt;- mtcars %&gt;%  
   select(mpg, disp:qsec) %&gt;%
   gather(var_continuas) 
@@ -118,29 +84,29 @@ mtcars_long &lt;- mtcars %&gt;%
 <pre><code class="r"># medidas resumo para variáveis contínuas
 mtcars_long %&gt;%
   group_by(var_continuas) %&gt;%
-  summarise(&quot;N&quot; = n(),
-            &quot;Missing&quot; = sum(is.na(value)),
-            &quot;Media&quot; = mean(value),
-            &quot;DesvPad&quot; = sd(value),
-            &quot;Minimo&quot; = min(value),
-            &quot;Q1&quot; = quantile(value, 0.25),
-            &quot;Mediana&quot; = quantile(value, 0.50),
-            &quot;Q3&quot; = quantile(value, 0.75),
-            &quot;Maximo&quot; = max(value)) %&gt;%
+  summarise("N" = n(),
+            "Missing" = sum(is.na(value)),
+            "Media" = mean(value),
+            "DesvPad" = sd(value),
+            "Minimo" = min(value),
+            "Q1" = quantile(value, 0.25),
+            "Mediana" = quantile(value, 0.50),
+            "Q3" = quantile(value, 0.75),
+            "Maximo" = max(value)) %&gt;%
   mutate_each(funs(round(.,1)), -var_continuas)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;mtcars_long&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'mtcars_long' not found
 </code></pre>
 
 <pre><code class="r"># boxplots
 mtcars_long %&gt;%
   ggplot() +
   geom_boxplot(aes(x=1, y = value)) +
-  facet_wrap(~var_continuas, scales = &quot;free&quot;) 
+  facet_wrap(~var_continuas, scales = "free") 
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;mtcars_long&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'mtcars_long' not found
 </code></pre>
 
 <pre><code class="r"># frequencias de variáveis categóricas
@@ -152,7 +118,7 @@ mtcars_freq &lt;- mtcars %&gt;%
   summarise(freq = n()) %&gt;%
   group_by(vars_categoricas) %&gt;%
   mutate(prop = freq/sum(freq),
-         prop_txt = (prop*100) %&gt;% round(0) %&gt;% paste0(&quot;%&quot;))
+         prop_txt = (prop*100) %&gt;% round(0) %&gt;% paste0("%"))
 </code></pre>
 
 <pre><code>## Error in select(., cyl, vs:carb): unused arguments (cyl, vs:carb)
@@ -161,17 +127,17 @@ mtcars_freq &lt;- mtcars %&gt;%
 <pre><code class="r">mtcars_freq
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;mtcars_freq&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'mtcars_freq' not found
 </code></pre>
 
 <pre><code class="r"># Gráfico de barras
 mtcars_freq %&gt;%
   ggplot() +
-  geom_bar(aes(x=categoria, y = freq), position = &quot;dodge&quot;, stat = &quot;identity&quot;) +
-  facet_wrap(~vars_categoricas, scales=&quot;free&quot;)  
+  geom_bar(aes(x=categoria, y = freq), position = "dodge", stat = "identity") +
+  facet_wrap(~vars_categoricas, scales="free")  
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;mtcars_freq&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'mtcars_freq' not found
 </code></pre>
 
 <h3>Versus <code>mpg</code></h3>
@@ -231,20 +197,17 @@ ggplot(mtcars) +
   geom_abline(intercept = coeficientes[1], slope = coeficientes[2])
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
 
 <p><strong>summary()</strong></p>
 
 <p>A função <code>summary()</code> é uma função genérica que geralmente devolve um resumo de informações úteis de praticamente qualquer classe de objetos. Para objetos <code>lm()</code> ela devolve:</p>
 
-<ol>
-<li>Chamada do modelo</li>
+<ol><li>Chamada do modelo</li>
 <li>Medidas resumo dos resíduos</li>
 <li>Tabela de coeficientes, desvios padrão e testes T para hipótese nula de parâmetros iguais a zero.</li>
 <li>Média dos quadrados do resíduo e os respectivos graus de liberdade; \(R^2\) e \(R^2\) ajustado da regressão; Estatística F para qualidade do ajuste (comparação com o modelo com apenas o intercepto).</li>
-</ol>
-
-<pre><code class="r">summary(ajuste_lm)
+</ol><pre><code class="r">summary(ajuste_lm)
 </code></pre>
 
 <p><img src="assets/fig/summary_lm.png" alt="summary lm"></p>
@@ -260,7 +223,7 @@ par(mfrow = c(2,2))
 plot(ajuste_lm)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"></p>
 
 <pre><code class="r"># retorna ao normal
 par(mfrow = c(1,1))
@@ -288,7 +251,7 @@ anova(ajuste_lm_nulo, ajuste_lm)
 ## 1     31 1126.05                                  
 ## 2     30  278.32  1    847.73 91.375 1.294e-10 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </code></pre>
 
 <pre><code class="r"># Tabela de ANOVA, testa os termos sequencialmente
@@ -303,7 +266,7 @@ anova(ajuste_lm2)
 ## factor(cyl)  2  95.26   47.63   7.2856  0.002835 ** 
 ## Residuals   28 183.06    6.54                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </code></pre>
 
 <p>A o valor-p = 0.001064 indica que o modelo com <code>wt + cyl</code> trás melhorias significantes no poder explicativo do modelo quando comparado ao modelo com apenas <code>wt</code>. </p>
@@ -312,43 +275,23 @@ anova(ajuste_lm2)
 
 <p>Outros comandos úteis são:</p>
 
-<table><thead>
-<tr>
-<th align="center">Função</th>
+<table><thead><tr><th align="center">Função</th>
 <th align="center">Descrição</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center">confint()</td>
+</tr></thead><tbody><tr><td align="center">confint()</td>
 <td align="center">Intervalo de confiança para os parâmetros</td>
-</tr>
-<tr>
-<td align="center">resid()</td>
+</tr><tr><td align="center">resid()</td>
 <td align="center">Resíduos do modelo</td>
-</tr>
-<tr>
-<td align="center">fitted()</td>
+</tr><tr><td align="center">fitted()</td>
 <td align="center">Valores ajustados</td>
-</tr>
-<tr>
-<td align="center">AIC()</td>
+</tr><tr><td align="center">AIC()</td>
 <td align="center">Critério de informação de Akaike</td>
-</tr>
-<tr>
-<td align="center">model.matrix()</td>
+</tr><tr><td align="center">model.matrix()</td>
 <td align="center">Matriz de planejamento (matriz X) do modelo</td>
-</tr>
-<tr>
-<td align="center">linearHypotesis()</td>
+</tr><tr><td align="center">linearHypotesis()</td>
 <td align="center">Teste de combinações lineares de parâmetros</td>
-</tr>
-<tr>
-<td align="center">vcov()</td>
+</tr><tr><td align="center">vcov()</td>
 <td align="center">Matriz de variância-covariância dos parâmetros</td>
-</tr>
-</tbody></table>
-
-<h2>Fórmulas</h2>
+</tr></tbody></table><h2>Fórmulas</h2>
 
 <p>Objetos de classe <code>formula</code> possuem sintaxe muito conveniente para especificar o modelo estatístico que desejamos ajustar. O símbolo que define esses objetos é o <code>~</code>.</p>
 
@@ -415,71 +358,27 @@ Y_{ij} = \alpha_j + \beta_jX_{ij} + \epsilon_{ij},
 
 <p><strong>Tabela de simbolos para utilizar em fórmulas</strong></p>
 
-<table><thead>
-<tr>
-<th align="center">Símbolo</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center">+ X</td>
-</tr>
-<tr>
-<td align="center">- X</td>
-</tr>
-<tr>
-<td align="center">X * Z</td>
-</tr>
-<tr>
-<td align="center">X : Z</td>
-</tr>
-<tr>
-<td align="center">(X + Z + W)<sup>2</sup></td>
-</tr>
-<tr>
-<td align="center">I(X + Z)</td>
-</tr>
-<tr>
-<td align="center">X - 1</td>
-</tr>
-<tr>
-<td align="center">.</td>
-</tr>
-</tbody></table>
+<table><thead><tr><th align="center">Símbolo</th>
+</tr></thead><tbody><tr><td align="center">+ X</td>
+</tr><tr><td align="center">- X</td>
+</tr><tr><td align="center">X * Z</td>
+</tr><tr><td align="center">X : Z</td>
+</tr><tr><td align="center">(X + Z + W)<sup>2</sup></td>
+</tr><tr><td align="center">I(X + Z)</td>
+</tr><tr><td align="center">X - 1</td>
+</tr><tr><td align="center">.</td>
+</tr></tbody></table><p>Table: Table continues below</p>
 
-<p>Table: Table continues below</p>
-
-<table><thead>
-<tr>
-<th align="center">Descrição</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center">inclui a variável X</td>
-</tr>
-<tr>
-<td align="center">retira a variável X</td>
-</tr>
-<tr>
-<td align="center">inclui X, Z e a interação entre elas</td>
-</tr>
-<tr>
-<td align="center">inclui apenas o componente de interação entre X e Z</td>
-</tr>
-<tr>
-<td align="center">inclui X, Z, W e as interações 2 a 2</td>
-</tr>
-<tr>
-<td align="center">Função identidade. Inclui uma variável construída pela soma de X com Z</td>
-</tr>
-<tr>
-<td align="center">Remove o intercepto (regressão passando pela origem)</td>
-</tr>
-<tr>
-<td align="center">O ponto representa &#39;todas as demais variáveis&#39;</td>
-</tr>
-</tbody></table>
-
-<h2>Seleção de variáveis</h2>
+<table><thead><tr><th align="center">Descrição</th>
+</tr></thead><tbody><tr><td align="center">inclui a variável X</td>
+</tr><tr><td align="center">retira a variável X</td>
+</tr><tr><td align="center">inclui X, Z e a interação entre elas</td>
+</tr><tr><td align="center">inclui apenas o componente de interação entre X e Z</td>
+</tr><tr><td align="center">inclui X, Z, W e as interações 2 a 2</td>
+</tr><tr><td align="center">Função identidade. Inclui uma variável construída pela soma de X com Z</td>
+</tr><tr><td align="center">Remove o intercepto (regressão passando pela origem)</td>
+</tr><tr><td align="center">O ponto representa 'todas as demais variáveis'</td>
+</tr></tbody></table><h2>Seleção de variáveis</h2>
 
 <h3>linearHypothesis</h3>
 
@@ -504,7 +403,7 @@ linearHypothesis(ajuste_lm, c(0,1))
 ## 1     31 1126.05                                  
 ## 2     30  278.32  1    847.73 91.375 1.294e-10 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </code></pre>
 
 <h3>stepwise</h3>
@@ -515,7 +414,7 @@ linearHypothesis(ajuste_lm, c(0,1))
 ajuste_lm_completo &lt;- lm(mpg ~ ., data = mtcars)
 
 # modelo forward
-step(ajuste_lm_completo, direction = &quot;forward&quot;)
+step(ajuste_lm_completo, direction = "forward")
 </code></pre>
 
 <pre><code>## Start:  AIC=70.9
@@ -535,7 +434,7 @@ step(ajuste_lm_completo, direction = &quot;forward&quot;)
 </code></pre>
 
 <pre><code class="r"># modelo backward
-step(ajuste_lm_completo, direction = &quot;backward&quot;)
+step(ajuste_lm_completo, direction = "backward")
 </code></pre>
 
 <pre><code>## Start:  AIC=70.9
@@ -649,7 +548,7 @@ step(ajuste_lm_completo, direction = &quot;backward&quot;)
 </code></pre>
 
 <pre><code class="r"># modelo both
-step(ajuste_lm_completo, direction = &quot;both&quot;)
+step(ajuste_lm_completo, direction = "both")
 </code></pre>
 
 <pre><code>## Start:  AIC=70.9
@@ -813,39 +712,21 @@ Y_i \sim F(\mu_i, \phi)
 
 <h3>Famílias de distribuições</h3>
 
-<table><thead>
-<tr>
-<th align="center">Family</th>
+<table><thead><tr><th align="center">Family</th>
 <th align="center">Link</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center">gaussian</td>
+</tr></thead><tbody><tr><td align="center">gaussian</td>
 <td align="center">identity</td>
-</tr>
-<tr>
-<td align="center">binomial</td>
+</tr><tr><td align="center">binomial</td>
 <td align="center">logit, probit, cloglog</td>
-</tr>
-<tr>
-<td align="center">poisson</td>
+</tr><tr><td align="center">poisson</td>
 <td align="center">log, identity, sqrt</td>
-</tr>
-<tr>
-<td align="center">Gamma</td>
+</tr><tr><td align="center">Gamma</td>
 <td align="center">inverse, identity, log</td>
-</tr>
-<tr>
-<td align="center">inverse.gaussian</td>
+</tr><tr><td align="center">inverse.gaussian</td>
 <td align="center">1/mu<sup>2</sup></td>
-</tr>
-<tr>
-<td align="center">quasi</td>
+</tr><tr><td align="center">quasi</td>
 <td align="center">definido pelo usuário</td>
-</tr>
-</tbody></table>
-
-<h3>Ajuste do modelo</h3>
+</tr></tbody></table><h3>Ajuste do modelo</h3>
 
 <pre><code class="r">ajuste_glm &lt;- glm(resposta ~ explicativas, data = dados, family = distribuicao)
 </code></pre>
@@ -859,7 +740,7 @@ Y_i \sim F(\mu_i, \phi)
 
 <p>Repare que agora existe a parte <code>(link = funcao_de_ligacao)</code> depois do nome da distribuição escolhida. É comum trocar a ligação <code>inversa</code> de uma regressão Gama para uma ligação <code>log</code>, por exemplo. Em R, ficaria:</p>
 
-<pre><code class="r">ajuste_gama &lt;- glm(Y ~ X + I(X^2) + Z, data = dados, family = Gamma(link = &quot;log&quot;))
+<pre><code class="r">ajuste_gama &lt;- glm(Y ~ X + I(X^2) + Z, data = dados, family = Gamma(link = "log"))
 </code></pre>
 
 <p>Todas as funções úteis para <code>lm()</code> continuam sendo úteis para <code>glm()</code>.</p>
@@ -872,15 +753,15 @@ Y_i \sim F(\mu_i, \phi)
 
 <pre><code class="r">mtcars %&gt;%
   group_by(am) %&gt;%
-  summarise(&quot;N&quot; = n(),
-            &quot;Missing&quot; = sum(is.na(wt)),
-            &quot;Media&quot; = mean(wt),
-            &quot;DesvPad&quot; = sd(wt),
-            &quot;Minimo&quot; = min(wt),
-            &quot;Q1&quot; = quantile(wt, 0.25),
-            &quot;Mediana&quot; = quantile(wt, 0.50),
-            &quot;Q3&quot; = quantile(wt, 0.75),
-            &quot;Maximo&quot; = max(wt)) %&gt;%
+  summarise("N" = n(),
+            "Missing" = sum(is.na(wt)),
+            "Media" = mean(wt),
+            "DesvPad" = sd(wt),
+            "Minimo" = min(wt),
+            "Q1" = quantile(wt, 0.25),
+            "Mediana" = quantile(wt, 0.50),
+            "Q3" = quantile(wt, 0.75),
+            "Maximo" = max(wt)) %&gt;%
   mutate_each(funs(round(.,1)), -am)
 </code></pre>
 
@@ -895,7 +776,7 @@ Y_i \sim F(\mu_i, \phi)
   geom_boxplot(aes(x = factor(am), y = wt))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"></p>
 
 <h4>Ajuste</h4>
 
@@ -917,7 +798,7 @@ summary(ajuste_glm)
 ## (Intercept)   12.040      4.510   2.670  0.00759 **
 ## wt            -4.024      1.436  -2.801  0.00509 **
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -940,13 +821,13 @@ summary(ajuste_glm)
 <p>Por padrão, a função de ligação da distribuição <code>binomial</code> é a <code>logit</code>. Se quisermos usar a função <code>probit</code>, precisamos especificar isto no parâmetro <code>family</code>.</p>
 
 <pre><code class="r"># Ligaçao probit
-ajuste_glm_probit &lt;- glm(am ~ wt, data = mtcars, family = binomial(link = &quot;probit&quot;))
+ajuste_glm_probit &lt;- glm(am ~ wt, data = mtcars, family = binomial(link = "probit"))
 summary(ajuste_glm_probit)
 </code></pre>
 
 <pre><code>## 
 ## Call:
-## glm(formula = am ~ wt, family = binomial(link = &quot;probit&quot;), data = mtcars)
+## glm(formula = am ~ wt, family = binomial(link = "probit"), data = mtcars)
 ## 
 ## Deviance Residuals: 
 ##      Min        1Q    Median        3Q       Max  
@@ -957,7 +838,7 @@ summary(ajuste_glm_probit)
 ## (Intercept)   6.7264     2.2684   2.965  0.00302 **
 ## wt           -2.2578     0.7197  -3.137  0.00171 **
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -972,17 +853,17 @@ summary(ajuste_glm_probit)
 
 <pre><code class="r">ggplot(mtcars, aes(x=wt, y=am)) + 
   geom_point() + 
-  stat_smooth(aes(colour = &quot;Logit&quot;), method=&quot;glm&quot;, family=binomial, se=FALSE) +
-  stat_smooth(aes(colour = &quot;Probit&quot;), method=&quot;glm&quot;, family=binomial(link = &quot;probit&quot;), se=FALSE) +
-  stat_smooth(aes(colour = &quot;Complementar Log-Log&quot;), method=&quot;glm&quot;, family=binomial(link = &quot;cloglog&quot;), se=FALSE) +
-  labs(colour = &quot;Função de ligação&quot;)
+  stat_smooth(aes(colour = "Logit"), method="glm", family=binomial, se=FALSE) +
+  stat_smooth(aes(colour = "Probit"), method="glm", family=binomial(link = "probit"), se=FALSE) +
+  stat_smooth(aes(colour = "Complementar Log-Log"), method="glm", family=binomial(link = "cloglog"), se=FALSE) +
+  labs(colour = "Função de ligação")
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"></p>
 
 <p>O teste Chi quadrado pode ser mais indicado para regressão logística.</p>
 
-<pre><code class="r">anova(ajuste_glm, test=&quot;Chisq&quot;)
+<pre><code class="r">anova(ajuste_glm, test="Chisq")
 </code></pre>
 
 <pre><code>## Analysis of Deviance Table
@@ -998,7 +879,7 @@ summary(ajuste_glm_probit)
 ## NULL                    31     43.230              
 ## wt    1   24.054        30     19.176 9.369e-07 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </code></pre>
 
 <h3>Análise de diagnóstico</h3>
@@ -1009,7 +890,7 @@ summary(ajuste_glm_probit)
 
 <p>Quando uma mesma unidade observacional é medida várias vezes em diferentes contextos, temos em mãos um problema de medidas repetidas. Em particular, quando essas medidas são realizadas ao longo do tempo, temos um problema de dados longitudinais.</p>
 
-<p>A dificuldade desses tipos de estudo está no fato de que, como o mesmo indivíduo é observado em vários momentos, nem sempre é razoável considerar essas medidas como independentes. Por exemplo, se estou acompanhando o crescimento da massa de ovelhas ao longo do tempo, esperamos que a ovelha mais &quot;gordinha&quot; tende a ser sempre a mais gordinha.</p>
+<p>A dificuldade desses tipos de estudo está no fato de que, como o mesmo indivíduo é observado em vários momentos, nem sempre é razoável considerar essas medidas como independentes. Por exemplo, se estou acompanhando o crescimento da massa de ovelhas ao longo do tempo, esperamos que a ovelha mais "gordinha" tende a ser sempre a mais gordinha.</p>
 
 <p>Para resolver isso, geralmente impomos uma <em>estrutura de correlação</em> para observações de um mesmo indivíduo, e uma maneira de impor essa estrutura de correlação é realizar uma análise com efeitos mistos.</p>
 
@@ -1024,7 +905,7 @@ summary(ajuste_glm_probit)
 <p>Vamos ilustrar com os seguintes dados. Na base de dados <code>sleep</code>, temos medido o efeito de duas diferentes drogas aplicadas a 10 indivíduos (as duas drogas foram aplicadas nos 10 indivíduos) no tempo de sono. Queremos verificar se as drogas tiveram efeitos distintos.</p>
 
 <pre><code class="r">sleep %&gt;%
-  mutate(group=paste0(&#39;droga_&#39;, group)) %&gt;%
+  mutate(group=paste0('droga_', group)) %&gt;%
   spread(group, extra)
 </code></pre>
 
@@ -1048,12 +929,12 @@ summary(ajuste_glm_probit)
   theme_bw()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
+<p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"></p>
 
 <p>Teste t pareado</p>
 
 <pre><code class="r">aux &lt;- sleep %&gt;%
-  mutate(group=paste0(&#39;droga_&#39;, group)) %&gt;%
+  mutate(group=paste0('droga_', group)) %&gt;%
   spread(group, extra)
 
 t.test(aux$droga_1, aux$droga_2, paired=TRUE)
@@ -1084,7 +965,7 @@ modelo &lt;- lmer(extra ~ group + 1|ID, data=sleep)
 <pre><code class="r">summary(modelo)
 </code></pre>
 
-<pre><code>## Error in summary(modelo): object &#39;modelo&#39; not found
+<pre><code>## Error in summary(modelo): object 'modelo' not found
 </code></pre>
 
 <p>A parte <code>1|ID</code> indica que o indivíduo é ID e que estamos incluindo um efeito aleatório para ele.</p>
@@ -1114,7 +995,7 @@ summary(ajuste_tree)
 text(ajuste_tree, pretty = 0)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-33-1.png" alt="plot of chunk unnamed-chunk-33"> </p>
+<p><img src="assets/fig/unnamed-chunk-33-1.png" alt="plot of chunk unnamed-chunk-33"></p>
 
 <p>Tabelas de observado versus predito: comparação entre os modelos logístico e árvore.</p>
 
@@ -1122,12 +1003,12 @@ text(ajuste_tree, pretty = 0)
 table(mtcars$am, predict(ajuste_glm) &gt; 0.5)
 
 # Árvore
-table(mtcars$am, predict(ajuste_tree)[,&quot;1&quot;] &gt; 0.5)
+table(mtcars$am, predict(ajuste_tree)[,"1"] &gt; 0.5)
 </code></pre>
 
 <h2>Cross-validation</h2>
 
-<p>Árvores tendem a &quot;super-ajustar&quot; (<em>overfit</em>) o modelo. Para este problema, <em>cross-validation</em> é uma boa prática. Essa técnica consiste em reservar parte da base separada para depois ser usada como régua para o poder preditivo do modelo.</p>
+<p>Árvores tendem a "super-ajustar" (<em>overfit</em>) o modelo. Para este problema, <em>cross-validation</em> é uma boa prática. Essa técnica consiste em reservar parte da base separada para depois ser usada como régua para o poder preditivo do modelo.</p>
 
 <p>Para fazer isso é muito fácil com a função <code>cv.tree()</code>. Basta passar seu modelo ajustado para ela:</p>
 
@@ -1136,7 +1017,7 @@ cv_tree &lt;- cv.tree(ajuste_tree)
 plot(cv_tree)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
+<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"></p>
 
 <p>O gráfico mostra qual tamanho da árvore que apresentou o menor erro de predição. No nosso caso foi tamanho <code>2</code>.</p>
 
@@ -1149,13 +1030,13 @@ plot(melhor_tree)
 text(melhor_tree, pretty = 0)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"></p>
 
 <pre><code class="r"># oservado versus predito
-table(mtcars$am, predict(melhor_tree)[,&quot;1&quot;] &gt; 0.5)
+table(mtcars$am, predict(melhor_tree)[,"1"] &gt; 0.5)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;ajuste_tree&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'ajuste_tree' not found
 </code></pre>
 
 <p>O modelo <code>melhor_tree</code> coincidiu com o <code>ajuste_tree</code> (que tinha tamanho <code>5</code>) quanto ao seu desempenho em prever, porém é muito mais simples. De fato ele é mais simples do que qualquer modelo feito até aqui.</p>
@@ -1168,7 +1049,7 @@ table(mtcars$am, predict(melhor_tree)[,&quot;1&quot;] &gt; 0.5)
 
 <p><strong>split</strong></p>
 
-<p>O parâmetro <code>split</code> define qual o critério para decidir se divide o &quot;galho&quot; ou não. Por padrão, a função utiliza o critério &quot;deviance&quot;, que tem a mesma definição do MLG. Uma segunda opção seria <strong>Gini</strong>.</p>
+<p>O parâmetro <code>split</code> define qual o critério para decidir se divide o "galho" ou não. Por padrão, a função utiliza o critério "deviance", que tem a mesma definição do MLG. Uma segunda opção seria <strong>Gini</strong>.</p>
 
 <p><strong>control</strong></p>
 
@@ -1176,21 +1057,18 @@ table(mtcars$am, predict(melhor_tree)[,&quot;1&quot;] &gt; 0.5)
 
 <p>Esta função permite você configurar:</p>
 
-<ul>
-<li><code>nobs</code> Número de observações na base de treino. Isso será efetivo no <code>cv.tree()</code>, quando uma base de treino e outra de teste é utilizada para calcular o erro de predição por meio de <em>cross-validation</em>.</li>
+<ul><li><code>nobs</code> Número de observações na base de treino. Isso será efetivo no <code>cv.tree()</code>, quando uma base de treino e outra de teste é utilizada para calcular o erro de predição por meio de <em>cross-validation</em>.</li>
 <li><code>mincut</code> Número mínimo de observações a serem incluídas em cada nó.</li>
 <li><code>minsize</code> O menor tamanho de nó permitido.</li>
 <li><code>mindev</code> Fração mínima do deviance do nó raiz.</li>
-</ul>
-
-<p>Como passar à função:</p>
+</ul><p>Como passar à função:</p>
 
 <pre><code class="r">controles &lt;- tree.control(nobs = 32, mincut = 10)
 ajuste_tree &lt;- ajuste_tree &lt;- tree(factor(am) ~ wt, data = mtcars, control = controles)
 plot(ajuste_tree);text(ajuste_tree, pretty = 0)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"></p>
 
 <h1>Análise multivariada</h1>
 
@@ -1198,7 +1076,7 @@ plot(ajuste_tree);text(ajuste_tree, pretty = 0)
 
 <p>Análise de agrupamento geralmente é uma ótima maneira de realizar estudos preliminares em uma base de dados, e algumas vezes pode trazer resultados muito úteis.</p>
 
-<p>Como o próprio nome diz, geralmente a análise de agrupamento serve para formar grupos de indivíduos a partir da comparação das suas medidas em relação à diversas variáveis. Não confunda aqui com árvores de decisão, pois nesse caso não há uma variável &quot;resposta&quot;.</p>
+<p>Como o próprio nome diz, geralmente a análise de agrupamento serve para formar grupos de indivíduos a partir da comparação das suas medidas em relação à diversas variáveis. Não confunda aqui com árvores de decisão, pois nesse caso não há uma variável "resposta".</p>
 
 <p>Existem dois tipos principais de análise de agrupamento: <em>hierárquico</em> e <em>k-means</em>. </p>
 
@@ -1239,8 +1117,8 @@ kms
 ## 
 ## Available components:
 ## 
-## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
-## [9] &quot;ifault&quot;
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"        
+## [9] "ifault"
 </code></pre>
 
 <h3>Hierárquico</h3>
@@ -1255,22 +1133,22 @@ kms
 str(d)
 </code></pre>
 
-<pre><code>## Class &#39;dist&#39;  atomic [1:496] 0.615 54.909 98.113 210.337 65.472 ...
-##   ..- attr(*, &quot;Size&quot;)= int 32
-##   ..- attr(*, &quot;Labels&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
-##   ..- attr(*, &quot;Diag&quot;)= logi FALSE
-##   ..- attr(*, &quot;Upper&quot;)= logi FALSE
-##   ..- attr(*, &quot;method&quot;)= chr &quot;euclidean&quot;
-##   ..- attr(*, &quot;call&quot;)= language dist(x = mtcars)
+<pre><code>## Class 'dist'  atomic [1:496] 0.615 54.909 98.113 210.337 65.472 ...
+##   ..- attr(*, "Size")= int 32
+##   ..- attr(*, "Labels")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+##   ..- attr(*, "Diag")= logi FALSE
+##   ..- attr(*, "Upper")= logi FALSE
+##   ..- attr(*, "method")= chr "euclidean"
+##   ..- attr(*, "call")= language dist(x = mtcars)
 </code></pre>
 
-<pre><code class="r">hc &lt;- hclust(d, method=&#39;ward.D&#39;)
+<pre><code class="r">hc &lt;- hclust(d, method='ward.D')
 hc
 </code></pre>
 
 <pre><code>## 
 ## Call:
-## hclust(d = d, method = &quot;ward.D&quot;)
+## hclust(d = d, method = "ward.D")
 ## 
 ## Cluster method   : ward.D 
 ## Distance         : euclidean 
@@ -1280,7 +1158,7 @@ hc
 <pre><code class="r">plot(hc)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"></p>
 
 <p>No método hierárquico, portanto, geralmente precisamos tomar 2 decisões para rodar a análise e construir o dendrograma: i) o método para obtenção da matriz de distâncias e o método para ordenação das aglomerações.</p>
 
@@ -1292,13 +1170,13 @@ hc
 
 <p>Para realizar análise fatorial, vamos utilizar a função <code>factanal</code> do pacote <code>stats</code>. Essa função realiza análise fatorial usando método de máxima verossimilhança. Podemos utilizar outros métodos, como decomposição espectral (autovalor e autovetor), geralmente utilizada em <em>análise de componentes principais</em>.</p>
 
-<pre><code class="r">fa &lt;- factanal(mtcars, factors=3, rotation=&#39;none&#39;)
+<pre><code class="r">fa &lt;- factanal(mtcars, factors=3, rotation='none')
 fa
 </code></pre>
 
 <pre><code>## 
 ## Call:
-## factanal(x = mtcars, factors = 3, rotation = &quot;none&quot;)
+## factanal(x = mtcars, factors = 3, rotation = "none")
 ## 
 ## Uniquenesses:
 ##   mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb 
@@ -1336,11 +1214,11 @@ ggplot(pesos, aes(x=Factor1, y=Factor2)) +
   coord_equal()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40"> </p>
+<p><img src="assets/fig/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40"></p>
 
 <p>Na análise fatorial, podemos realizar também a <em>rotação</em> dos fatores obtidos, para tentar isolar os componentes de cada fator, facilitando a interpretação dos fatores. O método mais comum para realizar a rotação é pelo método <code>varimax</code>.</p>
 
-<pre><code class="r">fa &lt;- factanal(mtcars, factors=3, rotation=&#39;varimax&#39;)
+<pre><code class="r">fa &lt;- factanal(mtcars, factors=3, rotation='varimax')
 
 pesos &lt;- fa$loadings[,1:3] %&gt;% data.frame %&gt;% mutate(nomes=rownames(.))
 ggplot(pesos, aes(x=Factor1, y=Factor2)) +
@@ -1350,7 +1228,7 @@ ggplot(pesos, aes(x=Factor1, y=Factor2)) +
   coord_equal()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
+<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"></p>
 
 <p>A análise fatorial tem muito mais detalhes que foram omitidos. Para um tutorial rápido, ver no <a href="http://www.statmethods.net/advstats/factor.html">Quick-R</a>.</p>
 
@@ -1358,7 +1236,7 @@ ggplot(pesos, aes(x=Factor1, y=Factor2)) +
 
 <p>Quando temos uma base de dados com muitas variáveis categóticas, geralmente é difícil analisá-las em conjunto, e muitas vezes ficamos fazendo um monte de tabelas de contingência, o que pode ser doloroso.</p>
 
-<p>A análise de correspondência múltipla pode ser considerada como uma espécie de <em>análise de componentes principais</em> para dados categóricos. Ela serve para dar uma &quot;visão geral&quot; da base de dados, reduzindo a dimensionalidade da base e visualizando as associações das variáveis em apenas um gráfico.</p>
+<p>A análise de correspondência múltipla pode ser considerada como uma espécie de <em>análise de componentes principais</em> para dados categóricos. Ela serve para dar uma "visão geral" da base de dados, reduzindo a dimensionalidade da base e visualizando as associações das variáveis em apenas um gráfico.</p>
 
 <p>Para realizar a análise, vamos utilizar a função <code>MCA</code> do pacote <code>FactoMineR</code>. Esse pacote, aliás, contém diversos métodos para realização de análises multivariadas.</p>
 
@@ -1367,7 +1245,7 @@ ggplot(pesos, aes(x=Factor1, y=Factor2)) +
 <pre><code class="r">library(FactoMiner)
 </code></pre>
 
-<pre><code>## Error in library(FactoMiner): there is no package called &#39;FactoMiner&#39;
+<pre><code>## Error in library(FactoMiner): there is no package called 'FactoMiner'
 </code></pre>
 
 <pre><code class="r">data(tea)
@@ -1382,14 +1260,14 @@ newtea &lt;- tea %&gt;% select(Tea, How, how, sugar, where, always) %&gt;% tbl_d
 <pre><code class="r">newtea
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;newtea&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'newtea' not found
 </code></pre>
 
 <pre><code class="r"># numero de niveis de cada variavel
 cats &lt;- newtea %&gt;% summarise_each(funs(length(unique(.))))
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;newtea&#39; not found
+<pre><code>## Error in eval(expr, envir, enclos): object 'newtea' not found
 </code></pre>
 
 <pre><code class="r">cats
@@ -1546,7 +1424,7 @@ cats &lt;- newtea %&gt;% summarise_each(funs(length(unique(.))))
 mca &lt;- MCA(newtea, graph = FALSE)
 </code></pre>
 
-<pre><code>## Error in as.data.frame(X): object &#39;newtea&#39; not found
+<pre><code>## Error in as.data.frame(X): object 'newtea' not found
 </code></pre>
 
 <pre><code class="r"># Coordenadas das variaveis
@@ -1554,53 +1432,47 @@ mca1_vars_df &lt;- data.frame(mca$var$coord, variavel=rep(names(cats), cats), st
   mutate(rnames=row.names(.))
 </code></pre>
 
-<pre><code>## Error in mca$var: object of type &#39;closure&#39; is not subsettable
+<pre><code>## Error in mca$var: object of type 'closure' is not subsettable
 </code></pre>
 
 <pre><code class="r"># Coordenadas das observacoes
 mca1_obs_df &lt;- data.frame(mca$ind$coord)
 </code></pre>
 
-<pre><code>## Error in mca$ind: object of type &#39;closure&#39; is not subsettable
+<pre><code>## Error in mca$ind: object of type 'closure' is not subsettable
 </code></pre>
 
 <pre><code class="r"># Um gráfico bonito
 ggplot() +
-  geom_hline(yintercept = 0, colour = &quot;gray70&quot;) +
-  geom_vline(xintercept = 0, colour = &quot;gray70&quot;) +
+  geom_hline(yintercept = 0, colour = "gray70") +
+  geom_vline(xintercept = 0, colour = "gray70") +
   geom_text(aes(x=Dim.1, y=Dim.2, colour=variavel, label=rnames), data=mca1_vars_df) +
-  geom_point(aes(x=Dim.1, y=Dim.2), colour = &quot;gray50&quot;, alpha = 0.7, data=mca1_obs_df) +
-  geom_density2d(aes(x=Dim.1, y=Dim.2), colour = &quot;gray80&quot;, data=mca1_obs_df)
+  geom_point(aes(x=Dim.1, y=Dim.2), colour = "gray50", alpha = 0.7, data=mca1_obs_df) +
+  geom_density2d(aes(x=Dim.1, y=Dim.2), colour = "gray80", data=mca1_obs_df)
 </code></pre>
 
-<pre><code>## Error in do.call(&quot;layer&quot;, list(mapping = mapping, data = data, stat = stat, : object &#39;mca1_vars_df&#39; not found
+<pre><code>## Error in do.call("layer", list(mapping = mapping, data = data, stat = stat, : object 'mca1_vars_df' not found
 </code></pre>
 
 <p>O gráfico mostra várias coisas de uma vez só. </p>
 
-<ul>
-<li>A dispersão mostra as dimensões calculadas pelo método de análise de correspondência múltipla. </li>
+<ul><li>A dispersão mostra as dimensões calculadas pelo método de análise de correspondência múltipla. </li>
 <li>As curvas de nível mostram a concentração dos dados.</li>
 <li>Os textos são os níveis das variáveis, identificados pela cor.</li>
-</ul>
-
-<p>Nesse caso, verificamos, por exemplo, que pode existir uma associação entre <code>how</code> e <code>where</code>, pois &quot;tea bag&quot; está muito próximo de &quot;chain store&quot;.</p>
+</ul><p>Nesse caso, verificamos, por exemplo, que pode existir uma associação entre <code>how</code> e <code>where</code>, pois "tea bag" está muito próximo de "chain store".</p>
 
 <p><strong>OBS:</strong> Baseado no excelente post de <a href="http://gastonsanchez.com/blog/how-to/2012/10/13/MCA-in-R.html">Gaston Sanchez</a>.</p>
 
 <h1>Demais tópicos</h1>
 
-<ul>
-<li>Séries temporais</li>
+<ul><li>Séries temporais</li>
 <li>Dados categorizados</li>
 <li>GAM/GAMLSS</li>
 <li>Inferência Bayesiana</li>
 <li>Processos estocásticos</li>
 <li>Reamostragem</li>
 <li>Muito mais!</li>
-</ul>
-
-<h1>Referências</h1>
+</ul><h1>Referências</h1>
 
 <p><a href="http://www-bcf.usc.edu/%7Egareth/ISL/ISLR%20First%20Printing.pdf">http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf</a></p>
 
@@ -1616,19 +1488,14 @@ ggplot() +
 
               <div id="disqus_thread"></div>
             </li>
-          </ol>
-          <div class="pagination">
-            <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
-            </ul>
-          </div> 
+          </ol><div class="pagination">
+            <ul><li><a href="http://curso-r.github.io">« Back Home</a></li>
+            </ul></div> 
         </div>
 			</div>
 		</div>
   </div>
-</body>
-  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
+</body><script src="../libraries/frameworks/purus/js/bootstrap.min.js"></script><script>
       var disqus_developer = 1;
       var disqus_shortname = 'curso-r'; 
       // required: replace example with your forum shortname
@@ -1640,31 +1507,19 @@ ggplot() +
           (document.getElementsByTagName('head')[0] || 
            document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
-  <script type="text/x-mathjax-config">
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) --><script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         processEscapes: true
       }
     });
-  </script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script> -->
-  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
-</script>
-<!-- Google Prettify -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
-  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
-  <script>
+  </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> --><script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script><!-- Google Prettify --><script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script><script src="../libraries/highlighters/prettify/js/lang-r.js"></script><script>
     var pres = document.getElementsByTagName("pre");
     for (var i=0; i < pres.length; ++i) {
       pres[i].className = "prettyprint linenums";
     }
     prettyPrint();
-  </script>
-  <!-- End Google Prettify --> 
-  </html>
+  </script><!-- End Google Prettify --></html>

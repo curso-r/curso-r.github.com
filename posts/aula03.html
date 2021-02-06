@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aula 03 - Laboratório I</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
-  <link rel="alternate" type="application/rss+xml" href="">
-  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
-  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
-  <!-- IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<html><head><title>Aula 03 - Laboratório I</title><meta http-equiv="refresh" content="0; URL=https://livro.curso-r.com"><link rel="canonical" href="https://livro.curso-r.com"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R"><link rel="shortcut icon" href="/assets/img/curso_r2.jpg"><link rel="alternate" type="application/rss+xml" href=""><link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet"><link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet"><!-- IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
-  <script>
+  <![endif]--><link href="http://fonts.googleapis.com/css?family=Raleway:400,600,200,800" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,72 +9,53 @@
     ga('create', 'UA-58167912-1', 'auto');
     ga('send', 'pageview');
   
-  </script>
-    <style>
+  </script><style>
 	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
 	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
 	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
     p {text-align: justify;}
-  </style>
-  <link rel="stylesheet" href = "../assets/css/custom.css">
-<link rel="stylesheet" href = "../assets/css/ribbons.css">
-
-</head>
-<body>
+  </style><link rel="stylesheet" href="../assets/css/custom.css"><link rel="stylesheet" href="../assets/css/ribbons.css"></head><body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="sidebar" class="span2">
 			  <div class="sidebar-nav sidebar-nav-fixed">
 			    <a href="https://github.com/ramnathv/poirot">
-      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
-        alt="Fork me on GitHub" 
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
-    </a>
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg%20"></a></p>
 				    <h3><a href="/">Curso R </a></h3>
 					  <p class="description">Do casual ao avançado</p>
 					</div>
-					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+					<ul id="links"><li><a href="http://curso-r.github.io/index.html">Home</a></li>
         <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
         <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
         <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
       
         <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
                       
-			    </ul>
-				</div>
+			    </ul></div>
 			</div>
-						<div id="content" class='span10'>
+						<div id="content" class="span10">
 				<div id="post-wrapper">
-          <ol id="posts">
-            <li class="post">
+          <ol id="posts"><li class="post">
               <h3>
                 <a href="#">Aula 03 - Laboratório I</a>
               </h3>
-              <span>2015-01-23</span><br/>
-               <a class='label label-success' href='posts/aula03.Rmd'>Source</a>
+              <span>2015-01-23</span><br><a class="label label-success" href="posts/aula03.Rmd">Source</a>
               <h2>Relatórios dinâmicos com RMarkdown</h2>
-<ul>
-<li>Utilização da linguagem de marcação <em>markdown</em>.</li>
+<ul><li>Utilização da linguagem de marcação <em>markdown</em>.</li>
 <li>Possibilidade de incluir código R nos arquivos.</li>
 <li>Roda com o pacote <code>knitr</code> e o programa <code>pandoc</code>.</li>
 <li>Possibilidade de criar relatórios em html, docx, pdf, latex, entre outros.</li>
 <li>Possibilidade de criar apresentações e relatórios com gráficos dinãmicos.</li>
 <li>Possibilidade de inserir sintaxe matemática, como \(e^{i\pi}=-1\), nos documentos.</li>
 <li>Documentos interativos com o <code>shiny</code>.</li>
-</ul>
-
-<h3>Como utilizar</h3>
-<ul>
-<li>Mais fácil com RStudio.</li>
+</ul><h3>Como utilizar</h3>
+<ul><li>Mais fácil com RStudio.</li>
 <li>Conceitos básicos de Markdown <a href="http://daringfireball.net/projects/markdown/">nesse link</a>.</li>
 <li>RMarkdown com exemplos <a href="http://rmarkdown.rstudio.com/">nesse link</a>.</li>
 <li>Sobre os metadados em YAML <a href="http://rmarkdown.rstudio.com/html_document_format.html">nesse link</a>.</li>
-</ul>
-
-<h4>Exemplo: <a href="https://github.com/curso-r/curso-r.github.com/blob/master/posts/aula01.Rmd">código que gerou a aula 01</a>.</h4>
+</ul><h4>Exemplo: <a href="https://github.com/curso-r/curso-r.github.com/blob/master/posts/aula01.Rmd">código que gerou a aula 01</a>.</h4>
 
 <h2>Exercício do Laboratório</h2>
 
@@ -110,42 +70,31 @@ brasileiro.</p>
 
 <p><strong>Queremos que vocês descubram</strong>:</p>
 
-<ul>
-<li>Quais são os seis municípios com os maiores IDH municipais em 2010.</li>
+<ul><li>Quais são os seis municípios com os maiores IDH municipais em 2010.</li>
 <li>Qual é a unidade federativa com menor expectativa de vida média, ponderada pela população dos municípios em 2000.</li>
 <li>Quais são os municípios <em>outliers</em> com relação ao índice de Gini em 1991 e em 2010. </li>
-</ul>
+</ul><p><strong>Outras atividades</strong>:</p>
 
-<p><strong>Outras atividades</strong>:</p>
-
-<ul>
-<li>Monte um gráfico que mostre no eixo <code>x</code> a quantidade de municípios (em forma de porcentagem) e no eixo <code>y</code> a população acumulada desses municípios. Ordene os dados de forma apropriada para responder a pergunta: 20% dos municípios concentram quantos % da população? E os 30%? E x% (crie uma função)?</li>
+<ul><li>Monte um gráfico que mostre no eixo <code>x</code> a quantidade de municípios (em forma de porcentagem) e no eixo <code>y</code> a população acumulada desses municípios. Ordene os dados de forma apropriada para responder a pergunta: 20% dos municípios concentram quantos % da população? E os 30%? E x% (crie uma função)?</li>
 <li>Categorize a renda per capita e associe com a expectativa de vida.</li>
 <li>Você acha que a situação do Brasil está melhorando? Justifique utlizando dados de pelo menos 3 variáveis.</li>
 <li>No nordeste o aumento de distribuição de renda foi maior do que no sudeste?</li>
 <li>Insira mais pelo menos 3 estudos que você ache interessante.</li>
-</ul>
-
-<h2>Relatório</h2>
+</ul><h2>Relatório</h2>
 
 <p>Elabore um relatório utilizando RMarkdown com uma análise descritiva da base de dados do PNUD, 
 descrevendo as variáveis utilizadas e executando as atividades pedidas.</p>
 
               <div id="disqus_thread"></div>
             </li>
-          </ol>
-          <div class="pagination">
-            <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
-            </ul>
-          </div> 
+          </ol><div class="pagination">
+            <ul><li><a href="http://curso-r.github.io">« Back Home</a></li>
+            </ul></div> 
         </div>
 			</div>
 		</div>
   </div>
-</body>
-  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
+</body><script src="../libraries/frameworks/purus/js/bootstrap.min.js"></script><script>
       var disqus_developer = 1;
       var disqus_shortname = 'curso-r'; 
       // required: replace example with your forum shortname
@@ -157,31 +106,19 @@ descrevendo as variáveis utilizadas e executando as atividades pedidas.</p>
           (document.getElementsByTagName('head')[0] || 
            document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
-  <script type="text/x-mathjax-config">
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) --><script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         processEscapes: true
       }
     });
-  </script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script> -->
-  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
-</script>
-<!-- Google Prettify -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
-  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
-  <script>
+  </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> --><script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script><!-- Google Prettify --><script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script><script src="../libraries/highlighters/prettify/js/lang-r.js"></script><script>
     var pres = document.getElementsByTagName("pre");
     for (var i=0; i < pres.length; ++i) {
       pres[i].className = "prettyprint linenums";
     }
     prettyPrint();
-  </script>
-  <!-- End Google Prettify --> 
-  </html>
+  </script><!-- End Google Prettify --></html>

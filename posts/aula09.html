@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Aula 09 - Laboratório III</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="" />
-  <meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R">
-  <link rel="shortcut icon" href="/assets/img/curso_r2.jpg">
-  <link rel="alternate" type="application/rss+xml" href="">
-  <link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet" />
-  <link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet">
-  <!-- IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<html><head><title>Aula 09 - Laboratório III</title><meta http-equiv="refresh" content="0; URL=https://livro.curso-r.com"><link rel="canonical" href="https://livro.curso-r.com"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=""><meta name="author" content="julio.trecenti@gmail.com,curso-r,Curso,R"><link rel="shortcut icon" href="/assets/img/curso_r2.jpg"><link rel="alternate" type="application/rss+xml" href=""><link href="../libraries/frameworks/purus/css/bootstrap.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/bootstrap-responsive.min.css" rel="stylesheet"><link href="../libraries/frameworks/purus/css/main.css" rel="stylesheet"><link href="../libraries/highlighters/prettify/css/twitter-bootstrap.css" rel="stylesheet"><!-- IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,200,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  
-  <script>
+  <![endif]--><link href="http://fonts.googleapis.com/css?family=Raleway:400,600,200,800" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,52 +9,39 @@
     ga('create', 'UA-58167912-1', 'auto');
     ga('send', 'pageview');
   
-  </script>
-    <style>
+  </script><style>
 	  #sidebar .sidebar-nav .info h3 a:hover, a:hover { color: #01A9DB; }
 	  #sidebar .sidebar-nav #avatar img, #sidebar .sidebar-nav ul#links li.active a { border-color: #01A9DB; }
 	  #sidebar .sidebar-nav ul#links li a:hover { background: #01A9DB; }
     p {text-align: justify;}
-  </style>
-  <link rel="stylesheet" href = "../assets/css/custom.css">
-<link rel="stylesheet" href = "../assets/css/ribbons.css">
-
-</head>
-<body>
+  </style><link rel="stylesheet" href="../assets/css/custom.css"><link rel="stylesheet" href="../assets/css/ribbons.css"></head><body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="sidebar" class="span2">
 			  <div class="sidebar-nav sidebar-nav-fixed">
 			    <a href="https://github.com/ramnathv/poirot">
-      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" 
-        alt="Fork me on GitHub" 
-        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" >
-    </a>
+      <img style="position: absolute; top: 0; left: 100px; border: 0; height: 100px; z-index: 1;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 	  <div class="info">
-				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg " /></a></p>
+				    <p id="avatar"><a href="#"><img alt="Title" src="http://curso-r.github.io/assets/img/curso_r2.jpg%20"></a></p>
 				    <h3><a href="/">Curso R </a></h3>
 					  <p class="description">Do casual ao avançado</p>
 					</div>
-					<ul id="links">
-			        <li><a href="http://curso-r.github.io/index.html">Home</a></li>
+					<ul id="links"><li><a href="http://curso-r.github.io/index.html">Home</a></li>
         <li><a href="http://curso-r.github.io/about.html">Sobre</a></li>
         <li><a href="http://curso-r.github.io/links.html">Links Úteis</a></li>
         <li><a href="http://curso-r.github.io/exercicios.html">Exercícios</a></li>
       
         <li><a href="http://github.com/curso-r" id="Github-link">Github</a></li>
                       
-			    </ul>
-				</div>
+			    </ul></div>
 			</div>
-						<div id="content" class='span10'>
+						<div id="content" class="span10">
 				<div id="post-wrapper">
-          <ol id="posts">
-            <li class="post">
+          <ol id="posts"><li class="post">
               <h3>
                 <a href="#">Aula 09 - Laboratório III</a>
               </h3>
-              <span>2015-02-06</span><br/>
-               <a class='label label-success' href='posts/aula09.Rmd'>Source</a>
+              <span>2015-02-06</span><br><a class="label label-success" href="posts/aula09.Rmd">Source</a>
               
 <p>Pacotes necessários para o Lab. III</p>
 
@@ -95,40 +61,30 @@ library(tree)
 
 <h2>Imagens <strong>.jpg</strong></h2>
 
-<p>Antes de iniciarmos a brincadeira, vale uma breve introdução às imagens <strong>.jpg</strong>, pois elas formarão os <code>data.frame</code>&#39;s do laboratório.</p>
+<p>Antes de iniciarmos a brincadeira, vale uma breve introdução às imagens <strong>.jpg</strong>, pois elas formarão os <code>data.frame</code>'s do laboratório.</p>
 
 <p>Arquivos com extenção <em>.jpg</em> guardam 5 coordenadas que são suficientes para serem entendidas e desenhadas pelo computador:</p>
 
-<ul>
-<li><code>x</code> e <code>y</code> são as coordenadas cartesianas da imagem; e</li>
+<ul><li><code>x</code> e <code>y</code> são as coordenadas cartesianas da imagem; e</li>
 <li><code>r</code>, <code>g</code> e <code>b</code> <em>red</em>, <em>green</em> e <em>blue</em>, respectivamente, que juntas formam cores.</li>
-</ul>
-
-<p>Todas as cores que conhecemos podem ser compostas pela combinação dessas três cores. A intensidade de cada cor varia de 0 a 1.</p>
+</ul><p>Todas as cores que conhecemos podem ser compostas pela combinação dessas três cores. A intensidade de cada cor varia de 0 a 1.</p>
 
 <p>Para cada ponto no plano (x,y) existe uma cor associada. Assim, uma imagem pode ser representada por um banco de dados com 5 colunas: <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code> e <code>b</code>.</p>
 
 <h2>Objetivo</h2>
 
-<ul>
-<li><p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>purple_wave.jpg</strong>.</p></li>
+<ul><li><p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>purple_wave.jpg</strong>.</p></li>
 <li><p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>xadrez_colorido.jpg</strong>.</p></li>
-</ul>
+</ul><h2>Preparação do Banco de dados</h2>
 
-<h2>Preparação do Banco de dados</h2>
+<ol><li><p>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):</p>
 
-<ol>
-<li><p>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):</p>
-
-<ul>
-<li><a href="http://curso-r.github.io/posts/assets/fig/purple_wave.jpg">purple_wave.jpg</a></li>
+<ul><li><a href="http://curso-r.github.io/posts/assets/fig/purple_wave.jpg">purple_wave.jpg</a></li>
 <li><a href="http://curso-r.github.io/posts/assets/fig/xadrez_colorido.jpg">xadrez_colorido.jpg</a></li>
 </ul></li>
 <li><p>Com auxílio da função <code>readJPEG()</code> do pacote <code>jpeg</code>, carregue uma das imagens no R e transforme para <code>data.frame</code> (primeiro a <em>purple_wave.jpg</em>).</p></li>
-</ol>
-
-<pre><code class="r"># a) carrega uma imagem jpeg no R 
-img &lt;- readJPEG(&quot;assets/fig/purple_wave.jpg&quot;)
+</ol><pre><code class="r"># a) carrega uma imagem jpeg no R 
+img &lt;- readJPEG("assets/fig/purple_wave.jpg")
 
 # b) transforma o array da imagem em data.frame com infos de posicao (x,y) e cor (r,g,b)
 # dimensões da imagem
@@ -146,16 +102,10 @@ img_df &lt;- data.frame(
          id = 1:n())
 </code></pre>
 
-<ol>
-<li>Divida o data.frame em duas partes: uma com o azul (coluna <code>b</code>) e outra sem.</li>
-</ol>
-
-<ul>
-<li>Parte 1) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code></li>
+<ol><li>Divida o data.frame em duas partes: uma com o azul (coluna <code>b</code>) e outra sem.</li>
+</ol><ul><li>Parte 1) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code></li>
 <li>Parte 2) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code></li>
-</ul>
-
-<pre><code class="r"># para reprodução
+</ul><pre><code class="r"># para reprodução
 set.seed(1) 
 
 # Parte 1) x, y, r, g
@@ -169,31 +119,28 @@ img_df_parte1 &lt;- img_df %&gt;%
 img_df_parte2 &lt;- img_df %&gt;% filter(!id%in%img_df_parte1$id) # filtra as linhas que estão na Parte 1
 </code></pre>
 
-<ol>
-<li>Visualize.</li>
-</ol>
-
-<p>Veja como fica a <strong>imagem original sem o azul</strong> e como é o <strong>azul original isolado</strong>.</p>
+<ol><li>Visualize.</li>
+</ol><p>Veja como fica a <strong>imagem original sem o azul</strong> e como é o <strong>azul original isolado</strong>.</p>
 
 <pre><code class="r"># Imagem sem o azul
 ggplot(data = img_df_parte1, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte1$cor) +
-  labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
+  labs(x = "x", y = "y", title = "Imagem sem B (azul)") +
   coord_fixed(ratio = 1) +
   theme_bw()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
 
 <pre><code class="r"># Apenas o azul da imagem
 ggplot(data = img_df_parte2, aes(x = x, y = y)) + 
   geom_point(colour = img_df_parte2$cor) +
-  labs(x = &quot;x&quot;, y = &quot;y&quot;, title = &quot;Imagem sem B (azul)&quot;) +
+  labs(x = "x", y = "y", title = "Imagem sem B (azul)") +
   coord_fixed(ratio = 1) +
   theme_bw()
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5"> </p>
+<p><img src="assets/fig/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5"></p>
 
 <p>A sua tarefa é recuperar o azul (<code>b</code>) da <strong>Parte 1</strong> que apagamos utilizando modelos preditivos construídos com a <strong>Parte 2</strong> (que ainda tem o azul!). Vamos aos exercícios.</p>
 
@@ -203,12 +150,9 @@ ggplot(data = img_df_parte2, aes(x = x, y = y)) +
 
 <p>Construa para <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code>:</p>
 
-<ul>
-<li>A matriz de correlação linar e arredonde os resultados para duas casas decimais (utilize a função <code>cor()</code>);</li>
+<ul><li>A matriz de correlação linar e arredonde os resultados para duas casas decimais (utilize a função <code>cor()</code>);</li>
 <li>A matriz de gráficos de dispersão (use a função <code>pairs()</code>).</li>
-</ul>
-
-<p><strong>DICA:</strong> faça esse exercício com uma amostra de 500 linhas do <code>img_df</code>, pois é muito pesado com o banco inteiro.</p>
+</ul><p><strong>DICA:</strong> faça esse exercício com uma amostra de 500 linhas do <code>img_df</code>, pois é muito pesado com o banco inteiro.</p>
 
 <pre><code class="r"># uma amostra de 500 pontos para a análise descritiva (usar o banco inteiro é desnecessário e demorado)
 img_df_amostra &lt;- img_df %&gt;% 
@@ -217,60 +161,40 @@ img_df_amostra &lt;- img_df %&gt;%
 
 <h3>Exercício 2: Modelo de Regressão Linear</h3>
 
-<ul>
-<li>Com base na análise descritiva do exercício anterior, proponha um preditor para <code>b</code> e traduza para o R como uma fórmula;</li>
+<ul><li>Com base na análise descritiva do exercício anterior, proponha um preditor para <code>b</code> e traduza para o R como uma fórmula;</li>
 <li>Ajuste uma <strong>regressão linear</strong> utilizando a fórmula proposta e a função <code>lm()</code>;</li>
-</ul>
-
-<p><strong>LEMBRETE:</strong> fórmulas de modelos deixam a resposta à esquerda do <code>~</code> e as preditivas/explicativas à direita.</p>
+</ul><p><strong>LEMBRETE:</strong> fórmulas de modelos deixam a resposta à esquerda do <code>~</code> e as preditivas/explicativas à direita.</p>
 
 <h3>Exercício 3: Modelo de Árvore de Decisão</h3>
 
-<ul>
-<li><p>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função.</p></li>
+<ul><li><p>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função.</p></li>
 <li><p>Ajuste uma <strong>árvore de decisão</strong> por meio da função <code>tree()</code> do pacote <code>tree</code>, passando a fórmula com as variáveis escolhidas.</p></li>
-</ul>
+</ul><h3>Exercício 4: Comparação</h3>
 
-<h3>Exercício 4: Comparação</h3>
-
-<ul>
-<li>Calcule o erro de predição.</li>
+<ul><li>Calcule o erro de predição.</li>
 <li>Desenhe o original e o predito.</li>
 <li>Qual ficou melhor?</li>
 <li>Você acha que o padrão da imagem (transições suaves de cor) influenciou neste resultado? Por quê?</li>
-</ul>
+</ul><h3>Exercício 5: Outra Imagem</h3>
 
-<h3>Exercício 5: Outra Imagem</h3>
-
-<ul>
-<li>Repita os exercícios de 1 a 4, mas agora para a imagem <em>xadrez_colorido.jpg</em>. </li>
+<ul><li>Repita os exercícios de 1 a 4, mas agora para a imagem <em>xadrez_colorido.jpg</em>. </li>
 <li>Quanto ao desempenho para recuperar o azul de imagens, teve uma técnica melhor?</li>
-</ul>
-
-<h2>Exercício Extra (opcional): Imagens da Internet</h2>
+</ul><h2>Exercício Extra (opcional): Imagens da Internet</h2>
 
 <p>Crie duas <em>strings</em> no R, <code>link_lm</code> e <code>link_tree</code>, cada uma contendo, respectivamente:</p>
 
-<ul>
-<li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>regressão linear</strong>.</li>
+<ul><li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>regressão linear</strong>.</li>
 <li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>árvore de decisão</strong>.</li>
-</ul>
-
-              <div id="disqus_thread"></div>
+</ul><div id="disqus_thread"></div>
             </li>
-          </ol>
-          <div class="pagination">
-            <ul>
-              <li><a href="http://curso-r.github.io">&#171; Back Home</a></li>
-            </ul>
-          </div> 
+          </ol><div class="pagination">
+            <ul><li><a href="http://curso-r.github.io">« Back Home</a></li>
+            </ul></div> 
         </div>
 			</div>
 		</div>
   </div>
-</body>
-  <script src='../libraries/frameworks/purus/js/bootstrap.min.js'></script>
-  <script>
+</body><script src="../libraries/frameworks/purus/js/bootstrap.min.js"></script><script>
       var disqus_developer = 1;
       var disqus_shortname = 'curso-r'; 
       // required: replace example with your forum shortname
@@ -282,31 +206,19 @@ img_df_amostra &lt;- img_df %&gt;%
           (document.getElementsByTagName('head')[0] || 
            document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
-  <script type="text/x-mathjax-config">
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) --><script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         processEscapes: true
       }
     });
-  </script>
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script> -->
-  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
-</script>
-<!-- Google Prettify -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
-  <script src='../libraries/highlighters/prettify/js/lang-r.js'></script>
-  <script>
+  </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> --><script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script><!-- Google Prettify --><script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script><script src="../libraries/highlighters/prettify/js/lang-r.js"></script><script>
     var pres = document.getElementsByTagName("pre");
     for (var i=0; i < pres.length; ++i) {
       pres[i].className = "prettyprint linenums";
     }
     prettyPrint();
-  </script>
-  <!-- End Google Prettify --> 
-  </html>
+  </script><!-- End Google Prettify --></html>
